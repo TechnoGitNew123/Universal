@@ -68,10 +68,10 @@ include('head.php');
                     <a href="<?php echo base_url(); ?>Admin/party_information" class="btn btn-sm btn-block btn-primary">Add New Party</a>
                   </div>
                   <div class="form-group col-md-4 offset-md-2">
-                    <input type="text" class="form-control form-control-sm" name="quotation_person" id="quotation_person" value="<?php if(isset($quotation_no)){ echo $quotation_no;} ?>" placeholder="Name of Person">
+                    <input type="text" class="form-control form-control-sm" name="quotation_person" id="quotation_person" value="<?php if(isset($quotation_person)){ echo $quotation_person;} ?>" placeholder="Name of Person">
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="quotation_contact" id="quotation_contact" value="<?php if(isset($quotation_no)){ echo $quotation_no;} ?>" placeholder="Contact No.">
+                    <input type="text" class="form-control form-control-sm" name="quotation_contact" id="quotation_contact" value="<?php if(isset($quotation_contact)){ echo $quotation_contact;} ?>" placeholder="Contact No.">
                   </div>
                 </div>
               </form>
