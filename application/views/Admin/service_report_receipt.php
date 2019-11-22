@@ -94,21 +94,25 @@ include('head.php');
             <p style="font-size:16px; margin-bottom:5px; padding-top:5px; margin-left: 50px;"> <b>Date </b>  : <?php echo $service_date; ?></p>
 
         </td>
-
+        <?php if(isset($complaint_service)){
+          $val = explode('_',$complaint_service);
+        } ?>
         <td colspan="2" style="border-right:0px!important; padding-left: 20px; padding-top:25px;" >
-           <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>New Installation</b> &nbsp;&nbsp;     <input type="checkbox" > </p>
-           <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Warranty</b> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;    <input type="checkbox" > </p>
+           <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>New Installation</b> &nbsp;&nbsp;     <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'New Installation'){ echo 'checked'; } ?> > </p>
+           <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Warranty</b> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+             <input type="checkbox"  <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'Warranty'){ echo 'checked'; } ?>> </p>
            <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>AMC</b> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input type="checkbox" > </p>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'AMC'){ echo 'checked'; } ?>> </p>
                <p  style="font-size:16px; margin-bottom:5px; padding-top:5px; text-align:left;"> <b>Service Charges Rs. <?php echo $service_charges_fee; ?></b>  </p>
         </td>
 
         <td colspan="2" style="border-left:0px!important; padding-left: 20px; padding-top:25px; " >
-          <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>R/S</b> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input type="checkbox" > </p>
+          <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>R/S</b> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'R/S'){ echo 'checked'; } ?>> </p>
             <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Call </b> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input type="checkbox" > </p>
-          <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Charged Call</b> &nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     <input type="checkbox" > </p>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'Call'){ echo 'checked'; } ?>> </p>
+          <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Charged Call</b> &nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'Charged Call'){ echo 'checked'; } ?>> </p>
 
       </td>
       </tr>
@@ -176,7 +180,7 @@ include('head.php');
             <td colspan="4" style="border-top:0px!important;">
                    <p style="font-size:16px; margin-bottom:5px; padding-top:5px; line-height:20px;"> <b>Customer Name </b> : <?php echo $party_firm; ?> </p>
                    <p style="font-size:16px; margin-bottom:5px; padding-top:5px; line-height:20px;"> <b>Signature </b> :  </p>
-                   <p style="font-size:16px; margin-bottom:5px; padding-top:5px; line-height:20px;"> <b>Date </b> :  </p>
+                   <p style="font-size:16px; margin-bottom:5px; padding-top:5px; line-height:20px;"> <b>Date </b> : <?php echo $service_date; ?> </p>
                    <p style="font-size:16px; margin-bottom:5px; padding-top:5px; line-height:20px;"> <b>Stamp </b> :  </p>
             </td>
             <td colspan="4" style="border-top:0px!important;">
@@ -195,7 +199,7 @@ include('head.php');
               <!-- this row will not appear when printing -->
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="<?php echo base_url() ?>Receipt/service_report_print" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                  <a href="<?php echo base_url() ?>Receipt/service_report_print/<?php echo $service_id; ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
 
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
                     Payment

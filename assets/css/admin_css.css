@@ -32,6 +32,7 @@
     box-shadow: 0 0 0 0.1rem rgba(225,0,0,.2);
 }
 
-label:not(.form-check-label):not(.custom-file-label) {
+.chk-lbl {
     font-weight: 400 !important;
+    font-size : 16px;
 }

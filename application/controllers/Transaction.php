@@ -1152,12 +1152,27 @@ public function expense_voucher_list(){
  public function save_complaint(){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
+     // $complaint_service;
+     $new_installation = $this->input->post('new_installation');
+     $rs = $this->input->post('rs');
+     $warranty = $this->input->post('warranty');
+     $call = $this->input->post('call');
+     $amc = $this->input->post('amc');
+     $charged_call = $this->input->post('charged_call');
+     if(!isset($new_installation)){ $new_installation = '0'; }
+     if(!isset($rs)){ $rs = '0'; }
+     if(!isset($warranty)){ $warranty = '0'; }
+     if(!isset($call)){ $call = '0'; }
+     if(!isset($amc)){ $amc = '0'; }
+     if(!isset($charged_call)){ $charged_call = '0'; }
+     $complaint_service = $new_installation.'_'.$rs.'_'.$warranty.'_'.$call.'_'.$amc.'_'.$charged_call;
+
      $data = array(
        'company_id' => $company_id,
        'complaint_no' => $this->input->post('complaint_no'),
        'complaint_date' => $this->input->post('complaint_date'),
        'party_id' => $this->input->post('party_id'),
-       'complaint_service' => $this->input->post('complaint_service'),
+       'complaint_service' => $complaint_service,
        'complaint_reporting' => $this->input->post('complaint_reporting'),
        'complaint_person' => $this->input->post('complaint_person'),
        'complaint_contact_no' => $this->input->post('complaint_contact_no'),
@@ -1201,11 +1216,26 @@ public function expense_voucher_list(){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
      $complaint_id = $this->input->post('complaint_id');
+
+     $new_installation = $this->input->post('new_installation');
+     $rs = $this->input->post('rs');
+     $warranty = $this->input->post('warranty');
+     $call = $this->input->post('call');
+     $amc = $this->input->post('amc');
+     $charged_call = $this->input->post('charged_call');
+     if(!isset($new_installation)){ $new_installation = '0'; }
+     if(!isset($rs)){ $rs = '0'; }
+     if(!isset($warranty)){ $warranty = '0'; }
+     if(!isset($call)){ $call = '0'; }
+     if(!isset($amc)){ $amc = '0'; }
+     if(!isset($charged_call)){ $charged_call = '0'; }
+     $complaint_service = $new_installation.'_'.$rs.'_'.$warranty.'_'.$call.'_'.$amc.'_'.$charged_call;
+
      $data = array(
        'complaint_no' => $this->input->post('complaint_no'),
        'complaint_date' => $this->input->post('complaint_date'),
        'party_id' => $this->input->post('party_id'),
-       'complaint_service' => $this->input->post('complaint_service'),
+       'complaint_service' => $complaint_service,
        'complaint_reporting' => $this->input->post('complaint_reporting'),
        'complaint_person' => $this->input->post('complaint_person'),
        'complaint_contact_no' => $this->input->post('complaint_contact_no'),

@@ -72,41 +72,33 @@
                       <option>Email</option>
                     </select>
                   </div>
+                  <?php if(isset($complaint_service)){
+                    $val = explode('_',$complaint_service);
+                  } ?>
                   <div class="form-group col-md-4">
-                    <div class="custom-control custom-checkbox">
-                      <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1">
-                      <label for="customCheckbox1" class="custom-control-label">New Installation</label>
-                    </div>
+                    <input type="checkbox" name="new_installation" id="new_installation" value="New Installation" <?php if(isset($complaint_service) && $val[0] == 'New Installation'){ echo 'checked'; } ?>>
+                    <span class="chk-lbl">New Installation</span>
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <input type="checkbox" name="rs" id="rs" value="R/S" <?php if(isset($complaint_service) && $val[1] == 'R/S'){ echo 'checked'; } ?>>
+                    <span class="chk-lbl">R/S</span>
                   </div>
                   <div class="form-group col-md-4">
-                    <div class="custom-control custom-checkbox">
-                      <input class="custom-control-input" type="checkbox" id="customCheckbox2" value="option1">
-                      <label for="customCheckbox2" class="custom-control-label">New Installation</label>
-                    </div>
+                    <input type="checkbox" name="warranty" id="warranty" value="Warranty" <?php if(isset($complaint_service) && $val[2] == 'Warranty'){ echo 'checked'; } ?>>
+                    <span class="chk-lbl">Warranty</span>
                   </div>
                   <div class="form-group col-md-4">
-                    <div class="custom-control custom-checkbox">
-                      <input class="custom-control-input" type="checkbox" id="customCheckbox3" value="option1">
-                      <label for="customCheckbox3" class="custom-control-label">New Installation</label>
-                    </div>
+                    <input type="checkbox" name="call" id="call" value="Call" <?php if(isset($complaint_service) && $val[3] == 'Call'){ echo 'checked'; } ?>>
+                    <span class="chk-lbl">Call</span>
                   </div>
                   <div class="form-group col-md-4">
-                    <div class="custom-control custom-checkbox">
-                      <input class="custom-control-input" type="checkbox" id="customCheckbox4" value="option1">
-                      <label for="customCheckbox4" class="custom-control-label">New Installation</label>
-                    </div>
+                    <input type="checkbox" name="amc" id="amc" value="AMC" <?php if(isset($complaint_service) && $val[4] == 'AMC'){ echo 'checked'; } ?>>
+                    <span class="chk-lbl">AMC</span>
                   </div>
                   <div class="form-group col-md-4">
-                    <div class="custom-control custom-checkbox">
-                      <input class="custom-control-input" type="checkbox" id="customCheckbox5" value="option1">
-                      <label for="customCheckbox5" class="custom-control-label">New Installation</label>
-                    </div>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <div class="custom-control custom-checkbox">
-                      <input class="custom-control-input" type="checkbox" id="customCheckbox6" value="option1">
-                      <label for="customCheckbox6" class="custom-control-label">New Installation</label>
-                    </div>
+                    <input type="checkbox" name="charged_call" id="charged_call" value="Charged Call" <?php if(isset($complaint_service) && $val[5] == 'Charged Call'){ echo 'checked'; } ?>>
+                    <span class="chk-lbl">Charged Call</span>
                   </div>
 
                   <div class="form-group col-md-6">
