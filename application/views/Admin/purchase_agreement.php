@@ -173,41 +173,24 @@ include('head.php');
                         <textarea class="form-control form-control-sm" name="input[<?php echo $i; ?>][accessories]" rows="3"><?php echo $trans_data->accessories ?></textarea>
                       </td>
                       <td class="td_w">
-                        <input type="text" class="form-control form-control-sm gst" name="input[<?php echo $i; ?>][purchase_trans_gst]" value="<?php echo $trans_data->purchase_trans_gst ?>" placeholder="GST" required>
+                        <input type="text" class="form-control form-control-sm gst1" name="input[<?php echo $i; ?>][purchase_trans_gst]" value="<?php echo $trans_data->purchase_trans_gst ?>" placeholder="GST" required>
+                        <input type="number" class="form-control form-control-sm mt-1 gst2" name="input[<?php echo $i; ?>][purchase_descr_gst]" value="<?php echo $trans_data->purchase_descr_gst ?>" placeholder="Acc GST">
                       </td>
                       <td class="td_w">
-                        <input type="text" class="form-control form-control-sm qty" name="input[<?php echo $i; ?>][purchase_trans_qty]" value="<?php echo $trans_data->purchase_trans_qty ?>" placeholder="Qty" required>
+                        <input type="text" class="form-control form-control-sm qty1" name="input[<?php echo $i; ?>][purchase_trans_qty]" value="<?php echo $trans_data->purchase_trans_qty ?>" placeholder="Qty" required>
+                        <input type="number" class="form-control form-control-sm mt-1 qty2" name="input[<?php echo $i; ?>][purchase_descr_qty]" value="<?php echo $trans_data->purchase_descr_qty ?>" placeholder="Acc Qty">
                       </td>
                       <td class="td_w">
-                        <input type="text" class="form-control form-control-sm rate" name="input[<?php echo $i; ?>][purchase_trans_rate]" value="<?php echo $trans_data->purchase_trans_rate ?>" placeholder="Rate" required>
+                        <input type="text" class="form-control form-control-sm rate1" name="input[<?php echo $i; ?>][purchase_trans_rate]" value="<?php echo $trans_data->purchase_trans_rate ?>" placeholder="Rate" required>
+                        <input type="number" class="form-control form-control-sm mt-1 rate2" name="input[<?php echo $i; ?>][purchase_descr_rate]" value="<?php echo $trans_data->purchase_descr_rate ?>" placeholder="Acc Rate">
                       </td>
                       <td class="td_w">
-                        <input type="text" class="form-control form-control-sm amount" name="input[<?php echo $i; ?>][purchase_trans_amount]" value="<?php echo $trans_data->purchase_trans_amount ?>" placeholder="Amount" readonly>
+                        <input type="text" class="form-control form-control-sm amount1 amount" name="input[<?php echo $i; ?>][purchase_trans_amount]" value="<?php echo $trans_data->purchase_trans_amount ?>" placeholder="Amount" readonly>
+                        <input type="number" class="form-control form-control-sm mt-1 amount2 amount" name="input[<?php echo $i; ?>][purchase_descr_amount]" value="<?php echo $trans_data->purchase_descr_amount ?>" placeholder="Acc Amount" readonly>
                       </td>
-                      <input type="hidden" class="gst_amount" value="">
-                      <input type="hidden" class="amount_with_gst" value="">
+                      <input type="hidden" name="input[<?php echo $i; ?>][purchase_trans_gst_amount]" class="gst_amount1 gst_amount" value="<?php echo $trans_data->purchase_trans_gst_amount ?>">
+                      <input type="hidden" name="input[<?php echo $i; ?>][trans_acc_gst_amount]" class="gst_amount2 gst_amount" value="<?php echo $trans_data->trans_acc_gst_amount ?>">
                       <td class="td_btn"><?php if($j > 1){ ?> <a><i class="fa fa-trash text-danger rem_row"></i></a> <?php } ?></td>
-                    </tr>
-                    <tr>
-                      <td class="sr_no"></td>
-                      <td colspan="10">
-                        <textarea class="form-control form-control-sm w-100" name="input[<?php echo $i; ?>][purchase_trans_descr]" rows="3" cols=""><?php echo $trans_data->purchase_trans_descr ?></textarea>
-                      </td>
-                      <td class="td_w">
-                        <input type="text" class="form-control form-control-sm gst" name="input[<?php echo $i; ?>][purchase_descr_gst]" value="<?php echo $trans_data->purchase_descr_gst ?>" placeholder="GST" required>
-                      </td>
-                      <td class="td_w">
-                        <input type="text" class="form-control form-control-sm qty" name="input[<?php echo $i; ?>][purchase_descr_qty]" value="<?php echo $trans_data->purchase_descr_qty ?>" placeholder="Qty" required>
-                      </td>
-                      <td class="td_w">
-                        <input type="text" class="form-control form-control-sm rate" name="input[<?php echo $i; ?>][purchase_descr_rate]" value="<?php echo $trans_data->purchase_descr_rate ?>" placeholder="Rate" required>
-                      </td>
-                      <td class="td_w">
-                        <input type="text" class="form-control form-control-sm amount" name="input[<?php echo $i; ?>][purchase_descr_amount]" value="<?php echo $trans_data->purchase_descr_amount ?>" placeholder="Amount" readonly>
-                      </td>
-                      <input type="hidden" class="gst_amount" value="">
-                      <input type="hidden" class="amount_with_gst" value="">
-                      <td class="td_btn"></td>
                     </tr>
 
                   <?php $i++; } } else { ?>
@@ -263,22 +246,26 @@ include('head.php');
                           <textarea class="form-control form-control-sm" name="input[0][accessories]" rows="3"></textarea>
                         </td>
                         <td class="td_w">
-                          <input type="text" class="form-control form-control-sm gst" name="input[0][purchase_trans_gst]" id="" placeholder="GST" required>
+                          <input type="text" class="form-control form-control-sm gst1" name="input[0][purchase_trans_gst]" value="" placeholder="GST" required>
+                          <input type="number" class="form-control form-control-sm mt-1 gst2" name="input[0][purchase_descr_gst]" value="" placeholder="Acc GST">
                         </td>
                         <td class="td_w">
-                          <input type="text" class="form-control form-control-sm qty" name="input[0][purchase_trans_qty]" id="" placeholder="Qty" required>
+                          <input type="text" class="form-control form-control-sm qty1" name="input[0][purchase_trans_qty]" value="" placeholder="Qty" required>
+                          <input type="number" class="form-control form-control-sm mt-1 qty2" name="input[0][purchase_descr_qty]" value="" placeholder="Acc Qty">
                         </td>
                         <td class="td_w">
-                          <input type="text" class="form-control form-control-sm rate" name="input[0][purchase_trans_rate]" id="" placeholder="Rate" required>
+                          <input type="text" class="form-control form-control-sm rate1" name="input[0][purchase_trans_rate]" value="" placeholder="Rate" required>
+                          <input type="number" class="form-control form-control-sm mt-1 rate2" name="input[0][purchase_descr_rate]" value="" placeholder="Acc Rate">
                         </td>
                         <td class="td_w">
-                          <input type="text" class="form-control form-control-sm amount" name="input[0][purchase_trans_amount]" id="" placeholder="Amount" readonly>
+                          <input type="text" class="form-control form-control-sm amount1 amount" name="input[0][purchase_trans_amount]" value="" placeholder="Amount" readonly>
+                          <input type="number" class="form-control form-control-sm mt-1 amount2 amount" name="input[0][purchase_descr_amount]" value="" placeholder="Acc Amount" readonly>
                         </td>
-                        <input type="hidden" class="gst_amount" value="">
-                        <input type="hidden" class="amount_with_gst" value="">
+                        <input type="hidden" name="input[0][purchase_trans_gst_amount]" class="gst_amount1 gst_amount" value="">
+                        <input type="hidden" name="input[0][trans_acc_gst_amount]" class="gst_amount2 gst_amount" value="">
                         <td class="td_btn"></td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <td class="sr_no"></td>
                         <td colspan="10">
                           <textarea class="form-control form-control-sm w-100" name="input[0][purchase_trans_descr]" rows="3" cols=""></textarea>
@@ -298,7 +285,7 @@ include('head.php');
                         <input type="hidden" class="gst_amount" value="">
                         <input type="hidden" class="amount_with_gst" value="">
                         <td class="td_btn"></td>
-                      </tr>
+                      </tr> -->
                     <?php } ?>
 
                 </table>
@@ -408,78 +395,78 @@ var i = 0;
   // var i = 0;
   $('#add_row').click(function(){
     i++;
-    var row = '<tr><td class="sr_no">'+i+'</td>'+
-              '<td>'+
-              '<select class="form-control select2 form-control-sm make_id" name="input['+i+'][make_id]" style="width: 100%;">'+
-              <?php foreach ($make_list as $make_list1) { ?>
-                '<option value="<?php echo $make_list1->make_id; ?>"><?php echo $make_list1->make_name ?></option>'+
-              <?php } ?>
-              '</select></td>'+
-              '<td>'+
-              '<select class="form-control select2 form-control-sm model_no" name="input['+i+'][model_no_id]" style="width: 100%;">'+
-              '<option selected="selected"></option>'+
-              '</select></td>'+
-              '<td><input type="text" class="form-control form-control-sm " name="input['+i+'][machine_serial_no]" id="" placeholder="Machine Serial no."></td>'+
-              '<td>'+
-              '<select class="form-control select2 form-control-sm capacity" name="input['+i+'][capacity_id]">'+
-              '</select>'+
-              '</td>'+
-              '<td>'+
-              '<select class="form-control select2 form-control-sm accuracy" name="input['+i+'][accuracy_id]">'+
-              '</select>'+
-              '</td>'+
-              '<td>'+
-              '<select class="form-control select2 form-control-sm class" name="input['+i+'][class_id]">'+
-              '</select>'+
-              '</td>'+
-              '<td>'+
-              '<select class="form-control select2 form-control-sm platter" name="input['+i+'][platter_id]">'+
-              '</select>'+
-              '</td>'+
-              '<td>'+
-              '<select class="form-control select2 form-control-sm" name="input['+i+'][display_color_id]" style="width: 100%;">'+
-              <?php foreach ($display_color_list as $display_color_list1) { ?>
-                '<option value="<?php echo $display_color_list1->display_color_id; ?>"><?php echo $display_color_list1->display_color_name ?></option>'+
-              <?php } ?>
-              '</select></td>'+
-              '<td>'+
-              '<select class="form-control select2 form-control-sm" name="input['+i+'][cabinate_color_id]" style="width: 100%;">'+
-              <?php foreach ($cabinate_color_list as $cabinate_color_list1) { ?>
-                '<option value="<?php echo $cabinate_color_list1->cabinet_color_id; ?>"><?php echo $cabinate_color_list1->cabinet_color_name ?></option>'+
-              <?php } ?>
-              '</select></td>'+
+    var row = '<tr>'+
+      '<td class="sr_no">'+i+'</td>'+
+      '<td>'+
+        '<select class="form-control select2 form-control-sm make_id" name="input['+i+'][make_id]" id="" required>'+
+          '<option value="">Select Make</option>'+
+          <?php foreach ($make_list as $make_list1) { ?>
+            '<option value="<?php echo $make_list1->make_id; ?>"><?php echo $make_list1->make_name ?></option>'+
+          <?php } ?>
+        '</select>'+
+      '</td>'+
+      '<td>'+
+        '<select class="form-control select2 form-control-sm model_no" name="input['+i+'][model_no_id]" id="" required>'+
+          '<option value="">Select Model No.</option>'+
+        '</select>'+
+      '</td>'+
+      '<td class="td_w">'+
+        '<input type="text" class="form-control form-control-sm " name="input['+i+'][machine_serial_no]" id="" placeholder="Machine Serial no.">'+
+      '</td>'+
+      '<td>'+
+        '<select class="form-control select2 form-control-sm capacity" name="input['+i+'][capacity_id]">'+
+        '</select>'+
+      '</td>'+
+      '<td>'+
+        '<select class="form-control select2 form-control-sm accuracy" name="input['+i+'][accuracy_id]">'+
+        '</select>'+
+      '</td>'+
+      '<td>'+
+        '<select class="form-control select2 form-control-sm class" name="input['+i+'][class_id]">'+
+        '</select>'+
+      '</td>'+
+      '<td>'+
+        '<select class="form-control select2 form-control-sm platter" name="input['+i+'][platter_id]">'+
+        '</select>'+
+      '</td>'+
+      '<td class="td_w">'+
+        '<select class="form-control select2 form-control-sm make_id" name="input['+i+'][display_color_id]" id="">'+
+          <?php foreach ($display_color_list as $display_color_list1) { ?>
+            '<option value="<?php echo $display_color_list1->display_color_id; ?>"><?php echo $display_color_list1->display_color_name ?></option>'+
+          <?php } ?>
+        '</select>'+
+      '</td>'+
+      '<td class="td_w">'+
+        '<select class="form-control select2 form-control-sm make_id" name="input['+i+'][cabinate_color_id]" id="">'+
+          <?php foreach ($cabinate_color_list as $cabinate_color_list1) { ?>
+            '<option value="<?php echo $cabinate_color_list1->cabinet_color_id; ?>"><?php echo $cabinate_color_list1->cabinet_color_name ?></option>'+
+          <?php } ?>
+        '</select>'+
+      '</td>'+
+      '<td>'+
+        '<textarea class="form-control form-control-sm" name="input['+i+'][accessories]" rows="3"></textarea>'+
+      '</td>'+
+      '<td class="td_w">'+
+        '<input type="text" class="form-control form-control-sm gst1" name="input['+i+'][purchase_trans_gst]" value="" placeholder="GST" required>'+
+        '<input type="number" class="form-control form-control-sm mt-1 gst2" name="input['+i+'][purchase_descr_gst]" value="" placeholder="Acc GST">'+
+      '</td>'+
+      '<td class="td_w">'+
+        '<input type="text" class="form-control form-control-sm qty1" name="input['+i+'][purchase_trans_qty]" value="" placeholder="Qty" required>'+
+        '<input type="number" class="form-control form-control-sm mt-1 qty2" name="input['+i+'][purchase_descr_qty]" value="" placeholder="Acc Qty">'+
+      '</td>'+
+      '<td class="td_w">'+
+        '<input type="text" class="form-control form-control-sm rate1" name="input['+i+'][purchase_trans_rate]" value="" placeholder="Rate" required>'+
+        '<input type="number" class="form-control form-control-sm mt-1 rate2" name="input['+i+'][purchase_descr_rate]" value="" placeholder="Acc Rate">'+
+      '</td>'+
+      '<td class="td_w">'+
+        '<input type="text" class="form-control form-control-sm amount1 amount" name="input['+i+'][purchase_trans_amount]" value="" placeholder="Amount" readonly>'+
+        '<input type="number" class="form-control form-control-sm mt-1 amount2 amount" name="input['+i+'][purchase_descr_amount]" value="" placeholder="Acc Amount" readonly>'+
+      '</td>'+
+      '<input type="hidden" name="input['+i+'][purchase_trans_gst_amount]" class="gst_amount1 gst_amount" value="">'+
+      '<input type="hidden" name="input['+i+'][trans_acc_gst_amount]" class="gst_amount2 gst_amount" value="">'+
+      '<td class="td_btn"></td>'+
+    '</tr>';
 
-              '<td><textarea class="form-control form-control-sm" name="input['+i+'][accessories]" rows="3"></textarea></td>'+
-              '<td class="td_w"><input type="text" class="form-control form-control-sm gst" name="input['+i+'][purchase_trans_gst]" placeholder="" required></td>'+
-              '<td class="td_w"><input type="text" class="form-control form-control-sm qty" name="input['+i+'][purchase_trans_qty]" placeholder="" required></td>'+
-              '<td class="td_w"><input type="text" class="form-control form-control-sm rate" name="input['+i+'][purchase_trans_rate]" placeholder="" required></td>'+
-              '<td class="td_w"><input type="text" class="form-control form-control-sm amount" name="input['+i+'][purchase_trans_amount]" placeholder="" readonly></td>'+
-              '<td class="td_btn"><a> <i class="fa fa-trash text-danger"></i> </a></td>'+
-              '<input type="hidden" class="gst_amount" value="">'+
-              '<input type="hidden" class="amount_with_gst" value="">'+
-              '</tr>'+
-              '<tr>'+
-                '<td class="sr_no"></td>'+
-                '<td colspan="10">'+
-                  '<textarea class="form-control form-control-sm w-100" name="input['+i+'][purchase_trans_descr]" rows="3" cols=""></textarea>'+
-                '</td>'+
-                '<td class="td_w">'+
-                  '<input type="text" class="form-control form-control-sm gst" name="input['+i+'][purchase_descr_gst]" placeholder="" required>'+
-                '</td>'+
-                '<td class="td_w">'+
-                  '<input type="text" class="form-control form-control-sm qty" name="input['+i+'][purchase_descr_qty]" placeholder="" required>'+
-                '</td>'+
-                '<td class="td_w">'+
-                  '<input type="text" class="form-control form-control-sm rate" name="input['+i+'][purchase_descr_rate]" placeholder="" required>'+
-                '</td>'+
-                '<td class="td_w">'+
-                  '<input type="text" class="form-control form-control-sm amount" name="input['+i+'][purchase_descr_amount]" placeholder="" readonly>'+
-                '</td>'+
-                '<input type="hidden" class="gst_amount" value="">'+
-                '<input type="hidden" class="amount_with_gst" value="">'+
-                '<td class="td_btn"></td>'+
-              '</tr>'
-              ;
     $('#myTable').append(row);
   });
 
@@ -514,104 +501,114 @@ var i = 0;
         $(this).closest('tr').find('.accuracy').html('<option value="'+data['accuracy_id']+'">'+data['accuracy_name']+'</option>');
         $(this).closest('tr').find('.class').html('<option value="'+data['class_id']+'">'+data['class_name']+'</option>');
         $(this).closest('tr').find('.platter').html('<option value="'+data['platter_id']+'">'+data['platter_size']+'</option>');
-        $(this).closest('tr').find('.rate').val(data['sale_price']);
-        $(this).closest('tr').find('.gst').val('');
-        $(this).closest('tr').find('.qty').val('');
+        $(this).closest('tr').find('.rate1').val(data['sale_price']);
+        $(this).closest('tr').find('.gst1').val('');
+        $(this).closest('tr').find('.qty1').val('');
       }
   	});
   });
 
-  $('#myTable').on('keyup', 'input.gst, input.qty, input.rate', function () {
-    var gst =   $(this).closest('tr').find('.gst').val();
-    var qty =   $(this).closest('tr').find('.qty').val();
-    var rate =   $(this).closest('tr').find('.rate').val();
-    if(gst == ''){
-      gst = 0;
+  $('#myTable').on('keyup', 'input.gst1, input.qty1, input.rate1', function () {
+    var gst1 =   $(this).closest('tr').find('.gst1').val();
+    var qty1 =   $(this).closest('tr').find('.qty1').val();
+    var rate1 =   $(this).closest('tr').find('.rate1').val();
+    if(gst1 == ''){
+      gst1 = 0;
     }
-    if(qty == ''){
-      qty = 0;
+    if(qty1 == ''){
+      qty1 = 0;
     }
-    if(rate == ''){
-      rate = 0;
+    if(rate1 == ''){
+      rate1 = 0;
     }
-    var gst = parseInt(gst);
-    var qty = parseInt(qty);
-    var rate = parseInt(rate);
-    var amount_no_gst = qty * rate;
-    var gst_rs = (gst/100) * amount_no_gst;
-    var amount_with_gst = amount_no_gst + gst_rs;
+    var gst1 = parseInt(gst1);
+    var qty1 = parseInt(qty1);
+    var rate1 = parseInt(rate1);
+    var amount_without_gst = qty1 * rate1;
+    var gst_amount1 = (gst1/100) * amount_without_gst;
+    var amount_with_gst = amount_without_gst + gst_amount1;
+    $(this).closest('tr').find('.amount1').val(amount_without_gst);
+    $(this).closest('tr').find('.gst_amount1').val(gst_amount1);
 
-    $(this).closest('tr').find('.amount').val(amount_no_gst);
-    $(this).closest('tr').find('.amount_with_gst').val(amount_with_gst);
-    $(this).closest('tr').find('.gst_amount').val(gst_rs);
-    // <input type="hidden" class="gst_amount" value="">
-    // <input type="hidden" class="amount_with_gst" value="">
     var basic_amount = 0;
-    var gst_amount = 0;
-    var amount_w_gst = 0;
-// iterate through each td based on class and add the values
     $(".amount").each(function() {
-        var value = $(this).val();
-        if(!isNaN(value) && value.length != 0) {
-            basic_amount += parseFloat(value);
-        }
-    });
-    $(".amount_with_gst").each(function() {
-        var value = $(this).val();
-        if(!isNaN(value) && value.length != 0) {
-            amount_w_gst += parseFloat(value);
-        }
-    });
-    $(".gst_amount").each(function() {
-        var value = $(this).val();
-        if(!isNaN(value) && value.length != 0) {
-            gst_amount += parseFloat(value);
+        var amount = $(this).val();
+        // add only if the value is number
+        if(!isNaN(amount) && amount.length != 0) {
+            basic_amount += parseFloat(amount);
         }
     });
     $('#purchase_basic_price').val(basic_amount);
-    $('#purchase_gst').val(gst_amount);
-    $('#purchase_total_prev').val(amount_w_gst);
 
-    var purchase_total_prev = $('#purchase_total_prev').val();
-    var purchase_stamping = $('#purchase_stamping').val();
-    var purchase_other = $('#purchase_other').val();
-    if(purchase_total_prev == ''){
-      purchase_total_prev = 0;
+    var gst_val = 0;
+    $(".gst_amount").each(function() {
+        var gst_amount = $(this).val();
+        if(!isNaN(gst_amount) && gst_amount.length != 0) {
+            gst_val += parseFloat(gst_amount);
+        }
+    });
+    $('#purchase_gst').val(gst_val);
+
+    var total_amount = basic_amount + gst_val;
+    $('#purchase_total').val(total_amount);
+  });
+
+  $('#myTable').on('keyup', 'input.gst2, input.qty2, input.rate2', function () {
+    var gst2 =   $(this).closest('tr').find('.gst2').val();
+    var qty2 =   $(this).closest('tr').find('.qty2').val();
+    var rate2 =   $(this).closest('tr').find('.rate2').val();
+    if(gst2 == ''){
+      gst2 = 0;
     }
-    if(purchase_stamping == ''){
-      purchase_stamping = 0;
+    if(qty2 == ''){
+      qty2 = 0;
     }
-    if(purchase_other == ''){
-      purchase_other = 0;
+    if(rate2 == ''){
+      rate2 = 0;
     }
-    var purchase_total_prev = parseFloat(purchase_total_prev);
-    var purchase_stamping = parseFloat(purchase_stamping);
-    var purchase_other = parseFloat(purchase_other);
-    var purchase_total = purchase_total_prev + purchase_stamping + purchase_other;
-    $('#purchase_total').val(purchase_total);
+    var gst2 = parseInt(gst2);
+    var qty2 = parseInt(qty2);
+    var rate2 = parseInt(rate2);
+    var amount_without_gst = qty2 * rate2;
+    var gst_amount2 = (gst2/100) * amount_without_gst;
+    var amount_with_gst = amount_without_gst + gst_amount2;
+    $(this).closest('tr').find('.amount2').val(amount_without_gst);
+    $(this).closest('tr').find('.gst_amount2').val(gst_amount2);
 
+    var basic_amount = 0;
+    $(".amount").each(function() {
+        var amount = $(this).val();
+        // add only if the value is number
+        if(!isNaN(amount) && amount.length != 0) {
+            basic_amount += parseFloat(amount);
+        }
+    });
+    $('#purchase_basic_price').val(basic_amount);
 
+    var gst_val = 0;
+    $(".gst_amount").each(function() {
+        var gst_amount = $(this).val();
+        if(!isNaN(gst_amount) && gst_amount.length != 0) {
+            gst_val += parseFloat(gst_amount);
+        }
+    });
+    $('#purchase_gst').val(gst_val);
 
-    // var purchase_advance = $('#purchase_advance').val();
-    // var purchase_total = $('#purchase_total').val();
-    // if(purchase_advance == ''){
-    //   purchase_advance = 0;
-    // }
-    // if(purchase_total == ''){
-    //   purchase_total = 0;
-    // }
-    // var purchase_advance = parseFloat(purchase_advance);
-    // var purchase_total = parseFloat(purchase_total);
-    // var purchase_due = purchase_total - purchase_advance;
-    // $('#purchase_due').val(purchase_due);
+    var total_amount = basic_amount + gst_val;
+    $('#purchase_total').val(total_amount);
   });
 
   $('.gst-table').on('keyup', 'input#purchase_stamping, input#purchase_other', function () {
-    var purchase_total_prev = $('#purchase_total_prev').val();
+    var purchase_basic_price = $('#purchase_basic_price').val();
+    var purchase_gst = $('#purchase_gst').val();
     var purchase_stamping = $('#purchase_stamping').val();
     var purchase_other = $('#purchase_other').val();
-    if(purchase_total_prev == ''){
-      purchase_total_prev = 0;
+    var purchase_advance = $('#purchase_advance').val();
+    if(purchase_basic_price == ''){
+      purchase_basic_price = 0;
+    }
+    if(purchase_gst == ''){
+      purchase_gst = 0;
     }
     if(purchase_stamping == ''){
       purchase_stamping = 0;
@@ -619,11 +616,19 @@ var i = 0;
     if(purchase_other == ''){
       purchase_other = 0;
     }
-    var purchase_total_prev = parseFloat(purchase_total_prev);
+    if(purchase_advance == ''){
+      purchase_advance = 0;
+    }
+    var purchase_basic_price = parseFloat(purchase_basic_price);
+    var purchase_gst = parseFloat(purchase_gst);
     var purchase_stamping = parseFloat(purchase_stamping);
     var purchase_other = parseFloat(purchase_other);
-    var purchase_total = purchase_total_prev + purchase_stamping + purchase_other;
+    var purchase_advance = parseFloat(purchase_advance);
+    var purchase_total = purchase_basic_price + purchase_gst + purchase_stamping + purchase_other;
+    var purchase_due = purchase_total - purchase_advance;
     $('#purchase_total').val(purchase_total);
+    $('#purchase_due').val(purchase_total);
+
   });
 
   $('.gst-table').on('keyup', 'input#purchase_advance', function () {

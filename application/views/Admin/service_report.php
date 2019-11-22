@@ -50,7 +50,7 @@
                   <input type="text" class="form-control form-control-sm" name="service_no" id="service_no" placeholder="Service Report No." readonly value="<?php if(isset($service_no)){ echo $service_no; } ?>">
                 </div>
                 <div class="form-group col-md-6">
-                  <input type="text" class="form-control form-control-sm" name="service_date" id="date2" value="" data-target="#date2" data-toggle="datetimepicker" placeholder="Service Report Date" required>
+                  <input type="text" class="form-control form-control-sm" name="service_date" id="date2" data-target="#date2" data-toggle="datetimepicker" value="<?php if(isset($service_date)){ echo $service_date; } ?>" placeholder="Service Report Date" required>
                 </div>
                   <div class="form-group col-md-6">
                     <input type="text" class="form-control form-control-sm" name="complaint_no" id="complaint_no" value="<?php if(isset($complaint_no)){ echo $complaint_no; } ?>" placeholder="Complaint No." readonly>
@@ -76,15 +76,17 @@
                   <div class="form-group col-md-3">
                     <select class="form-control select2 form-control-sm" name="make_id" id="make_id">
                       <option selected="selected">Select Make</option>
-
                       <?php foreach ($make_list as $make_list1) { ?>
                         <option value="<?php echo $make_list1->make_id; ?>" <?php if(isset($make_id)){ if($make_list1->make_id == $make_id){ echo "selected"; } }  ?>><?php echo $make_list1->make_name; ?></option>
                       <?php } ?>
                     </select>
                   </div>
                   <div class="form-group col-md-3">
-                    <select class="form-control select2 form-control-sm" name="make_no" id="make_no">
+                    <select class="form-control select2 form-control-sm" name="model_no" id="model_no">
                       <option selected="selected">Select Model No.</option>
+                      <?php if(isset($model_no)){ ?>
+                        <option selected value="<?php echo $model_no ?>" ><?php echo $product_model_no ?></option>
+                      <?php } ?>
                     </select>
                   </div>
                   <!-- <?php if(isset($service_sr_no)){ echo $service_sr_no; } ?> -->
@@ -175,7 +177,7 @@
 	        type: "POST",
 	        data: {"make_id":make_id},
 	        success: function (result) {
-	          $("#make_no").html(result);
+	          $("#model_no").html(result);
 	        }
       	});
   });

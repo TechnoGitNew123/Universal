@@ -165,8 +165,11 @@ class Transaction extends CI_Controller{
         'delivery_transport' => $this->input->post('delivery_transport'),
         'delivery_docket_no' => $this->input->post('delivery_docket_no'),
         'delivery_terms' => $this->input->post('delivery_terms'),
+        'delivery_basic' => $this->input->post('delivery_basic'),
+        'delivery_gst' => $this->input->post('delivery_gst'),
         'delivery_total' => $this->input->post('delivery_total'),
       );
+       // echo print_r($data);
       $delivery_id = $this->Admin_Model->save_data('uni_delivery_master', $data);
       $i = 0;
       foreach($_POST['input'] as $user)
@@ -201,6 +204,8 @@ class Transaction extends CI_Controller{
           $data['delivery_transport'] = $challan_data->delivery_transport;
           $data['delivery_docket_no'] = $challan_data->delivery_docket_no;
           $data['delivery_terms'] = $challan_data->delivery_terms;
+          $data['delivery_basic'] = $challan_data->delivery_basic;
+          $data['delivery_gst'] = $challan_data->delivery_gst;
           $data['delivery_total'] = $challan_data->delivery_total;
         }
       }
@@ -222,6 +227,8 @@ class Transaction extends CI_Controller{
         'delivery_transport' => $this->input->post('delivery_transport'),
         'delivery_docket_no' => $this->input->post('delivery_docket_no'),
         'delivery_terms' => $this->input->post('delivery_terms'),
+        'delivery_basic' => $this->input->post('delivery_basic'),
+        'delivery_gst' => $this->input->post('delivery_gst'),
         'delivery_total' => $this->input->post('delivery_total'),
       );
       $this->Admin_Model->update_info('delivery_id', $delivery_id, 'uni_delivery_master', $challan_data);
@@ -246,6 +253,16 @@ class Transaction extends CI_Controller{
     }
   }
 
+  public function delete_delivery_challan($id){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id){
+      $this->Admin_Model->delete_info('delivery_id', $id, 'uni_delivery_master');
+      $this->Admin_Model->delete_info('delivery_id', $id, 'uni_delivery_trans');
+      header('location:'.base_url().'Transaction/delivery_challan_list');
+    } else{
+      header('location:'.base_url().'Login');
+    }
+  }
 
  /********************** Purchase Agreement *************************/
  // Add Purchase Agreement...
@@ -342,10 +359,10 @@ class Transaction extends CI_Controller{
      foreach($_POST['input'] as $user)
      {
        $user['purchase_id'] = $purchase_id;
-       // echo print_r($user);
        $this->db->insert('uni_purchase_trans', $user);
        $i++;
      }
+     header('location:'.base_url().'Transaction/purchase_agreement_list');
    } else{
      header('location:'.base_url().'Login');
    }
@@ -393,6 +410,17 @@ class Transaction extends CI_Controller{
      } else{
        header('location:'.base_url().'Login');
      }
+ }
+
+ public function delete_purchase_agreement($id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $this->Admin_Model->delete_info('purchase_id', $id, 'uni_purchase_master');
+     $this->Admin_Model->delete_info('purchase_id', $id, 'uni_purchase_trans');
+     header('location:'.base_url().'Transaction/purchase_agreement_list');
+   } else{
+     header('location:'.base_url().'Login');
+   }
  }
 
 /********************** Sale Bill *************************/
@@ -530,6 +558,17 @@ class Transaction extends CI_Controller{
      }
  }
 
+ public function delete_sale($id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $this->Admin_Model->delete_info('sale_id', $id, 'uni_sale_master');
+     $this->Admin_Model->delete_info('sale_id', $id, 'uni_sale_trans');
+     header('location:'.base_url().'Transaction/sale_bill_list');
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
+
 
 
 /********************** GOVT STAMPING CHALLAN *************************/
@@ -574,6 +613,7 @@ class Transaction extends CI_Controller{
        'govt_stamp_condition' => $govt_stamp_condition,
        'govt_stamp_late_fee' => $this->input->post('govt_stamp_late_fee'),
        'govt_stamp_hctada' => $this->input->post('govt_stamp_hctada'),
+       'govt_stamp_gov_fees' => $this->input->post('govt_stamp_gov_fees'),
        'govt_stamp_ser_charge' => $this->input->post('govt_stamp_ser_charge'),
        'govt_stamp_total' => $this->input->post('govt_stamp_total'),
      );
@@ -634,6 +674,7 @@ class Transaction extends CI_Controller{
          $data['govt_stamp_condition'] = $govt_data->govt_stamp_condition;
          $data['govt_stamp_late_fee'] = $govt_data->govt_stamp_late_fee;
          $data['govt_stamp_hctada'] = $govt_data->govt_stamp_hctada;
+         $data['govt_stamp_gov_fees'] = $govt_data->govt_stamp_gov_fees;
          $data['govt_stamp_ser_charge'] = $govt_data->govt_stamp_ser_charge;
          $data['govt_stamp_total'] = $govt_data->govt_stamp_total;
        }
@@ -649,6 +690,10 @@ class Transaction extends CI_Controller{
  public function update_govt_stamp(){
      $company_id = $this->session->userdata('company_id');
      if($company_id){
+       $govt_stamp_objection = $this->input->post('govt_stamp_objection');
+       $govt_stamp_condition = $this->input->post('govt_stamp_condition');
+       if(!isset($govt_stamp_objection)){ $govt_stamp_objection = 'no'; }
+       if(!isset($govt_stamp_condition)){ $govt_stamp_condition = 'no'; }
        $govt_stamp_id = $this->input->post('govt_stamp_id');
        $govt_stamp_data = array(
          'govt_stamp_date' => $this->input->post('govt_stamp_date'),
@@ -662,6 +707,7 @@ class Transaction extends CI_Controller{
          'govt_stamp_condition' => $govt_stamp_condition,
          'govt_stamp_late_fee' => $this->input->post('govt_stamp_late_fee'),
          'govt_stamp_hctada' => $this->input->post('govt_stamp_hctada'),
+         'govt_stamp_gov_fees' => $this->input->post('govt_stamp_gov_fees'),
          'govt_stamp_ser_charge' => $this->input->post('govt_stamp_ser_charge'),
          'govt_stamp_total' => $this->input->post('govt_stamp_total'),
        );
@@ -686,6 +732,17 @@ class Transaction extends CI_Controller{
      } else{
        header('location:'.base_url().'Login');
      }
+ }
+
+ public function delete_govt_stamp($id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $this->Admin_Model->delete_info('govt_stamp_id', $id, 'uni_govt_stamp_master');
+     $this->Admin_Model->delete_info('govt_stamp_id', $id, 'uni_govt_stamp_trans');
+     header('location:'.base_url().'Transaction/govt_stamp_bill_list');
+   } else{
+     header('location:'.base_url().'Login');
+   }
  }
 
  /********************** GOVT STAMPING CHALLAN *************************/
@@ -736,7 +793,7 @@ class Transaction extends CI_Controller{
  public function repairy_bill_list(){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
-     $data['repairy_bill_list'] = $this->Transaction_Model->repairy_bill_listt($company_id);
+     $data['repairy_bill_list'] = $this->Transaction_Model->repairy_bill_list($company_id);
      $this->load->view('Admin/repairy_bill_list',$data);
    } else{
      header('location:'.base_url().'Login');
@@ -749,7 +806,6 @@ public function edit_repairy_bill($repairy_id){
   if($company_id){
     $data['repairy_no'] = $this->Transaction_Model->get_count_no($company_id,'repairy_no','uni_repairy_master');
     $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
-
     $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
     $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
     $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
@@ -807,7 +863,7 @@ public function update_repairy_bill(){
           }
         }
         else{
-          $user['repairy_trans_id'] = $repairy_id;
+          $user['repairy_id'] = $repairy_id;
           $this->db->insert('uni_repairy_trans', $user);
         }
       }
@@ -817,29 +873,168 @@ public function update_repairy_bill(){
     }
 }
 
- public function quotation_list(){
-   $this->load->view('Admin/quotation_list');
- }
- public function quotation(){
-   $company_id = $this->session->userdata('company_id');
-   if($company_id){
-     $data['quotation_no'] = $this->Transaction_Model->get_count_no($company_id,'quotation_no','uni_quotation_master');
-     $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
-     $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
-     $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
-     $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
-     $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
-     $this->load->view('Admin/quotation',$data);
-   } else{
-     header('location:'.base_url().'Login');
-   }
- }
+public function delete_repairy_bill($id){
+  $company_id = $this->session->userdata('company_id');
+  if($company_id){
+    $this->Admin_Model->delete_info('repairy_id', $id, 'uni_repairy_master');
+    $this->Admin_Model->delete_info('repairy_id', $id, 'uni_repairy_trans');
+    header('location:'.base_url().'Transaction/repairy_bill_list');
+  } else{
+    header('location:'.base_url().'Login');
+  }
+}
+
+/********************** Quotation *************************/
+  // Add Quotation...
+  public function quotation(){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id){
+      $data['quotation_no'] = $this->Transaction_Model->get_count_no($company_id,'quotation_no','uni_quotation_master');
+      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+      $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+      $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
+      $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
+      $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
+      $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
+      $this->load->view('Admin/quotation',$data);
+    } else{
+      header('location:'.base_url().'Login');
+    }
+  }
+  // Quotation List...
+  public function quotation_list(){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id){
+      $data['quotation_list'] = $this->Transaction_Model->quotation_list($company_id);
+      $this->load->view('Admin/quotation_list',$data);
+    } else{
+      header('location:'.base_url().'Login');
+    }
+  }
+  // Save Quotation...
+  public function save_quotation(){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id){
+      $data = array(
+        'company_id' => $company_id,
+        'quotation_no' => $this->input->post('quotation_no'),
+        'quotation_date' => $this->input->post('quotation_date'),
+        'quotation_party' => $this->input->post('quotation_party'),
+        'quotation_person' => $this->input->post('quotation_person'),
+        'quotation_contact' => $this->input->post('quotation_contact'),
+        'quotation_terms' => $this->input->post('quotation_terms'),
+        'quotation_basic' => $this->input->post('quotation_basic'),
+        'quotation_gst' => $this->input->post('quotation_gst'),
+        'quotation_total' => $this->input->post('quotation_total'),
+      );
+      $quotation_id = $this->Admin_Model->save_data('uni_quotation_master', $data);
+
+      foreach($_POST['input'] as $user)
+      {
+        $user['quotation_id'] = $quotation_id;
+        $this->db->insert('uni_quotation_trans', $user);
+      }
+      header('location:'.base_url().'Transaction/quotation_list');
+    } else{
+      header('location:'.base_url().'Login');
+    }
+  }
+  // Edit Quotation...
+  public function edit_quotation($quotation_id){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id){
+      $data['repairy_no'] = $this->Transaction_Model->get_count_no($company_id,'repairy_no','uni_repairy_master');
+      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+      $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+      $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
+      $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
+      $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
+      $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
+
+      $quotation_data = $this->Transaction_Model->quotation_data($company_id,$quotation_id);
+      if($quotation_data){
+        foreach ($quotation_data as $quotation_data) {
+          $data['update'] = 'yes';
+          $data['quotation_id'] = $quotation_data->quotation_id;
+          $data['quotation_no'] = $quotation_data->quotation_no;
+          $data['quotation_date'] = $quotation_data->quotation_date;
+          $data['quotation_party'] = $quotation_data->quotation_party;
+          $data['party_id'] = $quotation_data->party_id;
+          $data['party_firm'] = $quotation_data->party_firm;
+          $data['quotation_person'] = $quotation_data->quotation_person;
+          $data['quotation_contact'] = $quotation_data->quotation_contact;
+          $data['quotation_terms'] = $quotation_data->quotation_terms;
+          $data['quotation_basic'] = $quotation_data->quotation_basic;
+          $data['quotation_gst'] = $quotation_data->quotation_gst;
+          $data['quotation_total'] = $quotation_data->quotation_total;
+        }
+      }
+      $data['quotation_trans_data'] = $this->Transaction_Model->quotation_trans_data($quotation_id);
+       // echo print_r($data['quotation_trans_data']);
+      $this->load->view('Admin/quotation',$data);
+    } else{
+      header('location:'.base_url().'Login');
+    }
+  }
+
+  // Update Quotation...
+  public function update_quotation(){
+      $company_id = $this->session->userdata('company_id');
+      if($company_id){
+        $quotation_id = $this->input->post('quotation_id');
+        $repairy_data = array(
+          'quotation_date' => $this->input->post('quotation_date'),
+          'quotation_party' => $this->input->post('quotation_party'),
+          'quotation_person' => $this->input->post('quotation_person'),
+          'quotation_contact' => $this->input->post('quotation_contact'),
+          'quotation_terms' => $this->input->post('quotation_terms'),
+          'quotation_basic' => $this->input->post('quotation_basic'),
+          'quotation_gst' => $this->input->post('quotation_gst'),
+          'quotation_total' => $this->input->post('quotation_total'),
+        );
+        $this->Admin_Model->update_info('quotation_id', $quotation_id, 'uni_quotation_master', $repairy_data);
+        foreach($_POST['input'] as $user)
+        {
+          if(isset($user['quotation_trans_id'])){
+            $quotation_trans_id = $user['quotation_trans_id'];
+            if(!isset($user['make_id'])){
+              $this->Admin_Model->delete_info('quotation_trans_id', $quotation_trans_id, 'uni_quotation_trans');
+            }else{
+                $this->Admin_Model->update_info('quotation_trans_id', $quotation_trans_id, 'uni_quotation_trans', $user);
+            }
+          }
+          else{
+            $user['quotation_id'] = $quotation_id;
+            $this->db->insert('uni_quotation_trans', $user);
+          }
+        }
+        header('location:'.base_url().'Transaction/quotation_list');
+      } else{
+        header('location:'.base_url().'Login');
+      }
+  }
+
+  public function delete_quotation($id){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id){
+      $this->Admin_Model->delete_info('quotation_id', $id, 'uni_quotation_master');
+      $this->Admin_Model->delete_info('quotation_id', $id, 'uni_quotation_trans');
+      header('location:'.base_url().'Transaction/quotation_list');
+    } else{
+      header('location:'.base_url().'Login');
+    }
+  }
 
  /********************** Receipt *************************/
  // Add Receipt
-
  public function receipt_list(){
-    $this->load->view('Admin/receipt_list');
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $data['receipt_list'] = $this->Transaction_Model->receipt_list($company_id);
+     $this->load->view('Admin/receipt_list',$data);
+  } else{
+    header('location:'.base_url().'Login');
+  }
  }
  public function receipt(){
    $company_id = $this->session->userdata('company_id');
@@ -871,10 +1066,26 @@ public function update_repairy_bill(){
    }
  }
 
+ public function delete_recirpt($id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $this->Admin_Model->delete_info('receipt_id', $id, 'uni_receipt');
+     header('location:'.base_url().'Transaction/receipt_list');
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
+
 /********************** Expense Voucher *************************/
 // Add Expense Voucher...
 public function expense_voucher_list(){
-   $this->load->view('Admin/expense_voucher_list');
+  $company_id = $this->session->userdata('company_id');
+  if($company_id){
+    $data['expense_list'] = $this->Admin_Model->get_list($company_id,'expense_id','DESC','uni_expense');
+    $this->load->view('Admin/expense_voucher_list',$data);
+  } else{
+     header('location:'.base_url().'Login');
+   }
 }
  public function expense_voucher(){
    $company_id = $this->session->userdata('company_id');
@@ -903,6 +1114,15 @@ public function expense_voucher_list(){
    }
  }
 
+ public function delete_expense($id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $this->Admin_Model->delete_info('expense_id', $id, 'uni_expense');
+     header('location:'.base_url().'Transaction/expense_voucher_list');
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
 
 
  /********************** Complaint Informatiom *************************/
@@ -1002,7 +1222,7 @@ public function expense_voucher_list(){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
      $this->Admin_Model->delete_info('complaint_id', $id, 'uni_complaint');
-     header('location:../complaint_information_list');
+     header('location:../complaint_list');
    } else{
      header('location:'.base_url().'Login');
    }
@@ -1045,7 +1265,7 @@ public function expense_voucher_list(){
        'complaint_id' => $this->input->post('complaint_id'),
        'service_no' => $this->input->post('service_no'),
        'make_id' => $this->input->post('make_id'),
-       'make_no' => $this->input->post('make_no'),
+       'model_no' => $this->input->post('model_no'),
        'service_sr_no' => $this->input->post('service_sr_no'),
        'service_range' => $this->input->post('service_range'),
        'service_stamping' => $this->input->post('service_stamping'),
@@ -1059,7 +1279,105 @@ public function expense_voucher_list(){
        'service_time_out' => $this->input->post('service_time_out'),
      );
      $this->Admin_Model->save_data('uni_service', $data);
-     header('location:complaint_list');
+     header('location:'.base_url().'Transaction/service_report_list');
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
+
+ public function service_report_list(){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $data['service_report_list'] = $this->Transaction_Model->get_service_report_list($company_id);
+     $this->load->view('Admin/service_report_list',$data);
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
+
+ public function edit_service($service_id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $service_info = $this->Transaction_Model->service_report_data($service_id);
+     $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+     if($service_info){
+       foreach($service_info as $info){
+         $data['update'] = 'update';
+         $data['complaint_id'] = $info->complaint_id;
+         $data['complaint_no'] = $info->complaint_no;
+         $data['complaint_date'] = $info->complaint_date;
+         $data['party_id'] = $info->party_id;
+         $data['party_firm'] = $info->party_firm;
+         $data['complaint_service'] = $info->complaint_service;
+         $data['complaint_reporting'] = $info->complaint_reporting;
+         $data['complaint_person'] = $info->complaint_person;
+         $data['complaint_contact_no'] = $info->complaint_contact_no;
+         $data['complaint_engeeneer'] = $info->complaint_engeeneer;
+
+         $data['user_name'] = $info->user_name;
+         $data['user_mobile'] = $info->user_mobile;
+
+         $data['service_no'] = $info->service_no;
+         $data['service_id'] = $info->service_id;
+         $data['service_date'] = $info->service_date;
+         $data['make_id'] = $info->make_id;
+         $data['make_name'] = $info->make_name;
+         $data['model_no'] = $info->model_no;
+         $data['product_model_no'] = $info->product_model_no;
+         $data['service_sr_no'] = $info->service_sr_no;
+         $data['service_range'] = $info->service_range;
+         $data['service_stamping'] = $info->service_stamping;
+         $data['service_observation'] = $info->service_observation;
+         $data['service_recommend'] = $info->service_recommend;
+         $data['service_component'] = $info->service_component;
+         $data['service_call_completion'] = $info->service_call_completion;
+         $data['service_charges_fee'] = $info->service_charges_fee;
+         $data['service_date'] = $info->service_date;
+         $data['service_time_in'] = $info->service_time_in;
+         $data['service_time_out'] = $info->service_time_out;
+       }
+       // echo $info->service_date;
+       $this->load->view('Admin/service_report',$data);
+     }
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
+
+ public function update_service(){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $service_id = $this->input->post('service_id');
+     $data = array(
+       'complaint_id' => $this->input->post('complaint_id'),
+       'service_no' => $this->input->post('service_no'),
+       'make_id' => $this->input->post('make_id'),
+       'model_no' => $this->input->post('model_no'),
+       'service_sr_no' => $this->input->post('service_sr_no'),
+       'service_range' => $this->input->post('service_range'),
+       'service_stamping' => $this->input->post('service_stamping'),
+       'service_observation' => $this->input->post('service_observation'),
+       'service_recommend' => $this->input->post('service_recommend'),
+       'service_component' => $this->input->post('service_component'),
+       'service_call_completion' => $this->input->post('service_call_completion'),
+       'service_charges_fee' => $this->input->post('service_charges_fee'),
+       'service_date' => $this->input->post('service_date'),
+       'service_time_in' => $this->input->post('service_time_in'),
+       'service_time_out' => $this->input->post('service_time_out'),
+     );
+    $this->Admin_Model->update_info('service_id', $service_id, 'uni_service', $data);
+      header('location:'.base_url().'Transaction/service_report_list');
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
+
+ // Delete Service Report...
+ public function delete_service($id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $this->Admin_Model->delete_info('service_id', $id, 'uni_service');
+     header('location:'.base_url().'Transaction/service_report_list');
    } else{
      header('location:'.base_url().'Login');
    }

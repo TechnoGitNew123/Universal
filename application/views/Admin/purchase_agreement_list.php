@@ -32,8 +32,6 @@ include('head.php');
       </div><!-- /.container-fluid -->
     </section>
 
-
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -44,9 +42,8 @@ include('head.php');
             <div class="card-header">
               <h3 class="card-title"><i class="fa fa-list"></i> List Purchase Agreement</h3>
               <div class="card-tools">
-                <a href="<?php echo base_url(); ?>Transaction/purchase_agreement" class="btn btn-sm btn-block btn-primary">Add Purchase Agreement</a>
+                <a href="<?php echo base_url(); ?>Transaction/purchase_agreement" class="btn btn-sm btn-block btn-primary">Add P O</a>
               </div>
-
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -54,7 +51,7 @@ include('head.php');
                 <thead>
                 <tr>
                   <th>Sr. No.</th>
-                  <th>Purchase Order No.</th>
+                  <th>P O No.</th>
                   <th>Date</th>
                   <th>Party Name</th>
                   <th>Invoice No.</th>
@@ -82,6 +79,7 @@ include('head.php');
                     <td>
                       <a href="<?php echo base_url(); ?>Transaction/edit_purchase_agreement/<?php echo $list->purchase_id; ?>"> <i class="fa fa-edit"></i> </a>
                       <a class="ml-4" href="<?php echo base_url(); ?>Transaction/delete_purchase_agreement/<?php echo $list->purchase_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a class="ml-4" href="<?php echo base_url(); ?>Receipt/purchase_agrement_receipt/<?php echo $list->purchase_id; ?>"> <i class="fa fa-print"></i> </a>
                     </td>
                   </tr>
                 <?php  }  ?>

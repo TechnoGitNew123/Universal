@@ -56,20 +56,23 @@ include('head.php');
                 </tr>
                 </thead>
                 <tbody>
-
+                  <?php
+                  $i=0;
+                  foreach ($receipt_list as $list) {
+                    $i++;
+                  ?>
                   <tr>
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $list->receipt_no; ?></td>
+                    <td><?php echo $list->receipt_date; ?></td>
+                    <td><?php echo $list->party_firm; ?></td>
+                    <td><?php echo $list->receipt_amount; ?></td>
                     <td>
-                      <a href="edit_enquiry/"> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-4" href="delete_enquiry/" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a href="edit_receipt/<?php echo $list->receipt_id; ?>"> <i class="fa fa-edit"></i> </a>
+                      <a class="ml-4" href="delete_recirpt/<?php echo $list->receipt_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
                     </td>
                   </tr>
-
+                <?php } ?>
                 </tbody>
               </table>
             </div>

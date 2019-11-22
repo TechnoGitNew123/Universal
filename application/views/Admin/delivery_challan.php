@@ -73,7 +73,6 @@ include('head.php');
                   <div class="form-group col-md-2">
                     <a href="<?php echo base_url(); ?>Admin/party_information" class="btn btn-sm btn-block btn-primary">Add New Party</a>
                   </div>
-
                   <div class="form-group col-md-4 offset-md-2">
                     <input type="text" class="form-control form-control-sm" name="delivery_transport" id="delivery_transport" value="<?php if(isset($delivery_transport)){ echo $delivery_transport; } ?>" placeholder="Name of Transporter">
                   </div>
@@ -85,9 +84,7 @@ include('head.php');
               <div class=" w-100 text-right">
                 <button type="button" id="add_row" class="btn btn-sm btn-primary mb-3 mr-1" width="150px">Add Row</button>
               </div>
-
               <div class="" style="overflow-x:auto;">
-
                 <table id="myTable" class="table table-bordered table-striped tbl_add" style="">
                   <thead>
                   <tr>
@@ -164,7 +161,10 @@ include('head.php');
                         <td class="td_w">
                           <input type="number" class="form-control form-control-sm amount" name="input[<?php echo $i; ?>][delivery_trans_amount]" value="<?php echo $trans_data->delivery_trans_amount ?>" id="" placeholder="" readonly >
                         </td>
-                        <td class="td_btn"> <?php if($j > 1){ ?> <a><i class="fa fa-trash text-danger"></i></a> <?php } ?></td>
+                        <td class="td_btn">
+                          <?php if($j > 1){ ?> <a><i class="fa fa-trash text-danger"></i></a> <?php } ?>
+                          <input type="hidden" name="input[<?php echo $i; ?>][delivery_trans_gst_amount]" class="gst_amount1 gst_amount" value="<?php echo $trans_data->delivery_trans_gst_amount ?>">
+                        </td>
                       </tr>
                     <?php $i++;  }  } else{ ?>
                   <tr>
@@ -212,10 +212,11 @@ include('head.php');
                     <td class="td_w">
                       <input type="number" class="form-control form-control-sm amount" name="input[0][delivery_trans_amount]" id="" placeholder="" readonly required>
                     </td>
-                    <td class="td_btn"></td>
+                    <td class="td_btn">
+                      <input type="hidden" name="input[0][delivery_trans_gst_amount]" class="gst_amount1 gst_amount" value="">
+                    </td>
                   </tr>
                   <?php  } ?>
-
                 </table>
               </div>
               <div class="row">
@@ -233,14 +234,27 @@ include('head.php');
                     <a href="<?php echo base_url(); ?>Dashboard" class="btn btn-default ">Cancel</a>
                   </div>
                 </div>
+
                 <div class="col-md-6 ">
+                  <div class="form-group row pt-4 float-right">
+                    <label for="inputEmail3" class="col-form-label mr-3">Basic Amount</label>
+                    <div class="">
+                      <input type="text" class="form-control" name="delivery_basic" id="basic_amount" value="<?php if(isset($delivery_basic)){ echo $delivery_basic;} ?>">
+                    </div>
+                  </div>
+                  <div class="form-group row pt-4 float-right">
+                    <label for="inputEmail3" class="col-form-label mr-3">GST</label>
+                    <div class="">
+                      <input type="text" class="form-control" name="delivery_gst" id="gst_val" value="<?php if(isset($delivery_gst)){ echo $delivery_gst;} ?>">
+                    </div>
+                  </div>
                   <div class="form-group row pt-4 float-right">
                     <label for="inputEmail3" class=" col-form-label mr-3">Total Amount</label>
                     <div class="">
                       <input type="text" class="form-control delivery_total" name="delivery_total" value="<?php if(isset($delivery_total)){ echo $delivery_total; } ?>" id="delivery_total" required>
                     </div>
                   </div>
-                  </div>
+                </div>
               </div>
             </div>
             </form>
@@ -310,13 +324,35 @@ var i = 0;
               row += '<td class="td_w"><input type="text" class="form-control form-control-sm qty" name="input['+i+'][delivery_trans_qty]" id="" placeholder="" required></td>';
               row += '<td class="td_w"><input type="text" class="form-control form-control-sm rate" name="input['+i+'][delivery_trans_rate]" id="" placeholder="" required></td>';
               row += '<td class="td_w"><input type="text" class="form-control form-control-sm amount" name="input['+i+'][delivery_trans_amount]" id="" placeholder="" required></td>';
-              row += '<td class="td_btn"><a> <i class="fa fa-trash text-danger"></i> </a></td>';
+              row += '<td class="td_btn"><a> <i class="fa fa-trash text-danger"></i> </a>'
+              row += '<input type="hidden" name="input['+i+'][delivery_trans_gst_amount]" class="gst_amount1 gst_amount" value=""></td>';
               row += '</tr>';
     $('#myTable').append(row);
   });
 
   $('#myTable').on('click', 'a', function () {
     $(this).closest('tr').remove();
+    var basic_amount = 0;
+    $(".amount").each(function() {
+        var amount = $(this).val();
+        // add only if the value is number
+        if(!isNaN(amount) && amount.length != 0) {
+            basic_amount += parseFloat(amount);
+        }
+    });
+    $('#basic_amount').val(basic_amount);
+
+    var gst_val = 0;
+    $(".gst_amount").each(function() {
+        var gst_amount = $(this).val();
+        if(!isNaN(gst_amount) && gst_amount.length != 0) {
+            gst_val += parseFloat(gst_amount);
+        }
+    });
+    $('#gst_val').val(gst_val);
+
+    var total_amount = basic_amount + gst_val;
+    $('#delivery_total').val(total_amount);
   });
 
   $("#myTable").on("change", "select.make_id", function(){
@@ -369,23 +405,35 @@ var i = 0;
     var gst = parseInt(gst);
     var qty = parseInt(qty);
     var rate = parseInt(rate);
-    var amount_no_gst = qty * rate;
-    var gst_rs = (gst/100) * amount_no_gst;
-    var amount_with_gst = amount_no_gst + gst_rs;
-    $(this).closest('tr').find('.amount').val(amount_no_gst);
 
-    var sum = 0;
-// iterate through each td based on class and add the values
+    var amount_without_gst = qty * rate;
+    var gst_amount1 = (gst/100) * amount_without_gst;
+    var amount_with_gst = amount_without_gst + gst_amount1;
+    $(this).closest('tr').find('.amount').val(amount_without_gst);
+    $(this).closest('tr').find('.gst_amount').val(gst_amount1);
+
+    var basic_amount = 0;
     $(".amount").each(function() {
-        var value = $(this).val();
+        var amount = $(this).val();
         // add only if the value is number
-        if(!isNaN(value) && value.length != 0) {
-            sum += parseFloat(value);
+        if(!isNaN(amount) && amount.length != 0) {
+            basic_amount += parseFloat(amount);
         }
     });
-    $('.delivery_total').val(sum);
-  });
+    $('#basic_amount').val(basic_amount);
 
+    var gst_val = 0;
+    $(".gst_amount").each(function() {
+        var gst_amount = $(this).val();
+        if(!isNaN(gst_amount) && gst_amount.length != 0) {
+            gst_val += parseFloat(gst_amount);
+        }
+    });
+    $('#gst_val').val(gst_val);
+
+    var total_amount = basic_amount + gst_val;
+    $('#delivery_total').val(total_amount);
+  });
 </script>
 </body>
 </html>

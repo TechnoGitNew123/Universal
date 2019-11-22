@@ -268,6 +268,14 @@
                     </p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>Transaction/service_report_list" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                Service Report List
+                    </p>
+                  </a>
+                </li>
                 <!-- <li class="nav-item">
                   <a href="<?php echo base_url(); ?>Transaction/service_report" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -287,6 +295,80 @@
 
               </ul>
             </li>
+            <!-- <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  Receipt
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview" style="display: none;">
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>Receipt/delivery_challan_print" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                Dellivery Challan Print
+                    </p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>Receipt/stamping_receipt" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+              Govt. Stamping Print
+                    </p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>Receipt/cash_memo" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                      CASH MEMO
+                    </p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>Receipt/quotation_receipt" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                      Quotation
+                    </p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>Receipt/repairy_bill_receipt" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                      Repairy Bill
+                    </p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>Receipt/purchase_agrement_receipt" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                    Purchase Agreement
+                    </p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>Receipt/service_report" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                  Service Report
+                    </p>
+                  </a>
+                </li>
+              </ul>
+            </li> -->
 
 
 

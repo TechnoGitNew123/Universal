@@ -113,6 +113,8 @@ include('head.php');
   $('#myTable').on('click', 'a', function () {
     $(this).closest('tr').remove();
   });
+
+  
 </script>
 </body>
 </html>

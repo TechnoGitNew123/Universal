@@ -58,21 +58,26 @@ include('head.php');
                 </tr>
                 </thead>
                 <tbody>
-
+                  <?php
+                    $i=0;
+                    foreach($quotation_list as $list){
+                    $i++;
+                  ?>
                   <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $list->quotation_no; ?></td>
+                    <td><?php echo $list->quotation_date; ?></td>
+                    <td><?php echo $list->party_firm; ?></td>
+                    <td><?php echo $list->quotation_person; ?></td>
+                    <td><?php echo $list->quotation_contact; ?></td>
+                    <td><?php echo $list->quotation_total; ?></td>
                     <td>
-                      <a href="edit_enquiry/"> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-4" href="delete_enquiry/" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a href="<?php echo base_url(); ?>Transaction/edit_quotation/<?php echo $list->quotation_id; ?>"> <i class="fa fa-edit"></i> </a>
+                      <a class="ml-4" href="<?php echo base_url(); ?>Transaction/delete_quotation/<?php echo $list->quotation_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a class="ml-4" href="<?php echo base_url(); ?>Receipt/quotation_receipt/<?php echo $list->quotation_id; ?>"> <i class="fa fa-print"></i> </a>
                     </td>
                   </tr>
-
+                  <?php } ?>
                 </tbody>
               </table>
             </div>

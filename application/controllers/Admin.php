@@ -19,6 +19,15 @@ class Admin extends CI_Controller{
       $data['product_count'] = $this->Admin_Model->get_count('product_id',$company_id,'uni_product');
       $data['party_count'] = $this->Admin_Model->get_count('party_id',$company_id,'uni_party');
 
+      $data['enquiry_count'] = $this->Admin_Model->get_enquiry_count($company_id);
+      $data['delivery_challan_count'] = $this->Admin_Model->get_count('delivery_id',$company_id,'uni_delivery_master');
+      $data['purchase_count'] = $this->Admin_Model->get_count('purchase_id',$company_id,'uni_purchase_master');
+      $data['sale_count'] = $this->Admin_Model->get_count('sale_id',$company_id,'uni_sale_master');
+      $data['quotation_count'] = $this->Admin_Model->get_count('quotation_id',$company_id,'uni_quotation_master');
+      $data['repair_count'] = $this->Admin_Model->get_count('repairy_id',$company_id,'uni_repairy_master');
+      $data['gov_stamping_count'] = $this->Admin_Model->get_count('govt_stamp_id',$company_id,'uni_govt_stamp_master');
+      $data['complaint_count'] = $this->Admin_Model->get_complaint_count($company_id);
+
       $this->load->view('Admin/dashboard',$data);
     } else{
       header('location:'.base_url().'Login');
@@ -62,6 +71,7 @@ class Admin extends CI_Controller{
             $data['company_state'] = $info->company_state;
             $data['company_district'] = $info->company_district;
             $data['company_pincode'] = $info->company_pincode;
+            $data['company_statecode'] = $info->company_statecode;
             $data['company_mob1'] = $info->company_mob1;
             $data['company_mob2'] = $info->company_mob2;
             $data['company_email'] = $info->company_email;
@@ -74,6 +84,7 @@ class Admin extends CI_Controller{
             $data['company_end_date'] = $info->company_end_date;
             $data['admin_email'] = $info->admin_email;
             $data['admin_password'] = $info->admin_password;
+
           }
           $this->load->view('Admin/company_information',$data);
         }
@@ -95,6 +106,7 @@ class Admin extends CI_Controller{
           'company_state' => $this->input->post('company_state'),
           'company_district' => $this->input->post('company_district'),
           'company_pincode' => $this->input->post('company_pincode'),
+          'company_statecode' => $this->input->post('company_statecode'),
           'company_mob1' => $this->input->post('company_mob1'),
           'company_mob2' => $this->input->post('company_mob2'),
           'company_email' => $this->input->post('company_email'),
@@ -107,6 +119,7 @@ class Admin extends CI_Controller{
           'company_end_date' => $this->input->post('company_end_date'),
           'admin_email' => $this->input->post('admin_email'),
           'admin_password' => $this->input->post('admin_password'),
+
         );
         $this->Admin_Model->update_info('company_id', $company_id, 'uni_company', $data);
         header('location:company_information');
@@ -126,6 +139,7 @@ class Admin extends CI_Controller{
           'company_state' => $this->input->post('company_state'),
           'company_district' => $this->input->post('company_district'),
           'company_pincode' => $this->input->post('company_pincode'),
+          'company_statecode' => $this->input->post('company_statecode'),
           'company_mob1' => $this->input->post('company_mob1'),
           'company_mob2' => $this->input->post('company_mob2'),
           'company_email' => $this->input->post('company_email'),
@@ -173,6 +187,7 @@ class Admin extends CI_Controller{
     $company_id = $this->session->userdata('company_id');
     $admin_roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
+      $party_mob1 = $this->input->post('party_mob1');
       $data = array(
         'company_id' => $company_id,
         'party_firm' => $this->input->post('party_firm'),
@@ -185,14 +200,22 @@ class Admin extends CI_Controller{
         'party_mob2' => $this->input->post('party_mob2'),
         'party_email' => $this->input->post('party_email'),
         'party_website' => $this->input->post('party_website'),
+        'party_state' => $this->input->post('party_state'),
         'party_gst_no' => $this->input->post('party_gst_no'),
         'party_pan_no' => $this->input->post('party_pan_no'),
         'party_proriter' => $this->input->post('party_proriter'),
         'party_business' => $this->input->post('party_business'),
         'party_type' => 'party',
       );
-      $this->Admin_Model->save_data('uni_party', $data);
-      header('location:party_list');
+      $check = $this->Admin_Model->check_duplication($company_id,$party_mob1,'party_mob1','uni_party');
+      if($check > 0){
+        $this->session->set_flashdata('check_mobile','exist');
+        header('location:'.base_url().'Admin/party_information');
+      }
+      else{
+        $this->Admin_Model->save_data('uni_party', $data);
+        header('location:party_list');
+      }
     } else{
       header('location:'.base_url().'Login');
     }
@@ -216,12 +239,14 @@ class Admin extends CI_Controller{
           $data['party_mob1'] = $info->party_mob1;
           $data['party_mob2'] = $info->party_mob2;
           $data['party_email'] = $info->party_email;
+          $data['party_state'] = $info->party_state;
           $data['party_website'] = $info->party_website;
           $data['party_gst_no'] = $info->party_gst_no;
           $data['party_pan_no'] = $info->party_pan_no;
           $data['party_proriter'] = $info->party_proriter;
           $data['party_business'] = $info->party_business;
           $data['party_status'] = $info->party_status;
+
         }
         $this->load->view('Admin/party_information',$data);
       }
@@ -235,6 +260,7 @@ class Admin extends CI_Controller{
     $admin_roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $party_id = $this->input->post('party_id');
+      $party_mob1 = $this->input->post('party_mob1');
       $data = array(
         'party_firm' => $this->input->post('party_firm'),
         'party_address' => $this->input->post('party_address'),
@@ -246,13 +272,21 @@ class Admin extends CI_Controller{
         'party_mob2' => $this->input->post('party_mob2'),
         'party_email' => $this->input->post('party_email'),
         'party_website' => $this->input->post('party_website'),
+        'party_state' => $this->input->post('party_state'),
         'party_gst_no' => $this->input->post('party_gst_no'),
         'party_pan_no' => $this->input->post('party_pan_no'),
         'party_proriter' => $this->input->post('party_proriter'),
         'party_business' => $this->input->post('party_business'),
       );
-      $this->Admin_Model->update_info('party_id', $party_id, 'uni_party', $data);
-      header('location:party_list');
+      $check = $this->Admin_Model->check_duplication($company_id,$party_mob1,'party_mob1','uni_party');
+      if($check > 1){
+        $this->session->set_flashdata('check_mobile','exist');
+        header('location:'.base_url().'Admin/edit_party/'.$party_id);
+      }
+      else{
+        $this->Admin_Model->update_info('party_id', $party_id, 'uni_party', $data);
+        header('location:party_list');
+      }
     } else{
       header('location:'.base_url().'Login');
     }
@@ -294,6 +328,7 @@ class Admin extends CI_Controller{
     $company_id = $this->session->userdata('company_id');
     $admin_roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
+      $user_mobile = $this->input->post('user_mobile');
       $data = array(
         'company_id' => $company_id,
         'user_name' => $this->input->post('user_name'),
@@ -301,8 +336,16 @@ class Admin extends CI_Controller{
         'user_mobile' => $this->input->post('user_mobile'),
         'user_password' => $this->input->post('user_password'),
       );
-      $this->Admin_Model->save_data('uni_user', $data);
-      header('location:user_list');
+      $check = $this->Admin_Model->check_duplication($company_id,$user_mobile,'user_mobile','uni_user');
+      if($check > 0){
+        $this->session->set_flashdata('check_mobile','exist');
+        $this->session->set_flashdata('form_data',$data);
+        header('location:'.base_url().'Admin/add_user');
+      }
+      else{
+        $this->Admin_Model->save_data('uni_user', $data);
+        header('location:user_list');
+      }
     } else{
       header('location:'.base_url().'Login');
     }

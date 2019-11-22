@@ -52,21 +52,12 @@
                   <div class="form-group col-md-6">
                     <input type="text" class="form-control form-control-sm" name="complaint_date" id="date1" data-target="#date1" data-toggle="datetimepicker" placeholder="Complaint Date" required value="<?php if(isset($complaint_date)){ echo $complaint_date; } ?>">
                   </div>
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-6">
                     <select class="form-control select2 form-control-sm" name="party_id" id="party_id">
                       <option selected="selected" value="0">Select Party Name</option>
                       <?php foreach ($party_list as $party_list1) { ?>
                         <option value="<?php echo $party_list1->party_id; ?>" <?php if(isset($party_id)){ if($party_list1->party_id == $party_id){ echo "selected"; } }  ?>><?php echo $party_list1->party_firm; ?></option>
                       <?php } ?>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <select class="form-control select2 form-control-sm" name="complaint_service" id="complaint_service">
-                      <?php if(isset($complaint_service)){
-                        echo '<option selected="selected">'.$complaint_service.'</option>';
-                      } else{
-                        echo '<option selected="selected" value="0">Select Type of Service</option>';
-                      } ?>
                     </select>
                   </div>
                   <div class="form-group col-md-6">
@@ -76,8 +67,48 @@
                       } else{
                         echo '<option selected="selected" value="0">Select Reporting</option>';
                       } ?>
+                      <option>Call</option>
+                      <option>Direct</option>
+                      <option>Email</option>
                     </select>
                   </div>
+                  <div class="form-group col-md-4">
+                    <div class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1">
+                      <label for="customCheckbox1" class="custom-control-label">New Installation</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" id="customCheckbox2" value="option1">
+                      <label for="customCheckbox2" class="custom-control-label">New Installation</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" id="customCheckbox3" value="option1">
+                      <label for="customCheckbox3" class="custom-control-label">New Installation</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" id="customCheckbox4" value="option1">
+                      <label for="customCheckbox4" class="custom-control-label">New Installation</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" id="customCheckbox5" value="option1">
+                      <label for="customCheckbox5" class="custom-control-label">New Installation</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" id="customCheckbox6" value="option1">
+                      <label for="customCheckbox6" class="custom-control-label">New Installation</label>
+                    </div>
+                  </div>
+
                   <div class="form-group col-md-6">
                     <input type="text" class="form-control form-control-sm" name="complaint_person" id="complaint_person" value="<?php if(isset($complaint_person)){ echo $complaint_person; } ?>" placeholder="Contact Person.">
                   </div>

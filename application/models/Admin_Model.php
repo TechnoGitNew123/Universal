@@ -45,6 +45,16 @@ class Admin_Model extends CI_Model{
     return $result;
   }
 
+  public function check_duplication($company_id,$value,$field_name,$table_name){
+    $query = $this->db->select($field_name)
+      ->where('company_id', $company_id)
+      ->where($field_name,$value)
+      ->from($table_name)
+      ->get();
+    $result = $query->num_rows();
+    return $result;
+  }
+
   public function get_product_list($company_id){
     $query = $this->db->select('make.*, product.*')
     ->from('uni_product as product')
@@ -76,6 +86,26 @@ class Admin_Model extends CI_Model{
         ->from('uni_party')
         ->get();
     $result = $query->result();
+    return $result;
+  }
+
+  public function get_enquiry_count($company_id){
+    $query = $this->db->select('party_id')
+            ->where('company_id', $company_id)
+            ->where('party_type', 'enquiry')
+            ->where('party_status', 'active')
+            ->from('uni_party')
+            ->get();
+    $result = $query->num_rows();
+    return $result;
+  }
+  public function get_complaint_count($company_id){
+    $query = $this->db->select('complaint_id')
+            ->where('company_id', $company_id)
+            ->where('complaint_status', 'open')
+            ->from('uni_complaint')
+            ->get();
+    $result = $query->num_rows();
     return $result;
   }
 }

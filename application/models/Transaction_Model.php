@@ -76,6 +76,7 @@ class Transaction_Model extends CI_Model{
     $query = $this->db->select('delivery.*, party.*')
         ->from('uni_delivery_master as delivery')
         ->where('delivery.company_id', $company_id)
+        ->order_by('delivery.delivery_id', 'DESC')
         ->join('uni_party as party', 'delivery.delivery_party = party.party_id', 'LEFT')
         ->get();
     $result = $query->result();
@@ -113,6 +114,7 @@ class Transaction_Model extends CI_Model{
     $query = $this->db->select('purchase.*, party.*')
         ->from('uni_purchase_master as purchase')
         ->where('purchase.company_id', $company_id)
+        ->order_by('purchase.purchase_id', 'DESC')
         ->join('uni_party as party', 'purchase.purchase_party = party.party_id', 'LEFT')
         ->get();
     $result = $query->result();
@@ -154,6 +156,7 @@ class Transaction_Model extends CI_Model{
     $query = $this->db->select('sale.*, party.*, delivery.*, user.*')
         ->from('uni_sale_master as sale')
         ->where('sale.company_id', $company_id)
+        ->order_by('sale.sale_id','DESC')
         ->join('uni_party as party', 'sale.sale_party = party.party_id', 'LEFT')
         ->join('uni_delivery_master as delivery', 'sale.sale_challan_no = delivery.delivery_id', 'LEFT')
         ->join('uni_user as user', 'sale.sale_employee = user.user_id', 'LEFT')
@@ -205,6 +208,7 @@ class Transaction_Model extends CI_Model{
     $query = $this->db->select('govt_stamp.*, party.*, division.*')
         ->from('uni_govt_stamp_master as govt_stamp')
         ->where('govt_stamp.company_id', $company_id)
+        ->order_by('govt_stamp.govt_stamp_id','DESC')
         ->join('uni_party as party', 'govt_stamp.govt_stamp_party = party.party_id', 'LEFT')
         ->join('uni_division as division', 'govt_stamp.govt_stamp_division = division.division_id', 'LEFT')
         ->get();
@@ -238,10 +242,11 @@ class Transaction_Model extends CI_Model{
     return $result;
   }
 
-  public function repairy_bill_listt($company_id){
+  public function repairy_bill_list($company_id){
     $query = $this->db->select('repairy.*, party.*')
         ->from('uni_repairy_master as repairy')
         ->where('repairy.company_id', $company_id)
+        ->order_by('repairy.repairy_id', 'DESC')
         ->join('uni_party as party', 'repairy.repairy_party = party.party_id', 'LEFT')
         ->get();
     $result = $query->result();
@@ -271,6 +276,115 @@ class Transaction_Model extends CI_Model{
     $result = $query->result();
     return $result;
   }
+
+  /************************ Quotation **********************/
+  // Quotation List...
+  public function quotation_list($company_id){
+    $query = $this->db->select('quotation.*, party.*')
+        ->from('uni_quotation_master as quotation')
+        ->where('quotation.company_id', $company_id)
+        ->order_by('quotation.quotation_id', 'DESC')
+        ->join('uni_party as party', 'quotation.quotation_party = party.party_id', 'LEFT')
+        ->get();
+    $result = $query->result();
+    return $result;
+  }
+  // Quotation Data...
+  public function quotation_data($company_id,$quotation_id){
+    $query = $this->db->select('quotation.*, party.*')
+        ->from('uni_quotation_master as quotation')
+        ->where('quotation.company_id', $company_id)
+        ->where('quotation.quotation_id', $quotation_id)
+        ->join('uni_party as party', 'quotation.quotation_party = party.party_id', 'LEFT')
+        ->get();
+    $result = $query->result();
+    return $result;
+  }
+  // Quotation Transe Data...
+  public function quotation_trans_data($quotation_id){
+    $query = $this->db->select('quotation.*,make.*,product.*,capacity.*, accuracy.*, class.*,platter.*')
+        ->from('uni_quotation_trans as quotation')
+        ->where('quotation.quotation_id', $quotation_id)
+        ->join('uni_make as make', 'quotation.make_id = make.make_id', 'LEFT')
+        ->join('uni_product as product', 'quotation.model_no_id = product.product_id', 'LEFT')
+        ->join('uni_capacity as capacity', 'quotation.capacity_id = capacity.capacity_id', 'LEFT')
+        ->join('uni_accuracy as accuracy', 'quotation.accuracy_id = accuracy.accuracy_id', 'LEFT')
+        ->join('uni_class as class', 'quotation.class_id = class.class_id', 'LEFT')
+        ->join('uni_platter_size as platter', 'quotation.platter_id = platter.platter_id', 'LEFT')
+        ->get();
+    $result = $query->result();
+    return $result;
+  }
+
+
+// Service Report
+
+  public function get_service_report_list($company_id){
+    $query = $this->db->select('service.*,complaint.*, party.*, user.*,make.*,product.*')
+    ->from('uni_service as service')
+    ->where('service.company_id', $company_id)
+    ->order_by('service.service_id', 'DESC')
+    ->join('uni_complaint as complaint', 'service.complaint_id = complaint.complaint_id', 'LEFT')
+     ->join('uni_party as party', 'complaint.party_id = party.party_id', 'LEFT')
+     ->join('uni_user as user', 'complaint.complaint_engeeneer = user.user_id', 'LEFT')
+     ->join('uni_make as make', 'service.make_id = make.make_id', 'LEFT')
+     ->join('uni_product as product', 'service.model_no = product.product_id', 'LEFT')
+     ->get();
+     $result = $query->result();
+     return $result;
+  }
+
+  public function service_report_data($service_id){
+    $query = $this->db->select('service.*,complaint.*, party.*, user.*,make.*,product.*')
+    ->from('uni_service as service')
+    ->where('service.service_id', $service_id)
+    ->join('uni_complaint as complaint', 'service.complaint_id = complaint.complaint_id', 'LEFT')
+     ->join('uni_party as party', 'complaint.party_id = party.party_id', 'LEFT')
+     ->join('uni_user as user', 'complaint.complaint_engeeneer = user.user_id', 'LEFT')
+     ->join('uni_make as make', 'service.make_id = make.make_id', 'LEFT')
+     ->join('uni_product as product', 'service.model_no = product.product_id', 'LEFT')
+     ->get();
+     $result = $query->result();
+     return $result;
+  }
+
+  // public function service_report_list($company_id){
+  //   $query = $this->db->select('uni_service.*,make.*,product.*, party.*, uni_govt_stamp_trans.*, uni_govt_stamp_master.*')
+  //       ->from('uni_quotation_master as quotation')
+  //       ->where('quotation.company_id', $company_id)
+  //       ->order_by('quotation.quotation_id', 'DESC')
+  //       ->join('uni_party as party', 'quotation.quotation_party = party.party_id', 'LEFT')
+  //       ->get();
+  //   $result = $query->result();
+  //   return $result;
+  // }
+  // public function service_report_data($quotation_id){
+  //   $query = $this->db->select('quotation.*,make.*,product.*,capacity.*, accuracy.*, class.*,platter.*')
+  //       ->from('uni_quotation_trans as quotation')
+  //       ->where('quotation.quotation_id', $quotation_id)
+  //       ->join('uni_make as make', 'quotation.make_id = make.make_id', 'LEFT')
+  //       ->join('uni_product as product', 'quotation.model_no_id = product.product_id', 'LEFT')
+  //       ->join('uni_capacity as capacity', 'quotation.capacity_id = capacity.capacity_id', 'LEFT')
+  //       ->join('uni_accuracy as accuracy', 'quotation.accuracy_id = accuracy.accuracy_id', 'LEFT')
+  //       ->join('uni_class as class', 'quotation.class_id = class.class_id', 'LEFT')
+  //       ->join('uni_platter_size as platter', 'quotation.platter_id = platter.platter_id', 'LEFT')
+  //       ->get();
+  //   $result = $query->result();
+  //   return $result;
+  // }
+
+  // Quotation List...
+  public function receipt_list($company_id){
+    $query = $this->db->select('receipt.*, party.*')
+        ->from('uni_receipt as receipt')
+        ->where('receipt.company_id', $company_id)
+        ->order_by('receipt.receipt_id', 'DESC')
+        ->join('uni_party as party', 'receipt.receipt_party = party.party_id', 'LEFT')
+        ->get();
+    $result = $query->result();
+    return $result;
+  }
+
 }
 
 ?>

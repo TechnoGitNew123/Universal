@@ -170,7 +170,10 @@ include('head.php');
                       <td class="td_w">
                         <input type="number" class="form-control form-control-sm amount" name="input[<?php echo $i; ?>][sale_trans_amount]" value="<?php echo $trans_data->sale_trans_amount ?>" id="" placeholder="" readonly >
                       </td>
-                      <td class="td_btn"> <?php if($j > 1){ ?> <a><i class="fa fa-trash text-danger"></i></a> <?php } ?></td>
+                      <td class="td_btn">
+                        <?php if($j > 1){ ?> <a><i class="fa fa-trash text-danger"></i></a> <?php } ?>
+                        <input type="hidden" name="input[<?php echo $i; ?>][sale_trans_gst_amount]" class="gst_amount1 gst_amount" value="<?php echo $trans_data->sale_trans_gst_amount ?>">
+                      </td>
                     </tr>
                   <?php $i++;  }  } else{ ?>
                   <tr>
@@ -218,7 +221,9 @@ include('head.php');
                     <td class="td_w">
                       <input type="number" class="form-control form-control-sm amount" name="input[0][sale_trans_amount]" id="" placeholder="" readonly required>
                     </td>
-                    <td class="td_btn"></td>
+                    <td class="td_btn">
+                      <input type="hidden" name="input[0][sale_trans_gst_amount]" class="gst_amount1 gst_amount" value="">
+                    </td>
                   </tr>
                   <?php  } ?>
                 </table>
@@ -242,13 +247,13 @@ include('head.php');
                   <div class="form-group row pt-4 float-right">
                     <label for="inputEmail3" class=" col-form-label mr-3">Basic Amount</label>
                     <div class="">
-                      <input type="text" name="total_base_amount" class="form-control" id="total_base_amount" value="<?php if(isset($total_base_amount)){ echo $total_base_amount; } ?>">
+                      <input type="text" name="total_base_amount" class="form-control" id="basic_amount" value="<?php if(isset($total_base_amount)){ echo $total_base_amount; } ?>">
                     </div>
                   </div>
                   <div class="form-group row pt-4 float-right">
                     <label for="inputEmail3" class=" col-form-label mr-3">GST Amount</label>
                     <div class="">
-                      <input type="text" name="total_gst" class="form-control" id="total_gst" value="<?php if(isset($total_gst)){ echo $total_gst; } ?>">
+                      <input type="text" name="total_gst" class="form-control" id="gst_val" value="<?php if(isset($total_gst)){ echo $total_gst; } ?>">
                     </div>
                   </div>
                   <div class="form-group row pt-4 float-right">
@@ -327,13 +332,35 @@ var i = 1;
               row += '<td class="td_w"><input type="text" class="form-control form-control-sm qty" name="input['+i+'][sale_trans_qty]" id="" placeholder="Qty" required></td>';
               row += '<td class="td_w"><input type="text" class="form-control form-control-sm rate" name="input['+i+'][sale_trans_rate]" id="" placeholder="Rate" required></td>';
               row += '<td class="td_w"><input type="text" class="form-control form-control-sm amount" name="input['+i+'][sale_trans_amount]" id="" placeholder="Amount" required readonly></td>';
-              row += '<td class="td_btn"><a> <i class="fa fa-trash text-danger"></i> </a></td>';
+              row += '<td class="td_btn"><a> <i class="fa fa-trash text-danger"></i> </a>'
+              row += '<input type="hidden" name="input['+i+'][sale_trans_gst_amount]" class="gst_amount1 gst_amount" value=""></td>';
               row += '</tr>';
     $('#myTable').append(row);
   });
 
   $('#myTable').on('click', 'a', function () {
     $(this).closest('tr').remove();
+    var basic_amount = 0;
+    $(".amount").each(function() {
+        var amount = $(this).val();
+        // add only if the value is number
+        if(!isNaN(amount) && amount.length != 0) {
+            basic_amount += parseFloat(amount);
+        }
+    });
+    $('#basic_amount').val(basic_amount);
+
+    var gst_val = 0;
+    $(".gst_amount").each(function() {
+        var gst_amount = $(this).val();
+        if(!isNaN(gst_amount) && gst_amount.length != 0) {
+            gst_val += parseFloat(gst_amount);
+        }
+    });
+    $('#gst_val').val(gst_val);
+
+    var total_amount = basic_amount + gst_val;
+    $('#sale_total').val(total_amount);
   });
 
   $("#myTable").on("change", "select.make_id", function(){
@@ -381,6 +408,52 @@ var i = 1;
         $('#sale_challan_no').html(result);
       }
   	});
+  });
+
+  $('#myTable').on('keyup', 'input.gst, input.qty, input.rate', function () {
+    var gst =   $(this).closest('tr').find('.gst').val();
+    var qty =   $(this).closest('tr').find('.qty').val();
+    var rate =   $(this).closest('tr').find('.rate').val();
+    if(gst == ''){
+      gst = 0;
+    }
+    if(qty == ''){
+      qty = 0;
+    }
+    if(rate == ''){
+      rate = 0;
+    }
+    var gst = parseInt(gst);
+    var qty = parseInt(qty);
+    var rate = parseInt(rate);
+
+    var amount_without_gst = qty * rate;
+    var gst_amount1 = (gst/100) * amount_without_gst;
+    var amount_with_gst = amount_without_gst + gst_amount1;
+    $(this).closest('tr').find('.amount').val(amount_without_gst);
+    $(this).closest('tr').find('.gst_amount').val(gst_amount1);
+
+    var basic_amount = 0;
+    $(".amount").each(function() {
+        var amount = $(this).val();
+        // add only if the value is number
+        if(!isNaN(amount) && amount.length != 0) {
+            basic_amount += parseFloat(amount);
+        }
+    });
+    $('#basic_amount').val(basic_amount);
+
+    var gst_val = 0;
+    $(".gst_amount").each(function() {
+        var gst_amount = $(this).val();
+        if(!isNaN(gst_amount) && gst_amount.length != 0) {
+            gst_val += parseFloat(gst_amount);
+        }
+    });
+    $('#gst_val').val(gst_val);
+
+    var total_amount = basic_amount + gst_val;
+    $('#sale_total').val(total_amount);
   });
 </script>
 </body>

@@ -23,7 +23,7 @@ include('head.php');
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12 mt-1">
-            <h4>REPAIRY REGISTER</h4>
+            <h4>SERVICE REPORT</h4>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -37,10 +37,10 @@ include('head.php');
             <!-- general form elements -->
             <div class="card">
             <div class="card-header">
-              <h3 class="card-title"><i class="fa fa-list"></i>Repairy Register</h3>
-              <div class="card-tools">
-                <a href="<?php echo base_url() ?>Transaction/repairy_bill" class="btn btn-sm btn-block btn-primary">Add Repairy bill</a>
-              </div>
+              <h3 class="card-title"><i class="fa fa-list"></i>Service Reports</h3>
+              <!-- <div class="card-tools">
+                <a href="<?php echo base_url() ?>Transaction/receipt" class="btn btn-sm btn-block btn-primary">Add Receipt bill</a>
+              </div> -->
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -48,40 +48,34 @@ include('head.php');
                 <thead>
                 <tr>
                   <th>Sr. No.</th>
-                  <th>Receipt No </th>
-                   <th>Receipt Date</th>
+                  <th>Report No </th>
+                   <th>Report Date</th>
+                   <th>Complaint No.</th>
                    <th>Party Name</th>
-                   <th>Contact Person</th>
-                   <th>Contact Person No</th>
-                   <th>Spare Carhges </th>
-                   <th>Service Carhges </th>
-                   <th>Total Amount</th>
-                   <th width="13%">Action</th>
+                   <th>Status</th>
+                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php
-                    $i=0;
-                    foreach ($repairy_bill_list as $list) {
+                  $i=0;
+                  foreach ($service_report_list as $list) {
                     $i++;
                   ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $list->repairy_no; ?></td>
-                    <td><?php echo $list->repairy_date; ?></td>
+                    <td><?php echo $list->service_no; ?></td>
+                    <td><?php echo $list->service_date; ?></td>
+                    <td><?php echo $list->complaint_no; ?></td>
                     <td><?php echo $list->party_firm; ?></td>
-                    <td><?php echo $list->repairy_person; ?></td>
-                    <td><?php echo $list->repairy_contact; ?></td>
-                    <td><?php echo $list->repairy_basic_charge; ?></td>
-                    <td><?php echo $list->repairy_min_charge; ?></td>
-                    <td><?php echo $list->repairy_total; ?></td>
+                    <td><?php echo $list->service_call_completion; ?></td>
                     <td>
-                      <a href="<?php echo base_url(); ?>Transaction/edit_repairy_bill/<?php echo $list->repairy_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-4" href="<?php echo base_url(); ?>Transaction/delete_repairy_bill/<?php echo $list->repairy_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
-                      <a class="ml-4" href="<?php echo base_url(); ?>Receipt/repairy_bill_receipt/<?php echo $list->repairy_id; ?>"> <i class="fa fa-print"></i> </a>
+                      <a href="edit_service/<?php echo $list->service_id; ?>"> <i class="fa fa-edit"></i> </a>
+                      <a class="ml-4" href="delete_service/<?php echo $list->service_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a class="ml-4" href="<?php echo base_url(); ?>Receipt/service_report/<?php echo $list->service_id; ?>"> <i class="fa fa-print"></i> </a>
                     </td>
                   </tr>
-                  <?php } ?>
+                <?php } ?>
                 </tbody>
               </table>
             </div>

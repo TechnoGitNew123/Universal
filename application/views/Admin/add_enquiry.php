@@ -91,7 +91,7 @@
                   <?php if(isset($update)){ ?>
                     <button type="submit" class="btn btn-primary">Update </button>
                   <?php } else{ ?>
-                    <button type="submit" class="btn btn-success px-4">Add Complaint</button>
+                    <button type="submit" class="btn btn-success px-4">Add</button>
                   <?php } ?>
                   <a href="../dashboard" class="btn btn-default ml-4">Cancel</a>
                 </div>

@@ -16,3 +16,22 @@
     line-height: 20px !important;
     font-size: .875rem;
 }
+
+.required-input {
+    color: #495057;
+    background-color: #fff;
+    border-color: rgba(225,0,0,.2);
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem rgba(225,0,0,.2);
+}
+.invalide-input {
+    color: #495057;
+    background-color: #fff;
+    border-color: rgba(225,0,0,.2);
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem rgba(225,0,0,.2);
+}
+
+label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 400 !important;
+}

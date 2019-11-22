@@ -6,11 +6,9 @@
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
   <!-- Navbar -->
   <?php include('navbar.php'); ?>
   <!-- /.navbar -->
-
   <!-- Main Sidebar Container -->
   <?php include('sidebar.php'); ?>
 
@@ -26,9 +24,6 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
-
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -42,38 +37,41 @@
               <!-- /.card-header -->
               <!-- form start -->
               <?php if(isset($update)){ ?>
-                <form role="form" action="../update_company" method="post">
+                <form role="form" id="form_update" action="../update_company" method="post">
                   <input type="hidden" name="company_id" value="<?php echo $company_id; ?>">
               <?php } else{ ?>
-                <form role="form" action="save_company" method="post">
+                <form role="form" id="form_save" action="save_company" method="post">
               <?php } ?>
                 <div class="card-body row">
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control" name="company_name" id="company_name" value="<?php if(isset($company_name)){ echo $company_name; } ?>" placeholder="Enter Company Name" required>
+                    <input type="text" class="form-control required" name="company_name" id="company_name" value="<?php if(isset($company_name)){ echo $company_name; } ?>" placeholder="Enter Company Name" required>
                   </div>
                   <div class="form-group col-md-12">
-                    <textarea class="form-control" rows="3" name="company_address" id="company_address" placeholder="Enter Company Address" required><?php if(isset($company_address)){ echo $company_address; } ?></textarea>
+                    <textarea class="form-control required" rows="3" name="company_address" id="company_address" placeholder="Enter Company Address" required><?php if(isset($company_address)){ echo $company_address; } ?></textarea>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="company_city" id="company_city" value="<?php if(isset($company_city)){ echo $company_city; } ?>" placeholder="City" required>
+                    <input type="text" class="form-control required" name="company_city" id="company_city" value="<?php if(isset($company_city)){ echo $company_city; } ?>" placeholder="City" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="company_state" id="company_state" value="<?php if(isset($company_state)){ echo $company_state; } ?>" placeholder="State" required>
+                    <input type="text" class="form-control required" name="company_state" id="company_state" value="<?php if(isset($company_state)){ echo $company_state; } ?>" placeholder="State" required>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" class="form-control required" name="company_district" id="company_district" value="<?php if(isset($company_district)){ echo $company_district; } ?>" placeholder="District" required>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="number" class="form-control required pin-code" name="company_pincode" id="company_pincode" value="<?php if(isset($company_pincode)){ echo $company_pincode; } ?>" placeholder="Pincode" required>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="number" class="form-control" name="company_statecode" id="company_statecode" value="<?php if(isset($company_statecode)){ echo $company_statecode; } ?>" placeholder="Statecode" >
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="company_district" id="company_district" value="<?php if(isset($company_district)){ echo $company_district; } ?>" placeholder="District" required>
+                    <input type="number" class="form-control required mobile" name="company_mob1" id="company_mob1" value="<?php if(isset($company_mob1)){ echo $company_mob1; } ?>" placeholder="Mobile No. 1">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control" name="company_pincode" id="company_pincode" value="<?php if(isset($company_pincode)){ echo $company_pincode; } ?>" placeholder="Pincode" required>
+                    <input type="number" class="form-control mobile" name="company_mob2" id="company_mob2" value="<?php if(isset($company_mob2)){ echo $company_mob2; } ?>" placeholder="Mobile No. 2">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control" name="company_mob1" id="company_mob1" value="<?php if(isset($company_mob1)){ echo $company_mob1; } ?>" placeholder="Mobile No. 1">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <input type="number" class="form-control" name="company_mob2" id="company_mob2" value="<?php if(isset($company_mob2)){ echo $company_mob2; } ?>" placeholder="Mobile No. 2">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <input type="email" class="form-control" name="company_email" id="company_email" value="<?php if(isset($company_email)){ echo $company_email; } ?>" placeholder="Email" required>
+                    <input type="email" class="form-control email" name="company_email" id="company_email" value="<?php if(isset($company_email)){ echo $company_email; } ?>" placeholder="Email">
                   </div>
                   <div class="form-group col-md-6">
                     <input type="text" class="form-control" name="company_website" id="company_website" value="<?php if(isset($company_website)){ echo $company_website; } ?>" placeholder="Website">
@@ -108,20 +106,19 @@
                     No file selected.
                   </div> -->
                   <div class="form-group col-md-6">
-                    <input type="email" class="form-control" name="admin_email" id="admin_email" value="<?php if(isset($admin_email)){ echo $admin_email; } ?>" placeholder="Admin Email" required>
+                    <input type="email" class="form-control required mobile" name="admin_email" id="admin_email" value="<?php if(isset($admin_email)){ echo $admin_email; } ?>" placeholder="Admin Email" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="password" class="form-control" name="admin_password" id="admin_password" value="<?php if(isset($admin_password)){ echo $admin_password; } ?>" placeholder="Admin Password" required>
+                    <input type="password" class="form-control required" name="admin_password" id="admin_password" value="<?php if(isset($admin_password)){ echo $admin_password; } ?>" placeholder="Admin Password" required>
                   </div>
-
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
                   <?php if(isset($update)){ ?>
-                    <button type="submit" class="btn btn-primary">Update </button>
+                    <button id="btn_update" type="button" class="btn btn-primary">Update </button>
                   <?php } else{ ?>
-                    <button type="submit" class="btn btn-success px-4">Add</button>
+                    <button id="btn_save" type="button" class="btn btn-success px-4">Add</button>
                   <?php } ?>
                   <a href="../dashboard" class="btn btn-default ml-4">Cancel</a>
                 </div>
@@ -149,5 +146,29 @@
 <!-- ./wrapper -->
 
 <?php include('script.php') ?>
+<script type="text/javascript">
+  $('#btn_save').on('click',function(){
+    alert();
+  });
+
+  // Update Click...
+  $('#btn_update').on('click',function(){
+    $('.required').each(function(){
+       var val = $(this).val();
+       if(val == '' || val == '0'){
+         $(this).addClass('required-input');
+       }
+       else{
+         $(this).removeClass('required-input');
+       }
+    });
+    if ($(".required-input")[0] || $(".invalide-input")[0]){
+      // Dont Submit...
+    } else {
+        $('#form_update').submit();
+    }
+  });
+</script>
+
 </body>
 </html>

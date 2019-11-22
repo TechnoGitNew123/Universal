@@ -11,14 +11,11 @@ include('head.php');
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
   <!-- Navbar -->
   <?php include('navbar.php'); ?>
   <!-- /.navbar -->
-
   <!-- Main Sidebar Container -->
   <?php include('sidebar.php'); ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,8 +29,6 @@ include('head.php');
       </div><!-- /.container-fluid -->
     </section>
 
-
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -46,7 +41,6 @@ include('head.php');
               <div class="card-tools">
                 <a href="<?php echo base_url(); ?>Transaction/delivery_challan" class="btn btn-sm btn-block btn-primary">Add Delivery Challan</a>
               </div>
-
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -76,9 +70,10 @@ include('head.php');
                     <td>
                       <a href="<?php echo base_url(); ?>Transaction/edit_delivery_challan/<?php echo $list->delivery_id; ?>"> <i class="fa fa-edit"></i> </a>
                       <a class="ml-4" href="<?php echo base_url(); ?>Transaction/delete_delivery_challan/<?php echo $list->delivery_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a class="ml-4" href="<?php echo base_url(); ?>Receipt/delivery_challan_print/<?php echo $list->delivery_id; ?>"> <i class="fa fa-print"></i> </a>
                     </td>
                   </tr>
-                <?php  }  ?>
+                  <?php  }  ?>
                 </tbody>
               </table>
             </div>
@@ -93,7 +88,6 @@ include('head.php');
   </div>
   <!-- /.content-wrapper -->
   <?php include('footer.php'); ?>
-
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -101,7 +95,6 @@ include('head.php');
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
 <?php include('script.php') ?>
 </body>
 </html>

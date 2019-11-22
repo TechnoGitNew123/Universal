@@ -152,7 +152,7 @@ include('head.php');
                         <input type="text" class="form-control form-control-sm" name="input[<?php echo $i; ?>][repairy_trans_under]"value="<?php echo $trans_data->repairy_trans_under ?>" placeholder="">
                       </td>
                       <td class="td_w">
-                        <input type="text" class="form-control form-control-sm" name="input[<?php echo $i; ?>][repairy_trans_amount]"value="<?php echo $trans_data->repairy_trans_amount ?>" placeholder="" required>
+                        <input type="text" class="form-control form-control-sm amount" name="input[<?php echo $i; ?>][repairy_trans_amount]"value="<?php echo $trans_data->repairy_trans_amount ?>" placeholder="" required>
                       </td>
                       <td class="td_btn"><?php if($j > 1){ ?> <a><i class="fa fa-trash text-danger"></i></a> <?php } ?></td>
                     </tr>
@@ -201,7 +201,7 @@ include('head.php');
                       <input type="text" class="form-control form-control-sm" name="input[0][repairy_trans_under]" placeholder="">
                     </td>
                     <td class="td_w">
-                      <input type="text" class="form-control form-control-sm" name="input[0][repairy_trans_amount]" placeholder="" required>
+                      <input type="text" class="form-control form-control-sm amount" name="input[0][repairy_trans_amount]" placeholder="" required>
                     </td>
                     <td class="td_btn"></td>
                   </tr>
@@ -329,7 +329,7 @@ var i = 1;
                   '<input type="text" class="form-control form-control-sm" name="input['+i+'][repairy_trans_under]" placeholder="">'+
                 '</td>'+
                 '<td class="td_w">'+
-                  '<input type="text" class="form-control form-control-sm" name="input['+i+'][repairy_trans_amount]" placeholder="" required>'+
+                  '<input type="text" class="form-control form-control-sm amount" name="input['+i+'][repairy_trans_amount]" placeholder="" required>'+
                 '</td>'+
                 '<td class="td_btn"><a> <i class="fa fa-trash text-danger"></i> </a></td>'+
               '</tr>';
@@ -338,6 +338,76 @@ var i = 1;
 
   $('#myTable').on('click', 'a', function () {
     $(this).closest('tr').remove();
+
+    var repairy_min_charge =   $('#repairy_min_charge').val();
+    if(repairy_min_charge == ''){
+      repairy_min_charge = 0;
+    }
+    var repairy_min_charge = parseInt(repairy_min_charge);
+    var basic_amount = 0;
+    $(".amount").each(function() {
+        var amount = $(this).val();
+        // add only if the value is number
+        if(!isNaN(amount) && amount.length != 0) {
+            basic_amount += parseFloat(amount);
+        }
+    });
+    $('#repairy_basic_charge').val(basic_amount);
+
+    var repairy_total = basic_amount + repairy_min_charge;
+    $('#repairy_total').val(repairy_total);
+  });
+
+  $('#myTable').on('keyup', 'input.amount', function () {
+    var amount =   $(this).closest('tr').find('.amount').val();
+    var repairy_min_charge =   $('#repairy_min_charge').val();
+    if(amount == ''){
+      amount = 0;
+    }
+    if(repairy_min_charge == ''){
+      repairy_min_charge = 0;
+    }
+    var amount = parseInt(amount);
+    var repairy_min_charge = parseInt(repairy_min_charge);
+
+    var basic_amount = 0;
+    $(".amount").each(function() {
+        var amount = $(this).val();
+        // add only if the value is number
+        if(!isNaN(amount) && amount.length != 0) {
+            basic_amount += parseFloat(amount);
+        }
+    });
+    $('#repairy_basic_charge').val(basic_amount);
+
+    var repairy_total = basic_amount + repairy_min_charge;
+    $('#repairy_total').val(repairy_total);
+  });
+
+  $('#repairy_min_charge').on('keyup',function () {
+    var repairy_basic_charge =   $('#repairy_basic_charge').val();
+    var repairy_min_charge =   $('#repairy_min_charge').val();
+    if(repairy_basic_charge == ''){
+      repairy_basic_charge = 0;
+    }
+    if(repairy_min_charge == ''){
+      repairy_min_charge = 0;
+    }
+    var repairy_basic_charge = parseInt(repairy_basic_charge);
+    var repairy_min_charge = parseInt(repairy_min_charge);
+
+    // var basic_amount = 0;
+    // $(".amount").each(function() {
+    //     var amount = $(this).val();
+    //     // add only if the value is number
+    //     if(!isNaN(amount) && amount.length != 0) {
+    //         basic_amount += parseFloat(amount);
+    //     }
+    // });
+    // $('#repairy_basic_charge').val(basic_amount);
+
+    var repairy_total = repairy_basic_charge + repairy_min_charge;
+    $('#repairy_total').val(repairy_total);
   });
 </script>
 </body>

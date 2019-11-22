@@ -55,19 +55,22 @@ include('head.php');
                 </tr>
                 </thead>
                 <tbody>
-
+                  <?php
+                  $i=0;
+                  foreach ($expense_list as $list) {
+                    $i++;
+                  ?>
                   <tr>
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $list->expense_no; ?></td>
+                    <td><?php echo $list->expense_date; ?></td>
+                    <td><?php echo $list->expense_amount; ?></td>
                     <td>
-                      <a href="edit_enquiry/"> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-4" href="delete_enquiry/" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a href="edit_expense/<?php echo $list->expense_id; ?>"> <i class="fa fa-edit"></i> </a>
+                      <a class="ml-4" href="delete_expense/<?php echo $list->expense_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
                     </td>
                   </tr>
-
+                <?php } ?>
                 </tbody>
               </table>
             </div>
