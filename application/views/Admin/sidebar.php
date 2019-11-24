@@ -293,6 +293,15 @@
                   </a>
                 </li>
 
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>Transaction/party_all_info" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                Party Information All
+                    </p>
+                  </a>
+                </li>
+
               </ul>
             </li>
             <!-- <li class="nav-item has-treeview">

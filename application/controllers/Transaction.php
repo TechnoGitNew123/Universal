@@ -1559,4 +1559,9 @@ public function expense_voucher_list(){
     }
   }
 
+  public function party_all_info(){
+      $this->load->view('Admin/party_all_info');
+    }
+
+
 }
