@@ -45,7 +45,7 @@
                   <form role="form">
                     <div class="card-body row">
                     <div class="form-group col-md-8">
-                      <select class="form-control select2 form-control-sm" title="Select Party" style="width: 100%;">
+                      <select class="form-control select2 form-control-sm" id="party" title="Select Party" style="width: 100%;">
                         <option selected="selected" value="" >Select Party Name</option>
                         <?php foreach ($party_list as $party_list1) { ?>
                           <option value="<?php echo $party_list1->party_id; ?>" <?php if(isset($party_id)){ if($party_list1->party_id == $party_id){ echo "selected"; } }  ?>><?php echo $party_list1->party_firm; ?></option>
@@ -80,30 +80,30 @@
                   </style>
 
                   <tr>
-                    <td colspan="3"> <p class="lab"> <b> Firm Name</b> :</p> </td>
-                    <td colspan="3">  <p class="lab"> <b>  Name Of Propritor</b> :</p> </td>
+                    <td colspan="3"> <p class="lab" > <b> Firm Name</b> : <span id="party_firm"></span> </p> </td>
+                    <td colspan="3">  <p class="lab"> <b>  Name Of Propritor</b> : <span id="party_proriter"></span> </p> </td>
                   </tr>
                   <tr>
-                    <td colspan="3"> <p class="lab"> <b> Address</b> :</p> </td>
-                    <td colspan="3">  <p class="lab"> <b> Nature Of Business </b> :</p> </td>
+                    <td colspan="3"> <p class="lab"> <b> Address</b> : <span id="party_address"></span> </p> </td>
+                    <td colspan="3">  <p class="lab"> <b> Nature Of Business </b> : <span id="party_business"></span> </p> </td>
                   </tr>
                   <tr>
-                    <td colspan="2"> <p class="lab"> <b> Area</b> :</p> </td>
-                    <td colspan="2">  <p class="lab"> <b> Dist. </b> :</p> </td>
-                      <td colspan="2">  <p class="lab"> <b>Taluka </b> :</p> </td>
+                    <td colspan="2"> <p class="lab"> <b> Area</b> : <span id="party_area"></span> </p> </td>
+                    <td colspan="2">  <p class="lab"> <b> Dist. </b> : <span id="party_district"></span> </p> </td>
+                      <td colspan="2">  <p class="lab"> <b>Taluka </b> : <span id="party_taluka"></span> </p> </td>
                   </tr>
                   <tr>
-                    <td colspan="2"> <p class="lab"> <b> Mobile No. 1</b> :</p> </td>
-                    <td colspan="2">  <p class="lab"> <b> Mobile No. 2 </b> :</p> </td>
+                    <td colspan="2"> <p class="lab"> <b> Mobile No. 1</b> : <span id="party_mob1"></span> </p> </td>
+                    <td colspan="2">  <p class="lab"> <b> Mobile No. 2 </b> : <span id="party_mob2"></span> </p> </td>
                       <td colspan="2">  <p style="color:red;" class="lab"> <b>Total Outstanding </b> : <span >5000</span> </p> </td>
                   </tr>
                   <tr>
-                    <td colspan="3"> <p class="lab"> <b>  GST No.</b> :</p> </td>
-                    <td colspan="3">  <p class="lab"> <b> PAN No. </b> :</p> </td>
+                    <td colspan="3"> <p class="lab"> <b>  GST No.</b> : <span id="party_gst_no"></span> </p> </td>
+                    <td colspan="3">  <p class="lab"> <b> PAN No. </b> : <span id="party_pan_no"></span> </p> </td>
                   </tr>
                   <tr>
-                    <td colspan="3"> <p class="lab"> <b>Email</b> :</p> </td>
-                    <td colspan="3">  <p class="lab"> <b> Website</b> :</p> </td>
+                    <td colspan="3"> <p class="lab"> <b>Email</b> : <span id="party_email"></span> </p> </td>
+                    <td colspan="3">  <p class="lab"> <b> Website</b> : <span id="party_website"></span> </p> </td>
                   </tr>
 
 
@@ -289,5 +289,40 @@
 <!-- ./wrapper -->
 
 <?php include('script.php') ?>
+<script type="text/javascript">
+$("#party").on("change", function(){
+  var party_id = $(this).val();
+  $.ajax({
+    url: '<?php echo base_url(); ?>Transaction/GetPartyDetails',
+    type: "POST",
+    data: {"party_id":party_id},
+    context: this,
+    success: function (result) {
+      var data = JSON.parse(result);
+      $('#party_firm').html(data['party_firm']);
+      $('#party_address').html(data['party_address']);
+      $('#party_area').html(data['party_area']);
+      $('#party_taluka').html(data['party_taluka']);
+      $('#party_district').html(data['party_district']);
+      $('#party_mob1').html(data['party_mob1']);
+      $('#party_mob2').html(data['party_mob2']);
+      $('#party_gst_no').html(data['party_gst_no']);
+      $('#party_pan_no').html(data['party_pan_no']);
+      $('#party_proriter').html(data['party_proriter']);
+      $('#party_business').html(data['party_business']);
+      $('#party_email').html(data['party_email']);
+      $('#party_website').html(data['party_website']);
+      // $(this).closest('tr').find('.capacity').html('<option value="'+data['capacity_id']+'">'+data['capacity_name']+'</option>');
+      // $(this).closest('tr').find('.accuracy').html('<option value="'+data['accuracy_id']+'">'+data['accuracy_name']+'</option>');
+      // $(this).closest('tr').find('.class').html('<option value="'+data['class_id']+'">'+data['class_name']+'</option>');
+      // $(this).closest('tr').find('.platter').html('<option value="'+data['platter_id']+'">'+data['platter_size']+'</option>');
+      //
+      // $(this).closest('tr').find('.rate').val(data['sale_price']);
+      // $(this).closest('tr').find('.gst').val('');
+      // $(this).closest('tr').find('.qty').val('');
+    }
+  });
+});
+</script>
 </body>
 </html>
