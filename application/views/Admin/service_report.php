@@ -50,7 +50,7 @@
                   <input type="text" class="form-control form-control-sm" name="service_no" id="service_no" placeholder="Service Report No." readonly value="<?php if(isset($service_no)){ echo $service_no; } ?>">
                 </div>
                 <div class="form-group col-md-6">
-                  <input type="text" class="form-control form-control-sm" name="service_date" id="date2" data-target="#date2" data-toggle="datetimepicker" value="<?php if(isset($service_date)){ echo $service_date; } ?>" placeholder="Service Report Date" required>
+                  <input type="text" class="form-control form-control-sm" name="service_date" id="date2" data-target="#date2" data-toggle="datetimepicker" value="<?php if(isset($service_date)){ echo $service_date; } else{ echo date('d-m-Y'); }  ?>" placeholder="Service Report Date" required>
                 </div>
                   <div class="form-group col-md-6">
                     <input type="text" class="form-control form-control-sm" name="complaint_no" id="complaint_no" value="<?php if(isset($complaint_no)){ echo $complaint_no; } ?>" placeholder="Complaint No." readonly>
@@ -61,8 +61,21 @@
                   <div class="form-group col-md-12">
                     <input type="text" class="form-control form-control-sm" name="party_id" id="party_id" value="<?php if(isset($party_id)){ echo $party_firm; } ?>" placeholder="Party Name" readonly>
                   </div>
+
+                <?php
+                if(isset($complaint_service)){
+                    $val = explode('_',$complaint_service);
+                    //$val[0]
+                    $service = '';
+                    foreach ($val as $val) {
+                      if($val != '0'){
+                        $service = $service.''.$val.', ';
+                      }
+                    }
+                }
+                ?>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control form-control-sm" name="complaint_service" id="complaint_service" value="<?php if(isset($complaint_service)){ echo $complaint_service; } ?>" placeholder="Type of Service" readonly>
+                    <input type="text" class="form-control form-control-sm" name="complaint_service" id="complaint_service" value="<?php if(isset($complaint_service)){ echo $service; } ?>" placeholder="Type of Service" readonly>
                   </div>
                   <div class="form-group col-md-6">
                     <input type="text" class="form-control form-control-sm" name="complaint_reporting" id="complaint_reporting" value="<?php if(isset($complaint_reporting)){ echo $complaint_reporting; } ?>" placeholder="Reporting Type" readonly>
@@ -111,6 +124,7 @@
                   <div class="form-group col-md-6">
                     <select class="form-control select2 form-control-sm" name="service_call_completion" id="service_call_completion">
                       <option selected="selected">Open</option>
+                      <option >Completed</option>
                       <?php if(isset($service_call_completion)){ ?>
                         <option selected="selected"><?php echo $service_call_completion; ?></option>
                       <?php } ?>
@@ -126,7 +140,7 @@
                     <input type="text" class="form-control form-control-sm" name="" id="" value="<?php if(isset($user_mobile)){ echo $user_mobile; } ?>" placeholder="Service Engineer Contact" readonly>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control form-control-sm" name="service_date" id="date1" value="<?php if(isset($service_date)){ echo $service_date; } ?>" data-target="#date1" data-toggle="datetimepicker" placeholder="Date">
+                    <input type="text" class="form-control form-control-sm" name="service_date" id="date1" value="<?php if(isset($service_date)){ echo $service_date; } else{ echo date('d-m-Y'); } ?>" data-target="#date1" data-toggle="datetimepicker" placeholder="Date">
                   </div>
                   <div class="form-group col-md-3">
                     <input type="text" class="form-control form-control-sm" name="service_time_in" id="time1" data-target="#time1" data-toggle="datetimepicker" value="<?php if(isset($service_time_in)){ echo $service_time_in; } ?>" placeholder="Time In">

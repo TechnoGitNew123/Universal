@@ -148,7 +148,7 @@ include('head.php');
 <tr>
   <td colspan="4" style="text-align:left;"><b>Amount In Words : Rupees <?php echo $this->numbertowords->convert_number($repairy_bill_data->repairy_basic_charge); ?> Only</b></td>
   <td colspan="1" style="text-align:right;">Total</td>
-  <td colspan="1"><?php echo $repairy_bill_data->repairy_basic_charge; ?></td>
+  <td colspan="1">&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_basic_charge, 2, '.', ''); ?></td>
 </tr>
 
 <tr>
@@ -166,7 +166,7 @@ include('head.php');
 
 <p>
  <b>ऑफिस वेळ सकाळी ९:३० ते संध्या. ६ पर्यंत वर्कशॉप दर रविवारी बंद राहील.</b>   </p>
-<p>काटा घेणाऱ्याचे नाव : <?php echo $repairy_bill_data->repairy_person; ?></p>
+<p>काटा घेणाऱ्याचे नाव : <?php echo $repairy_bill_data->user_name; ?></p>
 
   </td>
 </tr>

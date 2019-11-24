@@ -221,21 +221,33 @@ margin-right: auto;
 
 <tr>
   <td colspan="4"  valign="top">
-    <p> <b>Basic Price</b>  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><?php echo $purchase_agreement_data->purchase_basic_price; ?></b> </p>
-    <p><b>Govt Stamping</b>  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $purchase_agreement_data->purchase_stamping; ?></p>
-    <p><b>Total</b>  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $purchase_agreement_data->purchase_total; ?></p>
-    <p><b>Advance Received</b>  : &nbsp;&nbsp;&nbsp; <?php echo $purchase_agreement_data->purchase_advance; ?></p>
-    <p><b>Balance Due</b>  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $purchase_agreement_data->purchase_due; ?></p>
-    <p><b>Delivery Period</b>  :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $purchase_agreement_data->purchase_del_period; ?></p>
+    <p>Basic Price : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+      &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_basic_price, 2, '.', ''); ?></b> </p>
+    <p>Govt Stamping :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_stamping, 2, '.', ''); ?></p>
+    <p>Total : &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+      &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_total, 2, '.', ''); ?></p>
+    <p>Advance Received :  &nbsp;&nbsp;
+      &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_advance, 2, '.', ''); ?></p>
+    <p>Balance Due : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_due, 2, '.', ''); ?></p>
+    <p>Delivery Period : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_del_period, 2, '.', ''); ?></p>
    </td>
-  <td colspan="8"> <p>  <b>Accessories Guide :</b> </p>
-                  <p> <input type="checkbox" > 1) Extra Display : Stand / On Machine / Detachable</p>
-                  <p> <input type="checkbox" > 2) Battery </p>
-                  <p><input type="checkbox" > 3) Charger</p>
-                  <p><input type="checkbox" > 4) Wind Shield </p>
-                  <p><input type="checkbox" > 5) Rs-232-C COMPUTER INTERFACE</p>
-                  <p><input type="checkbox" > 6) BOWL : FLAT/ ROUND </p>
-                  <p><input type="checkbox" > 7) Others</p>
+   <?php
+   $purchase_accss = $purchase_agreement_data->purchase_accss;
+   if(isset($purchase_accss)){
+     $val = explode('_',$purchase_accss);
+   } ?>
+  <td colspan="8">
+    <p>  <b>Accessories Guide :</b> </p>
+    <p> <input type="checkbox" <?php if(isset($purchase_accss) && $val[0] == 'Extra Display'){ echo 'checked'; } ?>> 1) Extra Display : Stand / On Machine / Detachable</p>
+    <p> <input type="checkbox" <?php if(isset($purchase_accss) && $val[1] == 'Battery'){ echo 'checked'; } ?>> 2) Battery </p>
+    <p><input type="checkbox" <?php if(isset($purchase_accss) && $val[2] == 'Charger'){ echo 'checked'; } ?>> 3) Charger</p>
+    <p><input type="checkbox" <?php if(isset($purchase_accss) && $val[3] == 'Wind'){ echo 'checked'; } ?>> 4) Wind Shield </p>
+    <p><input type="checkbox" <?php if(isset($purchase_accss) && $val[4] == 'INTERFACE'){ echo 'checked'; } ?>> 5) Rs-232-C COMPUTER INTERFACE</p>
+    <p><input type="checkbox" <?php if(isset($purchase_accss) && $val[5] == 'Bowl'){ echo 'checked'; } ?>> 6) BOWL : FLAT/ ROUND </p>
+    <p><input type="checkbox" <?php if(isset($purchase_accss) && $val[6] == 'Others'){ echo 'checked'; } ?>> 7) Others</p>
    </td>
 </tr>
 

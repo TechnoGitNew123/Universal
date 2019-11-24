@@ -115,8 +115,6 @@ table{
 
     </td>
     <td style="border-right:0px!important; padding-left: 20px; padding-top:0px;" >
-
-
         <br>
        <p style="font-size:16px; margin-bottom:5px;"><strong>Party Name and Address</strong></p>
       <p style="font-size:16px; margin-bottom:5px;"> <?php echo $govt_stamp_data->party_firm; ?></p>
@@ -128,8 +126,6 @@ table{
        </p>
       <p style="font-size:16px; margin-bottom:5px;">Sate : <?php echo $govt_stamp_data->party_state.' '; ?></p>
       <p style="font-size:16px; margin-bottom:5px;"> Contact No. <?php echo $govt_stamp_data->party_mob1.' '; ?></p>
-
-
       </td>
   <td valign="top" style="padding:0px!important; border-left:0px!important;">
   <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important;"><b>No.  <?php echo $govt_stamp_data->govt_stamp_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
@@ -138,37 +134,30 @@ table{
 </tr>
 </table>
 
-
 <div class="row">
 <div class="col-12 table-responsive">
   <table class="table table-botttom" width="750">
     <style media="print">
-    .table-bottom {
-border-collapse: collapse;
-}
-
-.table-bottom, tr, td, th{
-
-    border: 1px solid #000;
-    font-size: 14px;
-    margin-left: auto;
-    margin-right: auto;
-    }
+      .table-bottom {
+        border-collapse: collapse;
+      }
+      .table-bottom, tr, td, th{
+        border: 1px solid #000;
+        font-size: 14px;
+        margin-left: auto;
+        margin-right: auto;
+      }
     </style>
-
     <style media="screen">
 
     .table-bottom {
-border-collapse: collapse;
-text-align: center;
-}
-
-.table-bottom, tr, td, th{
-
-    border: 1px solid #000;
-
-    margin-left: auto;
-    margin-right: auto;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    .table-bottom, tr, td, th{
+      border: 1px solid #000;
+      margin-left: auto;
+      margin-right: auto;
     }
     </style>
     <thead>
@@ -219,8 +208,18 @@ text-align: center;
     <tr style="border-bottom:0px!important;">
       <td colspan="3" style="border-bottom:0px!important; border-right:0px!important; border-bottom:0px!important;"><p style="font-size:12px;">V.C. No. <?php echo $govt_stamp_data->govt_stamp_vc_no; ?> </p></td>
       <td colspan="3" style="border-bottom:0px!important; border-left:0px!important;  border-bottom:0px!important;"><p style="font-size:12px;"> DATE : <?php echo $govt_stamp_data->govt_stamp_vc_date; ?></p> </td>
-      <td colspan="3"><p>Grand Total : </p> </td>
-      <td colspan="3"><p> <b><?php echo $total; ?></b> </p></td>
+      <td colspan="3"><p style="text-align:right;"><b>Govt. Fee : </b></p> </td>
+      <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$total, 2, '.', ''); ?></b> </p></td>
+    </tr>
+    <tr style="border-bottom:0px!important; border-top:0px!important;">
+      <td colspan="6" style="border:0px!important;"><p style="font-size:12px;"></p></td>
+      <td colspan="3"><p style="text-align:right;"><b>Late Fee : </b></p> </td>
+      <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_late_fee, 2, '.', ''); ?></b> </p></td>
+    </tr>
+    <tr style="border-bottom:0px!important; border-top:0px!important;">
+      <td colspan="6" style="border:0px!important;"><p style="font-size:12px;"></p></td>
+      <td colspan="3"><p  style="text-align:right;"><b>Grand Total : </b></p> </td>
+      <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_late_fee + $total, 2, '.', ''); ?></b> </p></td>
     </tr>
 
     <tr style="border-top:0px!important; border-bottom:0px!important;">

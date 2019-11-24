@@ -53,19 +53,13 @@ include('head.php');
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <!-- <div class="callout callout-info">
-              <h5><i class="fas fa-info"></i> Note:</h5>
-              This page has been enhanced for printing. Click the print button at the bottom of the dellivery challan to test.
-            </div> -->
             <?php
             foreach ($delivery_challan_data as $delivery_challan_data) {
               $delivery_id = $delivery_challan_data->delivery_id;
             }
             ?>
-
             <!-- Main content -->
             <div class="invoice p-3 mb-3">
-
               <table class="table table-bordered mb-0 invoice-table">
             <style media="screen">
               .invoice-table td{
@@ -80,8 +74,7 @@ include('head.php');
                 line-height: 15px;
               }
             </style>
-            <tr>
-
+        <tr>
           <td colspan="3">
             <div class="row">
               <div class="col-md-4">
@@ -102,14 +95,7 @@ include('head.php');
                 <p  style="font-size:16px; margin-bottom:8px;">Website: <?php if($company_website != ''){ echo $company_website; } ?></p>
               </div>
               <div class="col-md-4 ">
-                <!-- <div class=" text-center">
-                  <img class=" mx-auto " src="<?php echo base_url(); ?>assets/images/contitech.png" width="100" height="50" alt=""> <br>
-                  <img class=" mx-auto " src="<?php echo base_url(); ?>assets/images/phonix.png" width="100" height="50" alt=""> <br>
-                  <img class=" mx-auto " src="<?php echo base_url(); ?>assets/images/sansui.png" width="100" height="50" alt=""> <br>
-                  <img class=" mx-auto " src="<?php echo base_url(); ?>assets/images/godrej.png" width="100" height="50" alt=""> <br>
-
-                </div> -->
-                  </div>
+              </div>
             </div>
           </td>
 
@@ -122,9 +108,6 @@ include('head.php');
             <p style="font-size:16px; margin-bottom:5px;"> <?php echo $delivery_challan_data->party_firm; ?></p>
             <p style="font-size:16px; margin-bottom:5px;">
                <?php echo $delivery_challan_data->party_address.' '; ?>
-               <!-- <?php echo $delivery_challan_data->party_area.' '; ?>
-               <?php echo $delivery_challan_data->party_taluka.' '; ?>
-               <?php echo $delivery_challan_data->party_district.' '; ?> -->
              </p>
 
             <p style="font-size:16px; margin-bottom:5px;"> Contact No. <?php echo $delivery_challan_data->party_mob1.' '; ?></p>
@@ -150,15 +133,12 @@ include('head.php');
         <table class="table table-botttom">
           <style media="screen">
           .table-bottom {
-    border-collapse: collapse;
-  }
-
-  .table-bottom, tr, td{
-
-          border: 1px solid #000;
-
-          margin-left: auto;
-          margin-right: auto;
+            border-collapse: collapse;
+          }
+          .table-bottom, tr, td{
+            border: 1px solid #000;
+            margin-left: auto;
+            margin-right: auto;
           }
           </style>
           <thead>
@@ -209,7 +189,7 @@ include('head.php');
                <!-- <p>Bill Amount In Words : <b>Rupees One Lakh Only</b> </p>  -->
              </td>
             <td colspan="3"><p>GRAND TOTAL : </p> </td>
-            <td colspan="3"><p> <b><?php echo $delivery_challan_data->delivery_total; ?></b> </p></td>
+            <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$delivery_challan_data->delivery_total, 2, '.', ''); ?></b> </p></td>
           </tr>
 
           <tr>

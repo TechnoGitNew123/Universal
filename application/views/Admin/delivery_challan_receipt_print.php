@@ -94,11 +94,6 @@ table{
     </div>
     <!-- <p  style="font-size:14px; margin-bottom:3px; margin-top:3px; text-align:center;">Website: www.universaldigital.net</p>  -->
    </td>
-  <!-- <td width="20%" style="border-left:0px!important;"> <img class="mx-auto " src="<?php echo base_url(); ?>assets/images/contitech.png" width="100" height="50" alt=""> <br>
-    <img class="mx-auto " src="<?php echo base_url(); ?>assets/images/phonix.png" width="100" height="50" alt=""> <br>
-    <img class="mx-auto " src="<?php echo base_url(); ?>assets/images/sansui.png" width="100" height="50" alt=""> <br>
-    <img class="mx-auto " src="<?php echo base_url(); ?>assets/images/godrej.png" width="100" height="50" alt=""> <br>
-</td> -->
 </tr>
 <tr>
 <td style="border-right:0px!important; padding-left: 20px; padding-top:5px;" >
@@ -214,7 +209,7 @@ margin-right: auto;
      <!-- <p style="margin:5px;">Bill Amount In Words : <b>Rupees One Lakh Only</b> </p>  -->
    </td>
   <td colspan="2"><p style="padding-left:10px; margin:5px; font-size:12px;">Grand total : </p> </td>
-  <td colspan="2"><p style="padding-left:10px; margin:5px;"> <b><?php echo $delivery_challan_data->delivery_total; ?></b> </p></td>
+  <td colspan="2"><p style="padding-left:10px; margin:5px;"> <b>&#8377; <?php echo number_format((float)$delivery_challan_data->delivery_total, 2, '.', ''); ?></b> </p></td>
 </tr>
 
 <tr style="border-bottom:0px!important;">

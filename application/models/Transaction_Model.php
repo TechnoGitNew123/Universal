@@ -230,7 +230,7 @@ class Transaction_Model extends CI_Model{
   }
   // Gov Stamping Transaction Data...
   public function govt_stamp_trans_data($govt_stamp_id){
-    $query = $this->db->select('govt_stamp.*,make.*,capacity.*, accuracy.*, class.*, min.*')
+    $query = $this->db->select('govt_stamp.*,make.*,capacity.*, accuracy.*, class.*, min.*,product.*')
         ->from('uni_govt_stamp_trans as govt_stamp')
         ->where('govt_stamp.govt_stamp_id', $govt_stamp_id)
         ->join('uni_make as make', 'govt_stamp.make_id = make.make_id', 'LEFT')
@@ -238,6 +238,7 @@ class Transaction_Model extends CI_Model{
         ->join('uni_accuracy as accuracy', 'govt_stamp.accuracy_id = accuracy.accuracy_id', 'LEFT')
         ->join('uni_class as class', 'govt_stamp.class_id = class.class_id', 'LEFT')
         ->join('uni_min as min', 'govt_stamp.min_id = min.min_id', 'LEFT')
+        ->join('uni_product as product', 'govt_stamp.model_no_id = product.product_id', 'LEFT')
         ->get();
     $result = $query->result();
     return $result;
@@ -255,24 +256,26 @@ class Transaction_Model extends CI_Model{
   }
   // Repairy Bill Data...
   public function repairy_bill_data($company_id,$repairy_id){
-    $query = $this->db->select('repairy.*, party.*')
+    $query = $this->db->select('repairy.*, party.*,user.*')
         ->from('uni_repairy_master as repairy')
         ->where('repairy.company_id', $company_id)
         ->where('repairy.repairy_id', $repairy_id)
         ->join('uni_party as party', 'repairy.repairy_party = party.party_id', 'LEFT')
+        ->join('uni_user as user', 'repairy.repairy_user = user.user_id', 'LEFT')
         ->get();
     $result = $query->result();
     return $result;
   }
 
   public function repairy_bill_trans_data($repairy_id){
-    $query = $this->db->select('repairy.*,make.*,capacity.*, accuracy.*, class.*')
+    $query = $this->db->select('repairy.*,make.*,capacity.*, accuracy.*, class.*,product.*')
         ->from('uni_repairy_trans as repairy')
         ->where('repairy.repairy_id', $repairy_id)
         ->join('uni_make as make', 'repairy.make_id = make.make_id', 'LEFT')
         ->join('uni_capacity as capacity', 'repairy.capacity_id = capacity.capacity_id', 'LEFT')
         ->join('uni_accuracy as accuracy', 'repairy.accuracy_id = accuracy.accuracy_id', 'LEFT')
         ->join('uni_class as class', 'repairy.class_id = class.class_id', 'LEFT')
+        ->join('uni_product as product', 'repairy.model_no_id = product.product_id', 'LEFT')
         ->get();
     $result = $query->result();
     return $result;

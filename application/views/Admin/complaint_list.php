@@ -61,18 +61,27 @@ include('head.php');
                   $i=0;
                   foreach ($complaint_list as $complaint_list1) {
                   $i++;
+                  $complaint_service = $complaint_list1->complaint_service;
+                  $val = explode('_',$complaint_service);
+                  //$val[0]
+                  $service = '';
+                  foreach ($val as $val) {
+                    if($val != '0'){
+                      $service = $service.''.$val.', ';
+                    }
+                  }
                 ?>
                 <tr>
                   <td><?php echo $i; ?></td>
                   <td><?php echo $complaint_list1->complaint_date; ?></td>
                   <td><?php echo $complaint_list1->complaint_no; ?></td>
                   <td><?php echo $complaint_list1->party_firm; ?></td>
-                  <td><?php echo $complaint_list1->complaint_service; ?></td>
+                  <td><?php echo $service; ?></td>
                   <td><?php echo $complaint_list1->complaint_reporting; ?></td>
-                  <td>
+                  <td style="width:70px;">
                     <a href="edit_complaint/<?php echo $complaint_list1->complaint_id; ?>"> <i class="fa fa-edit"></i> </a>
-                    <a class="ml-4" href="delete_complaint/<?php echo $complaint_list1->complaint_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
-                    <a class="ml-4" href="service_report/<?php echo $complaint_list1->complaint_id; ?>"> <i class="fa fa-plus"></i> </a>
+                    <a class="ml-2" href="delete_complaint/<?php echo $complaint_list1->complaint_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                    <a class="ml-2" href="service_report/<?php echo $complaint_list1->complaint_id; ?>"> <i class="fa fa-plus"></i> </a>
                   </td>
                 </tr>
                 <?php  }  ?>

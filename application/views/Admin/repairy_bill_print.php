@@ -95,125 +95,113 @@ table{
     <!-- <p  style="font-size:14px; margin-bottom:3px; margin-top:3px; text-align:center;">Website: www.universaldigital.net</p>  -->
    </td>
 </tr>
-<tr>
-<td style="border-right:0px!important; padding-left: 20px; padding-top:5px;" >
-
-   <p style="font-size:16px; margin-bottom:5px; margin-top:5px;"><strong>Party Name and Address</strong></p>
-  <p style="font-size:16px; margin-bottom:5px; margin-top:5px;"><?php echo $repairy_bill_data->party_firm; ?></p>
-  <p style="font-size:16px; margin-bottom:5px; margin-top:5px;">
-    <?php echo $repairy_bill_data->party_address.' '; ?>
-    <?php echo $repairy_bill_data->party_area.' '; ?>
-    <?php echo $repairy_bill_data->party_taluka.' '; ?>
-    <?php echo $repairy_bill_data->party_district.' '; ?>
-   </p>
-  <p style="font-size:16px; margin-bottom:5px; margin-top:5px;">Sate : <?php echo $repairy_bill_data->party_state.' '; ?></p>
-  <p style="font-size:16px; margin-bottom:5px; margin-top:5px;"> Contact No. <?php echo $repairy_bill_data->party_mob1.' '; ?></p>
-
-  </td>
-<td style="border-left:0px!important; border-right:0px!important;">
-
-</td>
-<td style="padding:0px!important;">
-<p style="font-size:14px; margin-bottom:3px; margin-top:3px; padding-left:10px;"><b>No.  <?php echo $repairy_bill_data->repairy_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
-<p style="font-size:14px; margin-bottom:3px; margin-top:3px;  padding-left:10px;"> <b>Date : </b>&nbsp;  <strong><?php echo $repairy_bill_data->repairy_date; ?></strong></p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
-<!-- <p style="font-size:14px; margin-bottom:3px; margin-top:3px;  padding-left:10px;"><b>vehicle No.  MH-09 AK 1218</b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" > -->
-<!-- <p style="font-size:14px; margin-bottom:3px; margin-top:3px;  padding-left:10px;"> <b>Transport  </b>&nbsp;  </p> -->
-<!-- <p style="font-size:14px; margin-bottom:3px; margin-top:3px;  padding-left:10px;" ><b>Terms : &nbsp; Credit </b></p> -->
-</td>
-</tr>
+  <tr>
+    <td style="border-right:0px!important; padding-left: 20px; padding-top:5px;" >
+      <p style="font-size:16px; margin-bottom:5px; margin-top:5px;"><strong>Party Name and Address</strong></p>
+      <p style="font-size:16px; margin-bottom:5px; margin-top:5px;"><?php echo $repairy_bill_data->party_firm; ?></p>
+      <p style="font-size:16px; margin-bottom:5px; margin-top:5px;">
+        <?php echo $repairy_bill_data->party_address.' '; ?>
+        <?php echo $repairy_bill_data->party_area.' '; ?>
+        <?php echo $repairy_bill_data->party_taluka.' '; ?>
+        <?php echo $repairy_bill_data->party_district.' '; ?>
+       </p>
+      <p style="font-size:16px; margin-bottom:5px; margin-top:5px;">Sate : <?php echo $repairy_bill_data->party_state.' '; ?></p>
+      <p style="font-size:16px; margin-bottom:5px; margin-top:5px;"> Contact No. <?php echo $repairy_bill_data->party_mob1.' '; ?></p>
+      </td>
+    <td style="border-left:0px!important; border-right:0px!important;">
+    </td>
+    <td style="padding:0px!important;">
+      <p style="font-size:14px; margin-bottom:3px; margin-top:3px; padding-left:10px;"><b>No.  <?php echo $repairy_bill_data->repairy_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
+      <p style="font-size:14px; margin-bottom:3px; margin-top:3px;  padding-left:10px;"> <b>Date : </b>&nbsp;  <strong><?php echo $repairy_bill_data->repairy_date; ?></strong></p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
+    </td>
+  </tr>
 </table>
-
 
 <div class="row">
 <div class="col-12 table-responsive">
 <table class="table table-botttom"  width="700">
-<style media="print">
-.table-bottom {
-border-collapse: collapse!important;
-  Width:100%!important;
-}
+  <style media="print">
+  .table-bottom {
+  border-collapse: collapse!important;
+    Width:100%!important;
+  }
 
-.table-bottom, tr, td, th{
+  .table-bottom, tr, td, th{
 
-border: 1px solid #000;
+  border: 1px solid #000;
 
-margin-left: auto;
-margin-right: auto;
-}
-</style>
-<style media="screen">
-.table-bottom {
-border-collapse: collapse!important;
-  Width:100%!important;
-}
+  margin-left: auto;
+  margin-right: auto;
+  }
+  </style>
+  <style media="screen">
+  .table-bottom {
+  border-collapse: collapse!important;
+    Width:100%!important;
+  }
 
-.table-bottom, tr, td, th{
+  .table-bottom, tr, td, th{
 
-border: 1px solid #000;
-font-size: 14px;
-margin-left: auto;
-margin-right: auto;
-}
-</style>
-<thead>
+  border: 1px solid #000;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  </style>
+  <thead>
+    <tr>
+      <th> <p >S.N</p> </th>
+      <th width="20%" > <p >Make</p> </th>
+      <th width="20%"> <p >Model No.</p> </th>
+      <th> <p >M/C Sr No.</p> </th>
+      <th> <p >Capacity</p></th>
+      <th> <p >Accuracy</p> </th>
+      <th> <p >Class</p> </th>
+      <th> <p >Repairy Details</p> </th>
+      <th> <p >Amount</p> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $i = 0;
+    foreach ($repairy_bill_trans_data as $trans_data) {
+      $i++;
+    ?>
+    <tr>
+      <td style="text-align:center;"> <p style="font-size:10px; "><?php echo $i; ?></p> </td>
+      <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->make_name; ?></p></td>
+      <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->model_no_id; ?></p></td>
+      <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->machine_serial_no; ?></p></td>
+      <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->capacity_name; ?></p></td>
+      <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->accuracy_name; ?></p></td>
+      <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->class_name; ?></p></td>
+      <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->repairy_details; ?></p></td>
+      <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->repairy_trans_amount; ?></p></td>
+    </tr>
+    <?php } ?>
+    <tr>
+      <td colspan="5"></td>
+        <td colspan="2" style="border-right:0px; padding-left:10px;"><p style="font-size:14px; margin:5px;">Basic Amount : </p> </td>
+        <td colspan="2" style="border-left:0px;"><p style="font-size:14px; margin:5px;"> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_basic_charge, 2, '.', ''); ?></b> </p></td>
+    </tr>
 
+    <tr>
+      <td colspan="5"> <p style="margin:5px;">Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($repairy_bill_data->repairy_total); ?> Only</b> </p> </td>
+      <td colspan="2"><p style="font-size:14px; padding-left:10px; margin:5px;">Grand Total : </p> </td>
+      <td colspan="2"><p style="font-size:14px; padding-left:10px; margin:5px;"> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_total, 2, '.', ''); ?></b> </p></td>
+    </tr>
 
+    <tr style="border-bottom:0px!important;">
+      <td colspan="9" style="border-bottom:0px!important; border-left:0px;"> <p style="float:right; margin:5px;"> <b> For <?php echo $company_name; ?> </b> </p>
+      </td>
+    </tr>
 
-
-
-<tr>
-  <th> <p >S.N</p> </th>
-  <th width="20%" > <p >Make</p> </th>
-  <th width="20%"> <p >Model No.</p> </th>
-  <th> <p >M/C Sr No.</p> </th>
-  <th> <p >Capacity</p></th>
-  <th> <p >Accuracy</p> </th>
-  <th> <p >Class</p> </th>
-  <th> <p >Repairy Details</p> </th>
-  <th> <p >Amount</p> </th>
-</tr>
-</thead>
-<tbody>
-  <?php
-  $i = 0;
-  foreach ($repairy_bill_trans_data as $trans_data) {
-    $i++;
-  ?>
-<tr>
-  <td style="text-align:center;"> <p style="font-size:10px; "><?php echo $i; ?></p> </td>
-  <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->make_name; ?></p></td>
-  <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->model_no_id; ?></p></td>
-  <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->machine_serial_no; ?></p></td>
-  <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->capacity_name; ?></p></td>
-  <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->accuracy_name; ?></p></td>
-  <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->class_name; ?></p></td>
-  <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->repairy_details; ?></p></td>
-  <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->repairy_trans_amount; ?></p></td>
-</tr>
-<?php } ?>
-<tr>
-  <td colspan="6"></td>
-    <td colspan="2" style="border-right:0px; padding-left:10px;"><p style="font-size:14px; margin:5px;">BASIC AMOUNT : </p> </td>
-    <td colspan="1" style="border-left:0px;"><p style="font-size:14px; margin:5px;"> <b><?php echo $repairy_bill_data->repairy_basic_charge; ?></b> </p></td>
-</tr>
-
-<tr>
-  <td colspan="6"> <p style="margin:5px;">Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($repairy_bill_data->repairy_total); ?> Only</b> </p> </td>
-  <td colspan="2"><p style=" padding-left:10px; margin:5px;">GRAND TOTAL : </p> </td>
-  <td colspan="1"><p style=" padding-left:10px; margin:5px;"> <b><?php echo $repairy_bill_data->repairy_total; ?></b> </p></td>
-</tr>
-
-<tr style="border-bottom:0px!important;">
-  <td colspan="9" style="border-bottom:0px!important; border-left:0px;"> <p style="float:right; margin:5px;"> <b> For <?php echo $company_name; ?> </b> </p>
-  </td>
-</tr>
-
-<tr style="border-top:0px!important;">
-  <td colspan="3" style=" padding-left:10px; border-right:0px!important; border-top:0px!important; padding-bottom: 5px; font-size: 12px;"> <br> Name Of the Service Engin </td>
-  <td colspan="3" style=" padding-left:10px; border-left:0px!important; border-right:0px!important; padding-bottom: 5px; border-top:0px!important; font-size: 12px;"> <br> Receiver's Signature</td>
-  <td colspan="3" style=" padding-left:10px; border-left:0px!important; border-top:0px!important; padding-bottom: 5px; font-size: 12px;"> <br> Auth. Signatory </td>
-</tr>
-</tbody>
+    <tr style="border-top:0px!important;">
+      <td colspan="3" style=" padding-left:10px; border-right:0px!important; border-top:0px!important; padding-bottom: 5px; font-size: 12px;"> <br> Name Of the Service Engin </td>
+      <td colspan="3" style=" padding-left:10px; border-left:0px!important; border-right:0px!important; padding-bottom: 5px; border-top:0px!important; font-size: 12px;"> <br> Receiver's Signature</td>
+      <td colspan="3" style=" padding-left:10px; border-left:0px!important; border-top:0px!important; padding-bottom: 5px; font-size: 12px;"> <br> Auth. Signatory </td>
+    </tr>
+  </tbody>
 </table>
     <!-- /.row -->
   </section>

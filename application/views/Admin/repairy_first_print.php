@@ -89,9 +89,6 @@
         <p   style="font-size:12px; margin-bottom:3px; margin-top:3px; text-align:center; ">
           <?php echo $company_address; ?> Mob No.  <?php if($company_mob1 != ''){ echo $company_mob1; } if($company_mob2 != ''){ echo ', '.$company_mob2; } ?>
         </p>
-        <!-- <p  style="font-size:12px; margin-bottom:3px; margin-top:3px; text-align:center; " > </p> -->
-        <!-- <p  style="font-size:12px; margin-bottom:3px; margin-top:3px; text-align:left;"> </p> -->
-        <!-- <p  style="font-size:12px; margin-bottom:3px; margin-top:3px; text-align:center; ">Email:  Website: </p> -->
       </div>
       <!-- <p  style="font-size:12px; margin-bottom:3px; margin-top:3px; text-align:center;">Website: www.universaldigital.net</p>  -->
      </td>
@@ -132,23 +129,6 @@
     Stamping :  <input type="checkbox" class="form-check-input" id="exampleCheck1" <?php if(isset($repairy_bill_data->repairy_accss) && $val[4] == 'Stamping'){ echo 'checked'; } ?>>
   </p>
 </td>
-<!-- <td colspan="2" style="border-left:0px!important; border-right:0px!important;">
-  <p style="font-size:14px; font-weight:bold;">
-
-
-    </p>
-  </td> -->
-<!-- <td colspan="2" style="border-left:0px!important;">
-  <p style="font-size:14px; font-weight:bold;">
-    Stamping :  <input type="checkbox" class="form-check-input" id="exampleCheck1"> </p></td> -->
-</tr>
-<tr>
-  <!-- <td colspan="1"> <p style="font-style:12px; font-weight:bold;">Repairing Details</p>  </td>
-  <td colspan="1"> <p style="font-style:12px; font-weight:bold;">Repairing Details</p>  </td>
-  <td colspan="1"> <p style="font-style:12px; font-weight:bold;">Repairing Details</p>  </td>
-  <td colspan="1"> <p style="font-style:12px; font-weight:bold;">Repairing Details</p>  </td>
-  <td colspan="1"> <p style="font-style:12px; font-weight:bold;">Material Used</p>  </td>
-  <td colspan="1"> <p style="font-style:12px; font-weight:bold;">Amount</p>  </td> -->
 </tr>
 
 <tr>
@@ -177,7 +157,7 @@
 <!-- <td colspan="2"> </td> -->
 <td colspan="4" style="text-align:left;"><b>Amount In Words : Rupees <?php echo $this->numbertowords->convert_number($repairy_bill_data->repairy_basic_charge); ?> Only</b></td>
 <td colspan="1"><p style="font-style:12px; font-weight:bold; text-align:right; padding-right:30px;"> Total : </p></td>
-<td colspan="1"><p style="font-style:12px; font-weight:bold;"> <?php echo $repairy_bill_data->repairy_basic_charge; ?> </p></td>
+<td colspan="1"><p style="font-style:12px; font-weight:bold;">&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_basic_charge, 2, '.', ''); ?> </p></td>
 </tr>
 
 <tr>
@@ -195,7 +175,7 @@
 
 <p style="font-size:12px;">
 <b>ऑफिस वेळ सकाळी ९:३० ते संध्या. ६ पर्यंत वर्कशॉप दर रविवारी बंद राहील.</b>   </p>
-<p style="font-size:12px;">काटा घेणाऱ्याचे नाव : <?php echo $repairy_bill_data->repairy_person; ?></p>
+<p style="font-size:12px;">काटा घेणाऱ्याचे नाव : <?php echo $repairy_bill_data->user_name; ?></p>
 
 </td>
 </tr>

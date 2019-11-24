@@ -156,6 +156,7 @@ include('head.php');
             <th>Class</th>
             <th>LCR No.</th>
             <th>LCR Date</th>
+            <th>Govt. Fees</th>
             <th>Service Fees</th>
           </tr>
           </thead>
@@ -179,21 +180,24 @@ include('head.php');
             <td><?php echo $trans_data->class_name; ?></td>
             <td><?php echo $trans_data->lcr_no; ?></td>
             <td><?php echo $trans_data->lcr_date; ?></td>
+            <td><?php echo $trans_data->govt_fees; ?></td>
             <td><?php echo $trans_data->ser_charge; ?></td>
           </tr>
         <?php } ?>
           <tr style="border-bottom:0px!important;">
-            <td colspan="6" style="border-bottom:0px!important;">  <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($total); ?> Only</b> </p> </td>
+            <td colspan="12" style="border-bottom:0px!important;">  <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($total); ?> Only</b> </p> </td>
               <td colspan="3"  style="border-right:0px!important;"> </td>
-              <td colspan="3" style="border-left:0px!important;"></td>
+              <td colspan="2" style="border-left:0px!important;"></td>
           </tr>
 
           <tr>
-            <td colspan="3" style="border-bottom:0px!important; border-right:0px!important;"><p>V.C. No. <?php echo $govt_stamp_data->govt_stamp_vc_no; ?><br> <br> </p></td>
+            <td colspan="4" style="border-bottom:0px!important; border-right:0px!important;"><p>V.C. No. <?php echo $govt_stamp_data->govt_stamp_vc_no; ?><br> <br> </p></td>
             <td colspan="3" style="border-bottom:0px!important; border-left:0px!important;"><p> DATE : <?php echo $govt_stamp_data->govt_stamp_vc_date; ?></p> </td>
             <td colspan="3"  rowspan="2"  ><p>GRAND TOTAL : </p> </td>
-            <td colspan="3"   rowspan="2" ><p> <b><?php echo $total; ?></b> </p></td>
+            <td colspan="2"   rowspan="2" ><p> <b>&#8377; <?php echo number_format((float)$total, 2, '.', ''); ?></b> </p></td>
           </tr>
+
+
 
           <tr>
             <td colspan="12" style="border-bottom:0px!important; border-right:0px!important;">
@@ -201,9 +205,6 @@ include('head.php');
               <input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_condition != ''){ echo 'checked'; } ?> > Received our Machine in Good Condition. </p>
             </td>
           </tr>
-
-
-
           <tr>
             <td colspan="6"  style="border-right:0px!important;">  <p style="float:left; border-right:0px!important;"> Customer Signature </p>
             </td>
