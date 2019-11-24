@@ -95,7 +95,8 @@ include('head.php');
                     <th>Capacity</th>
                     <th>Accuracy</th>
                     <th>Class</th>
-                    <th>Under</th>
+                    <th>Repairing Details</th>
+                    <th>Material Used</th>
                     <th>Amount</th>
                     <th class="td_btn"></th>
                   </tr>
@@ -149,7 +150,10 @@ include('head.php');
                         </select>
                       </td>
                       <td class="td_w">
-                        <input type="text" class="form-control form-control-sm" name="input[<?php echo $i; ?>][repairy_trans_under]"value="<?php echo $trans_data->repairy_trans_under ?>" placeholder="">
+                        <input type="text" class="form-control form-control-sm" name="input[<?php echo $i; ?>][repairy_details]"value="<?php echo $trans_data->repairy_details ?>" placeholder="">
+                      </td>
+                      <td class="td_w">
+                        <input type="text" class="form-control form-control-sm" name="input[<?php echo $i; ?>][material_used]"value="<?php echo $trans_data->material_used ?>" placeholder="">
                       </td>
                       <td class="td_w">
                         <input type="text" class="form-control form-control-sm amount" name="input[<?php echo $i; ?>][repairy_trans_amount]"value="<?php echo $trans_data->repairy_trans_amount ?>" placeholder="" required>
@@ -198,7 +202,10 @@ include('head.php');
                       </select>
                     </td>
                     <td class="td_w">
-                      <input type="text" class="form-control form-control-sm" name="input[0][repairy_trans_under]" placeholder="">
+                      <input type="text" class="form-control form-control-sm" name="input[0][repairy_details]" placeholder="">
+                    </td>
+                    <td class="td_w">
+                      <input type="text" class="form-control form-control-sm" name="input[0][material_used]" placeholder="">
                     </td>
                     <td class="td_w">
                       <input type="text" class="form-control form-control-sm amount" name="input[0][repairy_trans_amount]" placeholder="" required>
@@ -211,6 +218,31 @@ include('head.php');
               </div>
               <div class="row">
                 <div class="col-md-6">
+
+                  <?php if(isset($repairy_accss)){
+                    $val = explode('_',$repairy_accss);
+                  } ?>
+
+                  <div class="form-group mt-3 mb-2">
+                    <input type="checkbox" name="pan" id="pan" value="PAN" <?php if(isset($repairy_accss) && $val[0] == 'PAN'){ echo 'checked'; } ?>>
+                    PAN
+                  </div>
+                  <div class="form-group mb-2">
+                    <input type="checkbox" name="bowl" id="bowl" value="Bowl" <?php if(isset($repairy_accss) && $val[1] == 'Bowl'){ echo 'checked'; } ?>>
+                    Bowl
+                  </div>
+                  <div class="form-group mb-2">
+                    <input type="checkbox" name="adapter" id="adapter" value="Adapter" <?php if(isset($repairy_accss) && $val[2] == 'Adapter'){ echo 'checked'; } ?>>
+                    Adapter / Charger
+                  </div>
+                  <div class="form-group mb-2">
+                    <input type="checkbox" name="battery" id="battery" value="Battery" <?php if(isset($repairy_accss) && $val[3] == 'Battery'){ echo 'checked'; } ?>>
+                    Battery
+                  </div>
+                  <div class="form-group mb-2">
+                    <input type="checkbox" name="stamping" id="stamping" value="Stamping" <?php if(isset($repairy_accss) && $val[4] == 'Stamping'){ echo 'checked'; } ?>>
+                    Stamping
+                  </div>
                 </div>
                 <div class="col-md-6 " >
                   <br><br>
@@ -326,7 +358,10 @@ var i = 1;
                   '</select>'+
                 '</td>'+
                 '<td class="td_w">'+
-                  '<input type="text" class="form-control form-control-sm" name="input['+i+'][repairy_trans_under]" placeholder="">'+
+                  '<input type="text" class="form-control form-control-sm" name="input['+i+'][repairy_details]" placeholder="">'+
+                '</td>'+
+                '<td class="td_w">'+
+                  '<input type="text" class="form-control form-control-sm" name="input['+i+'][material_used]" placeholder="">'+
                 '</td>'+
                 '<td class="td_w">'+
                   '<input type="text" class="form-control form-control-sm amount" name="input['+i+'][repairy_trans_amount]" placeholder="" required>'+

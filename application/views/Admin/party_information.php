@@ -85,7 +85,7 @@
                     <input type="text" class="form-control" name="party_pan_no" id="party_pan_no" value="<?php if(isset($party_pan_no)){ echo $party_pan_no;} ?>" placeholder="Pan No.">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="party_proriter" id="party_proriter" value="<?php if(isset($party_proriter)){ echo $party_proriter;} ?>" placeholder="Name Of Propriter">
+                    <input type="text" class="form-control required" name="party_proriter" id="party_proriter" value="<?php if(isset($party_proriter)){ echo $party_proriter;} ?>" placeholder="Name Of Propriter">
                   </div>
                   <div class="form-group col-md-6">
                     <input type="text" class="form-control required" name="party_business" id="party_business" value="<?php if(isset($party_business)){ echo $party_business;} ?>" placeholder="Nature Of Business">
@@ -103,7 +103,6 @@
                 </div>
               </form>
             </div>
-
           </div>
           <!--/.col (left) -->
           <!-- right column -->
@@ -115,7 +114,6 @@
   </div>
   <!-- /.content-wrapper -->
   <?php include('footer.php'); ?>
-
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->

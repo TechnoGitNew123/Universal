@@ -103,7 +103,7 @@ include('head.php');
              <input type="checkbox"  <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'Warranty'){ echo 'checked'; } ?>> </p>
            <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>AMC</b> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'AMC'){ echo 'checked'; } ?>> </p>
-               <p  style="font-size:16px; margin-bottom:5px; padding-top:5px; text-align:left;"> <b>Service Charges Rs. <?php echo $service_charges_fee; ?></b>  </p>
+               <!-- <p  style="font-size:16px; margin-bottom:5px; padding-top:5px; text-align:left;"> <b>Service Charges Rs. <?php echo $service_charges_fee; ?></b>  </p> -->
         </td>
 
         <td colspan="2" style="border-left:0px!important; padding-left: 20px; padding-top:25px; " >

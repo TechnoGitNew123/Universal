@@ -54,8 +54,8 @@ include('head.php');
                 <thead>
                 <tr>
                   <th>Sr. No.</th>
+                  <th>Division Area Name</th>
                   <th>Division Name</th>
-                  <th>Division Head Name</th>
                   <th>Action</th>
                 </tr>
                 </thead>

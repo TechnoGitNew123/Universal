@@ -75,10 +75,11 @@ include('head.php');
                     <td><?php echo $list->repairy_basic_charge; ?></td>
                     <td><?php echo $list->repairy_min_charge; ?></td>
                     <td><?php echo $list->repairy_total; ?></td>
-                    <td>
+                    <td >
                       <a href="<?php echo base_url(); ?>Transaction/edit_repairy_bill/<?php echo $list->repairy_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-4" href="<?php echo base_url(); ?>Transaction/delete_repairy_bill/<?php echo $list->repairy_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
-                      <a class="ml-4" href="<?php echo base_url(); ?>Receipt/repairy_bill_receipt/<?php echo $list->repairy_id; ?>"> <i class="fa fa-print"></i> </a>
+                      <a class="ml-2" href="<?php echo base_url(); ?>Transaction/delete_repairy_bill/<?php echo $list->repairy_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a class="ml-2" href="<?php echo base_url(); ?>Receipt/repairy_first_report/<?php echo $list->repairy_id; ?>"> <i class="fa fa-print"></i> </a>
+                      <a class="ml-2" href="<?php echo base_url(); ?>Receipt/repairy_bill_receipt/<?php echo $list->repairy_id; ?>"> <i class="fa fa-print"></i> </a>
                     </td>
                   </tr>
                   <?php } ?>

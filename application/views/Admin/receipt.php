@@ -38,7 +38,7 @@ include('head.php');
                     <input type="text" class="form-control form-control-sm" name="receipt_no" id="receipt_no" placeholder="Receipt No." value="<?php if(isset($receipt_no)){ echo $receipt_no; } ?>">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control form-control-sm" name="receipt_date" id="date1" data-target="#date1" data-toggle="datetimepicker" placeholder="Receipt Date">
+                    <input type="text" class="form-control form-control-sm" name="receipt_date" id="date1" data-target="#date1" data-toggle="datetimepicker" placeholder="Receipt Date" required>
                   </div>
                   <div class="form-group col-md-12">
                     <select class="form-control select2 form-control-sm" name="receipt_party" id="receipt_party" style="width: 100%;">
@@ -114,7 +114,21 @@ include('head.php');
     $(this).closest('tr').remove();
   });
 
-  
+  $("#receipt_party").on("change", function(){
+    var party_id = $(this).val();
+    // alert(receipt_party);
+
+    $.ajax({
+      url: '<?php echo base_url(); ?>Transaction/get_outstanding_amount',
+      type: "POST",
+      data: {"party_id":party_id},
+      context: this,
+      success: function (result) {
+        $('#receipt_outstanding').val(result);
+        // $(this).closest('tr').find('.model_no').html(result);
+      }
+  	});
+  });
 </script>
 </body>
 </html>

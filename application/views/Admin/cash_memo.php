@@ -183,7 +183,7 @@ include('head.php');
           </tr>
         <?php } ?>
           <tr style="border-bottom:0px!important;">
-            <td colspan="6" style="border-bottom:0px!important;">  <p>Bill Amount In Words : <b>Rupees One Lakh Only</b> </p> </td>
+            <td colspan="6" style="border-bottom:0px!important;">  <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($total); ?> Only</b> </p> </td>
               <td colspan="3"  style="border-right:0px!important;"> </td>
               <td colspan="3" style="border-left:0px!important;"></td>
           </tr>

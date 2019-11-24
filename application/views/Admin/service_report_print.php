@@ -80,7 +80,7 @@ table{
       <h3 style="text-decoration: underline; text-align:center; line-height: 20px;margin-top:5px; margin-bottom:8px;">Sales & Service</h3>
       <p   style="font-size:16px;  text-align:center;  margin-top:8px; margin-bottom:8px;"><?php echo $company_address; ?> Mob No. <?php echo $company_mob1; ?></p>
 
-      <h3 style="text-align:center; font-weight:bold; font-size: 32px;padding-bottom:0px; margin-bottom:15px;"> <span style="border: 2px Solid #000; margin-bottom: 0px;padding:8px; border-radius:15px; font-style:italic; font-weight:bold; font-family: 'Leckerli One', cursive;">  Service Report </span></h3>
+      <h3 style="text-align:center;  font-size: 32px;padding-bottom:0px; margin-bottom:15px;"> <span style="border: 2px Solid #000; margin-bottom: 0px;padding:8px; border-radius:15px; font-style:italic; font-weight:bold; font-family: 'Leckerli One', cursive;">  Service Report </span></h3>
     </div>
 
   </div>
@@ -108,7 +108,7 @@ table{
    <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'Warranty'){ echo 'checked'; } ?>> </p>
  <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>AMC</b> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'AMC'){ echo 'checked'; } ?>> </p>
-     <p  style="font-size:16px; margin-bottom:5px; padding-top:5px; text-align:left;"> <b>Service Charges Rs. <?php echo $service_charges_fee; ?></b>  </p>
+     <!-- <p  style="font-size:16px; margin-bottom:5px; padding-top:5px; text-align:left;"> <b>Service Charges Rs. <?php echo $service_charges_fee; ?></b>  </p> -->
 </td>
 
 <td width="25%" colspan="2" style="border-left:0px!important; padding-left: 5px; padding-top:5px; " >

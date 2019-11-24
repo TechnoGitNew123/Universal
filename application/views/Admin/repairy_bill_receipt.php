@@ -39,12 +39,6 @@ include('head.php');
           <div class="col-sm-6">
             <h1>Repairy Bill</h1>
           </div>
-          <!-- <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Invoice</li>
-            </ol>
-          </div> -->
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -58,7 +52,6 @@ include('head.php');
               $repairy_id = $repairy_bill_data->repairy_id;
             }
             ?>
-
             <!-- Main content -->
             <div class="invoice p-3 mb-3">
 
@@ -87,9 +80,9 @@ include('head.php');
                 <h3 > <?php echo $company_name; ?> </h3>
                 <p   style="font-size:16px; margin-bottom:8px;">
                   <?php echo $company_address;
-                  if($company_city != ''){ echo ', '.$company_city; }
-                  if($company_district != ''){ echo ', '.$company_district; }
-                  if($company_state != ''){ echo ', '.$company_state; }
+                  // if($company_city != ''){ echo ', '.$company_city; }
+                  // if($company_district != ''){ echo ', '.$company_district; }
+                  // if($company_state != ''){ echo ', '.$company_state; }
                   ?>
                 </p>
                 <!-- <p  style="font-size:16px; margin-bottom:8px;" >Ph No. 0231-2646189</p> -->
@@ -159,7 +152,7 @@ include('head.php');
             <th>Capacity</th>
             <th>Accuracy</th>
             <th>Class</th>
-            <th>Under</th>
+            <th>Repairy Details</th>
             <th>Amount</th>
           </tr>
           </thead>
@@ -177,7 +170,7 @@ include('head.php');
                 <td><?php echo $trans_data->capacity_name; ?></td>
                 <td><?php echo $trans_data->accuracy_name; ?></td>
                 <td><?php echo $trans_data->class_name; ?></td>
-                <td><?php echo $trans_data->repairy_trans_under; ?></td>
+                <td><?php echo $trans_data->repairy_details; ?></td>
                 <td><?php echo $trans_data->repairy_trans_amount; ?></td>
               </tr>
         <?php } ?>
@@ -189,7 +182,7 @@ include('head.php');
           </tr>
 
           <tr>
-            <td colspan="6"> <p>Bill Amount In Words : <b>Rupees One Lakh Only</b> </p> </td>
+            <td colspan="6"> <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($repairy_bill_data->repairy_total); ?> Only</b> </p> </td>
             <td colspan="2"><p>GRAND TOTAL : </p> </td>
             <td colspan="1"><p> <b><?php echo $repairy_bill_data->repairy_total; ?></b> </p></td>
           </tr>

@@ -77,7 +77,8 @@ include('head.php');
                     <td><?php echo $list->sale_total; ?></td>
                     <td>
                       <a href="<?php echo base_url(); ?>Transaction/edit_sale/<?php echo $list->sale_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-4" href="<?php echo base_url(); ?>Transaction/delete_sale/<?php echo $list->sale_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a class="ml-3" href="<?php echo base_url(); ?>Transaction/delete_sale/<?php echo $list->sale_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a class="ml-3" href="<?php echo base_url(); ?>Receipt/sale_bill_receipt/<?php echo $list->sale_id; ?>"> <i class="fa fa-print"></i> </a>
                     </td>
                   </tr>
                 <?php } ?>

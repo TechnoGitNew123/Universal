@@ -168,6 +168,7 @@ class Transaction_Model extends CI_Model{
   public function GetSaleDelivery($party_id){
     $query = $this->db->select('*')
         ->where('delivery_party', $party_id)
+        ->where('delivery_bill_status', 'no')
         ->from('uni_delivery_master')
         ->get();
     $result = $query->result();
@@ -316,9 +317,7 @@ class Transaction_Model extends CI_Model{
     return $result;
   }
 
-
 // Service Report
-
   public function get_service_report_list($company_id){
     $query = $this->db->select('service.*,complaint.*, party.*, user.*,make.*,product.*')
     ->from('uni_service as service')
@@ -348,32 +347,8 @@ class Transaction_Model extends CI_Model{
      return $result;
   }
 
-  // public function service_report_list($company_id){
-  //   $query = $this->db->select('uni_service.*,make.*,product.*, party.*, uni_govt_stamp_trans.*, uni_govt_stamp_master.*')
-  //       ->from('uni_quotation_master as quotation')
-  //       ->where('quotation.company_id', $company_id)
-  //       ->order_by('quotation.quotation_id', 'DESC')
-  //       ->join('uni_party as party', 'quotation.quotation_party = party.party_id', 'LEFT')
-  //       ->get();
-  //   $result = $query->result();
-  //   return $result;
-  // }
-  // public function service_report_data($quotation_id){
-  //   $query = $this->db->select('quotation.*,make.*,product.*,capacity.*, accuracy.*, class.*,platter.*')
-  //       ->from('uni_quotation_trans as quotation')
-  //       ->where('quotation.quotation_id', $quotation_id)
-  //       ->join('uni_make as make', 'quotation.make_id = make.make_id', 'LEFT')
-  //       ->join('uni_product as product', 'quotation.model_no_id = product.product_id', 'LEFT')
-  //       ->join('uni_capacity as capacity', 'quotation.capacity_id = capacity.capacity_id', 'LEFT')
-  //       ->join('uni_accuracy as accuracy', 'quotation.accuracy_id = accuracy.accuracy_id', 'LEFT')
-  //       ->join('uni_class as class', 'quotation.class_id = class.class_id', 'LEFT')
-  //       ->join('uni_platter_size as platter', 'quotation.platter_id = platter.platter_id', 'LEFT')
-  //       ->get();
-  //   $result = $query->result();
-  //   return $result;
-  // }
 
-  // Quotation List...
+  // Reciept List...
   public function receipt_list($company_id){
     $query = $this->db->select('receipt.*, party.*')
         ->from('uni_receipt as receipt')
@@ -383,6 +358,68 @@ class Transaction_Model extends CI_Model{
         ->get();
     $result = $query->result();
     return $result;
+  }
+
+  public function receipt_details($receipt_id){
+    $query = $this->db->select('receipt.*, party.*')
+        ->from('uni_receipt as receipt')
+        ->where('receipt.receipt_id', $receipt_id)
+        ->join('uni_party as party', 'receipt.receipt_party = party.party_id', 'LEFT')
+        ->get();
+    $result = $query->result();
+    return $result;
+  }
+
+
+  public function total_sale_amount($party_id){
+    $query = $this->db->select('SUM(sale_total) as total_sale_amount')
+              ->where('sale_party',$party_id)
+              ->from('uni_sale_master')
+              ->get();
+    $result = $query->result_array();
+    $total_sale_amount = $result[0]['total_sale_amount'];
+    return $total_sale_amount;
+  }
+
+  public function total_stamping_amount($party_id){
+    $query = $this->db->select('SUM(govt_stamp_total) as total_stamping_amount')
+              ->where('govt_stamp_party',$party_id)
+              ->from('uni_govt_stamp_master')
+              ->get();
+    $result = $query->result_array();
+    $total_sale_amount = $result[0]['total_stamping_amount'];
+    return $total_sale_amount;
+  }
+
+  public function total_repairy_amount($party_id){
+    $query = $this->db->select('SUM(repairy_total) as total_repairy_amount')
+              ->where('repairy_party',$party_id)
+              ->from('uni_repairy_master')
+              ->get();
+    $result = $query->result_array();
+    $total_sale_amount = $result[0]['total_repairy_amount'];
+    return $total_sale_amount;
+  }
+
+  public function total_service_amount($party_id){
+    $query = $this->db->select('SUM(service.service_charges_fee) as total_service_amount')
+        ->from('uni_complaint as complaint')
+        ->where('complaint.party_id',$party_id)
+        ->join('uni_service as service', 'complaint.complaint_id = service.complaint_id', 'LEFT')
+        ->get();
+        $result = $query->result_array();
+        $total_sale_amount = $result[0]['total_service_amount'];
+        return $total_sale_amount;
+  }
+
+  public function total_reciept_amount($party_id){
+    $query = $this->db->select('SUM(receipt_amount) as total_reciept_amount')
+              ->where('receipt_party',$party_id)
+              ->from('uni_receipt')
+              ->get();
+    $result = $query->result_array();
+    $total_sale_amount = $result[0]['total_reciept_amount'];
+    return $total_sale_amount;
   }
 
 }

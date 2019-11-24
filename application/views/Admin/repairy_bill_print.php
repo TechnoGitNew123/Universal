@@ -169,7 +169,7 @@ margin-right: auto;
   <th> <p >Capacity</p></th>
   <th> <p >Accuracy</p> </th>
   <th> <p >Class</p> </th>
-  <th> <p >Under</p> </th>
+  <th> <p >Repairy Details</p> </th>
   <th> <p >Amount</p> </th>
 </tr>
 </thead>
@@ -187,7 +187,7 @@ margin-right: auto;
   <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->capacity_name; ?></p></td>
   <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->accuracy_name; ?></p></td>
   <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->class_name; ?></p></td>
-  <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->repairy_trans_under; ?></p></td>
+  <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->repairy_details; ?></p></td>
   <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->repairy_trans_amount; ?></p></td>
 </tr>
 <?php } ?>
@@ -198,7 +198,7 @@ margin-right: auto;
 </tr>
 
 <tr>
-  <td colspan="6"> <p style="margin:5px;">Bill Amount In Words : <b>Rupees One Lakh Only</b> </p> </td>
+  <td colspan="6"> <p style="margin:5px;">Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($repairy_bill_data->repairy_total); ?> Only</b> </p> </td>
   <td colspan="2"><p style=" padding-left:10px; margin:5px;">GRAND TOTAL : </p> </td>
   <td colspan="1"><p style=" padding-left:10px; margin:5px;"> <b><?php echo $repairy_bill_data->repairy_total; ?></b> </p></td>
 </tr>

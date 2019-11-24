@@ -48,10 +48,10 @@ include('head.php');
 
                 <div class="card-body row">
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control" name="division_name" id="division_name" value="<?php if(isset($division_name)){ echo $division_name; } ?>"  placeholder="Enter Division Name">
+                    <input type="text" class="form-control" name="division_name" id="division_name" value="<?php if(isset($division_name)){ echo $division_name; } ?>"  placeholder="Division Area Name">
                   </div>
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control" name="division_head" id="division_head" value="<?php if(isset($division_head)){ echo $division_head; } ?>" placeholder="Enter Division Head Name">
+                    <input type="text" class="form-control" name="division_head" id="division_head" value="<?php if(isset($division_head)){ echo $division_head; } ?>" placeholder="Division Name">
                   </div>
                 </div>
                 <!-- /.card-body -->

@@ -423,4 +423,154 @@ class Receipt extends CI_Controller{
      header('location:'.base_url().'Login');
    }
  }
+
+ public function sale_bill_receipt($sale_id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $company_info = $this->Admin_Model->get_info('company_id', $company_id, 'uni_company');
+     foreach ($company_info as $company_info) {
+       $data['company_name'] = $company_info->company_name;
+       $data['company_address'] = $company_info->company_address;
+       $data['company_city'] = $company_info->company_city;
+       $data['company_district'] = $company_info->company_district;
+       $data['company_state'] = $company_info->company_state;
+       $data['company_pincode'] = $company_info->company_pincode;
+       $data['company_mob1'] = $company_info->company_mob1;
+       $data['company_mob2'] = $company_info->company_mob2;
+       $data['company_email'] = $company_info->company_email;
+       $data['company_website'] = $company_info->company_website;
+     }
+
+     $data['sale_bill_data'] = $this->Transaction_Model->sale_bill_data($company_id,$sale_id);
+     $data['sale_trans_data'] = $this->Transaction_Model->sale_trans_data($sale_id);
+     $this->load->view('Admin/sale_bill_receipt',$data);
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
+
+ public function sale_bill_print($sale_id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $company_info = $this->Admin_Model->get_info('company_id', $company_id, 'uni_company');
+     foreach ($company_info as $company_info) {
+       $data['company_name'] = $company_info->company_name;
+       $data['company_address'] = $company_info->company_address;
+       $data['company_city'] = $company_info->company_city;
+       $data['company_district'] = $company_info->company_district;
+       $data['company_state'] = $company_info->company_state;
+       $data['company_pincode'] = $company_info->company_pincode;
+       $data['company_mob1'] = $company_info->company_mob1;
+       $data['company_mob2'] = $company_info->company_mob2;
+       $data['company_email'] = $company_info->company_email;
+       $data['company_website'] = $company_info->company_website;
+     }
+     $data['sale_bill_data'] = $this->Transaction_Model->sale_bill_data($company_id,$sale_id);
+     $data['sale_trans_data'] = $this->Transaction_Model->sale_trans_data($sale_id);
+     $this->load->view('Admin/sale_bill_print',$data);
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
+
+ public function repairy_first_report($repairy_id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $company_info = $this->Admin_Model->get_info('company_id', $company_id, 'uni_company');
+     foreach ($company_info as $company_info) {
+       $data['company_name'] = $company_info->company_name;
+       $data['company_address'] = $company_info->company_address;
+       $data['company_city'] = $company_info->company_city;
+       $data['company_district'] = $company_info->company_district;
+       $data['company_state'] = $company_info->company_state;
+       $data['company_pincode'] = $company_info->company_pincode;
+       $data['company_mob1'] = $company_info->company_mob1;
+       $data['company_mob2'] = $company_info->company_mob2;
+       $data['company_email'] = $company_info->company_email;
+       $data['company_website'] = $company_info->company_website;
+     }
+     $data['repairy_bill_data'] = $this->Transaction_Model->repairy_bill_data($company_id,$repairy_id);
+     $data['repairy_bill_trans_data'] = $this->Transaction_Model->repairy_bill_trans_data($repairy_id);
+     $this->load->view('Admin/repairy_first_report',$data);
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
+
+ public function repairy_first_print($repairy_id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $company_info = $this->Admin_Model->get_info('company_id', $company_id, 'uni_company');
+     foreach ($company_info as $company_info) {
+       $data['company_name'] = $company_info->company_name;
+       $data['company_address'] = $company_info->company_address;
+       $data['company_city'] = $company_info->company_city;
+       $data['company_district'] = $company_info->company_district;
+       $data['company_state'] = $company_info->company_state;
+       $data['company_pincode'] = $company_info->company_pincode;
+       $data['company_mob1'] = $company_info->company_mob1;
+       $data['company_mob2'] = $company_info->company_mob2;
+       $data['company_email'] = $company_info->company_email;
+       $data['company_website'] = $company_info->company_website;
+     }
+
+     $data['repairy_bill_data'] = $this->Transaction_Model->repairy_bill_data($company_id,$repairy_id);
+     $data['repairy_bill_trans_data'] = $this->Transaction_Model->repairy_bill_trans_data($repairy_id);
+     $this->load->view('Admin/repairy_first_print',$data);
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
+
+ public function reciept_preview($receipt_id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $company_info = $this->Admin_Model->get_info('company_id', $company_id, 'uni_company');
+     foreach ($company_info as $company_info) {
+       $data['company_name'] = $company_info->company_name;
+       $data['company_address'] = $company_info->company_address;
+       $data['company_city'] = $company_info->company_city;
+       $data['company_district'] = $company_info->company_district;
+       $data['company_state'] = $company_info->company_state;
+       $data['company_pincode'] = $company_info->company_pincode;
+       $data['company_mob1'] = $company_info->company_mob1;
+       $data['company_mob2'] = $company_info->company_mob2;
+       $data['company_email'] = $company_info->company_email;
+       $data['company_website'] = $company_info->company_website;
+     }
+
+     // $data['repairy_bill_data'] = $this->Transaction_Model->repairy_bill_data($company_id,$repairy_id);
+     $data['receipt_details'] = $this->Transaction_Model->receipt_details($receipt_id);
+     // echo print_r($data['receipt_details']);
+     $this->load->view('Admin/reciept_preview',$data);
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
+
+ public function receipt_print($receipt_id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $company_info = $this->Admin_Model->get_info('company_id', $company_id, 'uni_company');
+     foreach ($company_info as $company_info) {
+       $data['company_name'] = $company_info->company_name;
+       $data['company_address'] = $company_info->company_address;
+       $data['company_city'] = $company_info->company_city;
+       $data['company_district'] = $company_info->company_district;
+       $data['company_state'] = $company_info->company_state;
+       $data['company_pincode'] = $company_info->company_pincode;
+       $data['company_mob1'] = $company_info->company_mob1;
+       $data['company_mob2'] = $company_info->company_mob2;
+       $data['company_email'] = $company_info->company_email;
+       $data['company_website'] = $company_info->company_website;
+     }
+
+     // $data['repairy_bill_data'] = $this->Transaction_Model->repairy_bill_data($company_id,$repairy_id);
+     $data['receipt_details'] = $this->Transaction_Model->receipt_details($receipt_id);
+     // echo print_r($data['receipt_details']);
+     $this->load->view('Admin/receipt_print',$data);
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
 }

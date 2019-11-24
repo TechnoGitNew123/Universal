@@ -73,7 +73,7 @@ include('head.php');
                   </div> -->
 
                   <div class="form-group col-md-4 offset-md-2">
-                    <select class="form-control select2 form-control-sm" name="sale_challan_no" id="sale_challan_no" required>
+                    <select class="form-control select2 form-control-sm sale_challan_no" name="sale_challan_no" id="sale_challan_no" required>
                       <option selected="selected" value="">Select Delivery Challan No. for sale bill</option>
                       <?php if(isset($sale_challan_no)){ ?>
                         <option selected="selected" value="<?php echo $delivery_id; ?>"><?php echo $delivery_no; ?></option>
@@ -225,7 +225,7 @@ include('head.php');
                       <input type="hidden" name="input[0][sale_trans_gst_amount]" class="gst_amount1 gst_amount" value="">
                     </td>
                   </tr>
-                  <?php  } ?>
+                  <?php } ?>
                 </table>
               </div>
               <div class="row">
@@ -406,6 +406,23 @@ var i = 1;
       context: this,
       success: function (result) {
         $('#sale_challan_no').html(result);
+      }
+  	});
+  });
+
+  $("#sale_challan_no").on("change", function(){
+    var delivery_id = $(this).val();
+
+    // alert(delivery_id);
+
+    $.ajax({
+      url: '<?php echo base_url(); ?>Transaction/GetDeliveryList',
+      type: "POST",
+      data: {"delivery_id":delivery_id},
+      context: this,
+      success: function (result) {
+        alert(result);
+        // $('#sale_challan_no').html(result);
       }
   	});
   });

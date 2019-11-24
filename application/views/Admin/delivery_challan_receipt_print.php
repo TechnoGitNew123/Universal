@@ -109,7 +109,7 @@ table{
     <!-- <?php echo $delivery_challan_data->party_area.' '; ?>
     <?php echo $delivery_challan_data->party_taluka.' '; ?>
     <?php echo $delivery_challan_data->party_district.' '; ?> -->
-  </p>  
+  </p>
   <p style="font-size:16px; margin-bottom:5px; margin-top:5px;"> Contact No. <?php echo $delivery_challan_data->party_mob1.' '; ?></p>
   </td>
 <td style="border-left:0px!important; border-right:0px!important;">
@@ -181,7 +181,7 @@ margin-right: auto;
   ?>
 <tr>
   <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $i; ?></p> </td>
-  <td style="text-align:left;"> <p style="font-size:10px;"><?php echo $trans_data->make_name; ?></p></td>
+  <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->make_name; ?></p></td>
   <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->product_model_no; ?></p> </td>
   <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->machine_serial_no; ?></p> </td>
   <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->capacity_name; ?></p> </td>

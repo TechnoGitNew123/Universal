@@ -456,6 +456,19 @@ class Transaction extends CI_Controller{
  		echo "<option value=".$data->delivery_id."> ".$data->delivery_no." </option>";
  	}
  }
+
+ public function GetDeliveryList(){
+   $delivery_id = $this->input->post('delivery_id');
+   $deliveryData = $this->Transaction_Model->delivery_challan_trans_data($delivery_id);
+   if($deliveryData){
+     $i = 0;
+     foreach ($deliveryData as $info){
+       
+       $i++;
+     }
+   }
+   // echo $deliveryData;
+ }
  // Save Sale...
  public function save_sale(){
    $company_id = $this->session->userdata('company_id');
@@ -766,6 +779,19 @@ class Transaction extends CI_Controller{
  public function save_repairy_bill(){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
+
+     $pan = $this->input->post('pan');
+     $bowl = $this->input->post('bowl');
+     $adapter = $this->input->post('adapter');
+     $battery = $this->input->post('battery');
+     $stamping = $this->input->post('stamping');
+     if(!isset($pan)){ $pan = '0'; }
+     if(!isset($bowl)){ $bowl = '0'; }
+     if(!isset($adapter)){ $adapter = '0'; }
+     if(!isset($battery)){ $battery = '0'; }
+     if(!isset($stamping)){ $stamping = '0'; }
+     $repairy_accss = $pan.'_'.$bowl.'_'.$adapter.'_'.$battery.'_'.$stamping;
+
      $data = array(
        'company_id' => $company_id,
        'repairy_no' => $this->input->post('repairy_no'),
@@ -773,6 +799,7 @@ class Transaction extends CI_Controller{
        'repairy_party' => $this->input->post('repairy_party'),
        'repairy_person' => $this->input->post('repairy_person'),
        'repairy_contact' => $this->input->post('repairy_contact'),
+       'repairy_accss' => $repairy_accss,
        'repairy_basic_charge' => $this->input->post('repairy_basic_charge'),
        'repairy_min_charge' => $this->input->post('repairy_min_charge'),
        'repairy_total' => $this->input->post('repairy_total'),
@@ -823,6 +850,7 @@ public function edit_repairy_bill($repairy_id){
         $data['party_firm'] = $repairy_data->party_firm;
         $data['repairy_person'] = $repairy_data->repairy_person;
         $data['repairy_contact'] = $repairy_data->repairy_contact;
+        $data['repairy_accss'] = $repairy_data->repairy_accss;
         $data['repairy_basic_charge'] = $repairy_data->repairy_basic_charge;
         $data['repairy_min_charge'] = $repairy_data->repairy_min_charge;
         $data['repairy_total'] = $repairy_data->repairy_total;
@@ -841,11 +869,25 @@ public function update_repairy_bill(){
     $company_id = $this->session->userdata('company_id');
     if($company_id){
       $repairy_id = $this->input->post('repairy_id');
+
+      $pan = $this->input->post('pan');
+      $bowl = $this->input->post('bowl');
+      $adapter = $this->input->post('adapter');
+      $battery = $this->input->post('battery');
+      $stamping = $this->input->post('stamping');
+      if(!isset($pan)){ $pan = '0'; }
+      if(!isset($bowl)){ $bowl = '0'; }
+      if(!isset($adapter)){ $adapter = '0'; }
+      if(!isset($battery)){ $battery = '0'; }
+      if(!isset($stamping)){ $stamping = '0'; }
+      $repairy_accss = $pan.'_'.$bowl.'_'.$adapter.'_'.$battery.'_'.$stamping;
+
       $repairy_data = array(
         'repairy_date' => $this->input->post('repairy_date'),
         'repairy_party' => $this->input->post('repairy_party'),
         'repairy_person' => $this->input->post('repairy_person'),
         'repairy_contact' => $this->input->post('repairy_contact'),
+        'repairy_accss' => $repairy_accss,
         'repairy_basic_charge' => $this->input->post('repairy_basic_charge'),
         'repairy_min_charge' => $this->input->post('repairy_min_charge'),
         'repairy_total' => $this->input->post('repairy_total'),
@@ -1060,7 +1102,7 @@ public function delete_repairy_bill($id){
        'receipt_narration' => $this->input->post('receipt_narration'),
      );
      $this->Admin_Model->save_data('uni_receipt', $data);
-     header('location:receipt');
+     header('location:'.base_url().'Transaction/receipt_list');
    } else{
      header('location:'.base_url().'Login');
    }
@@ -1440,6 +1482,30 @@ public function expense_voucher_list(){
       $data['sale_price'] = $productDetails ->sale_price;
     }
     echo json_encode($data);
+  }
+
+  public function get_outstanding_amount(){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id){
+      $party_id = $this->input->post('party_id');
+      $total_sale_amount = $this->Transaction_Model->total_sale_amount($party_id);
+      $total_stamping_amount = $this->Transaction_Model->total_stamping_amount($party_id);
+      $total_repairy_amount = $this->Transaction_Model->total_repairy_amount($party_id);
+      $total_service_amount = $this->Transaction_Model->total_service_amount($party_id);
+      if(!$total_sale_amount){ $total_sale_amount = 0; }
+      if(!$total_stamping_amount){ $total_stamping_amount = 0; }
+      if(!$total_repairy_amount){ $total_repairy_amount = 0; }
+      if(!$total_service_amount){ $total_service_amount = 0; }
+
+      $total_bill = $total_sale_amount + $total_stamping_amount + $total_repairy_amount + $total_service_amount;
+
+      $total_reciept_amount = $this->Transaction_Model->total_reciept_amount($party_id);
+      $outstanding_amount = $total_bill - $total_reciept_amount;
+
+      echo $outstanding_amount;
+    } else{
+      header('location:'.base_url().'Login');
+    }
   }
 
 }
