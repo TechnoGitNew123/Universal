@@ -175,7 +175,7 @@ table{
 <tr>
   <td colspan="8">
          <p style="font-size:16px; margin-bottom:5px; padding-top:5px; line-height:20px;"> <b>Charges Rs.
-           <br> फी रक्कम रुपये   </b> : <?php echo $service_charges_fee; ?>  </p>
+           <br> फी रक्कम रुपये   </b> : &#8377; <?php echo number_format((float)$service_charges_fee, 2, '.', ''); ?>  </p>
   </td>
 </tr>
 

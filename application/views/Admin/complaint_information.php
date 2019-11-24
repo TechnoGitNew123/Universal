@@ -6,14 +6,11 @@
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
   <!-- Navbar -->
   <?php include('navbar.php'); ?>
   <!-- /.navbar -->
-
   <!-- Main Sidebar Container -->
   <?php include('sidebar.php'); ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -75,29 +72,37 @@
                   <?php if(isset($complaint_service)){
                     $val = explode('_',$complaint_service);
                   } ?>
-                  <div class="form-group col-md-4">
+
+                  <div class="form-group col-md-3">
                     <input type="checkbox" name="new_installation" id="new_installation" value="New Installation" <?php if(isset($complaint_service) && $val[0] == 'New Installation'){ echo 'checked'; } ?>>
                     <span class="chk-lbl">New Installation</span>
                   </div>
-
                   <div class="form-group col-md-4">
-                    <input type="checkbox" name="rs" id="rs" value="R/S" <?php if(isset($complaint_service) && $val[1] == 'R/S'){ echo 'checked'; } ?>>
-                    <span class="chk-lbl">R/S</span>
+                    <input type="checkbox" name="weighting" id="weighting" value="Weighting Scale Rep. Call" <?php if(isset($complaint_service) && $val[1] == 'Weighting Scale Rep. Call'){ echo 'checked'; } ?>>
+                    <span class="chk-lbl">Weighting Scale Rep. Call</span>
                   </div>
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-2">
                     <input type="checkbox" name="warranty" id="warranty" value="Warranty" <?php if(isset($complaint_service) && $val[2] == 'Warranty'){ echo 'checked'; } ?>>
                     <span class="chk-lbl">Warranty</span>
                   </div>
-                  <div class="form-group col-md-4">
-                    <input type="checkbox" name="call" id="call" value="Call" <?php if(isset($complaint_service) && $val[3] == 'Call'){ echo 'checked'; } ?>>
-                    <span class="chk-lbl">Call</span>
+                  <div class="form-group col-md-3">
+                    <input type="checkbox" name="indoor" id="indoor" value="Indoor Call" <?php if(isset($complaint_service) && $val[3] == 'Indoor Call'){ echo 'checked'; } ?>>
+                    <span class="chk-lbl">Indoor Call</span>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <input type="checkbox" name="outdoor" id="outdoor" value="Outdoor Call" <?php if(isset($complaint_service) && $val[4] == 'Outdoor Call'){ echo 'checked'; } ?>>
+                    <span class="chk-lbl">Outdoor Call</span>
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="checkbox" name="amc" id="amc" value="AMC" <?php if(isset($complaint_service) && $val[4] == 'AMC'){ echo 'checked'; } ?>>
+                    <input type="checkbox" name="godrej" id="godrej" value="Godrej Repairy Call" <?php if(isset($complaint_service) && $val[5] == 'Godrej Repairy Call'){ echo 'checked'; } ?>>
+                    <span class="chk-lbl">Godrej Repairy Call</span>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <input type="checkbox" name="amc" id="amc" value="AMC" <?php if(isset($complaint_service) && $val[6] == 'AMC'){ echo 'checked'; } ?>>
                     <span class="chk-lbl">AMC</span>
                   </div>
-                  <div class="form-group col-md-4">
-                    <input type="checkbox" name="charged_call" id="charged_call" value="Charged Call" <?php if(isset($complaint_service) && $val[5] == 'Charged Call'){ echo 'checked'; } ?>>
+                  <div class="form-group col-md-3">
+                    <input type="checkbox" name="charged_call" id="charged_call" value="Charged Call" <?php if(isset($complaint_service) && $val[7] == 'Charged Call'){ echo 'checked'; } ?>>
                     <span class="chk-lbl">Charged Call</span>
                   </div>
 

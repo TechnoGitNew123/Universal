@@ -121,22 +121,21 @@ include('head.php');
                         <select class="form-control form-control-sm make_id" name="input[<?php echo $i; ?>][make_id]" required>
                           <option value="">Select Make</option>
                           <?php foreach ($make_list as $make_list1) { ?>
-                          <option value="<?php echo $make_list1->make_id; ?>" <?php if(isset($trans_data->make_id)){ if($make_list1->make_id == $trans_data->make_id){ echo "selected"; } }  ?>><?php echo $make_list1->make_name; ?></option>
+                            <option value="<?php echo $make_list1->make_id; ?>" <?php if($make_list1->make_id == $trans_data->make_id){ echo 'selected';}  ?>><?php echo $make_list1->make_name ?></option>
                           <?php } ?>
                         </select>
                       </td>
                       <td>
-                        <input type="text" class="form-control form-control-sm" name="input[<?php echo $i; ?>][model_no_id]" value="<?php echo $trans_data->model_no_id ?>" placeholder="" required>
+                        <select class="form-control form-control-sm model_no" name="input[<?php echo $i; ?>][model_no_id]">
+                          <option selected value="<?php echo $trans_data->model_no_id ?>" ><?php echo $trans_data->product_model_no ?></option>
+                        </select>
                       </td>
                       <td class="td_w">
                         <input type="text" class="form-control form-control-sm" name="input[<?php echo $i; ?>][machine_serial_no]" value="<?php echo $trans_data->machine_serial_no ?>" placeholder="">
                       </td>
                       <td>
-                        <select class="form-control form-control-sm"  name="input[<?php echo $i; ?>][capacity_id]" required>
-                          <option value="">Select Capacity</option>
-                          <?php foreach ($capacity_list as $capacity_list1) { ?>
-                          <option value="<?php echo $capacity_list1->capacity_id; ?>" <?php if(isset($trans_data->capacity_id)){ if($capacity_list1->capacity_id == $trans_data->capacity_id){ echo "selected"; } }  ?>><?php echo $capacity_list1->capacity_name; ?></option>
-                          <?php } ?>
+                        <select class="form-control form-control-sm capacity" name="input[<?php echo $i; ?>][capacity_id]">
+                          <option selected value="<?php echo $trans_data->capacity_id ?>" ><?php echo $trans_data->capacity_name ?></option>
                         </select>
                       </td>
                       <td>
@@ -148,19 +147,13 @@ include('head.php');
                         </select>
                       </td>
                       <td>
-                        <select class="form-control form-control-sm"  name="input[<?php echo $i; ?>][accuracy_id]" required>
-                          <option value="">Select Accuracy</option>
-                          <?php foreach ($accuracy_list as $accuracy_list1) { ?>
-                            <option value="<?php echo $accuracy_list1->accuracy_id; ?>" <?php if(isset($trans_data->accuracy_id)){ if($accuracy_list1->accuracy_id == $trans_data->accuracy_id){ echo "selected"; } }  ?>><?php echo $accuracy_list1->accuracy_name ?></option>
-                          <?php } ?>
+                        <select class="form-control form-control-sm accuracy" name="input[<?php echo $i; ?>][accuracy_id]">
+                          <option selected value="<?php echo $trans_data->accuracy_id ?>" ><?php echo $trans_data->accuracy_name ?></option>
                         </select>
                       </td>
                       <td>
-                        <select class="form-control form-control-sm" name="input[<?php echo $i; ?>][class_id]" required>
-                          <option value="">Select Class</option>
-                          <?php foreach ($class_list as $class_list1) { ?>
-                            <option value="<?php echo $class_list1->class_id; ?>" <?php if(isset($trans_data->class_id)){ if($class_list1->class_id == $trans_data->class_id){ echo "selected"; } }  ?>><?php echo $class_list1->class_name ?></option>
-                          <?php } ?>
+                        <select class="form-control form-control-sm class" name="input[<?php echo $i; ?>][class_id]">
+                          <option selected value="<?php echo $trans_data->class_id ?>" ><?php echo $trans_data->class_name ?></option>
                         </select>
                       </td>
                       <td class="td_w">
@@ -181,7 +174,7 @@ include('head.php');
                   <tr>
                     <td class="sr_no">1</td>
                     <td>
-                      <select class="form-control form-control-sm" name="input[0][make_id]" required>
+                      <select class="form-control form-control-sm make_id" name="input[0][make_id]" required>
                         <option value="">Select Make</option>
                         <?php foreach ($make_list as $make_list1) { ?>
                           <option value="<?php echo $make_list1->make_id; ?>"><?php echo $make_list1->make_name ?></option>
@@ -189,17 +182,14 @@ include('head.php');
                       </select>
                     </td>
                     <td>
-                      <input type="text" class="form-control form-control-sm" name="input[0][model_no_id]" id="" placeholder="" required>
+                      <select class="form-control form-control-sm model_no" name="input[0][model_no_id]" >
+                      </select>
                     </td>
                     <td class="td_w">
                       <input type="text" class="form-control form-control-sm" name="input[0][machine_serial_no]" id="" placeholder="">
                     </td>
                     <td>
-                      <select class="form-control form-control-sm"  name="input[0][capacity_id]" required>
-                        <option value="">Select Capacity</option>
-                        <?php foreach ($capacity_list as $capacity_list1) { ?>
-                          <option value="<?php echo $capacity_list1->capacity_id; ?>"><?php echo $capacity_list1->capacity_name ?></option>
-                        <?php } ?>
+                      <select class="form-control form-control-sm capacity" name="input[0][capacity_id]">
                       </select>
                     </td>
                     <td>
@@ -211,19 +201,11 @@ include('head.php');
                       </select>
                     </td>
                     <td>
-                      <select class="form-control form-control-sm"  name="input[0][accuracy_id]" required>
-                        <option value="">Select Accuracy</option>
-                        <?php foreach ($accuracy_list as $accuracy_list1) { ?>
-                          <option value="<?php echo $accuracy_list1->accuracy_id; ?>"><?php echo $accuracy_list1->accuracy_name ?></option>
-                        <?php } ?>
+                      <select class="form-control form-control-sm accuracy" name="input[0][accuracy_id]">
                       </select>
                     </td>
                     <td>
-                      <select class="form-control form-control-sm" name="input[0][class_id]" required>
-                        <option value="">Select Class</option>
-                        <?php foreach ($class_list as $class_list1) { ?>
-                          <option value="<?php echo $class_list1->class_id; ?>"><?php echo $class_list1->class_name ?></option>
-                        <?php } ?>
+                      <select class="form-control form-control-sm class" name="input[0][class_id]">
                       </select>
                     </td>
                     <td class="td_w">
@@ -366,7 +348,7 @@ var i = 1;
     var row = '<tr>'+
                 '<td class="sr_no">'+i+'</td>'+
                 '<td>'+
-                  '<select class="form-control form-control-sm" name="input['+i+'][make_id]" required>'+
+                  '<select class="form-control form-control-sm make_id" name="input['+i+'][make_id]" required>'+
                     '<option value="">Select Make</option>'+
                     <?php foreach ($make_list as $make_list1) { ?>
                       '<option value="<?php echo $make_list1->make_id; ?>"><?php echo $make_list1->make_name ?></option>'+
@@ -374,17 +356,14 @@ var i = 1;
                   '</select>'+
                 '</td>'+
                 '<td>'+
-                  '<input type="text" class="form-control form-control-sm" name="input['+i+'][model_no_id]" id="" placeholder="" required>'+
+                  '<select class="form-control form-control-sm model_no" name="input['+i+'][model_no_id]" >'+
+                  '</select>'+
                 '</td>'+
                 '<td class="td_w">'+
                   '<input type="text" class="form-control form-control-sm" name="input['+i+'][machine_serial_no]" id="" placeholder="">'+
                 '</td>'+
                 '<td>'+
-                  '<select class="form-control select2 form-control-sm"  name="input['+i+'][capacity_id]" required>'+
-                    '<option value="">Select Capacity</option>'+
-                    <?php foreach ($capacity_list as $capacity_list1) { ?>
-                      '<option value="<?php echo $capacity_list1->capacity_id; ?>"><?php echo $capacity_list1->capacity_name ?></option>'+
-                    <?php } ?>
+                  '<select class="form-control form-control-sm capacity" name="input['+i+'][capacity_id]">'+
                   '</select>'+
                 '</td>'+
                 '<td>'+
@@ -396,19 +375,11 @@ var i = 1;
                   '</select>'+
                 '</td>'+
                 '<td>'+
-                  '<select class="form-control select2 form-control-sm"  name="input['+i+'][accuracy_id]" required>'+
-                    '<option value="">Select Accuracy</option>'+
-                    <?php foreach ($accuracy_list as $accuracy_list1) { ?>
-                      '<option value="<?php echo $accuracy_list1->accuracy_id; ?>"><?php echo $accuracy_list1->accuracy_name ?></option>'+
-                    <?php } ?>
+                  '<select class="form-control form-control-sm accuracy" name="input['+i+'][accuracy_id]">'+
                   '</select>'+
                 '</td>'+
                 '<td>'+
-                  '<select class="form-control select2 form-control-sm" name="input['+i+'][class_id]" required>'+
-                    '<option value="">Select Class</option>'+
-                    <?php foreach ($class_list as $class_list1) { ?>
-                      '<option value="<?php echo $class_list1->class_id; ?>"><?php echo $class_list1->class_name ?></option>'+
-                    <?php } ?>
+                  '<select class="form-control form-control-sm class" name="input['+i+'][class_id]">'+
                   '</select>'+
                 '</td>'+
                 '<td class="td_w">'+
@@ -429,10 +400,37 @@ var i = 1;
   });
 
   $('#myTable').on('click', 'a', function () {
-
     $(this).closest('tr').remove();
-
     calculation();
+  });
+
+  $("#myTable").on("change", "select.make_id", function(){
+    var make_id = $(this).val();
+    $.ajax({
+      url: '<?php echo base_url(); ?>Transaction/GetProduct',
+      type: "POST",
+      data: {"make_id":make_id},
+      context: this,
+      success: function (result) {
+        $(this).closest('tr').find('.model_no').html(result);
+      }
+  	});
+  });
+
+  $("#myTable").on("change", "select.model_no", function(){
+    var model_no = $(this).val();
+    $.ajax({
+      url: '<?php echo base_url(); ?>Transaction/GetProductDetails',
+      type: "POST",
+      data: {"model_no":model_no},
+      context: this,
+      success: function (result) {
+        var data = JSON.parse(result);
+        $(this).closest('tr').find('.capacity').html('<option value="'+data['capacity_id']+'">'+data['capacity_name']+'</option>');
+        $(this).closest('tr').find('.accuracy').html('<option value="'+data['accuracy_id']+'">'+data['accuracy_name']+'</option>');
+        $(this).closest('tr').find('.class').html('<option value="'+data['class_id']+'">'+data['class_name']+'</option>');
+      }
+  	});
   });
 
   $('#myTable').on('keyup', 'input.govt_fees, input.ser_charge', function () {

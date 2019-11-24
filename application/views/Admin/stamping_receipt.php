@@ -132,17 +132,14 @@ include('head.php');
       <div class="col-12 table-responsive">
         <table class="table table-botttom">
           <style media="screen">
-          .table-bottom {
-    border-collapse: collapse;
-  }
-
-  .table-bottom, tr, td{
-
-          border: 1px solid #000;
-
-          margin-left: auto;
-          margin-right: auto;
-          }
+            .table-bottom {
+              border-collapse: collapse;
+            }
+            .table-bottom, tr, td{
+              border: 1px solid #000;
+              margin-left: auto;
+              margin-right: auto;
+            }
           </style>
           <thead>
           <tr>
@@ -184,15 +181,26 @@ include('head.php');
         <?php } ?>
           <tr style="border-bottom:0px!important;">
             <td colspan="6" style="border-bottom:0px!important;">  <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($total); ?> Only</b> </p> </td>
-              <td colspan="3"  style="border-right:0px!important;"> </td>
-              <td colspan="3" style="border-left:0px!important;"></td>
+            <td colspan="3"  style="border-right:0px!important;"> </td>
+            <td colspan="3" style="border-left:0px!important;"></td>
           </tr>
-
           <tr>
             <td colspan="3" style="border-bottom:0px!important; border-right:0px!important;"><p>V.C. No. <?php echo $govt_stamp_data->govt_stamp_vc_no; ?><br> <br> </p></td>
             <td colspan="3" style="border-bottom:0px!important; border-left:0px!important;"><p> DATE : <?php echo $govt_stamp_data->govt_stamp_vc_date; ?></p> </td>
-            <td colspan="3"  rowspan="2"  ><p>GRAND TOTAL : </p> </td>
-            <td colspan="3"   rowspan="2" ><p> <b><?php echo $total; ?></b> </p></td>
+            <td colspan="3" ><p>Govt Fee : </p> </td>
+            <td colspan="3"  ><p> <b>&#8377; <?php echo number_format((float)$total, 2, '.', ''); ?></b> </p></td>
+          </tr>
+          <tr>
+            <td colspan="3" style="border-bottom:0px!important; border-right:0px!important;"></td>
+            <td colspan="3" style="border-bottom:0px!important; border-left:0px!important;"> </td>
+            <td colspan="3"  ><p>Late Fee : </p> </td>
+            <td colspan="3" ><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_late_fee, 2, '.', ''); ?></b> </p></td>
+          </tr>
+          <tr>
+            <td colspan="3" style="border-bottom:0px!important; border-right:0px!important;"></td>
+            <td colspan="3" style="border-bottom:0px!important; border-left:0px!important;"> </td>
+            <td colspan="3"  ><p>Grand Total : </p> </td>
+            <td colspan="3" ><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_late_fee + $total, 2, '.', ''); ?></b> </p></td>
           </tr>
 
           <tr>
@@ -201,18 +209,13 @@ include('head.php');
               <input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_condition != ''){ echo 'checked'; } ?> > Received our Machine in Good Condition. </p>
             </td>
           </tr>
-
-
-
           <tr>
             <td colspan="6"  style="border-right:0px!important;">  <p style="float:left; border-right:0px!important;"> Customer Signature </p>
             </td>
             <td colspan="6" style="border-left:0px!important;">  <p style="float:right; border-left:0px!important;"> <b> For <?php echo $company_name; ?> </b> </p>
             </td>
           </tr>
-
           <tr>
-
             <td colspan="12"> <p style="float:right;">  Auth. Signatory</p> </td>
           </tr>
           </tbody>
@@ -220,13 +223,7 @@ include('head.php');
       </div>
       <!-- /.col -->
     </div>
-
-
-
 <br><br>
-
-
-
               <!-- this row will not appear when printing -->
               <div class="row no-print">
                 <div class="col-12">

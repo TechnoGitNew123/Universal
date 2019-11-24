@@ -321,6 +321,8 @@ class Transaction extends CI_Controller{
          $data['purchase_due'] = $purchase_data->purchase_due;
          $data['purchase_del_period'] = $purchase_data->purchase_del_period;
          $data['purchase_pay_terms'] = $purchase_data->purchase_pay_terms;
+         $data['purchase_accss'] = $purchase_data->purchase_accss;
+
        }
      }
      $data['purchase_trans_data'] = $this->Transaction_Model->purchase_trans_data($purchase_id);
@@ -335,6 +337,23 @@ class Transaction extends CI_Controller{
  public function save_purchase_agreement(){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
+
+     $extra_display = $this->input->post('extra_display');
+     $battery = $this->input->post('battery');
+     $charger = $this->input->post('charger');
+     $wind = $this->input->post('wind');
+     $interface = $this->input->post('interface');
+     $bowl = $this->input->post('bowl');
+     $others = $this->input->post('others');
+     if(!isset($extra_display)){ $extra_display = '0'; }
+     if(!isset($battery)){ $battery = '0'; }
+     if(!isset($charger)){ $charger = '0'; }
+     if(!isset($wind)){ $wind = '0'; }
+     if(!isset($interface)){ $interface = '0'; }
+     if(!isset($bowl)){ $bowl = '0'; }
+     if(!isset($others)){ $others = '0'; }
+     $purchase_accss = $extra_display.'_'.$battery.'_'.$charger.'_'.$wind.'_'.$interface.'_'.$bowl.'_'.$others;
+
      $data = array(
        'company_id' => $company_id,
        'purchase_order_no' => $this->input->post('purchase_order_no'),
@@ -352,6 +371,7 @@ class Transaction extends CI_Controller{
        'purchase_due' => $this->input->post('purchase_due'),
        'purchase_del_period' => $this->input->post('purchase_del_period'),
        'purchase_pay_terms' => $this->input->post('purchase_pay_terms'),
+       'purchase_accss' => $purchase_accss,
      );
      $purchase_id = $this->Admin_Model->save_data('uni_purchase_master', $data);
      echo $purchase_id.'<br>';
@@ -373,6 +393,21 @@ class Transaction extends CI_Controller{
      $company_id = $this->session->userdata('company_id');
      if($company_id){
        $purchase_id = $this->input->post('purchase_id');
+       $extra_display = $this->input->post('extra_display');
+       $battery = $this->input->post('battery');
+       $charger = $this->input->post('charger');
+       $wind = $this->input->post('wind');
+       $interface = $this->input->post('interface');
+       $bowl = $this->input->post('bowl');
+       $others = $this->input->post('others');
+       if(!isset($extra_display)){ $extra_display = '0'; }
+       if(!isset($battery)){ $battery = '0'; }
+       if(!isset($charger)){ $charger = '0'; }
+       if(!isset($wind)){ $wind = '0'; }
+       if(!isset($interface)){ $interface = '0'; }
+       if(!isset($bowl)){ $bowl = '0'; }
+       if(!isset($others)){ $others = '0'; }
+       $purchase_accss = $extra_display.'_'.$battery.'_'.$charger.'_'.$wind.'_'.$interface.'_'.$bowl.'_'.$others;
        $purchase_data = array(
          'purchase_date' => $this->input->post('purchase_date'),
          'purchase_party' => $this->input->post('purchase_party'),
@@ -388,6 +423,7 @@ class Transaction extends CI_Controller{
          'purchase_due' => $this->input->post('purchase_due'),
          'purchase_del_period' => $this->input->post('purchase_del_period'),
          'purchase_pay_terms' => $this->input->post('purchase_pay_terms'),
+         'purchase_accss' => $purchase_accss,
        );
        $this->Admin_Model->update_info('purchase_id', $purchase_id, 'uni_purchase_master', $purchase_data);
        foreach($_POST['input'] as $user)
@@ -463,7 +499,6 @@ class Transaction extends CI_Controller{
    if($deliveryData){
      $i = 0;
      foreach ($deliveryData as $info){
-       
        $i++;
      }
    }
@@ -764,6 +799,7 @@ class Transaction extends CI_Controller{
    if($company_id){
      $data['repairy_no'] = $this->Transaction_Model->get_count_no($company_id,'repairy_no','uni_repairy_master');
      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+     $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
 
      $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
      $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
@@ -799,6 +835,7 @@ class Transaction extends CI_Controller{
        'repairy_party' => $this->input->post('repairy_party'),
        'repairy_person' => $this->input->post('repairy_person'),
        'repairy_contact' => $this->input->post('repairy_contact'),
+       'repairy_user' => $this->input->post('repairy_user'),
        'repairy_accss' => $repairy_accss,
        'repairy_basic_charge' => $this->input->post('repairy_basic_charge'),
        'repairy_min_charge' => $this->input->post('repairy_min_charge'),
@@ -833,6 +870,8 @@ public function edit_repairy_bill($repairy_id){
   if($company_id){
     $data['repairy_no'] = $this->Transaction_Model->get_count_no($company_id,'repairy_no','uni_repairy_master');
     $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+    $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
+
     $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
     $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
     $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
@@ -849,6 +888,9 @@ public function edit_repairy_bill($repairy_id){
         $data['party_id'] = $repairy_data->party_id;
         $data['party_firm'] = $repairy_data->party_firm;
         $data['repairy_person'] = $repairy_data->repairy_person;
+        $data['repairy_user'] = $repairy_data->repairy_user;
+        $data['user_id'] = $repairy_data->user_id;
+        $data['user_name'] = $repairy_data->user_name;
         $data['repairy_contact'] = $repairy_data->repairy_contact;
         $data['repairy_accss'] = $repairy_data->repairy_accss;
         $data['repairy_basic_charge'] = $repairy_data->repairy_basic_charge;
@@ -887,6 +929,7 @@ public function update_repairy_bill(){
         'repairy_party' => $this->input->post('repairy_party'),
         'repairy_person' => $this->input->post('repairy_person'),
         'repairy_contact' => $this->input->post('repairy_contact'),
+        'repairy_user' => $this->input->post('repairy_user'),
         'repairy_accss' => $repairy_accss,
         'repairy_basic_charge' => $this->input->post('repairy_basic_charge'),
         'repairy_min_charge' => $this->input->post('repairy_min_charge'),
@@ -1196,18 +1239,22 @@ public function expense_voucher_list(){
    if($company_id){
      // $complaint_service;
      $new_installation = $this->input->post('new_installation');
-     $rs = $this->input->post('rs');
+     $weighting = $this->input->post('weighting');
      $warranty = $this->input->post('warranty');
-     $call = $this->input->post('call');
+     $indoor = $this->input->post('indoor');
+     $outdoor = $this->input->post('outdoor');
+     $godrej = $this->input->post('godrej');
      $amc = $this->input->post('amc');
      $charged_call = $this->input->post('charged_call');
      if(!isset($new_installation)){ $new_installation = '0'; }
-     if(!isset($rs)){ $rs = '0'; }
+     if(!isset($weighting)){ $weighting = '0'; }
      if(!isset($warranty)){ $warranty = '0'; }
-     if(!isset($call)){ $call = '0'; }
+     if(!isset($indoor)){ $indoor = '0'; }
+     if(!isset($outdoor)){ $outdoor = '0'; }
+     if(!isset($godrej)){ $godrej = '0'; }
      if(!isset($amc)){ $amc = '0'; }
      if(!isset($charged_call)){ $charged_call = '0'; }
-     $complaint_service = $new_installation.'_'.$rs.'_'.$warranty.'_'.$call.'_'.$amc.'_'.$charged_call;
+     $complaint_service = $new_installation.'_'.$weighting.'_'.$warranty.'_'.$indoor.'_'.$outdoor.'_'.$godrej.'_'.$amc.'_'.$charged_call;
 
      $data = array(
        'company_id' => $company_id,
@@ -1260,18 +1307,22 @@ public function expense_voucher_list(){
      $complaint_id = $this->input->post('complaint_id');
 
      $new_installation = $this->input->post('new_installation');
-     $rs = $this->input->post('rs');
+     $weighting = $this->input->post('weighting');
      $warranty = $this->input->post('warranty');
-     $call = $this->input->post('call');
+     $indoor = $this->input->post('indoor');
+     $outdoor = $this->input->post('outdoor');
+     $godrej = $this->input->post('godrej');
      $amc = $this->input->post('amc');
      $charged_call = $this->input->post('charged_call');
      if(!isset($new_installation)){ $new_installation = '0'; }
-     if(!isset($rs)){ $rs = '0'; }
+     if(!isset($weighting)){ $weighting = '0'; }
      if(!isset($warranty)){ $warranty = '0'; }
-     if(!isset($call)){ $call = '0'; }
+     if(!isset($indoor)){ $indoor = '0'; }
+     if(!isset($outdoor)){ $outdoor = '0'; }
+     if(!isset($godrej)){ $godrej = '0'; }
      if(!isset($amc)){ $amc = '0'; }
      if(!isset($charged_call)){ $charged_call = '0'; }
-     $complaint_service = $new_installation.'_'.$rs.'_'.$warranty.'_'.$call.'_'.$amc.'_'.$charged_call;
+     $complaint_service = $new_installation.'_'.$weighting.'_'.$warranty.'_'.$indoor.'_'.$outdoor.'_'.$godrej.'_'.$amc.'_'.$charged_call;
 
      $data = array(
        'complaint_no' => $this->input->post('complaint_no'),

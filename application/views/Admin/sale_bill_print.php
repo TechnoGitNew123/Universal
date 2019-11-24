@@ -189,13 +189,13 @@ margin-right: auto;
 <tr>
   <td colspan="6"></td>
     <td colspan="3" style="border-right:0px; padding-left:10px;"><p style="font-size:14px; margin:5px;">BASIC AMOUNT : </p> </td>
-    <td colspan="3" style="border-left:0px;"><p style="font-size:14px; margin:5px;"> <b><?php echo $sale_bill_data->total_base_amount; ?></b> </p></td>
+    <td colspan="3" style="border-left:0px;"><p style="font-size:14px; margin:5px;"> <b>&#8377; <?php echo number_format((float)$sale_bill_data->total_base_amount, 2, '.', ''); ?></b> </p></td>
 </tr>
 
 <tr>
   <td colspan="6"> <p style="margin:5px;">Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($sale_bill_data->sale_total); ?> Only</b> </p> </td>
   <td colspan="3"><p style=" padding-left:10px; margin:5px;">GRAND TOTAL : </p> </td>
-  <td colspan="3"><p style=" padding-left:10px; margin:5px;"> <b><?php echo $sale_bill_data->sale_total; ?></b> </p></td>
+  <td colspan="3"><p style=" padding-left:10px; margin:5px;"> <b>&#8377; <?php echo number_format((float)$sale_bill_data->sale_total, 2, '.', ''); ?></b> </p></td>
 </tr>
 
 <tr style="border-bottom:0px!important;">

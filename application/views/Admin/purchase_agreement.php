@@ -265,33 +265,44 @@ include('head.php');
                         <input type="hidden" name="input[0][trans_acc_gst_amount]" class="gst_amount2 gst_amount" value="">
                         <td class="td_btn"></td>
                       </tr>
-                      <!-- <tr>
-                        <td class="sr_no"></td>
-                        <td colspan="10">
-                          <textarea class="form-control form-control-sm w-100" name="input[0][purchase_trans_descr]" rows="3" cols=""></textarea>
-                        </td>
-                        <td class="td_w">
-                          <input type="text" class="form-control form-control-sm gst" name="input[0][purchase_descr_gst]" id="" placeholder="GST" required>
-                        </td>
-                        <td class="td_w">
-                          <input type="text" class="form-control form-control-sm qty" name="input[0][purchase_descr_qty]" id="" placeholder="Qty" required>
-                        </td>
-                        <td class="td_w">
-                          <input type="text" class="form-control form-control-sm rate" name="input[0][purchase_descr_rate]" id="" placeholder="Rate" required>
-                        </td>
-                        <td class="td_w">
-                          <input type="text" class="form-control form-control-sm amount" name="input[0][purchase_descr_amount]" id="" placeholder="Amount" readonly>
-                        </td>
-                        <input type="hidden" class="gst_amount" value="">
-                        <input type="hidden" class="amount_with_gst" value="">
-                        <td class="td_btn"></td>
-                      </tr> -->
                     <?php } ?>
 
                 </table>
               </div>
+
+              <?php if(isset($purchase_accss)){
+                $val = explode('_',$purchase_accss);
+              } ?>
               <div class="row">
                 <div class="col-md-6">
+                  <div class="form-group mt-3 mb-2" >
+                    <input type="checkbox" name="extra_display" id="extra_display" value="Extra Display" <?php if(isset($purchase_accss) && $val[0] == 'Extra Display'){ echo 'checked'; } ?>>
+                    <span> Extra Display : Stand / On Machine / Detachable</span>
+                  </div>
+                  <div class="form-group mb-2" >
+                    <input type="checkbox" name="battery" id="battery" value="Battery" <?php if(isset($purchase_accss) && $val[1] == 'Battery'){ echo 'checked'; } ?>>
+                    <span> Battery</span>
+                  </div>
+                  <div class="form-group mb-2" >
+                    <input type="checkbox" name="charger" id="charger" value="Charger" <?php if(isset($purchase_accss) && $val[2] == 'Charger'){ echo 'checked'; } ?>>
+                    <span> Charger</span>
+                  </div>
+                  <div class="form-group mb-2" >
+                    <input type="checkbox" name="wind" id="wind" value="Wind" <?php if(isset($purchase_accss) && $val[3] == 'Wind'){ echo 'checked'; } ?>>
+                    <span> Wind Shield</span>
+                  </div>
+                  <div class="form-group mb-2" >
+                    <input type="checkbox" name="interface" id="interface" value="INTERFACE" <?php if(isset($purchase_accss) && $val[4] == 'INTERFACE'){ echo 'checked'; } ?>>
+                    <span> Rs-232-C COMPUTER INTERFACE</span>
+                  </div>
+                  <div class="form-group mb-2" >
+                    <input type="checkbox" name="bowl" id="bowl" value="Bowl" <?php if(isset($purchase_accss) && $val[5] == 'Bowl'){ echo 'checked'; } ?>>
+                    <span> BOWL : FLAT/ ROUND</span>
+                  </div>
+                  <div class="form-group mb-2" >
+                    <input type="checkbox" name="others" id="others" value="Others" <?php if(isset($purchase_accss) && $val[6] == 'Others'){ echo 'checked'; } ?>>
+                    <span> Others</span>
+                  </div>
                   <h5 class="my-4">Terms And Conditions</h5>
                   <div class="form-group" >
                     <textarea id="txt_terms" class="form-control form-control-sm" name="purchase_terms" rows="8"><?php if(isset($purchase_terms)){ echo $purchase_terms; } ?></textarea>
@@ -341,8 +352,8 @@ include('head.php');
                       <td><input type="number" class="form-control form-control-sm" name="purchase_due" id="purchase_due" value="<?php if(isset($purchase_due)){ echo $purchase_due; } ?>" readonly></td>
                     </tr>
                     <tr>
-                      <th style="width:50%;" >  <label for="" class=" text-right col-form-label mr-3 mb-1">delivery Period</label></th>
-                      <td ><input type="number" class="form-control form-control-sm" name="purchase_del_period" id="purchase_del_period" value="<?php if(isset($purchase_del_period)){ echo $purchase_del_period; } ?>"></td>
+                      <th style="width:50%;" >  <label for="" class=" text-right col-form-label mr-3 mb-1">Delivery Period</label></th>
+                      <td ><input type="text" class="form-control form-control-sm" name="purchase_del_period" id="purchase_del_period" value="<?php if(isset($purchase_del_period)){ echo $purchase_del_period; } ?>"></td>
                     </tr>
                     <tr>
                       <th style="width:50%;" >  <label for="" class=" text-right col-form-label mr-3 mb-1">Payment Terms </label></th>

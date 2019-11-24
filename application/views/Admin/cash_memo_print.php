@@ -29,7 +29,7 @@
     ?>
     <!-- title row -->
     <div class="row">
-  <p style="text-align:center; font-size:17px;"> <b>Cash Memo</b>  </p>
+  <p style="text-align:center; font-size:22px;"> <b>Stamping Cash Memo</b>  </p>
 </div>
     <table class="table table-bordered mb-0 invoice-table"  width="750">
 <style media="print">
@@ -117,16 +117,16 @@ table{
     <td style="border-right:0px!important; padding-left: 20px; padding-top:0px;" >
 
 
-        <br>
+
        <p style="font-size:16px; margin-bottom:5px;"><strong>Party Name and Address</strong></p>
       <p style="font-size:16px; margin-bottom:5px;"> <?php echo $govt_stamp_data->party_firm; ?></p>
       <p style="font-size:16px; margin-bottom:5px;">
          <?php echo $govt_stamp_data->party_address.' '; ?>
-         <?php echo $govt_stamp_data->party_area.' '; ?>
+         <!-- <?php echo $govt_stamp_data->party_area.' '; ?>
          <?php echo $govt_stamp_data->party_taluka.' '; ?>
-         <?php echo $govt_stamp_data->party_district.' '; ?>
+         <?php echo $govt_stamp_data->party_district.' '; ?> -->
        </p>
-      <p style="font-size:16px; margin-bottom:5px;">Sate : <?php echo $govt_stamp_data->party_state.' '; ?></p>
+      <!-- <p style="font-size:16px; margin-bottom:5px;">Sate : <?php echo $govt_stamp_data->party_state.' '; ?></p> -->
       <p style="font-size:16px; margin-bottom:5px;"> Contact No. <?php echo $govt_stamp_data->party_mob1.' '; ?></p>
 
 
@@ -183,6 +183,7 @@ text-align: center;
       <th>Class</th>
       <th>LCR No.</th>
       <th>LCR Date</th>
+      <th>Govt. Fees</th>
       <th>Service Fees</th>
     </tr>
     </thead>
@@ -206,21 +207,42 @@ text-align: center;
         <td><?php echo $trans_data->class_name; ?></td>
         <td><?php echo $trans_data->lcr_no; ?></td>
         <td><?php echo $trans_data->lcr_date; ?></td>
+        <td><?php echo $trans_data->govt_fees; ?></td>
         <td><?php echo $trans_data->ser_charge; ?></td>
       </tr>
     <?php } ?>
 
     <tr style="border-bottom:0px!important;">
-      <td colspan="6" style="border-bottom:0px!important;">  <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($total); ?> Only</b> </p> </td>
-        <td colspan="3"  style="border-right:0px!important;"></td>
+      <td colspan="7" style="border-bottom:0px!important;">  <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($total); ?> Only</b> </p> </td>
+        <td colspan="2"  style="border-right:0px!important;"></td>
         <td colspan="3" style="border-left:0px!important;"></td>
     </tr>
 
     <tr style="border-bottom:0px!important;">
-      <td colspan="3" style="border-bottom:0px!important; border-right:0px!important; border-bottom:0px!important;"><p style="font-size:12px;">V.C. No. <?php echo $govt_stamp_data->govt_stamp_vc_no; ?> </p></td>
+      <td colspan="4" style="border-bottom:0px!important; border-right:0px!important; border-bottom:0px!important;"><p style="font-size:12px;">V.C. No. <?php echo $govt_stamp_data->govt_stamp_vc_no; ?> </p></td>
       <td colspan="3" style="border-bottom:0px!important; border-left:0px!important;  border-bottom:0px!important;"><p style="font-size:12px;"> DATE : <?php echo $govt_stamp_data->govt_stamp_vc_date; ?></p> </td>
-      <td colspan="3"><p>Grand Total : </p> </td>
-      <td colspan="3"><p> <b><?php echo $total; ?></b> </p></td>
+      <td colspan="3"><p style="text-align:right;"><b>Govt. Fees : </b></p> </td>
+      <td colspan="2"><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_gov_fees, 2, '.', ''); ?></b> </p></td>
+    </tr>
+    <tr style="border-bottom:0px!important;border-top:0px!important;">
+      <td colspan="7" style="border:0px!important; "></td>
+      <td colspan="3"><p style="text-align:right;"><b>Service Charge : </b></p> </td>
+      <td colspan="2"><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_ser_charge, 2, '.', ''); ?></b> </p></td>
+    </tr>
+    <tr style="border-bottom:0px!important;border-top:0px!important;">
+      <td colspan="7" style="border:0px!important;"></td>
+      <td colspan="3"><p style="text-align:right;"><b>Late Fee : </b></p> </td>
+      <td colspan="2"><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_late_fee, 2, '.', ''); ?></b> </p></td>
+    </tr>
+    <tr style="border-bottom:0px!important;border-top:0px!important;">
+      <td colspan="7" style="border:0px!important;"></td>
+      <td colspan="3"><p style="text-align:right;"><b>H.C.T.A.D.A : </b></p> </td>
+      <td colspan="2"><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_hctada, 2, '.', ''); ?></b> </p></td>
+    </tr>
+    <tr style="border-bottom:0px!important;border-top:0px!important;">
+      <td colspan="7" style="border:0px!important;"></td>
+      <td colspan="3"><p style="text-align:right;"><b>Grand Total : </b></p> </td>
+      <td colspan="2"><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_total, 2, '.', ''); ?></b> </p></td>
     </tr>
 
     <tr style="border-top:0px!important; border-bottom:0px!important;">
@@ -228,8 +250,6 @@ text-align: center;
         <p style="font-size:12px;"><input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_objection != ''){ echo 'checked'; } ?>>  Received Above Machines/System For stamping & Verification, no any Bojection <br>
           <input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_condition != ''){ echo 'checked'; } ?>> Received our Machine in Good Condition. </p>
       </td>
-
-
     </tr>
 
 

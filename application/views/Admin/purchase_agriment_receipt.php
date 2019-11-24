@@ -59,7 +59,6 @@ include('head.php');
             ?>
             <!-- Main content -->
             <div class="invoice p-3 mb-3">
-
               <table class="table table-bordered mb-0 invoice-table">
               <style media="screen">
                 .invoice-table td{
@@ -75,7 +74,6 @@ include('head.php');
                 }
               </style>
         <tr>
-
           <td colspan="3">
             <div class="row">
               <div class="col-md-4">
@@ -120,28 +118,23 @@ include('head.php');
           <td style="padding:0px!important;">
           <p style="font-size:14px; margin-bottom:3px; margin-top:3px; padding-left:10px;"><b>PO No.  <?php echo $purchase_agreement_data->purchase_order_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
           <p style="font-size:14px; margin-bottom:3px; margin-top:3px; padding-left:10px;"> <b>Date : </b>&nbsp;  <strong><?php echo $purchase_agreement_data->purchase_date; ?></strong></p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
-
           <!-- <p style="font-size:14px; margin-bottom:3px; margin-top:3px;"><b>vehicle No.  MH-09 AK 1218</b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
          <p style="font-size:14px; margin-bottom:3px; margin-top:3px;"> <b>Transport  </b>&nbsp;  </p> -->
         </td>
       </tr>
       </table>
 
-
       <div class="row">
       <div class="col-12 table-responsive">
         <table class="table table-botttom">
           <style media="screen">
           .table-bottom {
-    border-collapse: collapse;
-  }
-
-  .table-bottom, tr, td{
-
-          border: 1px solid #000;
-
-          margin-left: auto;
-          margin-right: auto;
+            border-collapse: collapse;
+          }
+          .table-bottom, tr, td{
+            border: 1px solid #000;
+            margin-left: auto;
+            margin-right: auto;
           }
           </style>
           <thead>
@@ -161,7 +154,6 @@ include('head.php');
           </tr>
           </thead>
           <tbody>
-
             <?php
             $i = 0;
             foreach ($purchase_trans_data as $trans_data) {
@@ -193,24 +185,34 @@ include('head.php');
           </tr>
 
         <?php } } ?>
-
+        <?php
+        $purchase_accss = $purchase_agreement_data->purchase_accss;
+        if(isset($purchase_accss)){
+          $val = explode('_',$purchase_accss);
+        } ?>
           <tr>
             <td colspan="6">
-              <p> Basic Price : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><?php echo $purchase_agreement_data->purchase_basic_price; ?></b> </p>
-              <p>Govt Stamping :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $purchase_agreement_data->purchase_stamping; ?></p>
-              <p>Total : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <?php echo $purchase_agreement_data->purchase_total; ?></p>
-              <p>Advance Received :  &nbsp;&nbsp; <?php echo $purchase_agreement_data->purchase_advance; ?></p>
-              <p>Balance Due : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $purchase_agreement_data->purchase_due; ?></p>
-              <p>Delivery Period : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $purchase_agreement_data->purchase_del_period; ?></p>
+              <p>Basic Price : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+                &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_basic_price, 2, '.', ''); ?></b> </p>
+              <p>Govt Stamping :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_stamping, 2, '.', ''); ?></p>
+              <p>Total : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_total, 2, '.', ''); ?></p>
+              <p>Advance Received :  &nbsp;&nbsp;
+                &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_advance, 2, '.', ''); ?></p>
+              <p>Balance Due : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_due, 2, '.', ''); ?></p>
+              <p>Delivery Period : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_del_period, 2, '.', ''); ?></p>
             </td>
             <td colspan="6"> <p>  <b>Accessories Guide :</b> </p>
-                            <p> <input type="checkbox" > 1) Extra Display : Stand / On Machine / Detachable</p>
-                            <p> <input type="checkbox" > 2) Battery </p>
-                            <p><input type="checkbox" > 3) Charger</p>
-                            <p><input type="checkbox" > 4) Wind Shield </p>
-                            <p><input type="checkbox" > 5) Rs-232-C COMPUTER INTERFACE</p>
-                            <p><input type="checkbox" > 6) BOWL : FLAT/ ROUND </p>
-                            <p><input type="checkbox" > 7) Others</p>
+                            <p> <input type="checkbox" <?php if(isset($purchase_accss) && $val[0] == 'Extra Display'){ echo 'checked'; } ?>> 1) Extra Display : Stand / On Machine / Detachable</p>
+                            <p> <input type="checkbox" <?php if(isset($purchase_accss) && $val[1] == 'Battery'){ echo 'checked'; } ?>> 2) Battery </p>
+                            <p><input type="checkbox" <?php if(isset($purchase_accss) && $val[2] == 'Charger'){ echo 'checked'; } ?>> 3) Charger</p>
+                            <p><input type="checkbox" <?php if(isset($purchase_accss) && $val[3] == 'Wind'){ echo 'checked'; } ?>> 4) Wind Shield </p>
+                            <p><input type="checkbox" <?php if(isset($purchase_accss) && $val[4] == 'INTERFACE'){ echo 'checked'; } ?>> 5) Rs-232-C COMPUTER INTERFACE</p>
+                            <p><input type="checkbox" <?php if(isset($purchase_accss) && $val[5] == 'Bowl'){ echo 'checked'; } ?>> 6) BOWL : FLAT/ ROUND </p>
+                            <p><input type="checkbox" <?php if(isset($purchase_accss) && $val[6] == 'Others'){ echo 'checked'; } ?>> 7) Others</p>
              </td>
           </tr>
 

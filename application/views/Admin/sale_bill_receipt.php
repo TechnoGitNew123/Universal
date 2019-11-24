@@ -107,11 +107,9 @@ include('head.php');
 
           <p style="font-size:14px; margin-bottom:3px; margin-top:3px;"> &nbsp;<b> DC No.  <?php echo $sale_bill_data->sale_challan_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
          <p style="font-size:14px; margin-bottom:3px; margin-top:3px;">&nbsp; <b> Employee : <?php echo $sale_bill_data->user_name; ?> </b>&nbsp;  </p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
-
         </td>
       </tr>
       </table>
-
 
       <div class="row">
       <div class="col-12 table-responsive">
@@ -142,7 +140,6 @@ include('head.php');
           </tr>
           </thead>
           <tbody>
-
             <?php
               $i = 0;
               foreach ($sale_trans_data as $trans_data) {
@@ -162,21 +159,16 @@ include('head.php');
                 <td><?php echo $trans_data->sale_trans_amount; ?></td>
               </tr>
         <?php } ?>
-
-
-
           <tr>
             <td colspan="6"></td>
               <td colspan="3"><p>BASIC AMOUNT : </p> </td>
-              <td colspan="3"><p> <b><?php echo $sale_bill_data->total_base_amount; ?></b> </p></td>
+              <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$sale_bill_data->total_base_amount, 2, '.', ''); ?></b> </p></td>
           </tr>
-
           <tr>
             <td colspan="6"> <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($sale_bill_data->sale_total); ?> Only</b> </p> </td>
             <td colspan="3"><p>GRAND TOTAL : </p> </td>
-            <td colspan="3"><p> <b><?php echo $sale_bill_data->sale_total; ?></b> </p></td>
+            <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$sale_bill_data->sale_total, 2, '.', ''); ?></b> </p></td>
           </tr>
-
           <tr>
             <td colspan="12"> <p style="float:right;"> <b> For <?php echo $company_name; ?> </b> </p>
             </td>

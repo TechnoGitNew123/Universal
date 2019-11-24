@@ -178,13 +178,13 @@ include('head.php');
           <tr>
             <td colspan="6"></td>
               <td colspan="2"><p>BASIC AMOUNT : </p> </td>
-              <td colspan="1"><p> <b><?php echo $repairy_bill_data->repairy_basic_charge; ?></b> </p></td>
+              <td colspan="1"><p> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_basic_charge, 2, '.', ''); ?></b> </p></td>
           </tr>
 
           <tr>
             <td colspan="6"> <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($repairy_bill_data->repairy_total); ?> Only</b> </p> </td>
             <td colspan="2"><p>GRAND TOTAL : </p> </td>
-            <td colspan="1"><p> <b><?php echo $repairy_bill_data->repairy_total; ?></b> </p></td>
+            <td colspan="1"><p> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_total, 2, '.', ''); ?></b> </p></td>
           </tr>
 
           <tr>
