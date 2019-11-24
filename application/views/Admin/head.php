@@ -3,8 +3,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Universal Digital System | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
+  <link rel="shortcut icon" href="<?php echo base_url() ?>assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<?php echo base_url() ?>assets/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">

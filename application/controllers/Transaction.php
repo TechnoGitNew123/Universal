@@ -463,7 +463,7 @@ class Transaction extends CI_Controller{
    if($deliveryData){
      $i = 0;
      foreach ($deliveryData as $info){
-       
+
        $i++;
      }
    }
@@ -1507,5 +1507,10 @@ public function expense_voucher_list(){
       header('location:'.base_url().'Login');
     }
   }
+
+  public function party_all_info(){
+      $this->load->view('Admin/party_all_info');
+    }
+
 
 }
