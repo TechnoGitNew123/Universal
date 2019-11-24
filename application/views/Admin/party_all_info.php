@@ -46,7 +46,10 @@
                     <div class="card-body row">
                     <div class="form-group col-md-8">
                       <select class="form-control select2 form-control-sm" title="Select Party" style="width: 100%;">
-                    <option selected="selected">Select Party</option>
+                        <option selected="selected" value="" >Select Party Name</option>
+                        <?php foreach ($party_list as $party_list1) { ?>
+                          <option value="<?php echo $party_list1->party_id; ?>" <?php if(isset($party_id)){ if($party_list1->party_id == $party_id){ echo "selected"; } }  ?>><?php echo $party_list1->party_firm; ?></option>
+                        <?php } ?>
                   </select>
                     </div>
                       <div class="form-group col-md-2 ">

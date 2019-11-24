@@ -1509,7 +1509,14 @@ public function expense_voucher_list(){
   }
 
   public function party_all_info(){
-      $this->load->view('Admin/party_all_info');
+    $company_id = $this->session->userdata('company_id');
+    if($company_id){
+      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+        $this->load->view('Admin/party_all_info', $data);
+    } else{
+      header('location:'.base_url().'Login');
+    }
+
     }
 
 
