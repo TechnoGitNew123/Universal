@@ -79,6 +79,14 @@ include('head.php');
                   <div class="form-group col-md-4">
                     <input type="text" class="form-control form-control-sm" name="delivery_docket_no" id="delivery_docket_no" value="<?php if(isset($delivery_docket_no)){ echo $delivery_docket_no; } ?>" placeholder="LR/Docket No.">
                   </div>
+                  <div class="form-group col-md-8 offset-md-2">
+                    <select class="form-control select2 form-control-sm" name="delivery_user" required>
+                      <option selected="selected" value="" >Select Employee</option>
+                      <?php foreach ($user_list as $user_list1) { ?>
+                      <option value="<?php echo $user_list1->user_id; ?>" <?php if(isset($delivery_user)){ if($user_list1->user_id == $delivery_user){ echo "selected"; } }  ?>><?php echo $user_list1->user_name; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
                 </div>
               <!-- </form> -->
               <div class=" w-100 text-right">

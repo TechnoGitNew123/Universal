@@ -101,24 +101,30 @@ table{
 <?php if(isset($complaint_service)){
   $val = explode('_',$complaint_service);
 } ?>
-<td width="25%" colspan="2" style="border-right:0px!important; padding-left: 5px; padding-top:5px;" >
+<td width="25%" colspan="2" style="border-right:0px!important; padding-left: 5px;" valign="top" >
  <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>New Installation</b> &nbsp;&nbsp;
    <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'New Installation'){ echo 'checked'; } ?>> </p>
  <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Warranty</b> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-   <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'Warranty'){ echo 'checked'; } ?>> </p>
+   <input type="checkbox" <?php if(isset($complaint_service) && $val[2] == 'Warranty'){ echo 'checked'; } ?>> </p>
  <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>AMC</b> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'AMC'){ echo 'checked'; } ?>> </p>
+   <input type="checkbox" <?php if(isset($complaint_service) && $val[6] == 'AMC'){ echo 'checked'; } ?>> </p>
+   <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Charged Call</b>
+     &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="checkbox" <?php if(isset($complaint_service) && $val[7] == 'Charged Call'){ echo 'checked'; } ?>>
      <!-- <p  style="font-size:16px; margin-bottom:5px; padding-top:5px; text-align:left;"> <b>Service Charges Rs. <?php echo $service_charges_fee; ?></b>  </p> -->
 </td>
 
-<td width="25%" colspan="2" style="border-left:0px!important; padding-left: 5px; padding-top:5px; " >
-<p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>R/S</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'R/S'){ echo 'checked'; } ?>> </p>
-  <p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Call </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'Call'){ echo 'checked'; } ?>> </p>
-<p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Charged Call</b> &nbsp;
-  <input type="checkbox" <?php if(isset($complaint_service) && $val[0] == 'Charged Call'){ echo 'checked'; } ?>> </p>
-<p style="font-size:16px; margin-bottom:5px; padding-top:5px;"> <b></b> &nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<td width="25%" colspan="2" style="border-left:0px!important; padding-left: 5px;" valign="top" >
+<p style="margin-left: -20px; font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Weighting Scale Rep</b>
+  <input type="checkbox" <?php if(isset($complaint_service) && $val[1] == 'Weighting Scale Rep. Call'){ echo 'checked'; } ?>> </p>
+  <p style="margin-left: -20px;font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Godrej Repairy Call </b>
+  <input type="checkbox" <?php if(isset($complaint_service) && $val[5] == 'Godrej Repairy Call'){ echo 'checked'; } ?>> </p>
+  <p style="margin-left: -20px;font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Indoor Call</b>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="checkbox" <?php if(isset($complaint_service) && $val[3] == 'Indoor Call'){ echo 'checked'; } ?>> </p>
+  <p style="margin-left: -20px;font-size:16px; margin-bottom:5px; padding-top:5px;"> <b>Outdoor Call</b>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="checkbox" <?php if(isset($complaint_service) && $val[3] == 'Outdoor Call'){ echo 'checked'; } ?>> </p>
 
 </td>
 </tr>

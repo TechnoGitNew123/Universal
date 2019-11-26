@@ -138,6 +138,7 @@ class Transaction extends CI_Controller{
       $data['delivery_no'] = $this->Transaction_Model->get_count_no($company_id,'delivery_no','uni_delivery_master');
       $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
       $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+      $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
       $this->load->view('Admin/delivery_challan',$data);
     } else{
       header('location:'.base_url().'Login');
@@ -164,6 +165,7 @@ class Transaction extends CI_Controller{
         'delivery_party' => $this->input->post('delivery_party'),
         'delivery_transport' => $this->input->post('delivery_transport'),
         'delivery_docket_no' => $this->input->post('delivery_docket_no'),
+        'delivery_user' => $this->input->post('delivery_user'),
         'delivery_terms' => $this->input->post('delivery_terms'),
         'delivery_basic' => $this->input->post('delivery_basic'),
         'delivery_gst' => $this->input->post('delivery_gst'),
@@ -190,6 +192,7 @@ class Transaction extends CI_Controller{
     if($company_id){
       $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
       $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+      $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
       $delivery_challan_data = $this->Transaction_Model->delivery_challan_data($company_id,$delivery_id);
 
       if($delivery_challan_data){
@@ -203,6 +206,7 @@ class Transaction extends CI_Controller{
           $data['party_firm'] = $challan_data->party_firm;
           $data['delivery_transport'] = $challan_data->delivery_transport;
           $data['delivery_docket_no'] = $challan_data->delivery_docket_no;
+          $data['delivery_user'] = $challan_data->delivery_user;
           $data['delivery_terms'] = $challan_data->delivery_terms;
           $data['delivery_basic'] = $challan_data->delivery_basic;
           $data['delivery_gst'] = $challan_data->delivery_gst;
@@ -226,6 +230,7 @@ class Transaction extends CI_Controller{
         'delivery_party' => $this->input->post('delivery_party'),
         'delivery_transport' => $this->input->post('delivery_transport'),
         'delivery_docket_no' => $this->input->post('delivery_docket_no'),
+        'delivery_user' => $this->input->post('delivery_user'),
         'delivery_terms' => $this->input->post('delivery_terms'),
         'delivery_basic' => $this->input->post('delivery_basic'),
         'delivery_gst' => $this->input->post('delivery_gst'),
@@ -653,6 +658,7 @@ class Transaction extends CI_Controller{
        'govt_stamp_date' => $this->input->post('govt_stamp_date'),
        'govt_stamp_party' => $this->input->post('govt_stamp_party'),
        'govt_stamp_division' => $this->input->post('govt_stamp_division'),
+       'govt_stamp_trade' => $this->input->post('govt_stamp_trade'),
        'govt_stamp_vc_no' => $this->input->post('govt_stamp_vc_no'),
        'govt_stamp_vc_date' => $this->input->post('govt_stamp_vc_date'),
        'govt_stamp_grn_no' => $this->input->post('govt_stamp_grn_no'),
@@ -712,6 +718,7 @@ class Transaction extends CI_Controller{
          $data['party_id'] = $govt_data->party_id;
          $data['party_firm'] = $govt_data->party_firm;
          $data['govt_stamp_division'] = $govt_data->govt_stamp_division;
+         $data['govt_stamp_trade'] = $govt_data->govt_stamp_trade;
          $data['division_id'] = $govt_data->division_id;
          $data['division_name'] = $govt_data->division_name;
          $data['govt_stamp_vc_no'] = $govt_data->govt_stamp_vc_no;
@@ -747,6 +754,7 @@ class Transaction extends CI_Controller{
          'govt_stamp_date' => $this->input->post('govt_stamp_date'),
          'govt_stamp_party' => $this->input->post('govt_stamp_party'),
          'govt_stamp_division' => $this->input->post('govt_stamp_division'),
+         'govt_stamp_trade' => $this->input->post('govt_stamp_trade'),
          'govt_stamp_vc_no' => $this->input->post('govt_stamp_vc_no'),
          'govt_stamp_vc_date' => $this->input->post('govt_stamp_vc_date'),
          'govt_stamp_grn_no' => $this->input->post('govt_stamp_grn_no'),

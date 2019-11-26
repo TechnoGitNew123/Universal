@@ -84,11 +84,12 @@ class Transaction_Model extends CI_Model{
   }
   // Get Delivery Challan Data...
   public function delivery_challan_data($company_id,$delivery_id){
-    $query = $this->db->select('delivery.*, party.*')
+    $query = $this->db->select('delivery.*, party.*, user.*')
         ->from('uni_delivery_master as delivery')
         ->where('delivery.company_id', $company_id)
         ->where('delivery.delivery_id', $delivery_id)
         ->join('uni_party as party', 'delivery.delivery_party = party.party_id', 'LEFT')
+        ->join('uni_user as user', 'delivery.delivery_user = user.user_id', 'LEFT')
         ->get();
     $result = $query->result();
     return $result;

@@ -68,7 +68,6 @@ include('head.php');
           }
         </style>
         <tr>
-
           <td colspan="3">
             <div class="row">
               <div class="col-md-4">
@@ -92,7 +91,6 @@ include('head.php');
               </div>
             </div>
           </td>
-
         </tr>
         <tr>
           <td style="border-right:0px!important; padding-left: 20px; padding-top:25px;" >
@@ -102,31 +100,29 @@ include('head.php');
             <p style="font-size:16px; margin-bottom:5px;"><?php echo $govt_stamp_data->division_head.' '; ?></p>
             <p style="font-size:16px; margin-bottom:5px;"><?php echo $govt_stamp_data->division_name.' '; ?></p>
             <!-- <p style="font-size:16px; margin-bottom:5px;">DIST</p> -->
-
             </address>
             </td>
-            <td style="border-right:0px!important; padding-left: 20px; padding-top:25px;" >
-              <address>
-                <br>
-               <p style="font-size:16px; margin-bottom:5px;"><strong>Party Name and Address</strong></p>
-              <p style="font-size:16px; margin-bottom:5px;"> <?php echo $govt_stamp_data->party_firm; ?></p>
-              <p style="font-size:16px; margin-bottom:5px;">
-                 <?php echo $govt_stamp_data->party_address.' '; ?>
-                 <?php echo $govt_stamp_data->party_area.' '; ?>
-                 <?php echo $govt_stamp_data->party_taluka.' '; ?>
-                 <?php echo $govt_stamp_data->party_district.' '; ?>
-               </p>
-              <p style="font-size:16px; margin-bottom:5px;">Sate : <?php echo $govt_stamp_data->party_state.' '; ?></p>
-              <p style="font-size:16px; margin-bottom:5px;"> Contact No. <?php echo $govt_stamp_data->party_mob1.' '; ?></p>
-              </address>
-              </td>
+        <td style="border-right:0px!important; padding-left: 20px; padding-top:25px;" >
+          <address>
+            <br>
+           <p style="font-size:16px; margin-bottom:5px;"><strong>Party Name and Address</strong></p>
+          <p style="font-size:16px; margin-bottom:5px;"> <?php echo $govt_stamp_data->party_firm; ?></p>
+          <p style="font-size:16px; margin-bottom:5px;">
+             <?php echo $govt_stamp_data->party_address.' '; ?>
+             <?php echo $govt_stamp_data->party_area.' '; ?>
+             <?php echo $govt_stamp_data->party_taluka.' '; ?>
+             <?php echo $govt_stamp_data->party_district.' '; ?>
+           </p>
+          <p style="font-size:16px; margin-bottom:5px;">Sate : <?php echo $govt_stamp_data->party_state.' '; ?></p>
+          <p style="font-size:16px; margin-bottom:5px;"> Contact No. <?php echo $govt_stamp_data->party_mob1.' '; ?></p>
+          </address>
+          </td>
           <td style="padding:0px!important; border-left:0px!important;">
-          <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important;"><b>No.  <?php echo $govt_stamp_data->govt_stamp_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
-          <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important;"> <b>Date : </b>&nbsp;  <strong><?php echo $govt_stamp_data->govt_stamp_date; ?></strong></p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
+            <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important;"><b>No.  <?php echo $govt_stamp_data->govt_stamp_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
+            <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important;"> <b>Date : </b>&nbsp;  <strong><?php echo $govt_stamp_data->govt_stamp_date; ?></strong></p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
           </td>
       </tr>
       </table>
-
 
       <div class="row">
       <div class="col-12 table-responsive">
@@ -181,8 +177,8 @@ include('head.php');
         <?php } ?>
           <tr style="border-bottom:0px!important;">
             <td colspan="6" style="border-bottom:0px!important;">  <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($total); ?> Only</b> </p> </td>
-            <td colspan="3"  style="border-right:0px!important;"> </td>
-            <td colspan="3" style="border-left:0px!important;"></td>
+            <td colspan="3"  style=""> </td>
+            <td colspan="3" style=""></td>
           </tr>
           <tr>
             <td colspan="3" style="border-bottom:0px!important; border-right:0px!important;"><p>V.C. No. <?php echo $govt_stamp_data->govt_stamp_vc_no; ?><br> <br> </p></td>

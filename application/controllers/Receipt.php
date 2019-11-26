@@ -573,4 +573,66 @@ class Receipt extends CI_Controller{
      header('location:'.base_url().'Login');
    }
  }
+
+
+
+ public function service_report_blank($complaint_id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id){
+     $company_info = $this->Admin_Model->get_info('company_id', $company_id, 'uni_company');
+     foreach ($company_info as $company_info) {
+       $data['company_name'] = $company_info->company_name;
+       $data['company_address'] = $company_info->company_address;
+       $data['company_city'] = $company_info->company_city;
+       $data['company_district'] = $company_info->company_district;
+       $data['company_state'] = $company_info->company_state;
+       $data['company_pincode'] = $company_info->company_pincode;
+       $data['company_mob1'] = $company_info->company_mob1;
+       $data['company_mob2'] = $company_info->company_mob2;
+       $data['company_email'] = $company_info->company_email;
+       $data['company_website'] = $company_info->company_website;
+     }
+
+     $complaint_info = $this->Transaction_Model->get_complaint_info($company_id, $complaint_id);
+     foreach($complaint_info as $info){
+       $data['complaint_id'] = $info->complaint_id;
+       $data['complaint_no'] = $info->complaint_no;
+       $data['complaint_date'] = $info->complaint_date;
+       $data['party_id'] = $info->party_id;
+       $data['party_firm'] = $info->party_firm;
+       $data['party_address'] = $info->party_address;
+       $data['party_mob1'] = $info->party_mob1;
+       $data['complaint_service'] = $info->complaint_service;
+       $data['complaint_reporting'] = $info->complaint_reporting;
+       $data['complaint_person'] = $info->complaint_person;
+       $data['complaint_contact_no'] = $info->complaint_contact_no;
+       $data['complaint_engeeneer'] = $info->complaint_engeeneer;
+
+       $data['user_name'] = $info->user_name;
+       $data['user_mobile'] = $info->user_mobile;
+
+       $data['service_no'] = '';
+       $data['service_id'] = '';
+       $data['service_date'] = '';
+       $data['make_id'] = '';
+       $data['make_name'] = '';
+       $data['model_no'] = '';
+       $data['product_model_no'] = '';
+       $data['service_sr_no'] = '';
+       $data['service_range'] = '';
+       $data['service_stamping'] = '';
+       $data['service_observation'] = '';
+       $data['service_recommend'] = '';
+       $data['service_component'] = '';
+       $data['service_call_completion'] = '';
+       $data['service_charges_fee'] = '';
+       $data['service_date'] = '';
+       $data['service_time_in'] = '';
+       $data['service_time_out'] = '';
+     }
+     $this->load->view('Admin/service_report_print',$data);
+   } else{
+     header('location:'.base_url().'Login');
+   }
+ }
 }

@@ -232,7 +232,9 @@ margin-right: auto;
     <p>Balance Due : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_due, 2, '.', ''); ?></p>
     <p>Delivery Period : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &#8377; <?php echo number_format((float)$purchase_agreement_data->purchase_del_period, 2, '.', ''); ?></p>
+      <?php echo $purchase_agreement_data->purchase_del_period.' Days'; ?></p>
+      <p>Payment Terms : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <?php echo $purchase_agreement_data->purchase_pay_terms; ?></p>
    </td>
    <?php
    $purchase_accss = $purchase_agreement_data->purchase_accss;

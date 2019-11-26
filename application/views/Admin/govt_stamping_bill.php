@@ -69,11 +69,9 @@ include('head.php');
                       <?php } ?>
                     </select>
                   </div>
-
                   <div class="form-group col-md-2">
                     <a href="accessories_information" class="btn btn-sm btn-block btn-primary">Add New Party</a>
                   </div>
-
                   <div class="form-group col-md-8 offset-md-2">
                     <select class="form-control select2 form-control-sm" name="govt_stamp_division" style="width: 100%;" required>
                       <option selected="selected" value="" >Select Division / Camp</option>
@@ -81,6 +79,9 @@ include('head.php');
                       <option value="<?php echo $division_list1->division_id; ?>" <?php if(isset($govt_stamp_division)){ if($division_list1->division_id == $govt_stamp_division){ echo "selected"; } }  ?>><?php echo $division_list1->division_name; ?></option>
                       <?php } ?>
                     </select>
+                  </div>
+                  <div class="form-group col-md-8 offset-md-2">
+                    <input type="text" class="form-control form-control-sm" name="govt_stamp_trade" id="govt_stamp_trade" value="<?php if(isset($govt_stamp_trade)){ echo $govt_stamp_trade; } ?>" placeholder="Trade of Business">
                   </div>
                   <!-- <div class="form-group col-md-2">
                   </div> -->
