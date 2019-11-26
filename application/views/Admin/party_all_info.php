@@ -312,14 +312,7 @@ $("#party").on("change", function(){
       $('#party_business').html(data['party_business']);
       $('#party_email').html(data['party_email']);
       $('#party_website').html(data['party_website']);
-      // $(this).closest('tr').find('.capacity').html('<option value="'+data['capacity_id']+'">'+data['capacity_name']+'</option>');
-      // $(this).closest('tr').find('.accuracy').html('<option value="'+data['accuracy_id']+'">'+data['accuracy_name']+'</option>');
-      // $(this).closest('tr').find('.class').html('<option value="'+data['class_id']+'">'+data['class_name']+'</option>');
-      // $(this).closest('tr').find('.platter').html('<option value="'+data['platter_id']+'">'+data['platter_size']+'</option>');
-      //
-      // $(this).closest('tr').find('.rate').val(data['sale_price']);
-      // $(this).closest('tr').find('.gst').val('');
-      // $(this).closest('tr').find('.qty').val('');
+    
     }
   });
 });
