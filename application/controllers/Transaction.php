@@ -14,18 +14,45 @@ class Transaction extends CI_Controller{
   public function enquiry_list(){
     $company_id = $this->session->userdata('company_id');
     if($company_id){
-      $data['enquiry_list'] = $this->Transaction_Model->get_enquiry_list($company_id);
+      $party_id = $this->input->post('party_id');
+      if(!isset($party_id)){
+        $party_id = null;
+      }
+      $data['enquiry_list'] = $this->Transaction_Model->get_enquiry_list($company_id,$party_id);
+      $data['party_id'] = $party_id;
       $this->load->view('Admin/enquiry_list', $data);
     } else{
       header('location:'.base_url().'Login');
     }
   }
   // Add Enquiry...
-  public function add_enquiry(){
+  public function add_enquiry($party_id){
     $company_id = $this->session->userdata('company_id');
     if($company_id){
-      $this->load->view('Admin/add_enquiry');
-    } else{
+      $party_info = $this->Admin_Model->get_info('party_id', $party_id, 'uni_party');
+      if($party_info){
+        foreach($party_info as $info){
+          $data['party_id'] = $info->party_id;
+          $data['party_firm'] = $info->party_firm;
+          $data['party_address'] = $info->party_address;
+          $data['party_area'] = $info->party_area;
+          $data['party_taluka'] = $info->party_taluka;
+          $data['party_district'] = $info->party_district;
+          $data['party_pin'] = $info->party_pin;
+          $data['party_mob1'] = $info->party_mob1;
+          $data['party_mob2'] = $info->party_mob2;
+          $data['party_email'] = $info->party_email;
+          $data['party_state'] = $info->party_state;
+          $data['party_website'] = $info->party_website;
+          $data['party_gst_no'] = $info->party_gst_no;
+          $data['party_pan_no'] = $info->party_pan_no;
+          $data['party_proriter'] = $info->party_proriter;
+          $data['party_business'] = $info->party_business;
+          $data['party_status'] = $info->party_status;
+        }
+        $this->load->view('Admin/add_enquiry',$data);
+      }
+    }else{
       header('location:'.base_url().'Login');
     }
   }
@@ -35,22 +62,10 @@ class Transaction extends CI_Controller{
     if($company_id){
       $data = array(
         'company_id' => $company_id,
-        'party_firm' => $this->input->post('party_firm'),
-        'party_address' => $this->input->post('party_address'),
-        'party_area' => $this->input->post('party_area'),
-        'party_taluka' => $this->input->post('party_taluka'),
-        'party_district' => $this->input->post('party_district'),
-        'party_pin' => $this->input->post('party_pin'),
-        'party_mob1' => $this->input->post('party_mob1'),
-        'party_mob2' => $this->input->post('party_mob2'),
-        'party_email' => $this->input->post('party_email'),
-        'party_website' => $this->input->post('party_website'),
-        'party_gst_no' => $this->input->post('party_gst_no'),
-        'party_pan_no' => $this->input->post('party_pan_no'),
-        'party_business' => $this->input->post('party_business'),
-        'party_type' => 'enquiry',
+        'party_id' => $this->input->post('party_id'),
+        'requirment' => $this->input->post('requirment'),
       );
-      $this->Admin_Model->save_data('uni_party', $data);
+      $this->Admin_Model->save_data('uni_enquiry', $data);
       header('location:enquiry_list');
     } else{
       header('location:'.base_url().'Login');
@@ -58,14 +73,16 @@ class Transaction extends CI_Controller{
   }
 
   //edit Enquiry...
-  public function edit_enquiry($id){
+  public function edit_enquiry($enquiry_id){
     $company_id = $this->session->userdata('company_id');
     $admin_roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
-      $party_info = $this->Admin_Model->get_info('party_id', $id, 'uni_party');
-      if($party_info){
-        foreach($party_info as $info){
+      $enquiry_info = $this->Transaction_Model->get_enquiry_details($enquiry_id);
+
+      if($enquiry_info){
+        foreach($enquiry_info as $info){
           $data['update'] = 'update';
+          $data['enquiry_id'] = $info->enquiry_id;
           $data['party_id'] = $info->party_id;
           $data['party_firm'] = $info->party_firm;
           $data['party_address'] = $info->party_address;
@@ -79,7 +96,7 @@ class Transaction extends CI_Controller{
           $data['party_website'] = $info->party_website;
           $data['party_gst_no'] = $info->party_gst_no;
           $data['party_pan_no'] = $info->party_pan_no;
-          $data['party_requirment'] = $info->party_requirment;
+          $data['requirment'] = $info->requirment;
           $data['party_business'] = $info->party_business;
           $data['party_status'] = $info->party_status;
         }
@@ -94,35 +111,24 @@ class Transaction extends CI_Controller{
     $company_id = $this->session->userdata('company_id');
     $admin_roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
-      $party_id = $this->input->post('party_id');
+      $enquiry_id = $this->input->post('enquiry_id');
       $data = array(
-        'party_firm' => $this->input->post('party_firm'),
-        'party_address' => $this->input->post('party_address'),
-        'party_area' => $this->input->post('party_area'),
-        'party_taluka' => $this->input->post('party_taluka'),
-        'party_district' => $this->input->post('party_district'),
-        'party_pin' => $this->input->post('party_pin'),
-        'party_mob1' => $this->input->post('party_mob1'),
-        'party_mob2' => $this->input->post('party_mob2'),
-        'party_email' => $this->input->post('party_email'),
-        'party_website' => $this->input->post('party_website'),
-        'party_gst_no' => $this->input->post('party_gst_no'),
-        'party_pan_no' => $this->input->post('party_pan_no'),
-        'party_requirment' => $this->input->post('party_requirment'),
-        'party_business' => $this->input->post('party_business'),
+        'company_id' => $company_id,
+        'party_id' => $this->input->post('party_id'),
+        'requirment' => $this->input->post('requirment'),
       );
-      $this->Admin_Model->update_info('party_id', $party_id, 'uni_party', $data);
+      $this->Admin_Model->update_info('enquiry_id', $enquiry_id, 'uni_enquiry', $data);
       header('location:enquiry_list');
     } else{
       header('location:'.base_url().'Login');
     }
   }
   // Delete Enquiry...
-  public function delete_enquiry($id){
+  public function delete_enquiry($enquiry_id){
     $company_id = $this->session->userdata('company_id');
     $admin_roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
-      $this->Admin_Model->delete_info('party_id', $id, 'uni_party');
+      $this->Admin_Model->delete_info('enquiry_id', $enquiry_id, 'uni_enquiry');
       header('location:../enquiry_list');
     } else{
       header('location:'.base_url().'Login');
@@ -148,7 +154,11 @@ class Transaction extends CI_Controller{
   public function delivery_challan_list(){
     $company_id = $this->session->userdata('company_id');
     if($company_id){
-      $data['delivery_challan_list'] = $this->Transaction_Model->delivery_challan_list($company_id);
+      $party_id = $this->input->post('party_id');
+      if(!isset($party_id)){
+        $party_id = null;
+      }
+      $data['delivery_challan_list'] = $this->Transaction_Model->delivery_challan_list($company_id,$party_id);
       $this->load->view('Admin/delivery_challan_list',$data);
     } else{
       header('location:'.base_url().'Login');
@@ -1575,8 +1585,7 @@ public function expense_voucher_list(){
     } else{
       header('location:'.base_url().'Login');
     }
-
-    }
+  }
 
     public function GetPartyDetails(){
       $party_id = $this->input->post('party_id');
@@ -1597,6 +1606,21 @@ public function expense_voucher_list(){
         $data['party_email'] = $partyDetails ->party_email;
         $data['party_website'] = $partyDetails ->party_website;
       }
+
+      $total_sale_amount = $this->Transaction_Model->total_sale_amount($party_id);
+      $total_stamping_amount = $this->Transaction_Model->total_stamping_amount($party_id);
+      $total_repairy_amount = $this->Transaction_Model->total_repairy_amount($party_id);
+      $total_service_amount = $this->Transaction_Model->total_service_amount($party_id);
+      if(!$total_sale_amount){ $total_sale_amount = 0; }
+      if(!$total_stamping_amount){ $total_stamping_amount = 0; }
+      if(!$total_repairy_amount){ $total_repairy_amount = 0; }
+      if(!$total_service_amount){ $total_service_amount = 0; }
+
+      $total_bill = $total_sale_amount + $total_stamping_amount + $total_repairy_amount + $total_service_amount;
+
+      $total_reciept_amount = $this->Transaction_Model->total_reciept_amount($party_id);
+      $outstanding_amount = $total_bill - $total_reciept_amount;
+      $data['outstanding_amount'] = $outstanding_amount;
       echo json_encode($data);
     }
 

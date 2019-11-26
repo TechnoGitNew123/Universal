@@ -213,25 +213,25 @@ table{
 
     <tr style="border-bottom:0px!important;">
       <td colspan="6" style="border-bottom:0px!important;">  <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($total); ?> Only</b> </p> </td>
-        <td colspan="3"  style="border-right:0px!important;"></td>
-        <td colspan="3" style="border-left:0px!important;"></td>
+        <td colspan="3"  style=""><p style="text-align:right;"><b>Govt. Fee : </b></p> </td>
+        <td colspan="3" style=""><p> <b>&#8377; <?php echo number_format((float)$total, 2, '.', ''); ?></b> </p></td>
     </tr>
 
     <tr style="border-bottom:0px!important;">
       <td colspan="3" style="border-bottom:0px!important; border-right:0px!important; border-bottom:0px!important;"><p style="font-size:12px;">V.C. No. <?php echo $govt_stamp_data->govt_stamp_vc_no; ?> </p></td>
       <td colspan="3" style="border-bottom:0px!important; border-left:0px!important;  border-bottom:0px!important;"><p style="font-size:12px;"> DATE : <?php echo $govt_stamp_data->govt_stamp_vc_date; ?></p> </td>
-      <td colspan="3"><p style="text-align:right;"><b>Govt. Fee : </b></p> </td>
-      <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$total, 2, '.', ''); ?></b> </p></td>
+      <td colspan="3"><p style="text-align:right;"><b>Late Fee : </b></p> </td>
+      <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_late_fee, 2, '.', ''); ?></td>
     </tr>
     <tr style="border-bottom:0px!important; border-top:0px!important;">
       <td colspan="6" style="border:0px!important;"><p style="font-size:12px;"></p></td>
-      <td colspan="3"><p style="text-align:right;"><b>Late Fee : </b></p> </td>
-      <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_late_fee, 2, '.', ''); ?></b> </p></td>
+      <td colspan="3"><p style="text-align:right;"><b>H.C.T.A.D.A. : </b></p></td>
+      <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_hctada, 2, '.', ''); ?></b> </p></td>
     </tr>
     <tr style="border-bottom:0px!important; border-top:0px!important;">
       <td colspan="6" style="border:0px!important;"><p style="font-size:12px;"></p></td>
       <td colspan="3"><p  style="text-align:right;"><b>Grand Total : </b></p> </td>
-      <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_late_fee + $total, 2, '.', ''); ?></b> </p></td>
+      <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$govt_stamp_data->govt_stamp_late_fee + $govt_stamp_data->govt_stamp_hctada + $total, 2, '.', ''); ?></b> </p></td>
     </tr>
 
     <tr style="border-top:0px!important; border-bottom:0px!important;">

@@ -37,53 +37,54 @@
               <!-- form start -->
               <?php if(isset($update)){ ?>
                 <form role="form" action="<?php echo base_url(); ?>Transaction/update_enquiry" method="post">
-                  <input type="hidden" name="party_id" value="<?php echo $party_id; ?>">
+                  <input type="hidden" name="enquiry_id" value="<?php echo $enquiry_id; ?>">
               <?php } else{ ?>
                 <form role="form" action="<?php echo base_url(); ?>Transaction/save_enquiry" method="post">
               <?php } ?>
                 <div class="card-body row">
+                  <input type="hidden" name="party_id" value="<?php echo $party_id; ?>">
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control" name="party_firm" id="party_firm" value="<?php if(isset($party_firm)){ echo $party_firm; } ?>" placeholder="Enter Name of Firm">
+                    <input type="text" class="form-control" name="party_firm" id="party_firm" value="<?php if(isset($party_firm)){ echo $party_firm; } ?>" placeholder="Enter Name of Firm" readonly>
                   </div>
                   <div class="form-group col-md-12">
-                    <textarea class="form-control" rows="3" name="party_address" id="party_address" placeholder="Enter Address"><?php if(isset($party_address)){ echo $party_address; } ?></textarea>
+                    <textarea class="form-control" rows="3" name="party_address" id="party_address" placeholder="Enter Address" readonly><?php if(isset($party_address)){ echo $party_address; } ?></textarea>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="party_area" id="party_area" value="<?php if(isset($party_area)){ echo $party_area; } ?>" placeholder="Enter Area/Village/Town">
+                    <input type="text" class="form-control" name="party_area" id="party_area" value="<?php if(isset($party_area)){ echo $party_area; } ?>" placeholder="Enter Area/Village/Town" readonly>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="party_taluka" id="party_taluka" value="<?php if(isset($party_taluka)){ echo $party_taluka; } ?>" placeholder="Enter Taluka">
+                    <input type="text" class="form-control" name="party_taluka" id="party_taluka" value="<?php if(isset($party_taluka)){ echo $party_taluka; } ?>" placeholder="Enter Taluka" readonly>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="party_district" id="party_district" value="<?php if(isset($party_district)){ echo $party_district; } ?>" placeholder="Enter District">
+                    <input type="text" class="form-control" name="party_district" id="party_district" value="<?php if(isset($party_district)){ echo $party_district; } ?>" placeholder="Enter District" readonly>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control" name="party_pin" id="party_pin" value="<?php if(isset($party_pin)){ echo $party_pin; } ?>" placeholder="Enter Pincode">
+                    <input type="number" class="form-control" name="party_pin" id="party_pin" value="<?php if(isset($party_pin)){ echo $party_pin; } ?>" placeholder="Enter Pincode" readonly>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control" name="party_mob1" id="party_mob1" value="<?php if(isset($party_mob1)){ echo $party_mob1; } ?>" placeholder="Mobile No. 1">
+                    <input type="number" class="form-control" name="party_mob1" id="party_mob1" value="<?php if(isset($party_mob1)){ echo $party_mob1; } ?>" placeholder="Mobile No. 1" readonly>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control" name="party_mob2" id="party_mob2" value="<?php if(isset($party_mob2)){ echo $party_mob2; } ?>" placeholder="Mobile No. 2">
+                    <input type="number" class="form-control" name="party_mob2" id="party_mob2" value="<?php if(isset($party_mob2)){ echo $party_mob2; } ?>" placeholder="Mobile No. 2" readonly>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="email" class="form-control" name="party_email" id="party_email" value="<?php if(isset($party_email)){ echo $party_email; } ?>" placeholder="Email">
+                    <input type="email" class="form-control" name="party_email" id="party_email" value="<?php if(isset($party_email)){ echo $party_email; } ?>" placeholder="Email" readonly>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="party_website" id="party_website" value="<?php if(isset($party_website)){ echo $party_website; } ?>" placeholder="Website">
+                    <input type="text" class="form-control" name="party_website" id="party_website" value="<?php if(isset($party_website)){ echo $party_website; } ?>" placeholder="Website" readonly>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="party_gst_no" id="party_gst_no" value="<?php if(isset($party_gst_no)){ echo $party_gst_no; } ?>" placeholder="GST No.">
+                    <input type="text" class="form-control" name="party_gst_no" id="party_gst_no" value="<?php if(isset($party_gst_no)){ echo $party_gst_no; } ?>" placeholder="GST No." readonly>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="party_pan_no" id="party_pan_no" value="<?php if(isset($party_pan_no)){ echo $party_pan_no; } ?>" placeholder="Pan No.">
+                    <input type="text" class="form-control" name="party_pan_no" id="party_pan_no" value="<?php if(isset($party_pan_no)){ echo $party_pan_no; } ?>" placeholder="Pan No." readonly>
                   </div>
                   <div class="form-group col-md-6">
                     <!-- <input type="text" class="form-control" name="" id="" > -->
-                    <textarea class="form-control" name="party_requirment" id="party_requirment" rows="4" cols="55" placeholder="Requirment details"><?php if(isset($party_requirment)){ echo $party_requirment; } ?></textarea>
+                    <textarea class="form-control" name="requirment" id="requirment" rows="4" cols="55" placeholder="Requirment details"><?php if(isset($requirment)){ echo $requirment; } ?></textarea>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="party_business" id="party_business" value="<?php if(isset($party_business)){ echo $party_business; } ?>" placeholder="Nature Of Business">
+                    <input type="text" class="form-control" name="party_business" id="party_business" value="<?php if(isset($party_business)){ echo $party_business; } ?>" placeholder="Nature Of Business" readonly>
                   </div>
                 </div>
                 <!-- /.card-body -->

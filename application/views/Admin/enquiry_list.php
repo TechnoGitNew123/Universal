@@ -38,9 +38,11 @@ include('head.php');
             <div class="card">
             <div class="card-header">
               <h3 class="card-title"><i class="fa fa-list"></i> List Enquiry Form</h3>
-              <div class="card-tools">
-                <a href="<?php echo base_url() ?>Transaction/add_enquiry" class="btn btn-sm btn-block btn-primary">Add Enquiry</a>
-              </div>
+              <?php if($party_id != ''){ ?>
+                <div class="card-tools">
+                  <a href="<?php echo base_url() ?>Transaction/add_enquiry/<?php echo $party_id; ?>" class="btn btn-sm btn-block btn-primary">Add Enquiry</a>
+                </div>
+              <?php } ?>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -65,15 +67,15 @@ include('head.php');
                   ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $enquiry_list1->party_date; ?></td>
+                    <td><?php echo $enquiry_list1->enquiry_date; ?></td>
                     <td><?php echo $enquiry_list1->party_business; ?></td>
                     <td><?php echo $enquiry_list1->party_firm; ?></td>
                     <td><?php echo $enquiry_list1->party_mob1; ?></td>
                     <td><?php echo $enquiry_list1->party_area; ?></td>
                     <td><?php echo $enquiry_list1->party_district; ?></td>
                     <td>
-                      <a href="edit_enquiry/<?php echo $enquiry_list1->party_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-4" href="delete_enquiry/<?php echo $enquiry_list1->party_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a href="edit_enquiry/<?php echo $enquiry_list1->enquiry_id; ?>"> <i class="fa fa-edit"></i> </a>
+                      <a class="ml-4" href="delete_enquiry/<?php echo $enquiry_list1->enquiry_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
                     </td>
                   </tr>
                   <?php  }  ?>

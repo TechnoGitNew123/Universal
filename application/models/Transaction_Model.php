@@ -40,15 +40,32 @@ class Transaction_Model extends CI_Model{
      return $result;
   }
 
-  public function get_enquiry_list($company_id){
-    $query = $this->db->select('*')
-        ->where('company_id', $company_id)
-        ->where('party_type', 'enquiry')
-        ->from('uni_party')
-        ->get();
+  // Get Enquiry List...
+  public function get_enquiry_list($company_id,$party_id){
+    $this->db->select('enquiry.*,party.*');
+    $this->db->from('uni_enquiry as enquiry');
+    $this->db->where('enquiry.company_id', $company_id);
+    if($party_id != null){
+      $this->db->where('enquiry.party_id', $party_id);
+    }
+    $this->db->order_by('enquiry.enquiry_id', 'DESC');
+    $this->db->join('uni_party as party', 'enquiry.party_id = party.party_id', 'LEFT');
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }
+
+  // Get Enquiry Info...
+  public function get_enquiry_details($enquiry_id){
+    $this->db->select('enquiry.*,party.*');
+    $this->db->from('uni_enquiry as enquiry');
+    $this->db->where('enquiry.enquiry_id', $enquiry_id);
+    $this->db->join('uni_party as party', 'enquiry.party_id = party.party_id', 'LEFT');
+    $query = $this->db->get();
+    $result = $query->result();
+    return $result;
+  }
+
 
   public function GetProduct($make_id){
     $query = $this->db->select('*')
@@ -72,16 +89,20 @@ class Transaction_Model extends CI_Model{
     return $result;
   }
   // Get Delivery Challan List...
-  public function delivery_challan_list($company_id){
-    $query = $this->db->select('delivery.*, party.*')
-        ->from('uni_delivery_master as delivery')
-        ->where('delivery.company_id', $company_id)
-        ->order_by('delivery.delivery_id', 'DESC')
-        ->join('uni_party as party', 'delivery.delivery_party = party.party_id', 'LEFT')
-        ->get();
+  public function delivery_challan_list($company_id,$party_id){
+    $this->db->select('delivery.*, party.*');
+    $this->db->from('uni_delivery_master as delivery');
+    $this->db->where('delivery.company_id', $company_id);
+    if($party_id != null){
+      $this->db->where('delivery.delivery_party', $party_id);
+    }
+    $this->db->order_by('delivery.delivery_id', 'DESC');
+    $this->db->join('uni_party as party', 'delivery.delivery_party = party.party_id', 'LEFT');
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }
+
   // Get Delivery Challan Data...
   public function delivery_challan_data($company_id,$delivery_id){
     $query = $this->db->select('delivery.*, party.*, user.*')

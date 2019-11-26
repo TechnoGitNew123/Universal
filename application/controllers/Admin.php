@@ -225,7 +225,7 @@ class Admin extends CI_Controller{
     $company_id = $this->session->userdata('company_id');
     $admin_roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
-      $party_info = $this->Admin_Model->get_party_list($company_id);
+      $party_info = $this->Admin_Model->get_info('party_id', $id, 'uni_party');
       if($party_info){
         foreach($party_info as $info){
           $data['update'] = 'update';
