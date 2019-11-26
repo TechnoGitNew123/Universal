@@ -11,14 +11,11 @@ include('head.php');
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
   <!-- Navbar -->
   <?php include('navbar.php'); ?>
   <!-- /.navbar -->
-
   <!-- Main Sidebar Container -->
   <?php include('sidebar.php'); ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -41,9 +38,9 @@ include('head.php');
             <div class="card">
             <div class="card-header">
               <h3 class="card-title"><i class="fa fa-list"></i> List Purchase Agreement</h3>
-              <div class="card-tools">
+              <!-- <div class="card-tools">
                 <a href="<?php echo base_url(); ?>Transaction/purchase_agreement" class="btn btn-sm btn-block btn-primary">Add P O</a>
-              </div>
+              </div> -->
             </div>
             <!-- /.card-header -->
             <div class="card-body">

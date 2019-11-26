@@ -71,10 +71,11 @@ include('head.php');
                     <td><?php echo $list->quotation_person; ?></td>
                     <td><?php echo $list->quotation_contact; ?></td>
                     <td><?php echo $list->quotation_total; ?></td>
-                    <td>
+                    <td style="width:200px;">
                       <a href="<?php echo base_url(); ?>Transaction/edit_quotation/<?php echo $list->quotation_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-4" href="<?php echo base_url(); ?>Transaction/delete_quotation/<?php echo $list->quotation_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
-                      <a class="ml-4" href="<?php echo base_url(); ?>Receipt/quotation_receipt/<?php echo $list->quotation_id; ?>"> <i class="fa fa-print"></i> </a>
+                      <a class="ml-2" href="<?php echo base_url(); ?>Transaction/delete_quotation/<?php echo $list->quotation_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a class="ml-2" href="<?php echo base_url(); ?>Receipt/quotation_receipt/<?php echo $list->quotation_id; ?>"> <i class="fa fa-print"></i> </a>
+                      <a class="btn btn-primary btn-sm ml-2" href="<?php echo base_url(); ?>Transaction/purchase_agreement/<?php echo $list->quotation_id; ?>">Convert To P.A. </a>
                     </td>
                   </tr>
                   <?php } ?>

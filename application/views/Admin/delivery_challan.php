@@ -231,7 +231,13 @@ include('head.php');
                 <div class="col-md-6">
                   <h5 class="my-4">Terms And Conditions</h5>
                   <div class="form-group" >
-                    <textarea id="txt_terms" class="form-control form-control-sm" name="delivery_terms" id="delivery_terms" rows="8" ><?php if(isset($delivery_terms)){ echo $delivery_terms; } ?></textarea>
+                    <textarea id="txt_terms" class="form-control form-control-sm" name="delivery_terms" id="delivery_terms" rows="8" ><?php if(isset($sale_terms)){ echo $sale_terms; }
+                      elseif ($terms_list){
+                        foreach ($terms_list as $terms) {
+                          echo $terms->terms_name.', ';
+                        }
+                      }
+                       ?></textarea>
                   </div>
                   <div class="float-right">
                     <?php if(isset($update)){ ?>

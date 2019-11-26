@@ -67,10 +67,13 @@ include('head.php');
                     <td><?php echo $list->delivery_date; ?></td>
                     <td><?php echo $list->party_firm; ?></td>
                     <td><?php echo $list->delivery_total; ?></td>
-                    <td>
+                    <td style="width:200px;">
                       <a href="<?php echo base_url(); ?>Transaction/edit_delivery_challan/<?php echo $list->delivery_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-4" href="<?php echo base_url(); ?>Transaction/delete_delivery_challan/<?php echo $list->delivery_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
-                      <a class="ml-4" href="<?php echo base_url(); ?>Receipt/delivery_challan_print/<?php echo $list->delivery_id; ?>"> <i class="fa fa-print"></i> </a>
+                      <a class="ml-2" href="<?php echo base_url(); ?>Transaction/delete_delivery_challan/<?php echo $list->delivery_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a class="ml-2" href="<?php echo base_url(); ?>Receipt/delivery_challan_print/<?php echo $list->delivery_id; ?>"> <i class="fa fa-print"></i> </a>
+                      <?php if($list->delivery_bill_status == 'no'){ ?>
+                      <a class="btn btn-primary btn-sm ml-2" href="<?php echo base_url(); ?>Transaction/sale_bill/<?php echo $list->delivery_id; ?>">Convert To Sale </a>
+                    <?php } ?>
                     </td>
                   </tr>
                   <?php  }  ?>

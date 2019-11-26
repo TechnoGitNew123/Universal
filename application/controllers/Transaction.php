@@ -145,6 +145,8 @@ class Transaction extends CI_Controller{
       $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
       $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
       $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
+      $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
+
       $this->load->view('Admin/delivery_challan',$data);
     } else{
       header('location:'.base_url().'Login');
@@ -281,7 +283,7 @@ class Transaction extends CI_Controller{
 
  /********************** Purchase Agreement *************************/
  // Add Purchase Agreement...
- public function purchase_agreement(){
+ public function purchase_agreement($quotation_id){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
      $data['purchase_order_no'] = $this->Transaction_Model->get_count_no($company_id,'purchase_order_no','uni_purchase_master');
@@ -289,6 +291,27 @@ class Transaction extends CI_Controller{
      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
      $data['display_color_list'] = $this->Admin_Model->get_list($company_id,'display_color_id','ASC','uni_display_color');
      $data['cabinate_color_list'] = $this->Admin_Model->get_list($company_id,'cabinet_color_id','ASC','uni_cabinet_color');
+     $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
+     
+     $quotation_data = $this->Transaction_Model->quotation_data($company_id,$quotation_id);
+     if($quotation_data){
+       foreach ($quotation_data as $quotation_data) {
+         $data['quotation_id'] = $quotation_data->quotation_id;
+         $data['quotation_no'] = $quotation_data->quotation_no;
+         $data['quotation_date'] = $quotation_data->quotation_date;
+         $data['quotation_party'] = $quotation_data->quotation_party;
+         $data['party_id'] = $quotation_data->party_id;
+         $data['party_firm'] = $quotation_data->party_firm;
+         $data['quotation_person'] = $quotation_data->quotation_person;
+         $data['quotation_contact'] = $quotation_data->quotation_contact;
+         $data['quotation_terms'] = $quotation_data->quotation_terms;
+         $data['quotation_basic'] = $quotation_data->quotation_basic;
+         $data['quotation_gst'] = $quotation_data->quotation_gst;
+         $data['quotation_total'] = $quotation_data->quotation_total;
+       }
+     }
+     $data['quotation_trans_data'] = $this->Transaction_Model->quotation_trans_data($quotation_id);
+
      $this->load->view('Admin/purchase_agreement', $data);
    } else{
      header('location:'.base_url().'Login');
@@ -480,14 +503,39 @@ class Transaction extends CI_Controller{
 
 /********************** Sale Bill *************************/
 // Add Sale
- public function sale_bill(){
+ public function sale_bill($delivery_id){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
      $data['sale_bill_no'] = $this->Transaction_Model->get_count_no($company_id,'sale_bill_no','uni_sale_master');
      $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
      $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
-     $this->load->view('Admin/sale_bill',$data);
+     $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
+
+     $delivery_challan_data = $this->Transaction_Model->delivery_challan_data($company_id,$delivery_id);
+
+     if($delivery_challan_data){
+       foreach ($delivery_challan_data as $challan_data) {
+         $data['delivery_id'] = $challan_data->delivery_id;
+         $data['delivery_no'] = $challan_data->delivery_no;
+         $data['delivery_date'] = $challan_data->delivery_date;
+         $data['delivery_party'] = $challan_data->delivery_party;
+         $data['party_id'] = $challan_data->party_id;
+         $data['party_firm'] = $challan_data->party_firm;
+         $data['delivery_transport'] = $challan_data->delivery_transport;
+         $data['delivery_docket_no'] = $challan_data->delivery_docket_no;
+         $data['delivery_user'] = $challan_data->delivery_user;
+         $data['delivery_terms'] = $challan_data->delivery_terms;
+         $data['delivery_basic'] = $challan_data->delivery_basic;
+         $data['delivery_gst'] = $challan_data->delivery_gst;
+         $data['delivery_total'] = $challan_data->delivery_total;
+       }
+       $data['challan_trans_data'] = $this->Transaction_Model->delivery_challan_trans_data($delivery_id);
+       $this->load->view('Admin/sale_bill',$data);
+     }
+     else{
+       header('location:'.base_url().'Admin/dashboard');
+     }
    } else{
      header('location:'.base_url().'Login');
    }
@@ -544,6 +592,11 @@ class Transaction extends CI_Controller{
        'sale_total' => $this->input->post('sale_total'),
      );
      $sale_id = $this->Admin_Model->save_data('uni_sale_master', $data);
+     if($sale_id){
+       $delivery_id = $this->input->post('sale_challan_no');
+       $data2['delivery_bill_status'] = 'yes';
+       $this->Admin_Model->update_info('delivery_id', $delivery_id, 'uni_delivery_master', $data2);
+     }
      foreach($_POST['input'] as $user)
      {
        $user['sale_id'] = $sale_id;
@@ -1015,6 +1068,9 @@ public function delete_repairy_bill($id){
       $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
       $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
       $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
+      $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
+
+      // echo $data['quotation_no'];
       $this->load->view('Admin/quotation',$data);
     } else{
       header('location:'.base_url().'Login');
@@ -1647,46 +1703,5 @@ public function expense_voucher_list(){
       $data['outstanding_amount'] = $outstanding_amount;
       echo json_encode($data);
     }
-
-    public function get_challan_sale(){
-      $company_id = $this->session->userdata('company_id');
-      if($company_id){
-        $challan_id = $this->input->post("challan_id");
-    		if(!empty($challan_id)){
-    			foreach ($challan_id as $k) {
-            $delivery_challan_data = $this->Transaction_Model->delivery_challan_trans_data($k);
-            foreach ($delivery_challan_data as $challan_data) {
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $data['make_id'] = $challan_data->make_id;
-              $data['make_name'] = $challan_data->make_name;
-              $data['model_no_id'] = $challan_data->model_no_id;
-              $data['product_model_no'] = $challan_data->product_model_no;
-              $data['machine_serial_no'] = $challan_data->machine_serial_no;
-              $data['capacity_id'] = $challan_data->capacity_id;
-              $data['capacity_name'] = $challan_data->capacity_name;
-              $data['accuracy_id'] = $challan_data->accuracy_id;
-              $data['accuracy_name'] = $challan_data->accuracy_name;
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
-              $del_data[] = $data;
-            }
-          }
-		    }
-		    echo json_encode($del_data);
-      } else{
-        header('location:'.base_url().'Login');
-      }
-    }
-
 
 }

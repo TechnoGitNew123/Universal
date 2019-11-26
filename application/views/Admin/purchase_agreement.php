@@ -66,13 +66,19 @@ include('head.php');
                     <select class="form-control select2 form-control-sm" name="purchase_party" placeholder="Select Party Name/ proprietor Name" style="width: 100%;" required>
                       <option selected="selected" value="" >Select Party Name</option>
                       <?php foreach ($party_list as $party_list1) { ?>
-                        <option value="<?php echo $party_list1->party_id; ?>" <?php if(isset($party_id)){ if($party_list1->party_id == $party_id){ echo "selected"; } }  ?>><?php echo $party_list1->party_firm; ?></option>
+                        <option value="<?php echo $party_list1->party_id; ?>"
+                          <?php
+                            if(isset($party_id)){ if($party_list1->party_id == $party_id){ echo "selected"; } }
+                            elseif ($quotation_party) { if($party_list1->party_id == $quotation_party){ echo "selected"; } }
+                          ?>>
+                          <?php echo $party_list1->party_firm; ?>
+                        </option>
                       <?php } ?>
                     </select>
                   </div>
-                  <div class="form-group col-md-2">
+                  <!-- <div class="form-group col-md-2">
                     <a href="<?php echo base_url(); ?>Admin/party_information" class="btn btn-sm btn-block btn-primary">Add New Party</a>
-                  </div>
+                  </div> -->
                   <div class="form-group col-md-4 offset-md-2">
                     <input type="text" class="form-control form-control-sm" name="invoice_no" id="invoice_no" value="<?php if (isset($invoice_no)) { echo $invoice_no; } ?>" placeholder="Invoice No.">
                   </div>
@@ -193,83 +199,93 @@ include('head.php');
                       <td class="td_btn"><?php if($j > 1){ ?> <a><i class="fa fa-trash text-danger rem_row"></i></a> <?php } ?></td>
                     </tr>
 
-                  <?php $i++; } } else { ?>
-                      <tr>
-                        <td class="sr_no">1</td>
-                        <td>
-                          <select class="form-control select2 form-control-sm make_id" name="input[0][make_id]" id="" style="width: 100%;" required>
-                            <option value="">Select Make</option>
-                            <?php foreach ($make_list as $make_list1) { ?>
-                              <option value="<?php echo $make_list1->make_id; ?>"><?php echo $make_list1->make_name ?></option>
-                            <?php } ?>
-                          </select>
-                        </td>
-                        <td>
-                          <select class="form-control select2 form-control-sm model_no" name="input[0][model_no_id]" id="" style="width: 100%;" required>
-                            <option value="">Select Model No.</option>
-                          </select>
-                        </td>
-                        <td class="td_w">
-                          <input type="text" class="form-control form-control-sm " name="input[0][machine_serial_no]" id="" placeholder="Machine Serial no.">
-                        </td>
-                        <td>
-                          <select class="form-control select2 form-control-sm capacity" name="input[0][capacity_id]">
-                          </select>
-                        </td>
-                        <td>
-                          <select class="form-control select2 form-control-sm accuracy" name="input[0][accuracy_id]">
-                          </select>
-                        </td>
-                        <td>
-                          <select class="form-control select2 form-control-sm class" name="input[0][class_id]">
-                          </select>
-                        </td>
-                        <td>
-                          <select class="form-control select2 form-control-sm platter" name="input[0][platter_id]">
-                          </select>
-                        </td>
-                        <td class="td_w">
-                          <select class="form-control select2 form-control-sm make_id" name="input[0][display_color_id]" id="" style="width: 100%;">
-                            <?php foreach ($display_color_list as $display_color_list1) { ?>
-                              <option value="<?php echo $display_color_list1->display_color_id; ?>"><?php echo $display_color_list1->display_color_name ?></option>
-                            <?php } ?>
-                          </select>
-                        </td>
-                        <td class="td_w">
-                          <select class="form-control select2 form-control-sm make_id" name="input[0][cabinate_color_id]" id="" style="width: 100%;">
-                            <?php foreach ($cabinate_color_list as $cabinate_color_list1) { ?>
-                              <option value="<?php echo $cabinate_color_list1->cabinet_color_id; ?>"><?php echo $cabinate_color_list1->cabinet_color_name ?></option>
-                            <?php } ?>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea class="form-control form-control-sm" name="input[0][accessories]" rows="3"></textarea>
-                        </td>
-                        <td class="td_w">
-                          <input type="text" class="form-control form-control-sm gst1" name="input[0][purchase_trans_gst]" value="" placeholder="GST" required>
-                          <input type="number" class="form-control form-control-sm mt-1 gst2" name="input[0][purchase_descr_gst]" value="" placeholder="Acc GST">
-                        </td>
-                        <td class="td_w">
-                          <input type="text" class="form-control form-control-sm qty1" name="input[0][purchase_trans_qty]" value="" placeholder="Qty" required>
-                          <input type="number" class="form-control form-control-sm mt-1 qty2" name="input[0][purchase_descr_qty]" value="" placeholder="Acc Qty">
-                        </td>
-                        <td class="td_w">
-                          <input type="text" class="form-control form-control-sm rate1" name="input[0][purchase_trans_rate]" value="" placeholder="Rate" required>
-                          <input type="number" class="form-control form-control-sm mt-1 rate2" name="input[0][purchase_descr_rate]" value="" placeholder="Acc Rate">
-                        </td>
-                        <td class="td_w">
-                          <input type="text" class="form-control form-control-sm amount1 amount" name="input[0][purchase_trans_amount]" value="" placeholder="Amount" readonly>
-                          <input type="number" class="form-control form-control-sm mt-1 amount2 amount" name="input[0][purchase_descr_amount]" value="" placeholder="Acc Amount" readonly>
-                        </td>
-                        <input type="hidden" name="input[0][purchase_trans_gst_amount]" class="gst_amount1 gst_amount" value="">
-                        <input type="hidden" name="input[0][trans_acc_gst_amount]" class="gst_amount2 gst_amount" value="">
-                        <td class="td_btn"></td>
-                      </tr>
-                    <?php } ?>
-
+                  <?php $i++; } }
+                  else if($quotation_trans_data){
+                    $i = 0;
+                    $j = 0;
+                    foreach ($quotation_trans_data as $trans_data) {
+                    $j++;
+                    ?>
+                    <tr>
+                      <td class="sr_no"><?php echo $j; ?></td>
+                      <td>
+                        <select class="form-control select2 form-control-sm make_id" name="input[<?php echo $i; ?>][make_id]" required>
+                          <option value="">Select Make</option>
+                          <option selected value="<?php echo $trans_data->make_id ?>" ><?php echo $trans_data->make_name ?></option>
+                          <?php foreach ($make_list as $make_list1) { ?>
+                            <option value="<?php echo $make_list1->make_id; ?>"><?php echo $make_list1->make_name ?></option>
+                          <?php } ?>
+                        </select>
+                      </td>
+                      <td>
+                        <select class="form-control select2 form-control-sm model_no" name="input[<?php echo $i; ?>][model_no_id]" required>
+                          <option value="">Select Model No.</option>
+                          <option selected value="<?php echo $trans_data->model_no_id ?>" ><?php echo $trans_data->product_model_no ?></option>
+                        </select>
+                      </td>
+                      <td class="td_w">
+                        <input type="text" class="form-control form-control-sm " name="input[<?php echo $i; ?>][machine_serial_no]" value="<?php echo $trans_data->machine_serial_no ?>" placeholder="Machine Serial no.">
+                      </td>
+                      <td>
+                        <select class="form-control select2 form-control-sm capacity" name="input[<?php echo $i; ?>][capacity_id]">
+                          <option selected value="<?php echo $trans_data->capacity_id ?>" ><?php echo $trans_data->capacity_name ?></option>
+                        </select>
+                      </td>
+                      <td>
+                        <select class="form-control select2 form-control-sm accuracy" name="input[<?php echo $i; ?>][accuracy_id]">
+                          <option selected value="<?php echo $trans_data->accuracy_id ?>" ><?php echo $trans_data->accuracy_name ?></option>
+                        </select>
+                      </td>
+                      <td>
+                        <select class="form-control select2 form-control-sm class" name="input[<?php echo $i; ?>][class_id]">
+                          <option selected value="<?php echo $trans_data->class_id ?>" ><?php echo $trans_data->class_id ?></option>
+                        </select>
+                      </td>
+                      <td>
+                        <select class="form-control select2 form-control-sm platter" name="input[<?php echo $i; ?>][platter_id]">
+                          <option selected value="<?php echo $trans_data->platter_id ?>" ><?php echo $trans_data->platter_size ?></option>
+                        </select>
+                      </td>
+                      <td class="td_w">
+                        <select class="form-control select2 form-control-sm make_id" name="input[<?php echo $i; ?>][display_color_id]" id="" style="width: 100%;">
+                          <?php foreach ($display_color_list as $display_color_list1) { ?>
+                            <option value="<?php echo $display_color_list1->display_color_id; ?>" <?php if(isset($display_color_id)){ if($display_color_list1->display_color_id == $display_color_id){ echo "selected"; } }  ?>><?php echo $display_color_list1->display_color_name; ?></option>
+                          <?php } ?>
+                        </select>
+                      </td>
+                      <td class="td_w">
+                        <select class="form-control select2 form-control-sm make_id" name="input[<?php echo $i; ?>][cabinate_color_id]" id="" style="width: 100%;">
+                          <?php foreach ($cabinate_color_list as $cabinate_color_list1) { ?>
+                            <option value="<?php echo $cabinate_color_list1->cabinet_color_id; ?>" <?php if(isset($cabinate_color_id)){ if($cabinate_color_list1->cabinet_color_id == $cabinate_color_id){ echo "selected"; } }  ?>><?php echo $cabinate_color_list1->cabinet_color_name; ?></option>
+                          <?php } ?>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea class="form-control form-control-sm" name="input[<?php echo $i; ?>][accessories]" rows="3"><?php echo $trans_data->quotation_trans_acc ?></textarea>
+                      </td>
+                      <td class="td_w">
+                        <input type="text" class="form-control form-control-sm gst1" name="input[<?php echo $i; ?>][purchase_trans_gst]" value="<?php echo $trans_data->quotation_trans_gst ?>" placeholder="GST" required>
+                        <input type="number" class="form-control form-control-sm mt-1 gst2" name="input[<?php echo $i; ?>][purchase_descr_gst]" value="<?php echo $trans_data->trans_acc_gst ?>" placeholder="Acc GST">
+                      </td>
+                      <td class="td_w">
+                        <input type="text" class="form-control form-control-sm qty1" name="input[<?php echo $i; ?>][purchase_trans_qty]" value="<?php echo $trans_data->quotation_trans_qty ?>" placeholder="Qty" required>
+                        <input type="number" class="form-control form-control-sm mt-1 qty2" name="input[<?php echo $i; ?>][purchase_descr_qty]" value="<?php echo $trans_data->trans_acc_qty ?>" placeholder="Acc Qty">
+                      </td>
+                      <td class="td_w">
+                        <input type="text" class="form-control form-control-sm rate1" name="input[<?php echo $i; ?>][purchase_trans_rate]" value="<?php echo $trans_data->quotation_trans_rate ?>" placeholder="Rate" required>
+                        <input type="number" class="form-control form-control-sm mt-1 rate2" name="input[<?php echo $i; ?>][purchase_descr_rate]" value="<?php echo $trans_data->trans_acc_rate ?>" placeholder="Acc Rate">
+                      </td>
+                      <td class="td_w">
+                        <input type="text" class="form-control form-control-sm amount1 amount" name="input[<?php echo $i; ?>][purchase_trans_amount]" value="<?php echo $trans_data->quotation_trans_amount ?>" placeholder="Amount" readonly>
+                        <input type="number" class="form-control form-control-sm mt-1 amount2 amount" name="input[<?php echo $i; ?>][purchase_descr_amount]" value="<?php echo $trans_data->trans_acc_amount ?>" placeholder="Acc Amount" readonly>
+                      </td>
+                      <input type="hidden" name="input[<?php echo $i; ?>][purchase_trans_gst_amount]" class="gst_amount1 gst_amount" value="<?php echo $trans_data->quotation_trans_gst_amount ?>">
+                      <input type="hidden" name="input[<?php echo $i; ?>][trans_acc_gst_amount]" class="gst_amount2 gst_amount" value="<?php echo $trans_data->trans_acc_gst_amount ?>">
+                      <td class="td_btn"><?php if($j > 1){ ?> <a><i class="fa fa-trash text-danger rem_row"></i></a> <?php } ?></td>
+                    </tr>
+                  <?php } } ?>
                 </table>
               </div>
-
               <?php if(isset($purchase_accss)){
                 $val = explode('_',$purchase_accss);
               } ?>
@@ -305,7 +321,13 @@ include('head.php');
                   </div>
                   <h5 class="my-4">Terms And Conditions</h5>
                   <div class="form-group" >
-                    <textarea id="txt_terms" class="form-control form-control-sm" name="purchase_terms" rows="8"><?php if(isset($purchase_terms)){ echo $purchase_terms; } ?></textarea>
+                    <textarea id="txt_terms" class="form-control form-control-sm" name="purchase_terms" rows="8"><?php if(isset($sale_terms)){ echo $sale_terms; }
+                      elseif ($terms_list){
+                        foreach ($terms_list as $terms) {
+                          echo $terms->terms_name.', ';
+                        }
+                      }
+                    ?></textarea>
                   </div>
                 </div>
                 <div class="col-md-6 " >
@@ -324,11 +346,11 @@ include('head.php');
                     </style>
                     <tr class="mt-4">
                       <th style="width:50%;" >  <label for="" class=" text-right col-form-label mr-3 mb-1">Basic Price</label></th>
-                      <td><input type="number" class="form-control form-control-sm" name="purchase_basic_price" id="purchase_basic_price" value="<?php if(isset($purchase_basic_price)){ echo $purchase_basic_price; } ?>" readonly></td>
+                      <td><input type="number" class="form-control form-control-sm" name="purchase_basic_price" id="purchase_basic_price" value="<?php if(isset($purchase_basic_price)){ echo $purchase_basic_price; }elseif (isset($quotation_basic)) { echo $quotation_basic; } ?>" readonly></td>
                     </tr>
                     <tr>
                       <th style="width:50%;" >  <label for="" class=" text-right col-form-label mr-3 mb-1">GST</label></th>
-                      <td><input type="number" class="form-control form-control-sm" name="purchase_gst" id="purchase_gst" value="<?php if(isset($purchase_gst)){ echo $purchase_gst; } ?>"  readonly></td>
+                      <td><input type="number" class="form-control form-control-sm" name="purchase_gst" id="purchase_gst" value="<?php if(isset($purchase_gst)){ echo $purchase_gst; }elseif (isset($quotation_gst)) { echo $quotation_gst; } ?>"  readonly></td>
                     </tr>
                     <tr>
                       <th style="width:50%;" >  <label for="" class=" text-right col-form-label mr-3 mb-1">Govt. Stamping</label></th>
@@ -340,7 +362,7 @@ include('head.php');
                     </tr>
                     <tr>
                       <th style="width:50%;" >  <label for="" class=" text-right col-form-label mr-3 mb-1">Total</label></th>
-                      <td><input type="number" class="form-control form-control-sm" name="purchase_total" id="purchase_total" value="<?php if(isset($purchase_total)){ echo $purchase_total; } ?>" readonly></td>
+                      <td><input type="number" class="form-control form-control-sm" name="purchase_total" id="purchase_total" value="<?php if(isset($purchase_total)){ echo $purchase_total; }elseif (isset($quotation_total)) { echo $quotation_total; } ?>" readonly></td>
                       <input type="hidden" id="purchase_total_prev">
                     </tr>
                     <tr>

@@ -38,9 +38,9 @@ include('head.php');
             <div class="card">
             <div class="card-header">
               <h3 class="card-title"><i class="fa fa-list"></i>Sale Register</h3>
-              <div class="card-tools">
+              <!-- <div class="card-tools">
                 <a href="<?php echo base_url() ?>Transaction/sale_bill" class="btn btn-sm btn-block btn-primary">Add Sale bill</a>
-              </div>
+              </div> -->
             </div>
             <!-- /.card-header -->
             <div class="card-body">
