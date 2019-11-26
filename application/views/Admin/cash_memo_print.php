@@ -103,12 +103,16 @@ table{
     <!-- <p  style="font-size:14px; margin-bottom:3px; margin-top:3px; text-align:center;">Website: www.universaldigital.net</p>  -->
    </td>
 </tr>
+<td colspan="3">
+    <p style="font-size:16px; margin-bottom:5px; font-weight:bold;">Legal Metrology Department, Pune. Repairs Licence No. : W & MD/Pune Division/Repair/Kop. 76      </p>
+</td>
 <tr>
   <td style="border-right:0px!important; padding-left: 20px; padding-top:0px;" >
 
 
     <p style="font-size:16px; margin-bottom:5px;">To</p>
-   <p style="font-size:16px; margin-bottom:5px;"><?php echo $govt_stamp_data->division_head.' '; ?></p>
+    <p style="font-size:16px; margin-bottom:5px;">The Inspector Legal Metrology </p>
+   <p style="font-size:16px; margin-bottom:5px;">DIVISION / CAMP : <?php echo $govt_stamp_data->division_head.' '; ?></p>
    <p style="font-size:16px; margin-bottom:5px;"><?php echo $govt_stamp_data->division_name.' '; ?></p>
    <!-- <p style="font-size:16px; margin-bottom:5px;">DIST</p> -->
 
@@ -132,9 +136,13 @@ table{
 
       </td>
   <td valign="top" style="padding:0px!important; border-left:0px!important;">
-  <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important;"><b>cash Memo No.  <?php echo $govt_stamp_data->govt_stamp_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
-  <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important;"> <b>Date : </b>&nbsp;  <strong><?php echo $govt_stamp_data->govt_stamp_date; ?></strong></p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
+  <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important; margin-left:0px;"><b>cash Memo No.  <?php echo $govt_stamp_data->govt_stamp_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
+  <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important; margin-left:0px;">Date : </b>&nbsp;  <strong><?php echo $govt_stamp_data->govt_stamp_date; ?></strong></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
+  <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important; margin-left:0px;">Trade : <b> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
   </td>
+</tr>
+<tr>
+  <td colspan="3" style="border-bottom: 0px;">   <p style="font-size:16px; margin-bottom:5px;"> Please arrange To Reverify & Stamp the Following Party's Machine</p> </td>
 </tr>
 </table>
 

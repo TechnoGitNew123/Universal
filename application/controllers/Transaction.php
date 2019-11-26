@@ -1568,7 +1568,36 @@ public function expense_voucher_list(){
   }
 
   public function party_all_info(){
-      $this->load->view('Admin/party_all_info');
+    $company_id = $this->session->userdata('company_id');
+    if($company_id){
+      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+        $this->load->view('Admin/party_all_info', $data);
+    } else{
+      header('location:'.base_url().'Login');
+    }
+
+    }
+
+    public function GetPartyDetails(){
+      $party_id = $this->input->post('party_id');
+      $partyDetails = $this->Transaction_Model->GetPartyDetails($party_id);
+      foreach($partyDetails as $partyDetails){
+        $data['party_id'] = $partyDetails ->party_id;
+        $data['party_firm'] = $partyDetails ->party_firm;
+        $data['party_address'] = $partyDetails ->party_address;
+        $data['party_area'] = $partyDetails ->party_area;
+        $data['party_taluka'] = $partyDetails ->party_taluka;
+        $data['party_district'] = $partyDetails ->party_district;
+        $data['party_mob1'] = $partyDetails ->party_mob1;
+        $data['party_mob2'] = $partyDetails ->party_mob2;
+        $data['party_gst_no'] = $partyDetails ->party_gst_no;
+        $data['party_pan_no'] = $partyDetails ->party_pan_no;
+        $data['party_proriter'] = $partyDetails ->party_proriter;
+        $data['party_business'] = $partyDetails ->party_business;
+        $data['party_email'] = $partyDetails ->party_email;
+        $data['party_website'] = $partyDetails ->party_website;
+      }
+      echo json_encode($data);
     }
 
 

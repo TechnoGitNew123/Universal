@@ -426,6 +426,15 @@ class Transaction_Model extends CI_Model{
     return $total_sale_amount;
   }
 
+  public function GetPartyDetails($party_id){
+    $query = $this->db->select('*')
+        ->where('party_id', $party_id)
+        ->from('uni_party')
+        ->get();
+    $result = $query->result();
+    return $result;
+  }
+
 }
 
 ?>
