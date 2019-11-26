@@ -132,13 +132,16 @@ class Transaction_Model extends CI_Model{
   }
 
   // Purchase Agreement List...
-  public function purchase_agrement_list($company_id){
-    $query = $this->db->select('purchase.*, party.*')
-        ->from('uni_purchase_master as purchase')
-        ->where('purchase.company_id', $company_id)
-        ->order_by('purchase.purchase_id', 'DESC')
-        ->join('uni_party as party', 'purchase.purchase_party = party.party_id', 'LEFT')
-        ->get();
+  public function purchase_agrement_list($company_id,$party_id){
+    $this->db->select('purchase.*, party.*');
+    $this->db->from('uni_purchase_master as purchase');
+    $this->db->where('purchase.company_id', $company_id);
+    if($party_id != null){
+      $this->db->where('purchase.purchase_party', $party_id);
+    }
+    $this->db->order_by('purchase.purchase_id', 'DESC');
+    $this->db->join('uni_party as party', 'purchase.purchase_party = party.party_id', 'LEFT');
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }
@@ -174,15 +177,18 @@ class Transaction_Model extends CI_Model{
 
   /**************************** Sale Bill *********************/
   // Sale Bill List...
-  public function sale_bill_list($company_id){
-    $query = $this->db->select('sale.*, party.*, delivery.*, user.*')
-        ->from('uni_sale_master as sale')
-        ->where('sale.company_id', $company_id)
-        ->order_by('sale.sale_id','DESC')
-        ->join('uni_party as party', 'sale.sale_party = party.party_id', 'LEFT')
-        ->join('uni_delivery_master as delivery', 'sale.sale_challan_no = delivery.delivery_id', 'LEFT')
-        ->join('uni_user as user', 'sale.sale_employee = user.user_id', 'LEFT')
-        ->get();
+  public function sale_bill_list($company_id,$party_id){
+    $this->db->select('sale.*, party.*, delivery.*, user.*');
+    $this->db->from('uni_sale_master as sale');
+    $this->db->where('sale.company_id', $company_id);
+    if($party_id != null){
+      $this->db->where('sale.sale_party', $party_id);
+    }
+    $this->db->order_by('sale.sale_id','DESC');
+    $this->db->join('uni_party as party', 'sale.sale_party = party.party_id', 'LEFT');
+    $this->db->join('uni_delivery_master as delivery', 'sale.sale_challan_no = delivery.delivery_id', 'LEFT');
+    $this->db->join('uni_user as user', 'sale.sale_employee = user.user_id', 'LEFT');
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }
@@ -227,14 +233,17 @@ class Transaction_Model extends CI_Model{
 
   /**************************** Gov Stammping *********************/
   // Save Gov Stammping...
-  public function govt_stamp_list($company_id){
-    $query = $this->db->select('govt_stamp.*, party.*, division.*')
-        ->from('uni_govt_stamp_master as govt_stamp')
-        ->where('govt_stamp.company_id', $company_id)
-        ->order_by('govt_stamp.govt_stamp_id','DESC')
-        ->join('uni_party as party', 'govt_stamp.govt_stamp_party = party.party_id', 'LEFT')
-        ->join('uni_division as division', 'govt_stamp.govt_stamp_division = division.division_id', 'LEFT')
-        ->get();
+  public function govt_stamp_list($company_id,$party_id){
+    $this->db->select('govt_stamp.*, party.*, division.*');
+    $this->db->from('uni_govt_stamp_master as govt_stamp');
+    $this->db->where('govt_stamp.company_id', $company_id);
+    if($party_id != null){
+      $this->db->where('govt_stamp.govt_stamp_party', $party_id);
+    }
+    $this->db->order_by('govt_stamp.govt_stamp_id','DESC');
+    $this->db->join('uni_party as party', 'govt_stamp.govt_stamp_party = party.party_id', 'LEFT');
+    $this->db->join('uni_division as division', 'govt_stamp.govt_stamp_division = division.division_id', 'LEFT');
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }
@@ -266,13 +275,16 @@ class Transaction_Model extends CI_Model{
     return $result;
   }
 
-  public function repairy_bill_list($company_id){
-    $query = $this->db->select('repairy.*, party.*')
-        ->from('uni_repairy_master as repairy')
-        ->where('repairy.company_id', $company_id)
-        ->order_by('repairy.repairy_id', 'DESC')
-        ->join('uni_party as party', 'repairy.repairy_party = party.party_id', 'LEFT')
-        ->get();
+  public function repairy_bill_list($company_id, $party_id){
+    $this->db->select('repairy.*, party.*');
+    $this->db->from('uni_repairy_master as repairy');
+    $this->db->where('repairy.company_id', $company_id);
+    if($party_id != null){
+      $this->db->where('repairy.repairy_party', $party_id);
+    }
+    $this->db->order_by('repairy.repairy_id', 'DESC');
+    $this->db->join('uni_party as party', 'repairy.repairy_party = party.party_id', 'LEFT');
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }
@@ -305,13 +317,16 @@ class Transaction_Model extends CI_Model{
 
   /************************ Quotation **********************/
   // Quotation List...
-  public function quotation_list($company_id){
-    $query = $this->db->select('quotation.*, party.*')
-        ->from('uni_quotation_master as quotation')
-        ->where('quotation.company_id', $company_id)
-        ->order_by('quotation.quotation_id', 'DESC')
-        ->join('uni_party as party', 'quotation.quotation_party = party.party_id', 'LEFT')
-        ->get();
+  public function quotation_list($company_id,$party_id){
+    $this->db->select('quotation.*, party.*');
+    $this->db->from('uni_quotation_master as quotation');
+    $this->db->where('quotation.company_id', $company_id);
+    if($party_id != null){
+      $this->db->where('quotation.quotation_party', $party_id);
+    }
+    $this->db->order_by('quotation.quotation_id', 'DESC');
+    $this->db->join('uni_party as party', 'quotation.quotation_party = party.party_id', 'LEFT');
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }
@@ -374,13 +389,16 @@ class Transaction_Model extends CI_Model{
 
 
   // Reciept List...
-  public function receipt_list($company_id){
-    $query = $this->db->select('receipt.*, party.*')
-        ->from('uni_receipt as receipt')
-        ->where('receipt.company_id', $company_id)
-        ->order_by('receipt.receipt_id', 'DESC')
-        ->join('uni_party as party', 'receipt.receipt_party = party.party_id', 'LEFT')
-        ->get();
+  public function receipt_list($company_id,$party_id){
+    $this->db->select('receipt.*, party.*');
+    $this->db->from('uni_receipt as receipt');
+    $this->db->where('receipt.company_id', $company_id);
+    if($party_id != null){
+      $this->db->where('receipt.receipt_party', $party_id);
+    }
+    $this->db->order_by('receipt.receipt_id', 'DESC');
+    $this->db->join('uni_party as party', 'receipt.receipt_party = party.party_id', 'LEFT');
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }

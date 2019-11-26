@@ -73,7 +73,8 @@ include('head.php');
                   </div> -->
 
                   <div class="form-group col-md-4 offset-md-2">
-                    <select class="form-control select2 form-control-sm sale_challan_no" name="sale_challan_no" id="sale_challan_no" required>
+
+                    <select multiple="multiple" class="select2 form-control-sm sale_challan_no" name="sale_challan_no" id="sale_challan_no" data-placeholder="Select Delivery Challan No" data-dropdown-css-class="select2-purple" required>
                       <option selected="selected" value="">Select Delivery Challan No. for sale bill</option>
                       <?php if(isset($sale_challan_no)){ ?>
                         <option selected="selected" value="<?php echo $delivery_id; ?>"><?php echo $delivery_no; ?></option>
@@ -119,7 +120,7 @@ include('head.php');
                     foreach ($sale_trans_data as $trans_data) {
                     $j++;  ?>
                     <input type="hidden" name="input[<?php echo $i; ?>][sale_trans_id]" value="<?php echo $trans_data->sale_trans_id ?>">
-                    <tr>
+                    <tr class="new">
                       <td class="sr_no"><?php echo $j; ?></td>
                       <td>
                         <select class="form-control form-control-sm make_id" name="input[<?php echo $i; ?>][make_id]" required>
@@ -176,7 +177,7 @@ include('head.php');
                       </td>
                     </tr>
                   <?php $i++;  }  } else{ ?>
-                  <tr>
+                  <!-- <tr>
                     <td class="sr_no">1</td>
                     <td>
                       <select class="form-control form-control-sm make_id" name="input[0][make_id]" required>
@@ -224,7 +225,7 @@ include('head.php');
                     <td class="td_btn">
                       <input type="hidden" name="input[0][sale_trans_gst_amount]" class="gst_amount1 gst_amount" value="">
                     </td>
-                  </tr>
+                  </tr> -->
                   <?php } ?>
                 </table>
               </div>
@@ -410,21 +411,91 @@ var i = 1;
   	});
   });
 
-  $("#sale_challan_no").on("change", function(){
-    var delivery_id = $(this).val();
+  function add_row(data){
+    $.each(data, function( key, value )
+    {
+      var row =
+      '<tr class="new">'+
+        '<td class="sr_no"><?php // $j; ?> <input type="hidden" name="input['+i+'][sale_trans_id]" value="<?php // $trans_data->sale_trans_id ?>"></td>'+
+        '<td>'+
+          '<select class="form-control form-control-sm make_id" name="input['+i+'][make_id]" required>'+
+            '<option value="">Select Make</option>'+
+            '<option selected value="<?php // $trans_data->make_id ?>" ><?php // $trans_data->make_name ?></option>'+
+            <?php foreach ($make_list as $make_list1) { ?>
+              '<option value="<?php $make_list1->make_id; ?>"><?php $make_list1->make_name ?></option>'+
+            <?php } ?>
+          '</select>'+
+        '</td>'+
+        '<td>'+
+          '<select class="form-control form-control-sm model_no" name="input['+i+'][model_no_id]">'+
+            '<option selected value="<?php // $trans_data->model_no_id ?>" ><?php // $trans_data->product_model_no ?></option>'+
+          '</select>'+
+        '</td>'+
+        '<td class="td_w">'+
+          '<input type="text" class="form-control form-control-sm " name="input['+i+'][machine_serial_no]" value="<?php // $trans_data->machine_serial_no ?>" id="" placeholder="Machine Serial no.">'+
+        '</td>'+
+        '<td>'+
+          '<select class="form-control form-control-sm capacity" name="input['+i+'][capacity_id]">'+
+            '<option selected value="<?php // $trans_data->capacity_id ?>" ><?php // $trans_data->capacity_name ?></option>'+
+          '</select>'+
+        '</td>'+
+        '<td>'+
+          '<select class="form-control form-control-sm accuracy" name="input['+i+'][accuracy_id]">'+
+            '<option selected value="<?php // $trans_data->accuracy_id ?>" ><?php // $trans_data->accuracy_name ?></option>'+
+          '</select>'+
+        '</td>'+
+        '<td>'+
+          '<select class="form-control form-control-sm class" name="input['+i+'][class_id]">'+
+            '<option selected value="<?php // $trans_data->class_id ?>" ><?php // $trans_data->class_id ?></option>'+
+          '</select>'+
+        '</td>'+
+        '<td>'+
+          '<select class="form-control form-control-sm platter" name="input['+i+'][platter_id]">'+
+            '<option selected value="<?php // $trans_data->platter_id ?>" ><?php // $trans_data->platter_size ?></option>'+
+          '</select>'+
+        '</td>'+
+        '<td class="td_w">'+
+          '<input type="number" class="form-control form-control-sm gst" name="input['+i+'][sale_trans_gst]" value="<?php // $trans_data->sale_trans_gst ?>" id="" placeholder="" required>'+
+        '</td>'+
+        '<td class="td_w">'+
+          '<input type="number" class="form-control form-control-sm qty" name="input['+i+'][sale_trans_qty]" value="<?php // $trans_data->sale_trans_qty ?>" id="" placeholder="" required>'+
+        '</td>'+
+        '<td class="td_w">'+
+          '<input type="number" class="form-control form-control-sm rate" name="input['+i+'][sale_trans_rate]" value="<?php // $trans_data->sale_trans_rate ?>" id="" placeholder="" required>'+
+        '</td>'+
+        '<td class="td_w">'+
+          '<input type="number" class="form-control form-control-sm amount" name="input['+i+'][sale_trans_amount]" value="<?php // $trans_data->sale_trans_amount ?>" id="" placeholder="" readonly >'+
+        '</td>'+
+        '<td class="td_btn">'+
+          <?php //if($j > 1){ ?> '<a><i class="fa fa-trash text-danger"></i></a>'+ <?php //} ?>
+          '<input type="hidden" name="input['+i+'][sale_trans_gst_amount]" class="gst_amount1 gst_amount" value="<?php // $trans_data->sale_trans_gst_amount ?>">'+
+        '</td>'+
+      '</tr>';
+        i++;
 
-    // alert(delivery_id);
+      $('#myTable').append(row);
+    });
+    // GetTotal();
+  }
+
+  $("#sale_challan_no").change(function(){
+    $(".new").remove();
+    var challan_id = $(this).val();
 
     $.ajax({
-      url: '<?php echo base_url(); ?>Transaction/GetDeliveryList',
+      url: '<?php echo base_url(); ?>Transaction/get_challan_sale',
       type: "POST",
-      data: {"delivery_id":delivery_id},
-      context: this,
+      data: {
+        "id":i,
+        "challan_id":challan_id,
+      },
       success: function (result) {
-        alert(result);
-        // $('#sale_challan_no').html(result);
+        var result = $.parseJSON(result);
+        // alert(result[0]['delivery_trans_id']);
+        add_row(result);
       }
-  	});
+    });
+
   });
 
   $('#myTable').on('keyup', 'input.gst, input.qty, input.rate', function () {

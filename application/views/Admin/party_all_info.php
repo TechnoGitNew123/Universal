@@ -128,7 +128,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a id="btn_enq_list" href="#" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a id="btn_enq_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_enq_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/enquiry_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
               </form>
@@ -138,12 +138,12 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3>20</h3>
-                <p> Quotation  </p>
+                <p>Quotation</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a id="btn_quot_list" href="#" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a id="btn_quot_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_quot_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/quotation_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
               </form>
@@ -158,7 +158,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a id="btn_pur_list" href="#" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a id="btn_pur_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_pur_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/purchase_agreement_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
               </form>
@@ -173,7 +173,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a id="btn_enq_list" href="#" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a id="btn_enq_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_del_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/delivery_challan_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
               </form>
@@ -188,7 +188,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a id="btn_sale_list" href="#" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/sale_bill_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
               </form>
@@ -206,7 +206,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a id="btn_sale_list" href="#" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/repairy_bill_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
               </form>
@@ -221,7 +221,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a id="btn_sale_list" href="#" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/repairy_bill_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
               </form>
@@ -237,7 +237,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a id="btn_sale_list" href="#" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/govt_stamp_bill_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
               </form>
@@ -252,7 +252,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a id="btn_sale_list" href="#" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/govt_stamp_bill_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
               </form>
@@ -268,7 +268,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a id="btn_sale_list" href="#" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/receipt_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
               </form>
@@ -325,6 +325,11 @@ $("#party").on("change", function(){
 $('.more_info').on('click',function(){
   $(this).closest('.small-box').find('.form_submit').submit();
 })
+
+// $(document).ready(function(){
+//   var party_id = $('#party_id').val();
+//   alert(party_id);
+// });
 </script>
 </body>
 </html>

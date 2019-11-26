@@ -298,7 +298,11 @@ class Transaction extends CI_Controller{
  public function purchase_agreement_list(){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
-     $data['purchase_agrement_list'] = $this->Transaction_Model->purchase_agrement_list($company_id);
+     $party_id = $this->input->post('party_id');
+     if(!isset($party_id)){
+       $party_id = null;
+     }
+     $data['purchase_agrement_list'] = $this->Transaction_Model->purchase_agrement_list($company_id,$party_id);
      $this->load->view('Admin/purchase_agreement_list',$data);
    } else{
      header('location:'.base_url().'Login');
@@ -492,7 +496,11 @@ class Transaction extends CI_Controller{
  public function sale_bill_list(){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
-     $data['sale_bill_list'] = $this->Transaction_Model->sale_bill_list($company_id);
+     $party_id = $this->input->post('party_id');
+     if(!isset($party_id)){
+       $party_id = null;
+     }
+     $data['sale_bill_list'] = $this->Transaction_Model->sale_bill_list($company_id,$party_id);
      $this->load->view('Admin/sale_bill_list',$data);
    } else{
      header('location:'.base_url().'Login');
@@ -697,7 +705,11 @@ class Transaction extends CI_Controller{
  public function govt_stamp_bill_list(){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
-     $data['govt_stamp_list'] = $this->Transaction_Model->govt_stamp_list($company_id);
+     $party_id = $this->input->post('party_id');
+     if(!isset($party_id)){
+       $party_id = null;
+     }
+     $data['govt_stamp_list'] = $this->Transaction_Model->govt_stamp_list($company_id,$party_id);
      $this->load->view('Admin/govt_stamping_bill_list',$data);
    } else{
      header('location:'.base_url().'Login');
@@ -875,7 +887,11 @@ class Transaction extends CI_Controller{
  public function repairy_bill_list(){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
-     $data['repairy_bill_list'] = $this->Transaction_Model->repairy_bill_list($company_id);
+     $party_id = $this->input->post('party_id');
+     if(!isset($party_id)){
+       $party_id = null;
+     }
+     $data['repairy_bill_list'] = $this->Transaction_Model->repairy_bill_list($company_id,$party_id);
      $this->load->view('Admin/repairy_bill_list',$data);
    } else{
      header('location:'.base_url().'Login');
@@ -1008,7 +1024,11 @@ public function delete_repairy_bill($id){
   public function quotation_list(){
     $company_id = $this->session->userdata('company_id');
     if($company_id){
-      $data['quotation_list'] = $this->Transaction_Model->quotation_list($company_id);
+      $party_id = $this->input->post('party_id');
+      if(!isset($party_id)){
+        $party_id = null;
+      }
+      $data['quotation_list'] = $this->Transaction_Model->quotation_list($company_id,$party_id);
       $this->load->view('Admin/quotation_list',$data);
     } else{
       header('location:'.base_url().'Login');
@@ -1133,7 +1153,11 @@ public function delete_repairy_bill($id){
  public function receipt_list(){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
-     $data['receipt_list'] = $this->Transaction_Model->receipt_list($company_id);
+     $party_id = $this->input->post('party_id');
+     if(!isset($party_id)){
+       $party_id = null;
+     }
+     $data['receipt_list'] = $this->Transaction_Model->receipt_list($company_id,$party_id);
      $this->load->view('Admin/receipt_list',$data);
   } else{
     header('location:'.base_url().'Login');
@@ -1622,6 +1646,46 @@ public function expense_voucher_list(){
       $outstanding_amount = $total_bill - $total_reciept_amount;
       $data['outstanding_amount'] = $outstanding_amount;
       echo json_encode($data);
+    }
+
+    public function get_challan_sale(){
+      $company_id = $this->session->userdata('company_id');
+      if($company_id){
+        $challan_id = $this->input->post("challan_id");
+    		if(!empty($challan_id)){
+    			foreach ($challan_id as $k) {
+            $delivery_challan_data = $this->Transaction_Model->delivery_challan_trans_data($k);
+            foreach ($delivery_challan_data as $challan_data) {
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $data['make_id'] = $challan_data->make_id;
+              $data['make_name'] = $challan_data->make_name;
+              $data['model_no_id'] = $challan_data->model_no_id;
+              $data['product_model_no'] = $challan_data->product_model_no;
+              $data['machine_serial_no'] = $challan_data->machine_serial_no;
+              $data['capacity_id'] = $challan_data->capacity_id;
+              $data['capacity_name'] = $challan_data->capacity_name;
+              $data['accuracy_id'] = $challan_data->accuracy_id;
+              $data['accuracy_name'] = $challan_data->accuracy_name;
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $data['delivery_trans_id'] = $challan_data->delivery_trans_id;
+              $del_data[] = $data;
+            }
+          }
+		    }
+		    echo json_encode($del_data);
+      } else{
+        header('location:'.base_url().'Login');
+      }
     }
 
 
