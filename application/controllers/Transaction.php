@@ -64,6 +64,7 @@ class Transaction extends CI_Controller{
         'company_id' => $company_id,
         'party_id' => $this->input->post('party_id'),
         'requirment' => $this->input->post('requirment'),
+        'enquiry_date' => date('d-m-Y'),
       );
       $this->Admin_Model->save_data('uni_enquiry', $data);
       header('location:enquiry_list');
@@ -292,7 +293,7 @@ class Transaction extends CI_Controller{
      $data['display_color_list'] = $this->Admin_Model->get_list($company_id,'display_color_id','ASC','uni_display_color');
      $data['cabinate_color_list'] = $this->Admin_Model->get_list($company_id,'cabinet_color_id','ASC','uni_cabinet_color');
      $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
-     
+
      $quotation_data = $this->Transaction_Model->quotation_data($company_id,$quotation_id);
      if($quotation_data){
        foreach ($quotation_data as $quotation_data) {
@@ -339,7 +340,7 @@ class Transaction extends CI_Controller{
      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
      $data['display_color_list'] = $this->Admin_Model->get_list($company_id,'display_color_id','ASC','uni_display_color');
      $data['cabinate_color_list'] = $this->Admin_Model->get_list($company_id,'cabinet_color_id','ASC','uni_cabinet_color');
-
+     $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
      $purchase_agreement_data = $this->Transaction_Model->purchase_agreement_data($company_id,$purchase_id);
 
      if($purchase_agreement_data){
@@ -614,6 +615,7 @@ class Transaction extends CI_Controller{
      $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
      $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
+     $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
 
      $sale_bill_data = $this->Transaction_Model->sale_bill_data($company_id,$sale_id);
       // echo print_r($sale_bill_data);

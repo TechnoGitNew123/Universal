@@ -56,6 +56,28 @@
     outline: 0;
 }
 
+
+.select-lg .select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 39px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.select-lg .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #495057 !important;
+    line-height: 30px !important;
+    font-size: 1rem;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu {
+    display: block;
+    margin: 2px 0;
+    padding: 4px;
+    width: 16rem !important;
+}
+
 /* .dr-lg .select2-container .select2-selection--single {
     box-sizing: border-box;
     cursor: pointer;
