@@ -28,7 +28,7 @@
       <p class="login-box-msg">User Sign in</p>
       <form action="" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile No.">
+          <input type="text" class="form-control only_number" name="mobile" id="mobile" placeholder="Mobile No.">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
