@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2019 at 10:31 AM
+-- Generation Time: Nov 28, 2019 at 07:26 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -178,7 +178,7 @@ CREATE TABLE `uni_company` (
   `company_logo` varchar(200) NOT NULL,
   `admin_email` varchar(150) NOT NULL,
   `admin_password` varchar(150) NOT NULL,
-  `admin_roll_id` int(11) NOT NULL DEFAULT 2
+  `admin_roll_id` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -187,7 +187,7 @@ CREATE TABLE `uni_company` (
 
 INSERT INTO `uni_company` (`company_id`, `company_name`, `company_address`, `company_city`, `company_state`, `company_district`, `company_pincode`, `company_statecode`, `company_mob1`, `company_mob2`, `company_email`, `company_website`, `company_pan_no`, `company_gst_no`, `company_lic1`, `company_lic2`, `company_start_date`, `company_end_date`, `company_logo`, `admin_email`, `admin_password`, `admin_roll_id`) VALUES
 (1, 'Universal Digital  System', '126, Bhupal Tower, Ford Corner, Laxmipuri', 'Kolhapur', 'Maharashtra', 'Kolhapur', 416005, '27', '9422413073', '9423044173', 'rajnish.uni@rediffmail.com', 'www.universaldigital.net', '', '', '', '', '01-4-2019', '31-3-2020', '', 'demo@mail.com', '123456', 1),
-(2, 'Universal Digital Systems', '126, Bhupal Tower, Ford Corner, Lamipuri', 'Kolhapur', 'Maharashtra', 'Kolhapur', 416002, NULL, '9422413073', '9423044173', 'rajnish.uni@gmail.com', 'www.universaldigital.net', '', '', '', '', '01-4-2019', '31-3-2020', '', 'rajnish.uni@gmail.com', '12345', 2);
+(2, 'Universal Digital Systems', '126, Bhupal Tower, Ford Corner, Lamipuri', 'Kolhapur', 'Maharashtra', 'Kolhapur', 416002, NULL, '9422413073', '9423044173', 'rajnish.uni@gmail.com', 'www.universaldigital.net', '', '', '', '', '01-4-2019', '31-3-2020', '', 'rajnish.uni@gmail.com', '12345', 1);
 
 -- --------------------------------------------------------
 
@@ -215,7 +215,7 @@ CREATE TABLE `uni_complaint` (
 
 INSERT INTO `uni_complaint` (`complaint_id`, `company_id`, `complaint_no`, `complaint_date`, `party_id`, `complaint_service`, `complaint_reporting`, `complaint_person`, `complaint_contact_no`, `complaint_engeeneer`, `complaint_status`) VALUES
 (3, 2, '000001', '13-11-2019', 3, '0', '0', '', 0, '0', 'Open'),
-(6, 1, '000001', '22-11-2019', 4, 'New Installation_R/S_Warranty_Call_AMC_Charged Call', 'Call', 'ghjfghj', 9966332200, '2', 'Open');
+(6, 1, '000001', '22-11-2019', 4, 'New Installation_Weighting Scale Rep. Call_Warranty_0_0_0_0_Charged Call', 'Call', 'ghjfghj', 9966332200, '2', 'Open');
 
 -- --------------------------------------------------------
 
@@ -231,9 +231,10 @@ CREATE TABLE `uni_delivery_master` (
   `delivery_party` bigint(20) NOT NULL,
   `delivery_transport` varchar(250) NOT NULL,
   `delivery_docket_no` varchar(250) NOT NULL,
+  `delivery_user` bigint(20) DEFAULT NULL,
   `delivery_terms` text NOT NULL,
   `delivery_total` double NOT NULL,
-  `delivery_bill_status` varchar(20) NOT NULL DEFAULT 'no',
+  `delivery_bill_status` varchar(20) NOT NULL DEFAULT 'no' COMMENT 'Converted to Sale',
   `delivery_basic` double NOT NULL,
   `delivery_gst` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -242,10 +243,10 @@ CREATE TABLE `uni_delivery_master` (
 -- Dumping data for table `uni_delivery_master`
 --
 
-INSERT INTO `uni_delivery_master` (`delivery_id`, `company_id`, `delivery_no`, `delivery_date`, `delivery_party`, `delivery_transport`, `delivery_docket_no`, `delivery_terms`, `delivery_total`, `delivery_bill_status`, `delivery_basic`, `delivery_gst`) VALUES
-(2, 1, '000002', '12-11-2019', 4, 'qqqqq', '111', 'jhbi', 1601, 'no', 1600, 1),
-(3, 1, '000003', '19-11-2019', 4, 'ghkmvhjk', '456', 'dfgdfg', 2560, 'no', 2500, 60),
-(4, 1, '000004', '19-11-2019', 4, 'dsfsdf', '45', 'sdfsdf sdfsdf', 12650, 'no', 11500, 1150);
+INSERT INTO `uni_delivery_master` (`delivery_id`, `company_id`, `delivery_no`, `delivery_date`, `delivery_party`, `delivery_transport`, `delivery_docket_no`, `delivery_user`, `delivery_terms`, `delivery_total`, `delivery_bill_status`, `delivery_basic`, `delivery_gst`) VALUES
+(2, 1, '000002', '12-11-2019', 4, 'qqqqq', '111', NULL, 'jhbi', 1601, 'no', 1600, 1),
+(3, 1, '000003', '19-11-2019', 4, 'ghkmvhjk', '456', 3, 'dfgdfg', 2560, 'no', 2500, 60),
+(4, 1, '000004', '19-11-2019', 4, 'dsfsdf', '45', 2, 'sdfsdf sdfsdf', 12650, 'yes', 11500, 1150);
 
 -- --------------------------------------------------------
 
@@ -313,8 +314,8 @@ INSERT INTO `uni_display_color` (`display_color_id`, `company_id`, `display_colo
 CREATE TABLE `uni_division` (
   `division_id` bigint(20) NOT NULL,
   `company_id` bigint(20) NOT NULL,
-  `division_name` varchar(250) NOT NULL,
-  `division_head` varchar(250) NOT NULL,
+  `division_name` varchar(250) NOT NULL COMMENT 'Division Area Name',
+  `division_head` varchar(250) NOT NULL COMMENT 'Division Name',
   `division_status` varchar(20) NOT NULL DEFAULT 'active',
   `division_addedby` varchar(150) NOT NULL,
   `division_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -327,6 +328,30 @@ CREATE TABLE `uni_division` (
 INSERT INTO `uni_division` (`division_id`, `company_id`, `division_name`, `division_head`, `division_status`, `division_addedby`, `division_date`) VALUES
 (2, 2, 'dv', 'dvh', 'active', '', '2019-11-08 08:21:43'),
 (3, 1, 'Division One', 'ddd 1', 'active', '', '2019-11-14 09:09:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uni_enquiry`
+--
+
+CREATE TABLE `uni_enquiry` (
+  `enquiry_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `party_id` bigint(20) NOT NULL,
+  `requirment` text NOT NULL,
+  `enquiry_status` varchar(20) NOT NULL DEFAULT 'active',
+  `enquiry_addedby` varchar(150) NOT NULL,
+  `enquiry_date` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_enquiry`
+--
+
+INSERT INTO `uni_enquiry` (`enquiry_id`, `company_id`, `party_id`, `requirment`, `enquiry_status`, `enquiry_addedby`, `enquiry_date`) VALUES
+(2, 1, 4, 'hhhh jjjj', 'active', '', '11-11-2019'),
+(3, 1, 8, 'demo Up', 'active', '', '20-11-2019');
 
 -- --------------------------------------------------------
 
@@ -348,7 +373,10 @@ CREATE TABLE `uni_expense` (
 --
 
 INSERT INTO `uni_expense` (`expense_id`, `company_id`, `expense_no`, `expense_date`, `expense_amount`, `expense_narration`) VALUES
-(2, 1, '2', '21-11-2019', 567, 'tyutyu');
+(6, 1, '000001', '21-11-2019', 2000, 'fdgdsfgsdfg'),
+(7, 1, '000002', '01-11-2019', 5000, 'ghjfgjhfgjh'),
+(8, 1, '000003', '15-11-2019', 5000, 'ghjfgjh'),
+(9, 1, '000004', '13-11-2019', 1000, 'hjkghjk');
 
 -- --------------------------------------------------------
 
@@ -363,6 +391,7 @@ CREATE TABLE `uni_govt_stamp_master` (
   `govt_stamp_date` varchar(20) NOT NULL,
   `govt_stamp_party` bigint(20) NOT NULL,
   `govt_stamp_division` bigint(20) NOT NULL COMMENT 'Division Id',
+  `govt_stamp_trade` varchar(250) DEFAULT NULL,
   `govt_stamp_vc_no` varchar(20) NOT NULL,
   `govt_stamp_vc_date` varchar(20) NOT NULL,
   `govt_stamp_grn_no` varchar(20) NOT NULL,
@@ -380,9 +409,10 @@ CREATE TABLE `uni_govt_stamp_master` (
 -- Dumping data for table `uni_govt_stamp_master`
 --
 
-INSERT INTO `uni_govt_stamp_master` (`govt_stamp_id`, `company_id`, `govt_stamp_no`, `govt_stamp_date`, `govt_stamp_party`, `govt_stamp_division`, `govt_stamp_vc_no`, `govt_stamp_vc_date`, `govt_stamp_grn_no`, `govt_stamp_grn_date`, `govt_stamp_objection`, `govt_stamp_condition`, `govt_stamp_late_fee`, `govt_stamp_hctada`, `govt_stamp_ser_charge`, `govt_stamp_gov_fees`, `govt_stamp_total`) VALUES
-(2, 1, '000002', '15-11-2019', 5, 3, '1', '14-11-2019', '2', '15-11-2019', 'yes', 'no', 1, 2, 55, 55, 113),
-(3, 1, '000003', '20-11-2019', 4, 3, '111', '19-11-2019', '222', '20-11-2019', 'yes', 'yes', 50, 20, 110, 150, 330);
+INSERT INTO `uni_govt_stamp_master` (`govt_stamp_id`, `company_id`, `govt_stamp_no`, `govt_stamp_date`, `govt_stamp_party`, `govt_stamp_division`, `govt_stamp_trade`, `govt_stamp_vc_no`, `govt_stamp_vc_date`, `govt_stamp_grn_no`, `govt_stamp_grn_date`, `govt_stamp_objection`, `govt_stamp_condition`, `govt_stamp_late_fee`, `govt_stamp_hctada`, `govt_stamp_ser_charge`, `govt_stamp_gov_fees`, `govt_stamp_total`) VALUES
+(2, 1, '000002', '15-11-2019', 8, 3, NULL, '1', '14-11-2019', '2', '15-11-2019', 'yes', 'no', 1, 2, 55, 55, 113),
+(3, 1, '000003', '20-11-2019', 4, 3, 'fghfghfgh', '111', '19-11-2019', '222', '20-11-2019', 'yes', 'yes', 50, 20, 110, 150, 330),
+(4, 1, '000004', '20-11-2019', 4, 3, 'fghfghfgh', '', '', '', '', 'no', 'yes', 100, 500, 400, 1200, 2200);
 
 -- --------------------------------------------------------
 
@@ -394,7 +424,7 @@ CREATE TABLE `uni_govt_stamp_trans` (
   `govt_stamp_trans_id` bigint(20) NOT NULL,
   `govt_stamp_id` bigint(20) NOT NULL,
   `make_id` bigint(20) NOT NULL,
-  `model_no_id` varchar(250) NOT NULL COMMENT 'Model Number',
+  `model_no_id` bigint(20) NOT NULL,
   `machine_serial_no` varchar(250) NOT NULL,
   `capacity_id` bigint(20) NOT NULL,
   `min_id` bigint(20) NOT NULL,
@@ -411,10 +441,11 @@ CREATE TABLE `uni_govt_stamp_trans` (
 --
 
 INSERT INTO `uni_govt_stamp_trans` (`govt_stamp_trans_id`, `govt_stamp_id`, `make_id`, `model_no_id`, `machine_serial_no`, `capacity_id`, `min_id`, `accuracy_id`, `class_id`, `lcr_no`, `lcr_date`, `govt_fees`, `ser_charge`) VALUES
-(2, 2, 2, '11', '555', 4, 2, 2, 2, '222', '2019-11-14', 22, 11),
-(3, 2, 4, '22', '333', 2, 2, 2, 2, '333', '2019-11-15', 33, 44),
-(5, 3, 4, '2134', '345', 4, 2, 2, 2, '345', '2019-11-19', 100, 10),
-(6, 3, 6, '1234', '345', 2, 2, 2, 2, '435', '2019-11-21', 50, 100);
+(2, 2, 6, 4, '555', 2, 2, 2, 2, '222', '2019-11-14', 22, 11),
+(3, 2, 6, 4, '333', 2, 2, 2, 2, '333', '2019-11-15', 33, 44),
+(5, 3, 4, 5, '345', 4, 2, 2, 2, '345', '2019-11-19', 100, 10),
+(6, 3, 6, 4, '345', 2, 2, 2, 2, '435', '2019-11-21', 50, 100),
+(7, 4, 4, 5, 'ghj', 4, 2, 2, 2, 'ghjghj', '2019-11-25', 1200, 400);
 
 -- --------------------------------------------------------
 
@@ -579,17 +610,20 @@ CREATE TABLE `uni_purchase_master` (
   `purchase_total` double NOT NULL,
   `purchase_advance` double NOT NULL,
   `purchase_due` double NOT NULL,
-  `purchase_del_period` double NOT NULL,
-  `purchase_pay_terms` double NOT NULL
+  `purchase_del_period` varchar(250) NOT NULL,
+  `purchase_pay_terms` varchar(250) NOT NULL,
+  `purchase_accss` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `uni_purchase_master`
 --
 
-INSERT INTO `uni_purchase_master` (`purchase_id`, `company_id`, `purchase_order_no`, `purchase_date`, `purchase_party`, `invoice_no`, `invoice_date`, `purchase_terms`, `purchase_basic_price`, `purchase_gst`, `purchase_stamping`, `purchase_other`, `purchase_total`, `purchase_advance`, `purchase_due`, `purchase_del_period`, `purchase_pay_terms`) VALUES
-(2, 1, '000002', '12-11-2019', 4, '1', '12-11-2019', '', 200, 15, 0, 0, 215, 0, 0, 0, 0),
-(3, 1, '000003', '19-11-2019', 4, '67', '19-11-2019', '', 2250, 140, 1, 10, 2401, 97, 2304, 0, 0);
+INSERT INTO `uni_purchase_master` (`purchase_id`, `company_id`, `purchase_order_no`, `purchase_date`, `purchase_party`, `invoice_no`, `invoice_date`, `purchase_terms`, `purchase_basic_price`, `purchase_gst`, `purchase_stamping`, `purchase_other`, `purchase_total`, `purchase_advance`, `purchase_due`, `purchase_del_period`, `purchase_pay_terms`, `purchase_accss`) VALUES
+(2, 1, '000002', '12-11-2019', 4, '1', '12-11-2019', '', 200, 15, 0, 0, 215, 0, 0, '0', '0', NULL),
+(3, 1, '000003', '19-11-2019', 4, '67', '19-11-2019', '', 2250, 140, 1, 10, 2401, 97, 2304, '0', '0', 'Extra Display_0_Charger_0_0_Bowl_Others'),
+(4, 1, '000004', '27-11-2019', 8, '', '', 'Demo Terms, Demo Terms 1, Demo Terms 222, ', 4500, 0, 0, 0, 4500, 0, 0, '', '', '0_0_0_0_0_0_0'),
+(5, 1, '000005', '02-11-2019', 8, '1', '28-11-2019', 'Demo Terms, Demo Terms 1, Demo Terms 222, ', 4500, 0, 0, 0, 4500, 0, 0, '', '', '0_0_0_0_0_0_0');
 
 -- --------------------------------------------------------
 
@@ -630,7 +664,9 @@ CREATE TABLE `uni_purchase_trans` (
 INSERT INTO `uni_purchase_trans` (`purchase_trans_id`, `purchase_id`, `make_id`, `model_no_id`, `machine_serial_no`, `capacity_id`, `accuracy_id`, `class_id`, `platter_id`, `display_color_id`, `cabinate_color_id`, `accessories`, `purchase_trans_descr`, `purchase_trans_gst`, `purchase_trans_qty`, `purchase_trans_rate`, `purchase_trans_amount`, `purchase_descr_gst`, `purchase_descr_qty`, `purchase_descr_rate`, `purchase_descr_amount`, `purchase_trans_gst_amount`, `trans_acc_gst_amount`) VALUES
 (3, 2, 6, 4, '111', 2, 2, 2, 1, 3, 2, '', '', 10, 1, 100, 100, 5, 1, 100, 100, NULL, NULL),
 (5, 3, 4, 5, '111', 4, 2, 2, 1, 3, 2, 'hrtfyhrty', NULL, 10, 1, 100, 100, 5, 1, 100, 100, 10, 5),
-(6, 3, 6, 4, '444', 2, 2, 2, 1, 3, 2, 'bncxbcxvb', NULL, 6, 10, 200, 2000, 10, 1, 50, 50, 120, 5);
+(6, 3, 6, 4, '444', 2, 2, 2, 1, 3, 2, 'bncxbcxvb', NULL, 6, 10, 200, 2000, 10, 1, 50, 50, 120, 5),
+(7, 4, 4, 5, '', 4, 2, 2, 1, 3, 2, 'fghfgh', NULL, 0, 3, 1500, 4500, 0, 0, 0, 0, 0, 0),
+(8, 5, 4, 5, '', 4, 2, 2, 1, 3, 2, 'fghfgh', NULL, 0, 3, 1500, 4500, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -657,8 +693,7 @@ CREATE TABLE `uni_quotation_master` (
 --
 
 INSERT INTO `uni_quotation_master` (`quotation_id`, `company_id`, `quotation_no`, `quotation_date`, `quotation_party`, `quotation_person`, `quotation_contact`, `quotation_terms`, `quotation_basic`, `quotation_gst`, `quotation_total`) VALUES
-(2, 1, '2', '22-11-2019', 5, 'sdfasdff gdfgdfg', 9876532410, 'ftyuty rtuytyu', 15024, 900, 15924),
-(3, 1, '3', '19-11-2019', 4, 'fghfgh', 2131243, '', 1900, 112, 2012);
+(4, 1, '000004', '13-11-2019', 8, 'ASDF GHJK', 9876543210, 'hjkfgyjh', 4500, 45, 4545);
 
 -- --------------------------------------------------------
 
@@ -694,10 +729,11 @@ CREATE TABLE `uni_quotation_trans` (
 --
 
 INSERT INTO `uni_quotation_trans` (`quotation_trans_id`, `quotation_id`, `make_id`, `model_no_id`, `machine_serial_no`, `capacity_id`, `accuracy_id`, `class_id`, `platter_id`, `quotation_trans_gst`, `quotation_trans_gst_amount`, `quotation_trans_qty`, `quotation_trans_rate`, `quotation_trans_acc`, `trans_acc_gst`, `trans_acc_gst_amount`, `trans_acc_qty`, `trans_acc_rate`, `trans_acc_amount`, `quotation_trans_amount`) VALUES
-(2, 2, 6, 4, '222', 2, 2, 2, 1, 10, 750, 5, 1500, 'dfghdfgh', 4, 0, 2, 4, 12, 7500),
-(7, 2, 4, 5, '333', 4, 2, 2, 1, 2, 150, 5, 1500, 'sddfvdf', 4, 0, 2, 4, 12, 7500),
-(8, 3, 4, 5, '111', 4, 2, 2, 1, 10, 0, 2, 100, 'dfghfgh', 10, 50, 1, 500, 500, 200),
-(9, 3, 6, 4, '333', 2, 2, 2, 1, 6, 12, 2, 100, 'fgjhgjh', 5, 50, 1, 1000, 1000, 200);
+(8, 3, 4, 5, '111', 4, 2, 2, 1, 10, 20, 2, 100, 'dfghfgh', 10, 50, 1, 500, 500, 200),
+(9, 3, 6, 4, '333', 2, 2, 2, 1, 6, 12, 2, 100, 'fgjhgjh', 5, 50, 1, 1000, 1000, 200),
+(11, 4, 4, 5, '', 4, 2, 2, 1, 1, 45, 3, 1500, 'fghfgh', 0, 0, 0, 0, 0, 4500),
+(12, 5, 4, 5, '466', 4, 2, 2, 1, 10, 20, 2, 100, '', 10, 50, 1, 500, 500, 200),
+(13, 5, 6, 4, 'hjk', 2, 2, 2, 1, 6, 12, 2, 100, '', 5, 50, 1, 1000, 1000, 200);
 
 -- --------------------------------------------------------
 
@@ -721,7 +757,8 @@ CREATE TABLE `uni_receipt` (
 --
 
 INSERT INTO `uni_receipt` (`receipt_id`, `company_id`, `receipt_no`, `receipt_date`, `receipt_party`, `receipt_outstanding`, `receipt_amount`, `receipt_narration`) VALUES
-(4, 1, '000001', '23-11-2019', 4, 0, 5100, 'ghjkgh');
+(5, 1, '000002', '15-11-2019', 4, 19315, 1000, 'dfgdsf sdfgsdfg sdfgdsfg'),
+(7, 1, '000003', '13-11-2019', 4, 23415, 3000, 'dfgdfg dfgdf dfgdfg');
 
 -- --------------------------------------------------------
 
@@ -737,19 +774,21 @@ CREATE TABLE `uni_repairy_master` (
   `repairy_party` bigint(20) NOT NULL,
   `repairy_person` varchar(200) NOT NULL,
   `repairy_contact` bigint(20) NOT NULL,
+  `repairy_user` bigint(20) DEFAULT NULL,
   `repairy_accss` text DEFAULT NULL,
-  `repairy_basic_charge` double NOT NULL,
-  `repairy_min_charge` double NOT NULL,
-  `repairy_total` double NOT NULL
+  `repairy_basic_charge` double NOT NULL DEFAULT 0,
+  `repairy_min_charge` double NOT NULL DEFAULT 0,
+  `repairy_total` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `uni_repairy_master`
 --
 
-INSERT INTO `uni_repairy_master` (`repairy_id`, `company_id`, `repairy_no`, `repairy_date`, `repairy_party`, `repairy_person`, `repairy_contact`, `repairy_accss`, `repairy_basic_charge`, `repairy_min_charge`, `repairy_total`) VALUES
-(3, 1, '000003', '30-11-2019', 4, 'qqq', 9876543210, 'PAN_Bowl_Adapter_Battery_Stamping', 320, 100, 420),
-(4, 1, '000004', '21-11-2019', 4, 'fghfgh dfghfgh', 9876543210, 'PAN_0_Adapter_0_Stamping', 1500, 200, 1700);
+INSERT INTO `uni_repairy_master` (`repairy_id`, `company_id`, `repairy_no`, `repairy_date`, `repairy_party`, `repairy_person`, `repairy_contact`, `repairy_user`, `repairy_accss`, `repairy_basic_charge`, `repairy_min_charge`, `repairy_total`) VALUES
+(3, 1, '000003', '30-11-2019', 4, 'qqq', 9876543210, NULL, 'PAN_Bowl_Adapter_Battery_Stamping', 320, 100, 420),
+(4, 1, '000004', '21-11-2019', 4, 'fghfgh dfghfgh', 9876543210, 3, 'PAN_0_Adapter_0_Stamping', 1500, 200, 1700),
+(5, 1, '000005', '18-11-2019', 8, 'fghfgh dfghfgh', 9876543210, 3, '0_0_0_0_0', 500, 0, 500);
 
 -- --------------------------------------------------------
 
@@ -776,11 +815,12 @@ CREATE TABLE `uni_repairy_trans` (
 --
 
 INSERT INTO `uni_repairy_trans` (`repairy_trans_id`, `repairy_id`, `make_id`, `model_no_id`, `machine_serial_no`, `capacity_id`, `accuracy_id`, `class_id`, `repairy_details`, `material_used`, `repairy_trans_amount`) VALUES
-(2, 3, 5, '11', '111', 4, 2, 2, '111', '', 222),
+(2, 3, 4, '5', '111', 4, 2, 2, '111', 'thydfgh fgh', 222),
 (3, 0, 6, '22', '444', 4, 2, 2, '555', NULL, 521),
-(4, 3, 6, '22', '444', 4, 2, 2, '666', '', 98),
-(5, 4, 4, '2134', '222', 4, 2, 2, 'jhklhjkl', 'dfgdfg, dsfgsdfg', 500),
-(6, 4, 6, '678', 'j678', 2, 2, 2, 'jkhjk', 'ertert, cvbcxvb', 1000);
+(4, 3, 6, '4', '444', 2, 2, 2, '666', 'dfgh dfghdfgh', 98),
+(5, 4, 4, '5', '222', 4, 2, 2, 'jhklhjkl', 'dfgdfg, dsfgsdfg', 500),
+(6, 4, 6, '4', 'j678', 2, 2, 2, 'jkhjk', 'ertert, cvbcxvb', 1000),
+(7, 5, 6, '4', '56767', 2, 2, 2, 'ghjfgh', 'fghfgh', 500);
 
 -- --------------------------------------------------------
 
@@ -827,7 +867,7 @@ CREATE TABLE `uni_sale_master` (
 --
 
 INSERT INTO `uni_sale_master` (`sale_id`, `company_id`, `sale_bill_no`, `sale_date`, `sale_party`, `sale_challan_no`, `sale_employee`, `sale_terms`, `total_gst`, `total_base_amount`, `sale_total`, `date_time`) VALUES
-(4, 1, '000004', '20-11-2019', 4, 2, '2', 'tryrty retyrty', 1090, 11500, 12590, '2019-11-19 11:00:08');
+(1, 1, '000001', '26-11-2019', 4, 4, '2', 'gsdfgsdfg', 1150, 11500, 12650, '2019-11-26 11:08:08');
 
 -- --------------------------------------------------------
 
@@ -857,8 +897,7 @@ CREATE TABLE `uni_sale_trans` (
 --
 
 INSERT INTO `uni_sale_trans` (`sale_trans_id`, `sale_id`, `make_id`, `model_no_id`, `machine_serial_no`, `capacity_id`, `accuracy_id`, `class_id`, `platter_id`, `sale_trans_gst`, `sale_trans_gst_amount`, `sale_trans_qty`, `sale_trans_rate`, `sale_trans_amount`) VALUES
-(5, 4, 6, 4, '222', 2, 2, 2, 1, 10, 1000, 1, 10000, 10000),
-(6, 4, 4, 5, '111', 4, 2, 2, 1, 6, 90, 1, 1500, 1500);
+(1, 1, 6, 4, '333', 2, 2, 2, 1, 10, 1000, 1, 10000, 10000);
 
 -- --------------------------------------------------------
 
@@ -891,7 +930,7 @@ CREATE TABLE `uni_service` (
 --
 
 INSERT INTO `uni_service` (`service_id`, `service_no`, `complaint_id`, `company_id`, `make_id`, `model_no`, `service_sr_no`, `service_range`, `service_stamping`, `service_observation`, `service_recommend`, `service_component`, `service_call_completion`, `service_charges_fee`, `service_date`, `service_time_in`, `service_time_out`) VALUES
-(5, '000001', 6, 1, 4, 5, 22, '77', '33', 'fghdfgh dfghd', ' dfhfj dfjhjh', 'ghjghj', 'Open', 500, '22-11-2019', '4:01 PM', '5:33 PM');
+(7, '000001', 6, 1, 4, 5, 456, '1000', 'ghjkghjk ghjk', 'cghjghj', 'gfjhfg', 'jfgjfgj', 'Open', 1000, '15-11-2019', '3:52 PM', '3:52 PM');
 
 -- --------------------------------------------------------
 
@@ -935,7 +974,9 @@ CREATE TABLE `uni_terms` (
 --
 
 INSERT INTO `uni_terms` (`terms_id`, `company_id`, `terms_name`, `terms_status`, `terms_addedby`, `terms_date`) VALUES
-(2, 1, 'Demo Terms', 'active', '', '2019-11-07 08:07:54');
+(2, 1, 'Demo Terms', 'active', '', '2019-11-07 08:07:54'),
+(3, 1, 'Demo Terms 1', 'active', '', '2019-11-26 11:15:43'),
+(4, 1, 'Demo Terms 222', 'active', '', '2019-11-26 11:15:49');
 
 -- --------------------------------------------------------
 
@@ -1064,6 +1105,12 @@ ALTER TABLE `uni_display_color`
 --
 ALTER TABLE `uni_division`
   ADD PRIMARY KEY (`division_id`);
+
+--
+-- Indexes for table `uni_enquiry`
+--
+ALTER TABLE `uni_enquiry`
+  ADD PRIMARY KEY (`enquiry_id`);
 
 --
 -- Indexes for table `uni_expense`
@@ -1281,22 +1328,28 @@ ALTER TABLE `uni_division`
   MODIFY `division_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `uni_enquiry`
+--
+ALTER TABLE `uni_enquiry`
+  MODIFY `enquiry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `uni_expense`
 --
 ALTER TABLE `uni_expense`
-  MODIFY `expense_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `expense_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `uni_govt_stamp_master`
 --
 ALTER TABLE `uni_govt_stamp_master`
-  MODIFY `govt_stamp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `govt_stamp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `uni_govt_stamp_trans`
 --
 ALTER TABLE `uni_govt_stamp_trans`
-  MODIFY `govt_stamp_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `govt_stamp_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `uni_make`
@@ -1332,43 +1385,43 @@ ALTER TABLE `uni_product`
 -- AUTO_INCREMENT for table `uni_purchase_master`
 --
 ALTER TABLE `uni_purchase_master`
-  MODIFY `purchase_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `purchase_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `uni_purchase_trans`
 --
 ALTER TABLE `uni_purchase_trans`
-  MODIFY `purchase_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `purchase_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `uni_quotation_master`
 --
 ALTER TABLE `uni_quotation_master`
-  MODIFY `quotation_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `quotation_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `uni_quotation_trans`
 --
 ALTER TABLE `uni_quotation_trans`
-  MODIFY `quotation_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `quotation_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `uni_receipt`
 --
 ALTER TABLE `uni_receipt`
-  MODIFY `receipt_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `receipt_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `uni_repairy_master`
 --
 ALTER TABLE `uni_repairy_master`
-  MODIFY `repairy_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `repairy_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `uni_repairy_trans`
 --
 ALTER TABLE `uni_repairy_trans`
-  MODIFY `repairy_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `repairy_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `uni_roll`
@@ -1380,19 +1433,19 @@ ALTER TABLE `uni_roll`
 -- AUTO_INCREMENT for table `uni_sale_master`
 --
 ALTER TABLE `uni_sale_master`
-  MODIFY `sale_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sale_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_sale_trans`
 --
 ALTER TABLE `uni_sale_trans`
-  MODIFY `sale_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `sale_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_service`
 --
 ALTER TABLE `uni_service`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `uni_std_narration`
@@ -1404,7 +1457,7 @@ ALTER TABLE `uni_std_narration`
 -- AUTO_INCREMENT for table `uni_terms`
 --
 ALTER TABLE `uni_terms`
-  MODIFY `terms_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `terms_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `uni_unit`
