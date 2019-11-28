@@ -10,5 +10,15 @@ class Login_Model extends CI_Model{
       return $result;
 
   }
+
+  function check_user_login($mobile, $password){
+    $query = $this->db->select('*')
+        ->where('user_mobile', $mobile)
+        ->where('user_password', $password)
+        ->from('uni_user')
+        ->get();
+    $result = $query->result_array();
+    return $result;
+  }
 }
 ?>

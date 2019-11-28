@@ -761,9 +761,11 @@ class Transaction extends CI_Controller{
    $company_id = $this->session->userdata('company_id');
    if($company_id){
      $party_id = $this->input->post('party_id');
+     $type = $this->input->post('type');
      if(!isset($party_id)){
        $party_id = null;
      }
+     $data['type'] = $type;
      $data['govt_stamp_list'] = $this->Transaction_Model->govt_stamp_list($company_id,$party_id);
      $this->load->view('Admin/govt_stamping_bill_list',$data);
    } else{
@@ -943,9 +945,11 @@ class Transaction extends CI_Controller{
    $company_id = $this->session->userdata('company_id');
    if($company_id){
      $party_id = $this->input->post('party_id');
+     $type = $this->input->post('type');
      if(!isset($party_id)){
        $party_id = null;
      }
+     $data['type'] = $type;
      $data['repairy_bill_list'] = $this->Transaction_Model->repairy_bill_list($company_id,$party_id);
      $this->load->view('Admin/repairy_bill_list',$data);
    } else{
@@ -1663,13 +1667,14 @@ public function expense_voucher_list(){
     $company_id = $this->session->userdata('company_id');
     if($company_id){
       $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
-        $this->load->view('Admin/party_all_info', $data);
+      $this->load->view('Admin/party_all_info', $data);
     } else{
       header('location:'.base_url().'Login');
     }
   }
 
     public function GetPartyDetails(){
+      $company_id = $this->session->userdata('company_id');
       $party_id = $this->input->post('party_id');
       $partyDetails = $this->Transaction_Model->GetPartyDetails($party_id);
       foreach($partyDetails as $partyDetails){
@@ -1703,6 +1708,17 @@ public function expense_voucher_list(){
       $total_reciept_amount = $this->Transaction_Model->total_reciept_amount($party_id);
       $outstanding_amount = $total_bill - $total_reciept_amount;
       $data['outstanding_amount'] = $outstanding_amount;
+
+      $data['enquiry_count'] = $this->Admin_Model->get_enquiry_count($party_id,$company_id);
+      $data['complaint_count'] = $this->Admin_Model->get_complaint_count($party_id,$company_id);
+      $data['delivery_challan_count'] = $this->Admin_Model->get_count('delivery_party',$party_id,'delivery_id',$company_id,'uni_delivery_master');
+      $data['purchase_count'] = $this->Admin_Model->get_count('purchase_party',$party_id,'purchase_id',$company_id,'uni_purchase_master');
+      $data['sale_count'] = $this->Admin_Model->get_count('sale_party',$party_id,'sale_id',$company_id,'uni_sale_master');
+      $data['quotation_count'] = $this->Admin_Model->get_count('quotation_party',$party_id,'quotation_id',$company_id,'uni_quotation_master');
+      $data['repair_count'] = $this->Admin_Model->get_count('repairy_party',$party_id,'repairy_id',$company_id,'uni_repairy_master');
+      $data['gov_stamping_count'] = $this->Admin_Model->get_count('govt_stamp_party',$party_id,'govt_stamp_id',$company_id,'uni_govt_stamp_master');
+      $data['receipt_count'] = $this->Admin_Model->get_count('receipt_party',$party_id,'receipt_id',$company_id,'uni_receipt');
+
       echo json_encode($data);
     }
 

@@ -12,23 +12,32 @@ class Admin extends CI_Controller{
   }
   public function dashboard(){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
-      $data['user_count'] = $this->Admin_Model->get_count('user_id',$company_id,'uni_user');
-      $data['make_count'] = $this->Admin_Model->get_count('make_id',$company_id,'uni_make');
-      $data['product_count'] = $this->Admin_Model->get_count('product_id',$company_id,'uni_product');
-      $data['party_count'] = $this->Admin_Model->get_count('party_id',$company_id,'uni_party');
+      if($roll_id == 1){
+        $party_id = null;
+        $party = null;
+        $data['user_count'] = $this->Admin_Model->get_count($party,$party_id,'user_id',$company_id,'uni_user');
+        $data['make_count'] = $this->Admin_Model->get_count($party,$party_id,'make_id',$company_id,'uni_make');
+        $data['product_count'] = $this->Admin_Model->get_count($party,$party_id,'product_id',$company_id,'uni_product');
+        $data['party_count'] = $this->Admin_Model->get_count($party,$party_id,'party_id',$company_id,'uni_party');
 
-      $data['enquiry_count'] = $this->Admin_Model->get_enquiry_count($company_id);
-      $data['delivery_challan_count'] = $this->Admin_Model->get_count('delivery_id',$company_id,'uni_delivery_master');
-      $data['purchase_count'] = $this->Admin_Model->get_count('purchase_id',$company_id,'uni_purchase_master');
-      $data['sale_count'] = $this->Admin_Model->get_count('sale_id',$company_id,'uni_sale_master');
-      $data['quotation_count'] = $this->Admin_Model->get_count('quotation_id',$company_id,'uni_quotation_master');
-      $data['repair_count'] = $this->Admin_Model->get_count('repairy_id',$company_id,'uni_repairy_master');
-      $data['gov_stamping_count'] = $this->Admin_Model->get_count('govt_stamp_id',$company_id,'uni_govt_stamp_master');
-      $data['complaint_count'] = $this->Admin_Model->get_complaint_count($company_id);
+        $data['enquiry_count'] = $this->Admin_Model->get_enquiry_count($party_id,$company_id);
+        $data['delivery_challan_count'] = $this->Admin_Model->get_count($party,$party_id,'delivery_id',$company_id,'uni_delivery_master');
+        $data['purchase_count'] = $this->Admin_Model->get_count($party,$party_id,'purchase_id',$company_id,'uni_purchase_master');
+        $data['sale_count'] = $this->Admin_Model->get_count($party,$party_id,'sale_id',$company_id,'uni_sale_master');
+        $data['quotation_count'] = $this->Admin_Model->get_count($party,$party_id,'quotation_id',$company_id,'uni_quotation_master');
+        $data['repair_count'] = $this->Admin_Model->get_count($party,$party_id,'repairy_id',$company_id,'uni_repairy_master');
+        $data['gov_stamping_count'] = $this->Admin_Model->get_count($party,$party_id,'govt_stamp_id',$company_id,'uni_govt_stamp_master');
+        $data['complaint_count'] = $this->Admin_Model->get_complaint_count($party_id,$company_id);
 
-      $this->load->view('Admin/dashboard',$data);
+        $this->load->view('Admin/dashboard',$data);
+      }
+      else{
+        $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+        $this->load->view('Admin/party_all_info', $data);
+      }
+
     } else{
       header('location:'.base_url().'Login');
     }
@@ -37,7 +46,7 @@ class Admin extends CI_Controller{
   /********************** Company Information *************************/
     public function company_information(){
       $company_id = $this->session->userdata('company_id');
-      $admin_roll_id = $this->session->userdata('admin_roll_id');
+      $roll_id = $this->session->userdata('admin_roll_id');
       if($company_id){
         $data['company_list'] = $this->Admin_Model->get_list($company_id,'company_id','ASC','uni_company');
         $this->load->view('Admin/company_list', $data);
@@ -48,7 +57,7 @@ class Admin extends CI_Controller{
 
     public function company_list(){
       $company_id = $this->session->userdata('company_id');
-      $admin_roll_id = $this->session->userdata('admin_roll_id');
+      $roll_id = $this->session->userdata('admin_roll_id');
       if($company_id){
         $data['company_list'] = $this->Admin_Model->get_list($company_id,'company_id','ASC','uni_company');
         $this->load->view('Admin/company_list');
@@ -96,7 +105,7 @@ class Admin extends CI_Controller{
     //Update Company...
     public function update_company(){
       $company_id = $this->session->userdata('company_id');
-      $admin_roll_id = $this->session->userdata('admin_roll_id');
+      $roll_id = $this->session->userdata('admin_roll_id');
       if($company_id){
         $company_id = $this->input->post('company_id');
         $data = array(
@@ -130,7 +139,7 @@ class Admin extends CI_Controller{
     // Save company Data...
     public function save_company(){
       $company_id = $this->session->userdata('company_id');
-      $admin_roll_id = $this->session->userdata('admin_roll_id');
+      $roll_id = $this->session->userdata('admin_roll_id');
       if($company_id){
         $data = array(
           'company_name' => $this->input->post('company_name'),
@@ -164,7 +173,7 @@ class Admin extends CI_Controller{
   // Add Party...
   public function party_information(){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $this->load->view('Admin/party_information');
     } else{
@@ -174,7 +183,7 @@ class Admin extends CI_Controller{
   //Party List
   public function party_list(){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
       $this->load->view('Admin/party_list',$data);
@@ -185,7 +194,7 @@ class Admin extends CI_Controller{
   // Save Party...
   public function save_party(){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $party_mob1 = $this->input->post('party_mob1');
       $data = array(
@@ -223,7 +232,7 @@ class Admin extends CI_Controller{
   //edit Party...
   public function edit_party($id){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $party_info = $this->Admin_Model->get_info('party_id', $id, 'uni_party');
       if($party_info){
@@ -257,7 +266,7 @@ class Admin extends CI_Controller{
   //Update Party... DB....
   public function update_party(){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $party_id = $this->input->post('party_id');
       $party_mob1 = $this->input->post('party_mob1');
@@ -294,7 +303,7 @@ class Admin extends CI_Controller{
   // Delete Party...
   public function delete_party($id){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $this->Admin_Model->delete_info('party_id', $id, 'uni_party');
       header('location:../party_list');
@@ -306,7 +315,7 @@ class Admin extends CI_Controller{
   /********************** User Information *************************/
   public function add_user(){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $this->load->view('Admin/add_user');
     } else{
@@ -315,7 +324,7 @@ class Admin extends CI_Controller{
   }
   public function user_list(){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
       $this->load->view('Admin/user_list',$data);
@@ -326,7 +335,7 @@ class Admin extends CI_Controller{
   //Save User...
   public function save_user(){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $user_mobile = $this->input->post('user_mobile');
       $data = array(
@@ -353,7 +362,7 @@ class Admin extends CI_Controller{
   // Edit User...
   public function edit_user($id){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $user_info = $this->Admin_Model->get_info('user_id', $id, 'uni_user');
       if($user_info){
@@ -376,7 +385,7 @@ class Admin extends CI_Controller{
   // Update User... DB...
   public function update_user(){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $user_id = $this->input->post('user_id');
       $data = array(
@@ -394,7 +403,7 @@ class Admin extends CI_Controller{
   // Delete User...
   public function delete_user($id){
     $company_id = $this->session->userdata('company_id');
-    $admin_roll_id = $this->session->userdata('admin_roll_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
     if($company_id){
       $this->Admin_Model->delete_info('user_id', $id, 'uni_user');
       header('location:../user_list');

@@ -36,11 +36,14 @@ class Admin_Model extends CI_Model{
     ->delete($tbl_name);
   }
 
-  public function get_count($id_type,$company_id,$tbl_name){
-    $query = $this->db->select($id_type)
-            ->where('company_id', $company_id)
-            ->from($tbl_name)
-            ->get();
+  public function get_count($party,$party_id,$id_type,$company_id,$tbl_name){
+    $this->db->select($id_type);
+    $this->db->where('company_id', $company_id);
+    if($party_id != null && $party != null){
+      $this->db->where($party, $party_id);
+    }
+    $this->db->from($tbl_name);
+    $query = $this->db->get();
     $result = $query->num_rows();
     return $result;
   }
@@ -89,22 +92,27 @@ class Admin_Model extends CI_Model{
     return $result;
   }
 
-  public function get_enquiry_count($company_id){
-    $query = $this->db->select('party_id')
-            ->where('company_id', $company_id)
-            ->where('party_type', 'enquiry')
-            ->where('party_status', 'active')
-            ->from('uni_party')
-            ->get();
+  public function get_enquiry_count($party_id,$company_id){
+    $this->db->select('enquiry_id');
+    $this->db->where('company_id', $company_id);
+    if($party_id != null){
+      $this->db->where('party_id', $party_id);
+    }
+    $this->db->where('enquiry_status', 'active');
+    $this->db->from('uni_enquiry');
+    $query = $this->db->get();
     $result = $query->num_rows();
     return $result;
   }
-  public function get_complaint_count($company_id){
-    $query = $this->db->select('complaint_id')
-            ->where('company_id', $company_id)
-            ->where('complaint_status', 'open')
-            ->from('uni_complaint')
-            ->get();
+  public function get_complaint_count($party_id,$company_id){
+    $this->db->select('complaint_id');
+    $this->db->where('company_id', $company_id);
+    if($party_id != null){
+      $this->db->where('party_id', $party_id);
+    }
+    $this->db->where('complaint_status', 'open');
+    $this->db->from('uni_complaint');
+    $query = $this->db->get();
     $result = $query->num_rows();
     return $result;
   }

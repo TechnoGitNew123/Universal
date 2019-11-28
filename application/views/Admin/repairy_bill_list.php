@@ -44,6 +44,7 @@ include('head.php');
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+              <div class="" style="overflow-x:auto;">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -56,7 +57,15 @@ include('head.php');
                    <th>Spare Carhges </th>
                    <th>Service Carhges </th>
                    <th>Total Amount</th>
-                   <th width="13%">Action</th>
+                  <?php if(!isset($type)){ ?>
+                   <th>Reciept</th>
+                   <th>Bill</th>
+                 <?php } elseif ($type == 'Receipt') { ?>
+                   <th>Reciept</th>
+                 <?php } elseif ($type == 'Bill') { ?>
+                   <th>Bill</th>
+                <?php }?>
+                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -75,16 +84,31 @@ include('head.php');
                     <td><?php echo $list->repairy_basic_charge; ?></td>
                     <td><?php echo $list->repairy_min_charge; ?></td>
                     <td><?php echo $list->repairy_total; ?></td>
+                    <?php if(!isset($type)){ ?>
+                      <td >
+                        <a class="ml-2" href="<?php echo base_url(); ?>Receipt/repairy_first_report/<?php echo $list->repairy_id; ?>"> <i class="fa fa-print"></i> </a>
+                      </td>
+                      <td >
+                        <a class="ml-2" href="<?php echo base_url(); ?>Receipt/repairy_bill_receipt/<?php echo $list->repairy_id; ?>"> <i class="fa fa-print"></i> </a>
+                      </td>
+                   <?php } elseif ($type == 'Receipt') { ?>
+                     <td >
+                       <a class="ml-2" href="<?php echo base_url(); ?>Receipt/repairy_first_report/<?php echo $list->repairy_id; ?>"> <i class="fa fa-print"></i> </a>
+                     </td>
+                   <?php } elseif ($type == 'Bill') { ?>
+                     <td >
+                       <a class="ml-2" href="<?php echo base_url(); ?>Receipt/repairy_bill_receipt/<?php echo $list->repairy_id; ?>"> <i class="fa fa-print"></i> </a>
+                     </td>
+                  <?php }?>
                     <td >
                       <a href="<?php echo base_url(); ?>Transaction/edit_repairy_bill/<?php echo $list->repairy_id; ?>"> <i class="fa fa-edit"></i> </a>
                       <a class="ml-2" href="<?php echo base_url(); ?>Transaction/delete_repairy_bill/<?php echo $list->repairy_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
-                      <a class="ml-2" href="<?php echo base_url(); ?>Receipt/repairy_first_report/<?php echo $list->repairy_id; ?>"> <i class="fa fa-print"></i> </a>
-                      <a class="ml-2" href="<?php echo base_url(); ?>Receipt/repairy_bill_receipt/<?php echo $list->repairy_id; ?>"> <i class="fa fa-print"></i> </a>
                     </td>
                   </tr>
                   <?php } ?>
                 </tbody>
               </table>
+              </div>
             </div>
             <!-- /.card-body -->
           </div>

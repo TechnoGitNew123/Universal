@@ -3,14 +3,11 @@
 <?php include('head.php'); ?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
   <!-- Navbar -->
   <?php include('navbar.php'); ?>
   <!-- /.navbar -->
-
   <!-- Main Sidebar Container -->
   <?php include('sidebar.php'); ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -122,7 +119,7 @@
           <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>15</h3>
+                <h3 id="enquiry_count">0</h3>
                 <p>Enquiry </p>
               </div>
               <div class="icon">
@@ -137,7 +134,7 @@
           <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>20</h3>
+                <h3 id="quotation_count">0</h3>
                 <p>Quotation</p>
               </div>
               <div class="icon">
@@ -152,7 +149,7 @@
           <div class="col-md-3 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>10</h3>
+                <h3 id="purchase_count">0</h3>
                 <p>Purchase Agreement</p>
               </div>
               <div class="icon">
@@ -167,7 +164,7 @@
           <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>200</h3>
+                <h3 id="delivery_challan_count">0</h3>
                 <p>Delivery Challan</p>
               </div>
               <div class="icon">
@@ -182,7 +179,7 @@
           <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>200</h3>
+                <h3 id="sale_count">0</h3>
                 <p>Sale Bill </p>
               </div>
               <div class="icon">
@@ -200,7 +197,7 @@
           <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>10</h3>
+                <h3 id="repair_count">0</h3>
                 <p>Repairy Receipt</p>
               </div>
               <div class="icon">
@@ -209,13 +206,14 @@
               <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/repairy_bill_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
+                <input type="hidden" name="type" value="Receipt">
               </form>
             </div>
           </div>
           <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>10</h3>
+                <h3 id="repair_count2">0</h3>
                 <p>Repairy Bill</p>
               </div>
               <div class="icon">
@@ -224,6 +222,7 @@
               <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/repairy_bill_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
+                <input type="hidden" name="type" value="Bill">
               </form>
             </div>
           </div>
@@ -231,7 +230,7 @@
           <div class="col-md-3 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>20</h3>
+                <h3 id="gov_stamping_count">0</h3>
                 <p>Govt Stamping Cash Memo</p>
               </div>
               <div class="icon">
@@ -240,14 +239,15 @@
               <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/govt_stamp_bill_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
+                <input type="hidden" name="type" value="Cash">
               </form>
             </div>
           </div>
           <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>15</h3>
-                <p>Govt Stamping</p>
+                <h3 id="gov_stamping_count2">0</h3>
+                <p>Govt Stamping Bill</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -255,6 +255,7 @@
               <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/govt_stamp_bill_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
+                <input type="hidden" name="type" value="Bill">
               </form>
             </div>
           </div>
@@ -262,7 +263,7 @@
           <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>200</h3>
+                <h3 id="receipt_count">0</h3>
                 <p>Receipt</p>
               </div>
               <div class="icon">
@@ -316,6 +317,20 @@ $("#party").on("change", function(){
       $('#party_website').html(data['party_website']);
       $('#outstanding_amount').html(data['outstanding_amount']);
       $('.party_id').val(data['party_id']);
+
+      // Counts
+      $('#enquiry_count').html(data['enquiry_count']);
+      $('#complaint_count').html(data['complaint_count']);
+      $('#delivery_challan_count').html(data['delivery_challan_count']);
+      $('#purchase_count').html(data['purchase_count']);
+      $('#sale_count').html(data['sale_count']);
+      $('#quotation_count').html(data['quotation_count']);
+      $('#repair_count').html(data['repair_count']);
+      $('#gov_stamping_count').html(data['gov_stamping_count']);
+      $('#gov_stamping_count2').html(data['gov_stamping_count']);
+      $('#repair_count2').html(data['repair_count']);
+      $('#receipt_count').html(data['receipt_count']);
+
 
       $('#edit_party').attr('href','<?php echo base_url(); ?>Admin/edit_party/'+data['party_id'])
     }

@@ -53,6 +53,14 @@ include('head.php');
                    <th>Party Name</th>
                    <th>Division / Camp </th>
                    <th>Total Amount</th>
+                   <?php if(!isset($type)){ ?>
+                    <th>Reciept</th>
+                    <th>Bill</th>
+                  <?php } elseif ($type == 'Bill') { ?>
+                    <th>Bill</th>
+                  <?php } elseif ($type == 'Cash') { ?>
+                    <th>Cash Memo</th>
+                 <?php }?>
                    <th>Action</th>
                 </tr>
                 </thead>
@@ -69,11 +77,25 @@ include('head.php');
                     <td><?php echo $list->party_firm; ?></td>
                     <td><?php echo $list->division_name; ?></td>
                     <td><?php echo $list->govt_stamp_total; ?></td>
+                    <?php if(!isset($type)){ ?>
+                     <td>
+                       <a class="ml-2" href="<?php echo base_url(); ?>Receipt/stamping_receipt/<?php echo $list->govt_stamp_id; ?>"> <i class="fa fa-print"></i> </a>
+                     </td>
+                     <td>
+                       <a class="ml-2" href="<?php echo base_url(); ?>Receipt/cash_memo/<?php echo $list->govt_stamp_id; ?>"> <i class="fa fa-print"></i> </a>
+                     </td>
+                   <?php } elseif ($type == 'Bill') { ?>
+                     <td>
+                       <a class="ml-2" href="<?php echo base_url(); ?>Receipt/stamping_receipt/<?php echo $list->govt_stamp_id; ?>"> <i class="fa fa-print"></i> </a>
+                     </td>
+                   <?php } elseif ($type == 'Cash') { ?>
+                     <td>
+                       <a class="ml-2" href="<?php echo base_url(); ?>Receipt/cash_memo/<?php echo $list->govt_stamp_id; ?>"> <i class="fa fa-print"></i> </a>
+                     </td>
+                  <?php }?>
                     <td>
                       <a href="<?php echo base_url(); ?>Transaction/edit_govt_stamp/<?php echo $list->govt_stamp_id; ?>"> <i class="fa fa-edit"></i> </a>
                       <a class="ml-2" href="<?php echo base_url(); ?>Transaction/delete_govt_stamp/<?php echo $list->govt_stamp_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
-                      <a class="ml-2" href="<?php echo base_url(); ?>Receipt/stamping_receipt/<?php echo $list->govt_stamp_id; ?>"> <i class="fa fa-print"></i> </a>
-                      <a class="ml-2" href="<?php echo base_url(); ?>Receipt/cash_memo/<?php echo $list->govt_stamp_id; ?>"> <i class="fa fa-print"></i> </a>
                     </td>
                   </tr>
                 <?php } ?>
