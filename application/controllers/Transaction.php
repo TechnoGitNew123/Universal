@@ -417,7 +417,7 @@ class Transaction extends CI_Controller{
        'purchase_accss' => $purchase_accss,
      );
      $purchase_id = $this->Admin_Model->save_data('uni_purchase_master', $data);
-     echo $purchase_id.'<br>';
+     // echo $purchase_id.'<br>';
      $i = 0;
      foreach($_POST['input'] as $user)
      {
