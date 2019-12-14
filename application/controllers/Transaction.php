@@ -709,6 +709,8 @@ class Transaction extends CI_Controller{
      $data['min_list'] = $this->Admin_Model->get_list($company_id,'min_id','ASC','uni_min');
      $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
      $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
+     $data['quarter_list'] = $this->Admin_Model->get_list($company_id,'quarter_id','ASC','uni_quarter');
+     $data['ac_info_list'] = $this->Admin_Model->get_list($company_id,'ac_info_id','ASC','uni_ac_info');
 
      $this->load->view('Admin/govt_stamping_bill',$data);
    } else{
@@ -730,6 +732,7 @@ class Transaction extends CI_Controller{
        'govt_stamp_party' => $this->input->post('govt_stamp_party'),
        'govt_stamp_division' => $this->input->post('govt_stamp_division'),
        'govt_stamp_trade' => $this->input->post('govt_stamp_trade'),
+       'quarter_id' => $this->input->post('quarter_id'),
        'govt_stamp_vc_no' => $this->input->post('govt_stamp_vc_no'),
        'govt_stamp_vc_date' => $this->input->post('govt_stamp_vc_date'),
        'govt_stamp_grn_no' => $this->input->post('govt_stamp_grn_no'),
@@ -782,6 +785,8 @@ class Transaction extends CI_Controller{
      $data['min_list'] = $this->Admin_Model->get_list($company_id,'min_id','ASC','uni_min');
      $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
      $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
+     $data['quarter_list'] = $this->Admin_Model->get_list($company_id,'quarter_id','ASC','uni_quarter');
+     $data['ac_info_list'] = $this->Admin_Model->get_list($company_id,'ac_info_id','ASC','uni_ac_info');
 
      $govt_stamp_data = $this->Transaction_Model->govt_stamp_data($company_id,$govt_stamp_id);
       // echo print_r($govt_stamp_data);
@@ -796,6 +801,7 @@ class Transaction extends CI_Controller{
          $data['party_firm'] = $govt_data->party_firm;
          $data['govt_stamp_division'] = $govt_data->govt_stamp_division;
          $data['govt_stamp_trade'] = $govt_data->govt_stamp_trade;
+         $data['quarter_id'] = $govt_data->quarter_id;
          $data['division_id'] = $govt_data->division_id;
          $data['division_name'] = $govt_data->division_name;
          $data['govt_stamp_vc_no'] = $govt_data->govt_stamp_vc_no;
@@ -832,6 +838,7 @@ class Transaction extends CI_Controller{
          'govt_stamp_party' => $this->input->post('govt_stamp_party'),
          'govt_stamp_division' => $this->input->post('govt_stamp_division'),
          'govt_stamp_trade' => $this->input->post('govt_stamp_trade'),
+         'quarter_id' => $this->input->post('quarter_id'),
          'govt_stamp_vc_no' => $this->input->post('govt_stamp_vc_no'),
          'govt_stamp_vc_date' => $this->input->post('govt_stamp_vc_date'),
          'govt_stamp_grn_no' => $this->input->post('govt_stamp_grn_no'),
@@ -1254,6 +1261,36 @@ public function delete_repairy_bill($id){
    } else{
      header('location:'.base_url().'Login');
    }
+ }
+
+ public function edit_recirpt($receipt_id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id == ''){ header('location:'.base_url().'Login'); }
+   $this->form_validation->set_rules('receipt_date', 'Date', 'trim|required');
+   if($this->form_validation->run() != FALSE){
+     $update_data = array(
+     'receipt_date' => $this->input->post('receipt_date'),
+     'receipt_party' => $this->input->post('receipt_party'),
+     'receipt_outstanding' => $this->input->post('receipt_outstanding'),
+     'receipt_amount' => $this->input->post('receipt_amount'),
+     'receipt_narration' => $this->input->post('receipt_narration'),
+     );
+     $this->Admin_Model->update_info('receipt_id', $receipt_id, 'uni_receipt', $update_data);
+     header('location:'.base_url().'Transaction/receipt_list');
+   }
+   $receipt_info = $this->Admin_Model->get_info('receipt_id', $receipt_id, 'uni_receipt');
+   if($receipt_info == ''){ header('location:'.base_url().'Transaction/receipt_list'); }
+   foreach($receipt_info as $info){
+     $data['update'] = 'update';
+     $data['receipt_no'] = $info->receipt_no;
+     $data['receipt_date'] = $info->receipt_date;
+     $data['receipt_party'] = $info->receipt_party;
+     $data['receipt_outstanding'] = $info->receipt_outstanding;
+     $data['receipt_amount'] = $info->receipt_amount;
+     $data['receipt_narration'] = $info->receipt_narration;
+   }
+   $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+   $this->load->view('Admin/receipt',$data);
  }
 
  public function delete_recirpt($id){

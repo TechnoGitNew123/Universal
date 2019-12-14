@@ -32,33 +32,41 @@ include('head.php');
             <div class="card">
             <!-- /.card-header -->
             <div class="card-body" >
-              <form role="form" action="<?php echo base_url(); ?>Transaction/save_reciept" method="post">
+              <?php if(isset($update)){ ?>
+                <form role="form" method="post">
+              <?php } else{ ?>
+                <form role="form" action="<?php echo base_url(); ?>Transaction/save_reciept" method="post">
+              <?php } ?>
                 <div class="card-body row">
                   <div class="form-group col-md-6">
                     <input type="text" class="form-control form-control-sm" name="receipt_no" id="receipt_no" placeholder="Receipt No." value="<?php if(isset($receipt_no)){ echo $receipt_no; } ?>">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control form-control-sm" name="receipt_date" id="date1" data-target="#date1" data-toggle="datetimepicker" placeholder="Receipt Date" required>
+                    <input type="text" class="form-control form-control-sm" name="receipt_date" id="date1" value="<?php if(isset($receipt_date)){ echo $receipt_date; } ?>" data-target="#date1" data-toggle="datetimepicker" placeholder="Receipt Date" required>
                   </div>
                   <div class="form-group col-md-12">
                     <select class="form-control select2 form-control-sm" name="receipt_party" id="receipt_party" style="width: 100%;">
                       <option selected="selected" value="0">Select Party name/ Propritor name</option>
-                      <?php foreach ($party_list as $party_list1) {
-                        echo '<option value="'.$party_list1->party_id.'">'.$party_list1->party_firm.'</option>';
-                      } ?>
+                      <?php foreach ($party_list as $party_list1) { ?>
+                        <option value="<?php echo $party_list1->party_id; ?>" <?php if(isset($receipt_party)){ if($party_list1->party_id == $receipt_party){ echo "selected"; } }  ?>><?php echo $party_list1->party_firm; ?></option>
+                      <?php } ?>
                     </select>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" readonly class="form-control form-control-sm" name="receipt_outstanding" id="receipt_outstanding" placeholder="Outstanding Amount">
+                    <input type="text" readonly class="form-control form-control-sm" name="receipt_outstanding" id="receipt_outstanding" value="<?php if(isset($receipt_outstanding)){ echo $receipt_outstanding; } ?>" placeholder="Outstanding Amount">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control form-control-sm" name="receipt_amount" id="receipt_amount" placeholder="Receipt Amount">
+                    <input type="text" class="form-control form-control-sm" name="receipt_amount" id="receipt_amount" value="<?php if(isset($receipt_amount)){ echo $receipt_amount; } ?>" placeholder="Receipt Amount">
                   </div>
                   <div class="form-group col-md-12">
-                    <textarea name="receipt_narration" id="receipt_narration" class="form-control form-control-sm" placeholder="Narration" rows="5" cols="100"></textarea>
+                    <textarea name="receipt_narration" id="receipt_narration" class="form-control form-control-sm" placeholder="Narration" rows="5" cols="100"><?php if(isset($receipt_narration)){ echo $receipt_narration; } ?></textarea>
                   </div>
                   <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary  mr-3">Save</button>
+                    <?php if(isset($update)){ ?>
+                      <button type="submit" class="btn btn-primary">Update </button>
+                    <?php } else{ ?>
+                      <button type="submit" class="btn btn-success px-4">Add</button>
+                    <?php } ?>
                     <a href="<?php echo base_url(); ?>Admin/dashboard" class="btn btn-default ">Cancel</a>
                   </div>
                 </div>

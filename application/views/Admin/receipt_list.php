@@ -68,7 +68,7 @@ include('head.php');
                     <td><?php echo $list->party_firm; ?></td>
                     <td><?php echo $list->receipt_amount; ?></td>
                     <td>
-                      <!-- <a href="edit_receipt/<?php echo $list->receipt_id; ?>"> <i class="fa fa-edit"></i> </a> -->
+                      <a href="edit_recirpt/<?php echo $list->receipt_id; ?>"> <i class="fa fa-edit"></i> </a>
                       <a class="ml-2" href="delete_recirpt/<?php echo $list->receipt_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
                       <a class="ml-2" href="<?php echo base_url() ?>Receipt/reciept_preview/<?php echo $list->receipt_id; ?>"> <i class="fa fa-print"></i> </a>
                     </td>
