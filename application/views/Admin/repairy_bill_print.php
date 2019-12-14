@@ -31,7 +31,7 @@
     <div class="row">
   <p style="text-align:center; font-size:17px; margin-bottom:10px;"> <b>Repairy Bill</b>  </p>
 </div>
-    <table class="table table-bordered mb-0 invoice-table"  width="700">
+    <table class="table table-bordered mb-0 invoice-table"  width="100%">
 <style media="print">
 table{
   border-collapse: collapse;
@@ -119,7 +119,7 @@ table{
 
 <div class="row">
 <div class="col-12 table-responsive">
-<table class="table table-botttom"  width="700">
+<table class="table table-botttom"  width="100%">
   <style media="print">
   .table-bottom {
   border-collapse: collapse!important;
@@ -181,19 +181,19 @@ table{
     <?php } ?>
     <tr>
       <td colspan="5"></td>
-        <td colspan="2" style="border-right:0px; padding-left:10px;"><p style="font-size:14px; margin:5px;">Basic Amount : </p> </td>
-        <td colspan="2" style="border-left:0px;"><p style="font-size:14px; margin:5px;"> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_basic_charge, 2, '.', ''); ?></b> </p></td>
+        <td colspan="2" Width="16%" style="border-right:0px; padding-left:10px;"><p style="font-size:14px; margin:5px;">Basic Amount : </p> </td>
+        <td colspan="2" style="border-left:0px;"><p style="font-size:14px; padding-left:10px; margin:5px;"> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_basic_charge, 2, '.', ''); ?></b> </p></td>
     </tr>
 
     <tr>
       <td colspan="5"> <p style="margin:5px;">Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($repairy_bill_data->repairy_total); ?> Only</b> </p> </td>
-      <td colspan="2"><p style="font-size:14px; padding-left:10px; margin:5px;">Grand Total : </p> </td>
-      <td colspan="2"><p style="font-size:14px; padding-left:10px; margin:5px;"> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_total, 2, '.', ''); ?></b> </p></td>
+      <td colspan="2"  style="border-right:0px; padding-left:10px;"><p style="font-size:14px; padding-left:10px; margin:5px;">Grand Total : </p> </td>
+      <td colspan="2" style="border-left:0px;"><p style="font-size:14px; padding-left:10px; margin:5px;"> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_total, 2, '.', ''); ?></b> </p></td>
     </tr>
 
     <tr style="border-bottom:0px!important;">
       <td colspan="9" style="border-bottom:0px!important; border-left:0px;">
-        <p>Engineer: <?php echo $repairy_bill_data->repairy_engg; ?></p>
+        <p style="padding-left:10px;">Repairy Engineer Name: <?php echo $repairy_bill_data->repairy_engg; ?></p>
         <p style="float:right; margin:5px;"> <b> For <?php echo $company_name; ?> </b> </p>
       </td>
     </tr>

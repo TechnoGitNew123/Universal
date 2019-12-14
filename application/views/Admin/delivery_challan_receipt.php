@@ -186,7 +186,8 @@ include('head.php');
 
           <tr>
             <td colspan="6">
-               <!-- <p>Bill Amount In Words : <b>Rupees One Lakh Only</b> </p>  -->
+              <p style="margin:5px;"> 1) All Materials & Goods are received in good condition. </p>
+              <p style="margin:5px;"> 2) Sales & Ref. Person :  </p>
              </td>
             <td colspan="3"><p>GRAND TOTAL : </p> </td>
             <td colspan="3"><p> <b>&#8377; <?php echo number_format((float)$delivery_challan_data->delivery_total, 2, '.', ''); ?></b> </p></td>

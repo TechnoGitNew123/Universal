@@ -176,20 +176,20 @@ include('head.php');
         <?php } ?>
 
           <tr>
-            <td colspan="6"></td>
-              <td colspan="2"><p>BASIC AMOUNT : </p> </td>
-              <td colspan="1"><p> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_basic_charge, 2, '.', ''); ?></b> </p></td>
+            <td colspan="5"></td>
+              <td colspan="3" ><p>BASIC AMOUNT : </p> </td>
+              <td colspan="1" ><p> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_basic_charge, 2, '.', ''); ?></b> </p></td>
           </tr>
 
           <tr>
-            <td colspan="6"> <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($repairy_bill_data->repairy_total); ?> Only</b> </p> </td>
-            <td colspan="2"><p>GRAND TOTAL : </p> </td>
+            <td colspan="5"> <p>Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($repairy_bill_data->repairy_total); ?> Only</b> </p> </td>
+            <td colspan="3"><p>GRAND TOTAL : </p> </td>
             <td colspan="1"><p> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_total, 2, '.', ''); ?></b> </p></td>
           </tr>
 
           <tr>
             <td colspan="9">
-              <p>Engineer: <?php echo $repairy_bill_data->repairy_engg; ?></p>
+              <p>Repairy Engineer Name :  <?php echo $repairy_bill_data->repairy_engg; ?></p>
 
               <p style="float:right;"> <b> For <?php echo $company_name; ?> </b> </p>
             </td>

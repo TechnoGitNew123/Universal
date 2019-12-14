@@ -41,8 +41,47 @@
   }
   ?>
   <!-- Main content -->
-  <table id="example" class="table table-bordered mb-0 invoice-table">
+  <table id="example" class="table table-bordered mb-0 invoice-table" Width=100%>
     <style media="print">
+    table{
+      border-collapse: collapse;
+    }
+      .invoice-table td{
+        Width:33% !important;
+
+          border: 1px solid #555!important;
+      }
+      .invoice-table .small{
+        Width:15% !important;
+          border: 1px solid #555!important;
+      }
+      .invoice-table .large{
+        Width:85% !important;
+          border: 1px solid #555!important;
+      }
+      .invoice-table{
+        margin-bottom:0px;
+        border: 1px solid #555!important;
+      }
+      .invoice-table p{
+        line-height: 15px;
+      }
+      .invoice-table .no-right-border{
+      border-right: 0px!important;
+      }
+      .invoice-table .no-left-border{
+      border-left: 0px!important;
+      }
+      .invoice-table .no-top-border{
+      border-top: 0px!important;
+      }
+      .invoice-table .no-bottom-border{
+      border-bottom: 0px!important;
+      }
+
+
+    </style>
+    <style media="screen">
     table{
       border-collapse: collapse;
     }
@@ -126,12 +165,12 @@
         </td>
 
         <td colspan="2" class="large no-left-border">
-          <?php echo $receipt_details->receipt_narration; ?>
+       <?php echo $receipt_details->receipt_narration; ?>
           </td>
     </tr>
 
     <tr>
-      <td class="small no-right-border"> <h4><b>&nbsp;&nbsp;<?php echo $receipt_details->receipt_amount; ?></b></h4>
+      <td class="small no-right-border"> <h4><b>&nbsp;&nbsp;   &#8377; <?php echo $receipt_details->receipt_amount; ?></b></h4>
         </td>
         <td colspan="2" style="text-align:right;" class="large no-left-border text-right">
           <br><br>

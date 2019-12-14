@@ -32,7 +32,7 @@
     <div class="row">
   <p style="text-align:center; font-size:17px;"> <b>Purchase Agreement</b>  </p>
 </div>
-    <table class="table table-bordered mb-0 invoice-table"  width="700">
+    <table class="table table-bordered mb-0 invoice-table"  width="100%">
 <style media="print">
 p{
   margin:3px;
@@ -120,7 +120,8 @@ table{
 </td>
 <td style="padding:0px!important;" valigh="top">
 <p style="font-size:14px; margin-bottom:3px; margin-top:3px; padding-left:10px;"><b>PO No.  <?php echo $purchase_agreement_data->purchase_order_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
-<p style="font-size:14px; margin-bottom:3px; margin-top:3px;  padding-left:10px;"> <b>Date : </b>&nbsp;  <strong><?php echo $purchase_agreement_data->purchase_date; ?></strong></p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
+<p style="font-size:14px; margin-bottom:3px; margin-top:3px; padding-left:10px;"><b>Date : </b>&nbsp;  <strong><?php echo $purchase_agreement_data->purchase_date; ?></strong></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
+<p style="font-size:14px; margin-bottom:3px; margin-top:3px;  padding-left:10px;">Sales & Ref. Person:  </p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
 <br><br><br>
 
 <!-- <p style="font-size:14px; margin-bottom:3px; margin-top:3px;  padding-left:10px;"><b>vehicle No.  MH-09 AK 1218</b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" > -->
@@ -133,7 +134,7 @@ table{
 
 <div class="row">
 <div class="col-12 table-responsive">
-<table class="table table-botttom"  width="700">
+<table class="table table-botttom"  width="100%">
   <style media="print">
     .table-bottom {
     border-collapse: collapse!important;
@@ -253,8 +254,17 @@ margin-right: auto;
    </td>
 </tr>
 
+<tr style="">
+  <td colspan="12" style="border-bottom:0px!important; border-left:0px;"> <p style="margin:5px;"> <b> Terms & Condition </b> </p>
+    <p style="text-align:justify;">1) Goods shall remain the properties of the company until FULL purchase price has been realised. </p>
+    <p style="text-align:justify;">2) Once order placed cannot be cancelled & advance paid is not refundable / transferable</p>
+    <p style="text-align:justify;">3) Local levies like Octroi, Entry Tax, etc. has to be paid by the consignee, as applicable. We will not be responsible for the Local Levies at consignee's end.</p>
+    <p style="text-align:justify;">4) If Payment is not made as per the payment terms mentioned above then interest will be charge @ 25% Per month till the realisation of the full amount. </p>
+    <p style="text-align:justify;">5) If cheque is bounced then Rs. 200/- will be debited to customer account. Customer will have to pay this addtional amount also. </p>
+    <p style="text-align:justify;">6) If any reason related to delay in delivery Nitraj is not responsible.</p>
+  </td>
+</tr>
 <tr style="border-bottom:0px!important;">
-
   <td colspan="12" style="border-bottom:0px!important; border-left:0px;"> <p style="float:right; margin:5px;"> <b> For <?php echo $company_name; ?> </b> </p>
   </td>
 </tr>

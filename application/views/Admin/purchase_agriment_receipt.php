@@ -217,6 +217,16 @@ include('head.php');
                             <p><input type="checkbox" <?php if(isset($purchase_accss) && $val[6] == 'Others'){ echo 'checked'; } ?>> 7) Others</p>
              </td>
           </tr>
+          <tr style="">
+            <td colspan="12" style="border-bottom:0px!important; border-left:0px;"> <p style="margin:5px;"> <b> Terms & Condition </b> </p>
+              <p>1) Goods shall remain the properties of the company until FULL purchase price has been realised. </p>
+              <p>2) Once order placed cannot be cancelled & advance paid is not refundable / transferable</p>
+              <p>3) Local levies like Octroi, Entry Tax, etc. has to be paid by the consignee, as applicable. We will not be responsible for the Local Levies at consignee's end.</p>
+              <p>4) If Payment is not made as per the payment terms mentioned above then interest will be charge @ 25% Per month till the realisation of the full amount. </p>
+              <p>5) If cheque is bounced then Rs. 200/- will be debited to customer account. Customer will have to pay this addtional amount also. </p>
+              <p>6) If any reason related to delay in delivery Nitraj is not responsible.</p>
+            </td>
+          </tr>
 
           <tr>
             <td colspan="12"> <p style="float:right;"> <b> For <?php echo $company_name; ?></b> </p>

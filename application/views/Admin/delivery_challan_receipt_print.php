@@ -29,7 +29,7 @@
     <div class="row">
   <p style="text-align:center; margin-bottom: 10px; font-size:17px;"> <b>Delivery Challan</b>  </p>
 </div>
-    <table class="table table-bordered mb-0 invoice-table"  width="700">
+    <table class="table table-bordered mb-0 invoice-table"  width="100%">
 <style media="print">
 table{
   border-collapse: collapse;
@@ -123,7 +123,7 @@ table{
 
 <div class="row">
 <div class="col-12 table-responsive">
-<table class="table table-botttom"  width="700">
+<table class="table table-botttom"  width="100%">
 <style media="print">
 .table-bottom {
 border-collapse: collapse!important;
@@ -206,7 +206,8 @@ margin-right: auto;
 
 <tr>
   <td colspan="5">
-     <!-- <p style="margin:5px;">Bill Amount In Words : <b>Rupees One Lakh Only</b> </p>  -->
+     <p style="margin:5px;"> 1) All Materials & Goods are received in good condition. </p>
+    <p style="margin:5px;"> 2) Sales & Ref. Person :  </p>
    </td>
   <td colspan="2"><p style="padding-left:10px; margin:5px; font-size:12px;">Grand total : </p> </td>
   <td colspan="2"><p style="padding-left:10px; margin:5px;"> <b>&#8377; <?php echo number_format((float)$delivery_challan_data->delivery_total, 2, '.', ''); ?></b> </p></td>
