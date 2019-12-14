@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-$page = "ca_info_list";
+$page = "ac_info_list";
 include('head.php');
 ?>
 <style>
@@ -38,7 +38,7 @@ include('head.php');
             <div class="card-header">
               <h3 class="card-title"><i class="fa fa-list"></i> Account of Name List</h3>
               <div class="card-tools">
-                <a href="<?php echo base_url(); ?>Admin/add_ca_info" class="btn btn-sm btn-block btn-primary">Add Account of Name</a>
+                <a href="<?php echo base_url(); ?>Admin/add_ac_info" class="btn btn-sm btn-block btn-primary">Add Account of Name</a>
               </div>
             </div>
             <!-- /.card-header -->
@@ -54,15 +54,15 @@ include('head.php');
                 <tbody>
                 <?php
                   $i=0;
-                  foreach ($ca_info_list as $list) {
+                  foreach ($ac_info_list as $list) {
                   $i++;
                 ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $list->ca_info_name; ?></td>
+                    <td><?php echo $list->ac_info_name; ?></td>
                     <td>
-                      <a href="edit_ca_info/<?php echo $list->ca_info_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-2" href="delete_ca_info/<?php echo $list->ca_info_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <a href="edit_ac_info/<?php echo $list->ac_info_id; ?>"> <i class="fa fa-edit"></i> </a>
+                      <a class="ml-2" href="delete_ac_info/<?php echo $list->ac_info_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
                     </td>
                   </tr>
                 <?php  }  ?>
