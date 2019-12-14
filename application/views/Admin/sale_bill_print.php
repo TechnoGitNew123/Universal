@@ -175,7 +175,7 @@ margin-right: auto;
     <tr>
       <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $i; ?></p> </td>
       <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->make_name; ?></p></td>
-      <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->model_no_id; ?></p> </td>
+      <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->product_model_no; ?></p> </td>
       <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->machine_serial_no; ?></p> </td>
       <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->capacity_name; ?></p> </td>
       <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->accuracy_name; ?></p> </td>

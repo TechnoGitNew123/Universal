@@ -51,6 +51,7 @@ include('head.php');
                   <th>Expense VCH No </th>
                    <th>Expense VCH Date</th>
                    <th>Total Amount</th>
+                   <th>Payee Name</th>
                    <th>Action</th>
                 </tr>
                 </thead>
@@ -65,6 +66,7 @@ include('head.php');
                     <td><?php echo $list->expense_no; ?></td>
                     <td><?php echo $list->expense_date; ?></td>
                     <td><?php echo $list->expense_amount; ?></td>
+                    <td><?php echo $list->payee_name; ?></td>
                     <td>
                       <a href="edit_expense/<?php echo $list->expense_id; ?>"> <i class="fa fa-edit"></i> </a>
                       <a class="ml-4" href="delete_expense/<?php echo $list->expense_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>

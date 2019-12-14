@@ -170,7 +170,7 @@ table{
     <tr>
       <td style="text-align:center;"> <p style="font-size:10px; "><?php echo $i; ?></p> </td>
       <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->make_name; ?></p></td>
-      <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->model_no_id; ?></p></td>
+      <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->product_model_no; ?></p></td>
       <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->machine_serial_no; ?></p></td>
       <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->capacity_name; ?></p></td>
       <td style="text-align:center;"> <p style="font-size:10px;"><?php echo $trans_data->accuracy_name; ?></p></td>
@@ -192,7 +192,9 @@ table{
     </tr>
 
     <tr style="border-bottom:0px!important;">
-      <td colspan="9" style="border-bottom:0px!important; border-left:0px;"> <p style="float:right; margin:5px;"> <b> For <?php echo $company_name; ?> </b> </p>
+      <td colspan="9" style="border-bottom:0px!important; border-left:0px;">
+        <p>Engineer: <?php echo $repairy_bill_data->repairy_engg; ?></p>
+        <p style="float:right; margin:5px;"> <b> For <?php echo $company_name; ?> </b> </p>
       </td>
     </tr>
 

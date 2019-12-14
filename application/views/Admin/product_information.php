@@ -107,7 +107,7 @@ include('head.php');
                   </div>
                   <div class="form-group col-md-6">
                     <select class="form-control select2" name="stamping_days" id="stamping_days">
-                      <?php if(isset($make_id)){
+                      <?php if(isset($stamping_days)){
                         echo '<option selected="selected" value="'.$stamping_days.'">'.$stamping_days.'</option>';
                       } else{
                         echo '<option selected="selected">Select Stamping Period Days</option>';
@@ -115,15 +115,12 @@ include('head.php');
                       <option>360</option>
                     </select>
                   </div>
-                  
                   <div class="form-group col-md-6">
-                    <select class="form-control select2" name="stamping_days" id="stamping_days">
-                      <?php if(isset($make_id)){
-                        echo '<option selected="selected" value="'.$stamping_days.'">'.$stamping_days.'</option>';
-                      } else{
-                        echo '<option selected="selected">Select Stamping Period Days</option>';
-                      }?>
-                      <option>360</option>
+                    <select class="form-control select2" name="quarter_id" id="quarter_id">
+                      <option value="">Select Stamping Quarter Period </option>
+                      <?php foreach ($quarter_list as $quarter_list1) { ?>
+                        <option value="<?php echo $quarter_list1->quarter_id; ?>" <?php if(isset($quarter_id)){ if($quarter_list1->quarter_id == $quarter_id){ echo "selected"; } }  ?>><?php echo $quarter_list1->quarter_name; ?></option>
+                      <?php } ?>
                     </select>
                   </div>
 

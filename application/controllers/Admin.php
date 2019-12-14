@@ -1424,6 +1424,7 @@ class Admin extends CI_Controller{
       $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
       $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
       $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
+      $data['quarter_list'] = $this->Admin_Model->get_list($company_id,'quarter_id','ASC','uni_quarter');
       $this->load->view('Admin/product_information', $data);
     } else{
       header('location:'.base_url().'Login');
@@ -1451,7 +1452,8 @@ class Admin extends CI_Controller{
         'class_id' => $this->input->post('class_id'),
         'platter_id' => $this->input->post('platter_id'),
         'stamping_days' => $this->input->post('stamping_days'),
-        'sale_price' => $this->input->post('sale_price'),
+        'quarter_id' => $this->input->post('quarter_id'),
+        // 'sale_price' => $this->input->post('sale_price'),
       );
       $this->Admin_Model->save_data('uni_product', $data);
       header('location:product_information_list');
@@ -1479,8 +1481,9 @@ class Admin extends CI_Controller{
           $data['class_name'] = $info->class_name;
           $data['platter_id'] = $info->platter_id;
           $data['platter_size'] = $info->platter_size;
+          $data['quarter_id'] = $info->quarter_id;
+          // $data['sale_price'] = $info->sale_price;
           $data['stamping_days'] = $info->stamping_days;
-          $data['sale_price'] = $info->sale_price;
           $data['product_status'] = $info->product_status;
         }
         $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
@@ -1488,6 +1491,7 @@ class Admin extends CI_Controller{
         $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
         $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
         $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
+        $data['quarter_list'] = $this->Admin_Model->get_list($company_id,'quarter_id','ASC','uni_quarter');
         $this->load->view('Admin/product_information',$data);
       }
     } else{
@@ -1507,7 +1511,8 @@ class Admin extends CI_Controller{
         'class_id' => $this->input->post('class_id'),
         'platter_id' => $this->input->post('platter_id'),
         'stamping_days' => $this->input->post('stamping_days'),
-        'sale_price' => $this->input->post('sale_price'),
+        // 'sale_price' => $this->input->post('sale_price'),
+        'quarter_id' => $this->input->post('quarter_id'),
       );
       $this->Admin_Model->update_info('product_id', $product_id, 'uni_product', $data);
       header('location:product_information_list');
@@ -1644,55 +1649,55 @@ class Admin extends CI_Controller{
   }
 
 /********************** Account of Name **********************/
-public function add_ca_info(){
+public function add_ac_info(){
   $company_id = $this->session->userdata('company_id');
   if($company_id == ''){ header('location:'.base_url().'Login'); }
 
-  $this->form_validation->set_rules('ca_info_name', 'Trade Name', 'trim|required');
+  $this->form_validation->set_rules('ac_info_name', 'Trade Name', 'trim|required');
   if($this->form_validation->run() != FALSE){
     $save_data = array(
       'company_id' => $company_id,
-      'ca_info_name' => $this->input->post('ca_info_name'),
+      'ac_info_name' => $this->input->post('ac_info_name'),
     );
-    $this->Admin_Model->save_data('uni_ca_info', $save_data);
-    header('location:'.base_url().'Admin/ca_info_list');
+    $this->Admin_Model->save_data('uni_ac_info', $save_data);
+    header('location:'.base_url().'Admin/ac_info_list');
   }
-  $this->load->view('Admin/ca_info');
+  $this->load->view('Admin/ac_info');
 }
 
-public function ca_info_list(){
+public function ac_info_list(){
   $company_id = $this->session->userdata('company_id');
   if($company_id == ''){ header('location:'.base_url().'Login'); }
-  $data['ca_info_list'] = $this->Admin_Model->get_list($company_id,'ca_info_id','ASC','uni_ca_info');
-  $this->load->view('Admin/ca_info_list', $data);
+  $data['ac_info_list'] = $this->Admin_Model->get_list($company_id,'ac_info_id','ASC','uni_ac_info');
+  $this->load->view('Admin/ac_info_list', $data);
 }
 
-public function edit_ca_info($ca_info_id){
+public function edit_ac_info($ac_info_id){
   $company_id = $this->session->userdata('company_id');
   if($company_id == ''){ header('location:'.base_url().'Login'); }
-  $this->form_validation->set_rules('ca_info_name', 'Trade Name', 'trim|required');
+  $this->form_validation->set_rules('ac_info_name', 'Trade Name', 'trim|required');
   if($this->form_validation->run() != FALSE){
     $update_data = array(
-      'ca_info_name' => $this->input->post('ca_info_name'),
+      'ac_info_name' => $this->input->post('ac_info_name'),
     );
-    $this->Admin_Model->update_info('ca_info_id', $ca_info_id, 'uni_ca_info', $update_data);
-    header('location:'.base_url().'Admin/ca_info_list');
+    $this->Admin_Model->update_info('ac_info_id', $ac_info_id, 'uni_ac_info', $update_data);
+    header('location:'.base_url().'Admin/ac_info_list');
   }
 
-  $ca_info_info = $this->Admin_Model->get_info('ca_info_id', $ca_info_id, 'uni_ca_info');
-  if($ca_info_info == ''){ header('location:'.base_url().'Admin/ca_info_list'); }
-  foreach($ca_info_info as $info){
+  $ac_info_info = $this->Admin_Model->get_info('ac_info_id', $ac_info_id, 'uni_ac_info');
+  if($ac_info_info == ''){ header('location:'.base_url().'Admin/ac_info_list'); }
+  foreach($ac_info_info as $info){
     $data['update'] = 'update';
-    $data['ca_info_name'] = $info->ca_info_name;
+    $data['ac_info_name'] = $info->ac_info_name;
   }
-  $this->load->view('Admin/ca_info',$data);
+  $this->load->view('Admin/ac_info',$data);
 }
 
-public function delete_ca_info($ca_info_id){
+public function delete_ac_info($ac_info_id){
   $company_id = $this->session->userdata('company_id');
   if($company_id == ''){ header('location:'.base_url().'Login'); }
-  $this->Admin_Model->delete_info('ca_info_id', $ca_info_id, 'uni_ca_info');
-  header('location:'.base_url().'Admin/ca_info_list');
+  $this->Admin_Model->delete_info('ac_info_id', $ac_info_id, 'uni_ac_info');
+  header('location:'.base_url().'Admin/ac_info_list');
 }
 
 

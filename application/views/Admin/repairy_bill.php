@@ -81,6 +81,9 @@ include('head.php');
                     <input type="text" class="form-control form-control-sm" name="repairy_contact" id="repairy_contact" value="<?php if(isset($repairy_contact)){ echo $repairy_contact; } ?>" placeholder="Contact No.">
                   </div>
                   <div class="form-group col-md-4 offset-md-2">
+                    <input type="text" class="form-control form-control-sm" name="repairy_engg" id="repairy_engg" value="<?php if(isset($repairy_engg)){ echo $repairy_engg; } ?>" placeholder="Engineer Name">
+                  </div>
+                  <div class="form-group col-md-4">
                     <select class="form-control select2 form-control-sm" name="repairy_user" required>
                       <option selected="selected" value="" >Select Employee</option>
                       <?php foreach ($user_list as $user_list1) { ?>

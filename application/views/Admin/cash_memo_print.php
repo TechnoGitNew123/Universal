@@ -207,7 +207,7 @@ text-align: center;
       <tr>
         <td><?php echo $i; ?></td>
         <td><?php echo $trans_data->make_name; ?></td>
-        <td><?php echo $trans_data->model_no_id; ?></td>
+        <td><?php echo $trans_data->product_model_no; ?></td>
         <td><?php echo $trans_data->machine_serial_no; ?></td>
         <td><?php echo $trans_data->capacity_name; ?></td>
         <td><?php echo $trans_data->min_name; ?></td>

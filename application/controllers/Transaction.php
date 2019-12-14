@@ -921,6 +921,7 @@ class Transaction extends CI_Controller{
        'repairy_person' => $this->input->post('repairy_person'),
        'repairy_contact' => $this->input->post('repairy_contact'),
        'repairy_user' => $this->input->post('repairy_user'),
+       'repairy_engg' => $this->input->post('repairy_engg'),
        'repairy_accss' => $repairy_accss,
        'repairy_basic_charge' => $this->input->post('repairy_basic_charge'),
        'repairy_min_charge' => $this->input->post('repairy_min_charge'),
@@ -982,6 +983,7 @@ public function edit_repairy_bill($repairy_id){
         $data['repairy_user'] = $repairy_data->repairy_user;
         $data['user_id'] = $repairy_data->user_id;
         $data['user_name'] = $repairy_data->user_name;
+        $data['repairy_engg'] = $repairy_data->repairy_engg;
         $data['repairy_contact'] = $repairy_data->repairy_contact;
         $data['repairy_accss'] = $repairy_data->repairy_accss;
         $data['repairy_basic_charge'] = $repairy_data->repairy_basic_charge;
@@ -1021,6 +1023,7 @@ public function update_repairy_bill(){
         'repairy_person' => $this->input->post('repairy_person'),
         'repairy_contact' => $this->input->post('repairy_contact'),
         'repairy_user' => $this->input->post('repairy_user'),
+        'repairy_engg' => $this->input->post('repairy_engg'),
         'repairy_accss' => $repairy_accss,
         'repairy_basic_charge' => $this->input->post('repairy_basic_charge'),
         'repairy_min_charge' => $this->input->post('repairy_min_charge'),
@@ -1278,6 +1281,7 @@ public function expense_voucher_list(){
    $company_id = $this->session->userdata('company_id');
    if($company_id){
      $data['expense_no'] = $this->Transaction_Model->get_count_no($company_id,'expense_no','uni_expense');
+     $data['ac_info_list'] = $this->Admin_Model->get_list($company_id,'ac_info_id','DESC','uni_ac_info');
      $this->load->view('Admin/expense_voucher',$data);
    } else{
      header('location:'.base_url().'Login');
@@ -1291,14 +1295,47 @@ public function expense_voucher_list(){
        'company_id' => $company_id,
        'expense_no' => $this->input->post('expense_no'),
        'expense_date' => $this->input->post('expense_date'),
+       'ac_info_id' => $this->input->post('ac_info_id'),
+       'payee_name' => $this->input->post('payee_name'),
        'expense_amount' => $this->input->post('expense_amount'),
        'expense_narration' => $this->input->post('expense_narration'),
      );
      $this->Admin_Model->save_data('uni_expense', $data);
-     header('location:expense_voucher');
+     header('location:expense_voucher_list');
    } else{
      header('location:'.base_url().'Login');
    }
+ }
+
+ public function edit_expense($expense_id){
+   $company_id = $this->session->userdata('company_id');
+   if($company_id == ''){ header('location:'.base_url().'Login'); }
+   $this->form_validation->set_rules('expense_date', 'Date', 'trim|required');
+   if($this->form_validation->run() != FALSE){
+     $update_data = array(
+       'expense_date' => $this->input->post('expense_date'),
+       'ac_info_id' => $this->input->post('ac_info_id'),
+       'payee_name' => $this->input->post('payee_name'),
+       'expense_amount' => $this->input->post('expense_amount'),
+       'expense_narration' => $this->input->post('expense_narration'),
+     );
+     $this->Admin_Model->update_info('expense_id', $expense_id, 'uni_expense', $update_data);
+     header('location:'.base_url().'Transaction/expense_voucher_list');
+   }
+
+   $expense_info = $this->Admin_Model->get_info('expense_id', $expense_id, 'uni_expense');
+   if($expense_info == ''){ header('location:'.base_url().'Transaction/expense_voucher_list'); }
+   foreach($expense_info as $info){
+     $data['update'] = 'update';
+     $data['expense_no'] = $info->expense_no;
+     $data['ac_info_id'] = $info->ac_info_id;
+     $data['payee_name'] = $info->payee_name;
+     $data['expense_date'] = $info->expense_date;
+     $data['expense_amount'] = $info->expense_amount;
+     $data['expense_narration'] = $info->expense_narration;
+   }
+   $data['ac_info_list'] = $this->Admin_Model->get_list($company_id,'ac_info_id','DESC','uni_ac_info');
+   $this->load->view('Admin/expense_voucher',$data);
  }
 
  public function delete_expense($id){

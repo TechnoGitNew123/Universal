@@ -195,7 +195,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url(); ?>Admin/ca_info_list" class="nav-link">
+            <a href="<?php echo base_url(); ?>Admin/ac_info_list" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Account of Name</p>
             </a>

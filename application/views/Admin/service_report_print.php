@@ -96,7 +96,9 @@ table{
 
 <td width="25%"  valign="top" colspan="2" style="border-left:0px!important; padding-left: 5px; padding-top:5px;" >
   <p style="font-size:16px; margin-bottom:5px; padding-top:5px; margin-left: 40px;"> <b>Cell No.</b>  : <?php echo $party_mob1; ?></p>
-  <p style="font-size:16px; margin-bottom:5px; padding-top:5px; margin-left: 40px;"> <b>Date </b>  : <?php echo $service_date; ?></p>
+  <p style="font-size:16px; margin-bottom:5px; padding-top:5px; margin-left: 40px;"> <b>Service Date </b>  : <?php echo $service_date; ?></p>
+  <p style="font-size:16px; margin-bottom:5px; padding-top:5px; margin-left: 40px;"> <b>Complaint Date </b>  : <?php echo $complaint_date; ?></p>
+
 </td>
 <?php if(isset($complaint_service)){
   $val = explode('_',$complaint_service);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-$page = "add_ca_info";
+$page = "add_ac_info";
 include('head.php');
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -36,7 +36,7 @@ include('head.php');
               <form role="form" method="post">
                 <div class="card-body row">
                   <div class="form-group col-md-12" required>
-                    <input type="text" class="form-control form-control-sm" name="ca_info_name" id="ca_info_name" value="<?php if(isset($ca_info_name)){ echo $ca_info_name; } ?>" placeholder="Account of Name" required>
+                    <input type="text" class="form-control form-control-sm" name="ac_info_name" id="ac_info_name" value="<?php if(isset($ac_info_name)){ echo $ac_info_name; } ?>" placeholder="Account of Name" required>
                   </div>
                 </div>
                 <!-- /.card-body -->

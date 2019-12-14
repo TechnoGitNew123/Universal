@@ -36,8 +36,7 @@ include('head.php');
             </div>
 
             <?php if(isset($update)){ ?>
-              <form role="form" action="<?php echo base_url(); ?>Transaction/update_expense" method="post">
-                <input type="hidden" name="expense_id" value="<?php echo $expense_id; ?>">
+              <form role="form" method="post">
             <?php } else{ ?>
               <form role="form" action="<?php echo base_url(); ?>Transaction/save_expense" method="post">
             <?php } ?>
@@ -47,6 +46,17 @@ include('head.php');
                   </div>
                   <div class="form-group col-md-6">
                     <input type="text" class="form-control form-control-sm" name="expense_date" id="date1" value="<?php if(isset($expense_date)){ echo $expense_date; } ?>" data-target="#date1" data-toggle="datetimepicker" placeholder="Exp. Voucher Date" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <select class="form-control select2" name="ac_info_id" id="ac_info_id">
+                      <option value="">Account of Name</option>
+                      <?php foreach ($ac_info_list as $ac_info_list1) { ?>
+                        <option value="<?php echo $ac_info_list1->ac_info_id; ?>" <?php if(isset($ac_info_id)){ if($ac_info_list1->ac_info_id == $ac_info_id){ echo "selected"; } }  ?>><?php echo $ac_info_list1->ac_info_name; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" class="form-control form-control-sm" name="payee_name" id="payee_name" value="<?php if(isset($payee_name)){ echo $payee_name; } ?>" placeholder="Payee Person Name">
                   </div>
                   <div class="form-group col-md-6">
                     <input type="text" class="form-control form-control-sm" name="expense_amount" id="expense_amount" value="<?php if(isset($expense_amount)){ echo $expense_amount; } ?>" placeholder="Amount" required>

@@ -165,7 +165,7 @@ include('head.php');
               <tr>
                 <td><?php echo $i; ?></td>
                 <td><?php echo $trans_data->make_name; ?></td>
-                <td><?php echo $trans_data->model_no_id; ?></td>
+                <td><?php echo $trans_data->product_model_no; ?></td>
                 <td><?php echo $trans_data->machine_serial_no; ?></td>
                 <td><?php echo $trans_data->capacity_name; ?></td>
                 <td><?php echo $trans_data->accuracy_name; ?></td>
@@ -188,7 +188,10 @@ include('head.php');
           </tr>
 
           <tr>
-            <td colspan="9"> <p style="float:right;"> <b> For <?php echo $company_name; ?> </b> </p>
+            <td colspan="9">
+              <p>Engineer: <?php echo $repairy_bill_data->repairy_engg; ?></p>
+
+              <p style="float:right;"> <b> For <?php echo $company_name; ?> </b> </p>
             </td>
           </tr>
 
