@@ -118,7 +118,7 @@ include('head.php');
           <td style="padding:0px!important; border-left:0px!important; border-bottom: 0px!important; ">
           <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important;"><b>Quotation No.  <?php echo $quotation_data->quotation_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
           <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important;"><b>Date : </b>&nbsp;  <strong><?php echo $quotation_data->quotation_date; ?></strong></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
-          <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important;"> <b>Person Name : </b>&nbsp;&nbsp;&nbsp; Vaibhav Patil  </p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
+          <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important;"> <b>Person Name : </b>&nbsp;&nbsp;&nbsp; <?php echo $quotation_data->quotation_person; ?>  </p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
           </td>
       </tr>
 
@@ -184,21 +184,15 @@ include('head.php');
             <td><?php echo $trans_data->class_name; ?></td>
             <td><?php echo $trans_data->platter_size; ?></td>
             <td><?php echo $trans_data->quotation_trans_gst; ?></td>
-
-            <!-- <td><?php echo $trans_data->quotation_trans_gst; ?></td> -->
-            <!-- <td><?php echo $trans_data->quotation_trans_qty; ?></td> -->
             <td><?php echo $trans_data->quotation_trans_rate; ?></td>
-            <!-- <td><?php echo $trans_data->quotation_trans_amount; ?></td> -->
           </tr>
 
           <?php if($trans_data->quotation_trans_acc != ''){ ?>
           <tr>
             <td><?php echo ++$i; ?></td>
             <td colspan="7"><?php echo $trans_data->quotation_trans_acc; ?></td>
-            <!-- <td><?php echo $trans_data->trans_acc_gst; ?></td> -->
-            <td><?php echo $trans_data->trans_acc_qty; ?></td>
+            <td><?php echo $trans_data->trans_acc_gst; ?></td>
             <td><?php echo $trans_data->trans_acc_rate; ?></td>
-            <!-- <td><?php echo $trans_data->trans_acc_amount; ?></td> -->
           </tr>
 
         <?php } } ?>
@@ -215,11 +209,11 @@ include('head.php');
             </td>
 
               <td colspan="4" valigh="top">
-                   <p style="padding-left:15px!important;"> <b> Basic Amount:  </b> 25000 </p> <hr style="border-bottom:1px solid #000;" >
-                   <p style="padding-left:15px!important;"> <b> GST Amount:  </b> 2500</p> <hr style="border-bottom:1px solid #000;" >
-                   <p style="padding-left:15px!important;"> <b> Basic Amount:  </b> 300000 </p>
+                   <p style="padding-left:15px!important;"> <b> Basic Amount:  </b> <?php echo $quotation_data->quotation_basic; ?> </p> <hr style="border-bottom:1px solid #000;" >
+                   <p style="padding-left:15px!important;"> <b> GST Amount:  </b> <?php echo $quotation_data->quotation_gst; ?></p> <hr style="border-bottom:1px solid #000;" >
+                   <p style="padding-left:15px!important;"> <b> Total Amount:  </b> <?php echo $quotation_data->quotation_total; ?> </p>
               </td>
-          
+
         </tr>
           <tr style="border-bottom:0px;">
             <td colspan="6"  style="border-right:0px!important; border-bottom:0px;">  <p style="float:left; border-right:0px!important;"> Any variations or applications of the statutory levies at the time of supply. <br> will be charged to your account </p>
