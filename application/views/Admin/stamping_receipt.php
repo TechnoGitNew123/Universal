@@ -201,7 +201,7 @@ include('head.php');
 
           <tr>
             <td colspan="12" style="border-bottom:0px!important; border-right:0px!important;">
-              <p><input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_objection != ''){ echo 'checked'; } ?> > Received Above Machines/System For stamping & Verification, no any ojection <br>
+              <p><input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_objection != ''){ echo 'checked'; } ?> > Received Above Machines/System For stamping & Verification, no any Objection <br>
               <input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_condition != ''){ echo 'checked'; } ?> > Received our Machine in Good Condition. </p>
             </td>
           </tr>

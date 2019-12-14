@@ -236,7 +236,7 @@ table{
 
     <tr style="border-top:0px!important; border-bottom:0px!important;">
       <td colspan="12" style="border-bottom:0px!important; border-top:0px!important; border-right:0px!important;">
-        <p style="font-size:12px;"><input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_objection != ''){ echo 'checked'; } ?>>  Received Above Machines/System For stamping & Verification, no any Bojection <br>
+        <p style="font-size:12px;"><input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_objection != ''){ echo 'checked'; } ?>>  Received Above Machines/System For stamping & Verification, no any Objection <br>
           <input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_condition != ''){ echo 'checked'; } ?>> Received our Machine in Good Condition. </p>
       </td>
 

@@ -123,7 +123,8 @@ table{
 
     <td valign="top" style="padding:0px!important; border-left:0px!important; border-bottom: 0px!important; ">
     <p style="font-size:14px; margin-bottom:0px; margin-top:0px; margin-left:0px; padding: 3px; border-left:1px solid #000!important;"><b>Quotation No. &nbsp;&nbsp;&nbsp;  <?php echo $quotation_data->quotation_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
-    <p style="font-size:14px; margin-bottom:0px; margin-top:0px; margin-left:0px; padding: 3px; border-left:1px solid #000!important;"> <b>Date : </b>&nbsp;&nbsp;&nbsp;  <strong><?php echo $quotation_data->quotation_date; ?></strong></p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
+    <p style="font-size:14px; margin-bottom:0px; margin-top:0px; margin-left:0px; padding: 3px; border-left:1px solid #000!important;"><b>Date : </b>&nbsp;&nbsp;&nbsp;  <strong><?php echo $quotation_data->quotation_date; ?></strong></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
+    <p style="font-size:14px; margin-bottom:0px; margin-top:0px; margin-left:0px; padding: 3px; border-left:1px solid #000!important;"> <b>Person Name : </b>&nbsp;&nbsp;&nbsp; Vaibhav Patil </p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
     </td>
 </tr>
 <tr style="border-top:0px!important; ">
