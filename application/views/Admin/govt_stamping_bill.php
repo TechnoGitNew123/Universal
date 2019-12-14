@@ -80,8 +80,21 @@ include('head.php');
                       <?php } ?>
                     </select>
                   </div>
-                  <div class="form-group col-md-8 offset-md-2">
-                    <input type="text" class="form-control form-control-sm" name="govt_stamp_trade" id="govt_stamp_trade" value="<?php if(isset($govt_stamp_trade)){ echo $govt_stamp_trade; } ?>" placeholder="Trade of Business">
+                  <div class="form-group col-md-4 offset-md-2">
+                    <select class="form-control select2" name="quarter_id" id="quarter_id">
+                      <option value="">Account of Name</option>
+                      <?php foreach ($quarter_list as $quarter_list1) { ?>
+                        <option value="<?php echo $quarter_list1->quarter_id; ?>" <?php if(isset($quarter_id)){ if($quarter_list1->quarter_id == $quarter_id){ echo "selected"; } }  ?>><?php echo $quarter_list1->quarter_name; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <select class="form-control select2" name="govt_stamp_trade" id="govt_stamp_trade">
+                      <option value="">Trade of Business</option>
+                      <?php foreach ($ac_info_list as $ac_info_list1) { ?>
+                        <option value="<?php echo $ac_info_list1->ac_info_id; ?>" <?php if(isset($govt_stamp_trade)){ if($ac_info_list1->ac_info_id == $govt_stamp_trade){ echo "selected"; } }  ?>><?php echo $ac_info_list1->ac_info_name; ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
                   <!-- <div class="form-group col-md-2">
                   </div> -->
