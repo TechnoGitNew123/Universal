@@ -921,6 +921,7 @@ class Transaction extends CI_Controller{
        'repairy_person' => $this->input->post('repairy_person'),
        'repairy_contact' => $this->input->post('repairy_contact'),
        'repairy_user' => $this->input->post('repairy_user'),
+       'repairy_engg' => $this->input->post('repairy_engg'),
        'repairy_accss' => $repairy_accss,
        'repairy_basic_charge' => $this->input->post('repairy_basic_charge'),
        'repairy_min_charge' => $this->input->post('repairy_min_charge'),
@@ -982,6 +983,7 @@ public function edit_repairy_bill($repairy_id){
         $data['repairy_user'] = $repairy_data->repairy_user;
         $data['user_id'] = $repairy_data->user_id;
         $data['user_name'] = $repairy_data->user_name;
+        $data['repairy_engg'] = $repairy_data->repairy_engg;
         $data['repairy_contact'] = $repairy_data->repairy_contact;
         $data['repairy_accss'] = $repairy_data->repairy_accss;
         $data['repairy_basic_charge'] = $repairy_data->repairy_basic_charge;
@@ -1021,6 +1023,7 @@ public function update_repairy_bill(){
         'repairy_person' => $this->input->post('repairy_person'),
         'repairy_contact' => $this->input->post('repairy_contact'),
         'repairy_user' => $this->input->post('repairy_user'),
+        'repairy_engg' => $this->input->post('repairy_engg'),
         'repairy_accss' => $repairy_accss,
         'repairy_basic_charge' => $this->input->post('repairy_basic_charge'),
         'repairy_min_charge' => $this->input->post('repairy_min_charge'),

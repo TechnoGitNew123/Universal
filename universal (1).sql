@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2019 at 07:48 AM
+-- Generation Time: Dec 14, 2019 at 08:48 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -37,6 +37,13 @@ CREATE TABLE `uni_accessories` (
   `accessories_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `uni_accessories`
+--
+
+INSERT INTO `uni_accessories` (`accessories_id`, `company_id`, `accessories_name`, `accessories_status`, `accessories_addedby`, `accessories_date`) VALUES
+(1, 1, 'ghjfgj', 'active', '', '2019-12-14 07:16:33');
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +58,13 @@ CREATE TABLE `uni_accuracy` (
   `accuracy_addedby` varchar(150) NOT NULL,
   `accuracy_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_accuracy`
+--
+
+INSERT INTO `uni_accuracy` (`accuracy_id`, `company_id`, `accuracy_name`, `accuracy_status`, `accuracy_addedby`, `accuracy_date`) VALUES
+(1, 1, 'dfgh', 'active', '', '2019-12-14 07:14:29');
 
 -- --------------------------------------------------------
 
@@ -81,6 +95,13 @@ CREATE TABLE `uni_cabinet_color` (
   `cabinet_color_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `uni_cabinet_color`
+--
+
+INSERT INTO `uni_cabinet_color` (`cabinet_color_id`, `company_id`, `cabinet_color_name`, `cabinet_color_status`, `cabinet_color_addedby`, `cabinet_color_date`) VALUES
+(1, 1, 'dfghdfgh', 'active', '', '2019-12-14 07:15:09');
+
 -- --------------------------------------------------------
 
 --
@@ -95,6 +116,13 @@ CREATE TABLE `uni_capacity` (
   `capacity_addedby` varchar(150) NOT NULL,
   `capacity_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_capacity`
+--
+
+INSERT INTO `uni_capacity` (`capacity_id`, `company_id`, `capacity_name`, `capacity_status`, `capacity_addedby`, `capacity_date`) VALUES
+(1, 1, 'dfgh', 'active', '', '2019-12-14 07:14:22');
 
 -- --------------------------------------------------------
 
@@ -132,6 +160,13 @@ CREATE TABLE `uni_class` (
   `class_addedby` varchar(150) NOT NULL,
   `class_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_class`
+--
+
+INSERT INTO `uni_class` (`class_id`, `company_id`, `class_name`, `class_status`, `class_addedby`, `class_date`) VALUES
+(1, 1, 'cvbn', 'active', '', '2019-12-14 07:14:34');
 
 -- --------------------------------------------------------
 
@@ -214,6 +249,13 @@ CREATE TABLE `uni_delivery_master` (
   `delivery_gst` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `uni_delivery_master`
+--
+
+INSERT INTO `uni_delivery_master` (`delivery_id`, `company_id`, `delivery_no`, `delivery_date`, `delivery_party`, `delivery_transport`, `delivery_docket_no`, `delivery_user`, `delivery_terms`, `delivery_total`, `delivery_bill_status`, `delivery_basic`, `delivery_gst`) VALUES
+(1, 1, '000001', '15-12-2019', 1, 'qqqqq', '111', 1, 'tyujty rtuyrtuy rtuytryu, ', 1100, 'yes', 1000, 100);
+
 -- --------------------------------------------------------
 
 --
@@ -237,6 +279,13 @@ CREATE TABLE `uni_delivery_trans` (
   `delivery_trans_amount` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `uni_delivery_trans`
+--
+
+INSERT INTO `uni_delivery_trans` (`delivery_trans_id`, `delivery_id`, `make_id`, `model_no_id`, `machine_serial_no`, `capacity_id`, `accuracy_id`, `class_id`, `platter_id`, `delivery_trans_gst`, `delivery_trans_gst_amount`, `delivery_trans_qty`, `delivery_trans_rate`, `delivery_trans_amount`) VALUES
+(1, 1, 1, 1, '111', 1, 1, 1, 1, 10, 100, 10, 100, 1000);
+
 -- --------------------------------------------------------
 
 --
@@ -251,6 +300,13 @@ CREATE TABLE `uni_display_color` (
   `display_color_addedby` varchar(150) NOT NULL,
   `display_color_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_display_color`
+--
+
+INSERT INTO `uni_display_color` (`display_color_id`, `company_id`, `display_color_name`, `display_color_status`, `display_color_addedby`, `display_color_date`) VALUES
+(1, 1, 'dfghdfgh', 'active', '', '2019-12-14 07:15:03');
 
 -- --------------------------------------------------------
 
@@ -267,6 +323,13 @@ CREATE TABLE `uni_division` (
   `division_addedby` varchar(150) NOT NULL,
   `division_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_division`
+--
+
+INSERT INTO `uni_division` (`division_id`, `company_id`, `division_name`, `division_head`, `division_status`, `division_addedby`, `division_date`) VALUES
+(1, 1, 'fghfghdfgh', 'dfghdfgh', 'active', '', '2019-12-14 07:14:47');
 
 -- --------------------------------------------------------
 
@@ -326,6 +389,13 @@ CREATE TABLE `uni_govt_stamp_master` (
   `govt_stamp_total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `uni_govt_stamp_master`
+--
+
+INSERT INTO `uni_govt_stamp_master` (`govt_stamp_id`, `company_id`, `govt_stamp_no`, `govt_stamp_date`, `govt_stamp_party`, `govt_stamp_division`, `govt_stamp_trade`, `govt_stamp_vc_no`, `govt_stamp_vc_date`, `govt_stamp_grn_no`, `govt_stamp_grn_date`, `govt_stamp_objection`, `govt_stamp_condition`, `govt_stamp_late_fee`, `govt_stamp_hctada`, `govt_stamp_ser_charge`, `govt_stamp_gov_fees`, `govt_stamp_total`) VALUES
+(1, 1, '000001', '08-12-2019', 1, 1, 'fsdf', '1', '29-12-2019', '2', '30-12-2019', 'no', 'yes', 100, 100, 100, 22, 322);
+
 -- --------------------------------------------------------
 
 --
@@ -348,6 +418,13 @@ CREATE TABLE `uni_govt_stamp_trans` (
   `ser_charge` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `uni_govt_stamp_trans`
+--
+
+INSERT INTO `uni_govt_stamp_trans` (`govt_stamp_trans_id`, `govt_stamp_id`, `make_id`, `model_no_id`, `machine_serial_no`, `capacity_id`, `min_id`, `accuracy_id`, `class_id`, `lcr_no`, `lcr_date`, `govt_fees`, `ser_charge`) VALUES
+(1, 1, 1, 1, '123', 1, 1, 1, 1, '123', '2019-12-22', 22, 100);
+
 -- --------------------------------------------------------
 
 --
@@ -363,6 +440,13 @@ CREATE TABLE `uni_make` (
   `make_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `uni_make`
+--
+
+INSERT INTO `uni_make` (`make_id`, `company_id`, `make_name`, `make_status`, `make_addedby`, `make_date`) VALUES
+(1, 1, 'fghdfgh', 'active', '', '2019-12-14 07:14:15');
+
 -- --------------------------------------------------------
 
 --
@@ -377,6 +461,13 @@ CREATE TABLE `uni_min` (
   `min_addedby` varchar(150) NOT NULL,
   `min_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_min`
+--
+
+INSERT INTO `uni_min` (`min_id`, `company_id`, `min_name`, `min_status`, `min_addedby`, `min_date`) VALUES
+(1, 1, 'fdghfdgh', 'active', '', '2019-12-14 07:14:56');
 
 -- --------------------------------------------------------
 
@@ -409,6 +500,13 @@ CREATE TABLE `uni_party` (
   `party_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `uni_party`
+--
+
+INSERT INTO `uni_party` (`party_id`, `company_id`, `party_firm`, `party_address`, `party_area`, `party_taluka`, `party_district`, `party_pin`, `party_state`, `party_mob1`, `party_mob2`, `party_email`, `party_website`, `party_gst_no`, `party_pan_no`, `party_proriter`, `party_business`, `party_requirment`, `party_type`, `party_status`, `party_addedby`, `party_date`) VALUES
+(1, 1, 'aasdffg ghjkl', 'dfsadf', 'dfghdfgh', 'dfgh', 'dsfgdsfg', 111222, '27', '9966332255', '', 'asdf@www.bnn', 'demo.com', '9995654', '4563456', 'ghjgfjh fjhf', 'fgjh fgjhfgjh', NULL, 'party', 'active', '', '2019-12-14 07:22:41');
+
 -- --------------------------------------------------------
 
 --
@@ -423,6 +521,13 @@ CREATE TABLE `uni_platter_size` (
   `platter_addedby` varchar(150) NOT NULL,
   `platter_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_platter_size`
+--
+
+INSERT INTO `uni_platter_size` (`platter_id`, `company_id`, `platter_size`, `platter_status`, `platter_addedby`, `platter_date`) VALUES
+(1, 1, 'fgh', 'active', '', '2019-12-14 07:14:39');
 
 -- --------------------------------------------------------
 
@@ -439,12 +544,20 @@ CREATE TABLE `uni_product` (
   `accuracy_id` bigint(20) NOT NULL,
   `class_id` bigint(20) NOT NULL,
   `platter_id` bigint(20) NOT NULL,
+  `quarter_id` bigint(20) DEFAULT NULL,
   `stamping_days` varchar(100) NOT NULL,
-  `sale_price` varchar(100) NOT NULL,
+  `sale_price` varchar(100) DEFAULT NULL,
   `product_status` varchar(20) NOT NULL DEFAULT 'active',
   `product_addedby` varchar(150) NOT NULL,
   `product_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_product`
+--
+
+INSERT INTO `uni_product` (`product_id`, `company_id`, `make_id`, `product_model_no`, `capacity_id`, `accuracy_id`, `class_id`, `platter_id`, `quarter_id`, `stamping_days`, `sale_price`, `product_status`, `product_addedby`, `product_date`) VALUES
+(1, 1, 1, '111', 1, 1, 1, 1, 2, '360', NULL, 'active', '', '2019-12-14 07:17:10');
 
 -- --------------------------------------------------------
 
@@ -610,11 +723,20 @@ CREATE TABLE `uni_repairy_master` (
   `repairy_person` varchar(200) NOT NULL,
   `repairy_contact` bigint(20) NOT NULL,
   `repairy_user` bigint(20) DEFAULT NULL,
+  `repairy_engg` varchar(250) DEFAULT NULL,
   `repairy_accss` text DEFAULT NULL,
   `repairy_basic_charge` double NOT NULL DEFAULT 0,
   `repairy_min_charge` double NOT NULL DEFAULT 0,
   `repairy_total` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_repairy_master`
+--
+
+INSERT INTO `uni_repairy_master` (`repairy_id`, `company_id`, `repairy_no`, `repairy_date`, `repairy_party`, `repairy_person`, `repairy_contact`, `repairy_user`, `repairy_engg`, `repairy_accss`, `repairy_basic_charge`, `repairy_min_charge`, `repairy_total`) VALUES
+(1, 1, '000001', '14-12-2019', 1, 'fghfgh dfghfgh', 9876543210, 1, NULL, '0_0_0_0_Stamping', 500, 100, 600),
+(2, 1, '000002', '14-12-2019', 1, 'fghfgh dfghfgh', 9876543210, 1, 'fghf hgf', '0_0_0_Battery_0', 100, 100, 200);
 
 -- --------------------------------------------------------
 
@@ -635,6 +757,14 @@ CREATE TABLE `uni_repairy_trans` (
   `material_used` text DEFAULT NULL,
   `repairy_trans_amount` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_repairy_trans`
+--
+
+INSERT INTO `uni_repairy_trans` (`repairy_trans_id`, `repairy_id`, `make_id`, `model_no_id`, `machine_serial_no`, `capacity_id`, `accuracy_id`, `class_id`, `repairy_details`, `material_used`, `repairy_trans_amount`) VALUES
+(1, 1, 1, '1', '11', 1, 1, 1, 'rtgesrt', 'ert', 500),
+(2, 2, 1, '1', '888', 1, 1, 1, 'jhklhjkl', 'ert', 100);
 
 -- --------------------------------------------------------
 
@@ -669,6 +799,13 @@ CREATE TABLE `uni_sale_master` (
   `date_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `uni_sale_master`
+--
+
+INSERT INTO `uni_sale_master` (`sale_id`, `company_id`, `sale_bill_no`, `sale_date`, `sale_party`, `sale_challan_no`, `sale_employee`, `sale_terms`, `total_gst`, `total_base_amount`, `sale_total`, `date_time`) VALUES
+(1, 1, '000001', '22-12-2019', 1, 1, '1', 'tyujty rtuyrtuy rtuytryu, ', 100, 1000, 1100, '2019-12-14 07:23:59');
+
 -- --------------------------------------------------------
 
 --
@@ -691,6 +828,13 @@ CREATE TABLE `uni_sale_trans` (
   `sale_trans_rate` double NOT NULL,
   `sale_trans_amount` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_sale_trans`
+--
+
+INSERT INTO `uni_sale_trans` (`sale_trans_id`, `sale_id`, `make_id`, `model_no_id`, `machine_serial_no`, `capacity_id`, `accuracy_id`, `class_id`, `platter_id`, `sale_trans_gst`, `sale_trans_gst_amount`, `sale_trans_qty`, `sale_trans_rate`, `sale_trans_amount`) VALUES
+(1, 1, 1, 1, '111', 1, 1, 1, 1, 10, 100, 10, 100, 1000);
 
 -- --------------------------------------------------------
 
@@ -733,6 +877,13 @@ CREATE TABLE `uni_std_narration` (
   `std_narration_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `uni_std_narration`
+--
+
+INSERT INTO `uni_std_narration` (`std_narration_id`, `company_id`, `std_narration_name`, `std_narration_status`, `std_narration_addedby`, `std_narration_date`) VALUES
+(1, 1, 'tyujrtyu', 'active', '', '2019-12-14 07:16:40');
+
 -- --------------------------------------------------------
 
 --
@@ -747,6 +898,13 @@ CREATE TABLE `uni_terms` (
   `terms_addedby` varchar(150) NOT NULL,
   `terms_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_terms`
+--
+
+INSERT INTO `uni_terms` (`terms_id`, `company_id`, `terms_name`, `terms_status`, `terms_addedby`, `terms_date`) VALUES
+(1, 1, 'tyujty rtuyrtuy rtuytryu', 'active', '', '2019-12-14 07:16:48');
 
 -- --------------------------------------------------------
 
@@ -784,6 +942,13 @@ CREATE TABLE `uni_unit` (
   `unit_addedby` varchar(150) NOT NULL,
   `unit_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_unit`
+--
+
+INSERT INTO `uni_unit` (`unit_id`, `company_id`, `unit_name`, `unit_status`, `unit_addedby`, `unit_date`) VALUES
+(1, 1, 'fdgh', 'active', '', '2019-12-14 07:15:17');
 
 -- --------------------------------------------------------
 
@@ -1060,13 +1225,13 @@ ALTER TABLE `uni_user`
 -- AUTO_INCREMENT for table `uni_accessories`
 --
 ALTER TABLE `uni_accessories`
-  MODIFY `accessories_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `accessories_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_accuracy`
 --
 ALTER TABLE `uni_accuracy`
-  MODIFY `accuracy_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `accuracy_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_admin`
@@ -1078,13 +1243,13 @@ ALTER TABLE `uni_admin`
 -- AUTO_INCREMENT for table `uni_cabinet_color`
 --
 ALTER TABLE `uni_cabinet_color`
-  MODIFY `cabinet_color_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `cabinet_color_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_capacity`
 --
 ALTER TABLE `uni_capacity`
-  MODIFY `capacity_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `capacity_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_ca_info`
@@ -1096,7 +1261,7 @@ ALTER TABLE `uni_ca_info`
 -- AUTO_INCREMENT for table `uni_class`
 --
 ALTER TABLE `uni_class`
-  MODIFY `class_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `class_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_company`
@@ -1114,25 +1279,25 @@ ALTER TABLE `uni_complaint`
 -- AUTO_INCREMENT for table `uni_delivery_master`
 --
 ALTER TABLE `uni_delivery_master`
-  MODIFY `delivery_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `delivery_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_delivery_trans`
 --
 ALTER TABLE `uni_delivery_trans`
-  MODIFY `delivery_trans_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `delivery_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_display_color`
 --
 ALTER TABLE `uni_display_color`
-  MODIFY `display_color_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `display_color_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_division`
 --
 ALTER TABLE `uni_division`
-  MODIFY `division_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `division_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_enquiry`
@@ -1150,43 +1315,43 @@ ALTER TABLE `uni_expense`
 -- AUTO_INCREMENT for table `uni_govt_stamp_master`
 --
 ALTER TABLE `uni_govt_stamp_master`
-  MODIFY `govt_stamp_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `govt_stamp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_govt_stamp_trans`
 --
 ALTER TABLE `uni_govt_stamp_trans`
-  MODIFY `govt_stamp_trans_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `govt_stamp_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_make`
 --
 ALTER TABLE `uni_make`
-  MODIFY `make_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `make_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_min`
 --
 ALTER TABLE `uni_min`
-  MODIFY `min_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `min_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_party`
 --
 ALTER TABLE `uni_party`
-  MODIFY `party_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `party_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_platter_size`
 --
 ALTER TABLE `uni_platter_size`
-  MODIFY `platter_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `platter_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_product`
 --
 ALTER TABLE `uni_product`
-  MODIFY `product_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_purchase_master`
@@ -1228,13 +1393,13 @@ ALTER TABLE `uni_receipt`
 -- AUTO_INCREMENT for table `uni_repairy_master`
 --
 ALTER TABLE `uni_repairy_master`
-  MODIFY `repairy_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `repairy_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `uni_repairy_trans`
 --
 ALTER TABLE `uni_repairy_trans`
-  MODIFY `repairy_trans_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `repairy_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `uni_roll`
@@ -1246,13 +1411,13 @@ ALTER TABLE `uni_roll`
 -- AUTO_INCREMENT for table `uni_sale_master`
 --
 ALTER TABLE `uni_sale_master`
-  MODIFY `sale_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `sale_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_sale_trans`
 --
 ALTER TABLE `uni_sale_trans`
-  MODIFY `sale_trans_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `sale_trans_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_service`
@@ -1264,13 +1429,13 @@ ALTER TABLE `uni_service`
 -- AUTO_INCREMENT for table `uni_std_narration`
 --
 ALTER TABLE `uni_std_narration`
-  MODIFY `std_narration_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `std_narration_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_terms`
 --
 ALTER TABLE `uni_terms`
-  MODIFY `terms_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `terms_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_trade`
@@ -1282,7 +1447,7 @@ ALTER TABLE `uni_trade`
 -- AUTO_INCREMENT for table `uni_unit`
 --
 ALTER TABLE `uni_unit`
-  MODIFY `unit_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `unit_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uni_user`

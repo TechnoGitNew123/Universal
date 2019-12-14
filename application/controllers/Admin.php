@@ -1424,6 +1424,7 @@ class Admin extends CI_Controller{
       $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
       $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
       $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
+      $data['quarter_list'] = $this->Admin_Model->get_list($company_id,'quarter_id','ASC','uni_quarter');
       $this->load->view('Admin/product_information', $data);
     } else{
       header('location:'.base_url().'Login');
@@ -1451,7 +1452,8 @@ class Admin extends CI_Controller{
         'class_id' => $this->input->post('class_id'),
         'platter_id' => $this->input->post('platter_id'),
         'stamping_days' => $this->input->post('stamping_days'),
-        'sale_price' => $this->input->post('sale_price'),
+        'quarter_id' => $this->input->post('quarter_id'),
+        // 'sale_price' => $this->input->post('sale_price'),
       );
       $this->Admin_Model->save_data('uni_product', $data);
       header('location:product_information_list');
@@ -1479,8 +1481,9 @@ class Admin extends CI_Controller{
           $data['class_name'] = $info->class_name;
           $data['platter_id'] = $info->platter_id;
           $data['platter_size'] = $info->platter_size;
+          $data['quarter_id'] = $info->quarter_id;
+          // $data['sale_price'] = $info->sale_price;
           $data['stamping_days'] = $info->stamping_days;
-          $data['sale_price'] = $info->sale_price;
           $data['product_status'] = $info->product_status;
         }
         $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
@@ -1488,6 +1491,7 @@ class Admin extends CI_Controller{
         $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
         $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
         $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
+        $data['quarter_list'] = $this->Admin_Model->get_list($company_id,'quarter_id','ASC','uni_quarter');
         $this->load->view('Admin/product_information',$data);
       }
     } else{
@@ -1507,7 +1511,8 @@ class Admin extends CI_Controller{
         'class_id' => $this->input->post('class_id'),
         'platter_id' => $this->input->post('platter_id'),
         'stamping_days' => $this->input->post('stamping_days'),
-        'sale_price' => $this->input->post('sale_price'),
+        // 'sale_price' => $this->input->post('sale_price'),
+        'quarter_id' => $this->input->post('quarter_id'),
       );
       $this->Admin_Model->update_info('product_id', $product_id, 'uni_product', $data);
       header('location:product_information_list');
