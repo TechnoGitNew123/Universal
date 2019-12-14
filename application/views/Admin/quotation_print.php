@@ -124,7 +124,7 @@ table{
     <td valign="top" style="padding:0px!important; border-left:0px!important; border-bottom: 0px!important; ">
     <p style="font-size:14px; margin-bottom:0px; margin-top:0px; margin-left:0px; padding: 3px; border-left:1px solid #000!important;"><b>Quotation No. &nbsp;&nbsp;&nbsp;  <?php echo $quotation_data->quotation_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
     <p style="font-size:14px; margin-bottom:0px; margin-top:0px; margin-left:0px; padding: 3px; border-left:1px solid #000!important;"><b>Date : </b>&nbsp;&nbsp;&nbsp;  <strong><?php echo $quotation_data->quotation_date; ?></strong></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
-    <p style="font-size:14px; margin-bottom:0px; margin-top:0px; margin-left:0px; padding: 3px; border-left:1px solid #000!important;"> <b>Person Name : </b>&nbsp;&nbsp;&nbsp; Vaibhav Patil </p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
+    <p style="font-size:14px; margin-bottom:0px; margin-top:0px; margin-left:0px; padding: 3px; border-left:1px solid #000!important;"> <b>Person Name : </b>&nbsp;&nbsp;&nbsp; <strong><?php echo $quotation_data->quotation_person; ?> </p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
     </td>
 </tr>
 <tr style="border-top:0px!important; ">
@@ -215,15 +215,15 @@ table{
       <td class="ctr"> <p style="text-align:center;"> <?php echo ++$i; ?></p></td>
       <td colspan="7" class="ctr"> <p style="text-align:center;"><?php echo $trans_data->quotation_trans_acc; ?></p> </td>
       <!-- <td class="ctr"><?php echo $trans_data->trans_acc_gst; ?></td> -->
-      <td class="ctr"> <p style="text-align:center;">  <?php echo $trans_data->trans_acc_qty; ?></p></td>
+      <td class="ctr"> <p style="text-align:center;">  <?php echo $trans_data->trans_acc_gst; ?></p></td>
       <td class="ctr"> <p style="text-align:center;"> <?php echo $trans_data->trans_acc_rate; ?></p></td>
       <!-- <td class="ctr"><?php echo $trans_data->trans_acc_amount; ?></td> -->
     </tr>
 
   <?php } } ?>
-      <tr style="border-top:0px!important; border-bottom: 0px!important;">
-        <td colspan="6" style="border-top:0px!important;border-bottom: 0px!important; ">
-          <p style="padding-left:15px!important;"> <br> <b> Terms & Condition </b> </p>
+      <tr style="border-top:0px!important; border-bottom: 0px!important;" valigh="top">
+        <td colspan="6" style="border-top:0px!important;border-bottom: 0px!important; " valigh="top">
+          <p style="padding-left:15px!important;"> <b> Terms & Condition </b> </p>
           <p style="padding-left:15px!important;">i)GST @ 18% on the the purches of Good's(Extra) </p>
           <p style="padding-left:15px!important;">ii)Warranty : We stand warranty for electronic equipment against <br> any manufacturing defects for the period of 12 months form installation. </p>
           <p style="padding-left:15px!important;">iii)Payment Terms: 100% advance by D.D. or cheque along with purchase order.  </p>
@@ -233,9 +233,9 @@ table{
           <p style="padding-left:15px!important;"> </p>
         </td>
         <td colspan="4" valigh="top">
-             <p style="padding-left:15px!important;"> <b> Basic Amount:  </b> 25000 </p> <hr style="border-bottom:1px solid #000;" >
-             <p style="padding-left:15px!important;"> <b> GST Amount:  </b> 2500</p> <hr style="border-bottom:1px solid #000;" >
-             <p style="padding-left:15px!important;"> <b> Basic Amount:  </b> 300000 </p>
+             <p style="padding-left:15px!important;"> <b> Basic Amount:  </b> <?php echo $quotation_data->quotation_basic; ?> </p> <hr style="border-bottom:1px solid #000;" >
+             <p style="padding-left:15px!important;"> <b> GST Amount:  </b> <?php echo $quotation_data->quotation_gst; ?></p> <hr style="border-bottom:1px solid #000;" >
+             <p style="padding-left:15px!important;"> <b> Total Amount:  </b> <?php echo $quotation_data->quotation_total; ?> </p>
         </td>
 
     </tr>
