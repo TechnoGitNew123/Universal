@@ -6,14 +6,11 @@ include('head.php');
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
   <!-- Navbar -->
   <?php include('navbar.php'); ?>
   <!-- /.navbar -->
-
   <!-- Main Sidebar Container -->
   <?php include('sidebar.php'); ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -26,9 +23,6 @@ include('head.php');
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
-
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -47,7 +41,6 @@ include('head.php');
               <?php } else{ ?>
                 <form role="form" action="save_product" method="post">
               <?php } ?>
-
                 <div class="card-body row">
                   <div class="form-group col-md-12">
                     <select class="form-control select2" name="make_id" id="make_id" required>
@@ -122,9 +115,23 @@ include('head.php');
                       <option>360</option>
                     </select>
                   </div>
+                  
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control form-control-sm" name="sale_price" id="sale_price"  value="<?php if(isset($sale_price)){ echo $sale_price; } ?>" placeholder="Sale Price" required>
+                    <select class="form-control select2" name="stamping_days" id="stamping_days">
+                      <?php if(isset($make_id)){
+                        echo '<option selected="selected" value="'.$stamping_days.'">'.$stamping_days.'</option>';
+                      } else{
+                        echo '<option selected="selected">Select Stamping Period Days</option>';
+                      }?>
+                      <option>360</option>
+                    </select>
                   </div>
+
+                  <!-- <div class="form-group col-md-6">
+                    <input type="number" class="form-control form-control-sm" name="sale_price" id="sale_price"  value="<?php if(isset($sale_price)){ echo $sale_price; } ?>" placeholder="Sale Price" required>
+                  </div> -->
+
+
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">

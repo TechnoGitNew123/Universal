@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2019 at 10:30 AM
+-- Generation Time: Dec 14, 2019 at 07:48 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -99,6 +99,28 @@ CREATE TABLE `uni_capacity` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `uni_ca_info`
+--
+
+CREATE TABLE `uni_ca_info` (
+  `ca_info_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `ca_info_name` varchar(250) NOT NULL,
+  `ca_info_status` varchar(20) NOT NULL DEFAULT 'active',
+  `ca_info_addedby` varchar(150) NOT NULL,
+  `ca_info_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_ca_info`
+--
+
+INSERT INTO `uni_ca_info` (`ca_info_id`, `company_id`, `ca_info_name`, `ca_info_status`, `ca_info_addedby`, `ca_info_date`) VALUES
+(1, 1, 'stfrasrf fff', 'active', '', '2019-12-14 06:43:56');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `uni_class`
 --
 
@@ -147,7 +169,7 @@ CREATE TABLE `uni_company` (
 --
 
 INSERT INTO `uni_company` (`company_id`, `company_name`, `company_address`, `company_city`, `company_state`, `company_district`, `company_pincode`, `company_statecode`, `company_mob1`, `company_mob2`, `company_email`, `company_website`, `company_pan_no`, `company_gst_no`, `company_lic1`, `company_lic2`, `company_start_date`, `company_end_date`, `company_logo`, `admin_email`, `admin_password`, `admin_roll_id`) VALUES
-(1, 'Universal Digital  System', '126, Bhupal Tower, Ford Corner, Laxmipuri', 'Kolhapur', 'Maharashtra', 'Kolhapur', 416005, '27', '9422413073', '9423044173', 'rajnish.uni@rediffmail.com', 'www.universaldigital.net', '', '', '', '', '01-4-2019', '31-3-2020', '', 'demo@mail.com', '123456', 1),
+(1, 'Universal Digital  System', '126, Bhupal Tower, Ford Corner, Laxmipuri', 'Kolhapur', 'Maharashtra', 'Kolhapur', 416005, '27', '9422413073', '023199663322', 'rajnish.uni@rediffmail.com', 'www.universaldigital.net', '', '', '', '', '', '', '', 'demo@mail.com', '123456', 1),
 (2, 'Universal Digital Systems', '126, Bhupal Tower, Ford Corner, Lamipuri', 'Kolhapur', 'Maharashtra', 'Kolhapur', 416002, NULL, '9422413073', '9423044173', 'rajnish.uni@gmail.com', 'www.universaldigital.net', '', '', '', '', '01-4-2019', '31-3-2020', '', 'rajnish.uni@gmail.com', '12345', 1);
 
 -- --------------------------------------------------------
@@ -486,6 +508,30 @@ CREATE TABLE `uni_purchase_trans` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `uni_quarter`
+--
+
+CREATE TABLE `uni_quarter` (
+  `quarter_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `from_month` varchar(25) DEFAULT NULL,
+  `to_month` varchar(25) DEFAULT NULL,
+  `quarter_name` varchar(250) DEFAULT NULL,
+  `quarter_status` varchar(20) NOT NULL DEFAULT 'active',
+  `quarter_addedby` varchar(150) DEFAULT NULL,
+  `quarter_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_quarter`
+--
+
+INSERT INTO `uni_quarter` (`quarter_id`, `company_id`, `from_month`, `to_month`, `quarter_name`, `quarter_status`, `quarter_addedby`, `quarter_date`) VALUES
+(2, 1, 'January', 'March', 'ASasasd', 'active', NULL, '2019-12-14 06:21:33');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `uni_quotation_master`
 --
 
@@ -705,6 +751,28 @@ CREATE TABLE `uni_terms` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `uni_trade`
+--
+
+CREATE TABLE `uni_trade` (
+  `trade_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `trade_name` varchar(250) NOT NULL,
+  `trade_status` varchar(20) NOT NULL DEFAULT 'active',
+  `trade_addedby` varchar(150) NOT NULL,
+  `trade_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_trade`
+--
+
+INSERT INTO `uni_trade` (`trade_id`, `company_id`, `trade_name`, `trade_status`, `trade_addedby`, `trade_date`) VALUES
+(1, 1, 'sdfsadf', 'active', '', '2019-12-14 06:32:05');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `uni_unit`
 --
 
@@ -735,6 +803,13 @@ CREATE TABLE `uni_user` (
   `user_addedby` varchar(100) NOT NULL,
   `user_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uni_user`
+--
+
+INSERT INTO `uni_user` (`user_id`, `company_id`, `roll_id`, `user_name`, `user_city`, `user_mobile`, `user_password`, `user_status`, `user_addedby`, `user_date`) VALUES
+(1, 1, 2, 'Demo User', 'Kop', '9876543210', '123456', 'active', '', '2019-12-08 04:25:58');
 
 --
 -- Indexes for dumped tables
@@ -770,6 +845,12 @@ ALTER TABLE `uni_cabinet_color`
 --
 ALTER TABLE `uni_capacity`
   ADD PRIMARY KEY (`capacity_id`);
+
+--
+-- Indexes for table `uni_ca_info`
+--
+ALTER TABLE `uni_ca_info`
+  ADD PRIMARY KEY (`ca_info_id`);
 
 --
 -- Indexes for table `uni_class`
@@ -881,6 +962,12 @@ ALTER TABLE `uni_purchase_trans`
   ADD PRIMARY KEY (`purchase_trans_id`);
 
 --
+-- Indexes for table `uni_quarter`
+--
+ALTER TABLE `uni_quarter`
+  ADD PRIMARY KEY (`quarter_id`);
+
+--
 -- Indexes for table `uni_quotation_master`
 --
 ALTER TABLE `uni_quotation_master`
@@ -948,6 +1035,12 @@ ALTER TABLE `uni_terms`
   ADD PRIMARY KEY (`terms_id`);
 
 --
+-- Indexes for table `uni_trade`
+--
+ALTER TABLE `uni_trade`
+  ADD PRIMARY KEY (`trade_id`);
+
+--
 -- Indexes for table `uni_unit`
 --
 ALTER TABLE `uni_unit`
@@ -992,6 +1085,12 @@ ALTER TABLE `uni_cabinet_color`
 --
 ALTER TABLE `uni_capacity`
   MODIFY `capacity_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `uni_ca_info`
+--
+ALTER TABLE `uni_ca_info`
+  MODIFY `ca_info_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `uni_class`
@@ -1102,6 +1201,12 @@ ALTER TABLE `uni_purchase_trans`
   MODIFY `purchase_trans_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `uni_quarter`
+--
+ALTER TABLE `uni_quarter`
+  MODIFY `quarter_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `uni_quotation_master`
 --
 ALTER TABLE `uni_quotation_master`
@@ -1168,6 +1273,12 @@ ALTER TABLE `uni_terms`
   MODIFY `terms_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `uni_trade`
+--
+ALTER TABLE `uni_trade`
+  MODIFY `trade_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `uni_unit`
 --
 ALTER TABLE `uni_unit`
@@ -1177,7 +1288,7 @@ ALTER TABLE `uni_unit`
 -- AUTO_INCREMENT for table `uni_user`
 --
 ALTER TABLE `uni_user`
-  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
