@@ -51,7 +51,7 @@ $page = "delivery_challan_report";
                   <label class="col-sm-1 col-form-label text-right px-0">To Date</label>
                   <div class="col-sm-3">
                     <input type="text" class="form-control to_date" name="to_date" id="date2" data-target="#date2" data-toggle="datetimepicker">
-                    <label class="text-red"> <?php echo form_error('from_date'); ?> </label>
+                    <label class="text-red"> <?php echo form_error('to_date'); ?> </label>
                   </div>
                   <label class="col-sm-1 col-form-label text-right px-0">Party</label>
                   <div class="col-sm-3 select-lg">

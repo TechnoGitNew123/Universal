@@ -13,6 +13,7 @@ class Admin extends CI_Controller{
   public function dashboard(){
     $company_id = $this->session->userdata('company_id');
     $roll_id = $this->session->userdata('admin_roll_id');
+
     if($company_id){
       if($roll_id == 1){
         $party_id = null;
@@ -1525,17 +1526,179 @@ class Admin extends CI_Controller{
     }
   }
 
+  public function stamping_quarter(){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id == ''){ header('location:'.base_url().'Login'); }
 
-
-
-  // Party Information...
-
-
-
-  // Transaction...
-  public function delivery_challan(){
-    $this->load->view('Admin/delivery_challan');
+    $this->form_validation->set_rules('from_month', 'From Date', 'trim|required');
+    $this->form_validation->set_rules('to_month', 'To Date', 'trim|required');
+    $this->form_validation->set_rules('quarter_name', 'Quarter Name', 'trim|required');
+    if($this->form_validation->run() != FALSE){
+      $save_data = array(
+        'company_id' => $company_id,
+        'from_month' => $this->input->post('from_month'),
+        'to_month' => $this->input->post('to_month'),
+        'quarter_name' => $this->input->post('quarter_name'),
+      );
+      $this->Admin_Model->save_data('uni_quarter', $save_data);
+      header('location:'.base_url().'Admin/stamping_quarter_list');
+    }
+    $this->load->view('Admin/stamping_quarter');
   }
+
+  public function stamping_quarter_list(){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id == ''){ header('location:'.base_url().'Login'); }
+    $data['stamping_quarter_list'] = $this->Admin_Model->get_list($company_id,'quarter_id','ASC','uni_quarter');
+    $this->load->view('Admin/stamping_quarter_list', $data);
+  }
+
+  public function edit_stamping_quarter($quarter_id){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id == ''){ header('location:'.base_url().'Login'); }
+
+    $this->form_validation->set_rules('from_month', 'From Date', 'trim|required');
+    $this->form_validation->set_rules('to_month', 'To Date', 'trim|required');
+    $this->form_validation->set_rules('quarter_name', 'Quarter Name', 'trim|required');
+    if($this->form_validation->run() != FALSE){
+      // $quarter_id = $this->input->post('from_month');
+      $update_data = array(
+        'from_month' => $this->input->post('from_month'),
+        'to_month' => $this->input->post('to_month'),
+        'quarter_name' => $this->input->post('quarter_name'),
+      );
+      // echo print_r($quarter_id);
+      $this->Admin_Model->update_info('quarter_id', $quarter_id, 'uni_quarter', $update_data);
+      header('location:'.base_url().'Admin/stamping_quarter_list');
+    }
+
+    $stamping_quarter_info = $this->Admin_Model->get_info('quarter_id', $quarter_id, 'uni_quarter');
+    if($stamping_quarter_info == ''){ header('location:'.base_url().'Admin/stamping_quarter_list'); }
+    foreach($stamping_quarter_info as $info){
+      $data['update'] = 'update';
+      $data['from_month'] = $info->from_month;
+      $data['to_month'] = $info->to_month;
+      $data['quarter_name'] = $info->quarter_name;
+    }
+    $this->load->view('Admin/stamping_quarter',$data);
+  }
+
+  public function delete_stamping_quarter($quarter_id){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id == ''){ header('location:'.base_url().'Login'); }
+    $this->Admin_Model->delete_info('quarter_id', $quarter_id, 'uni_quarter');
+    header('location:'.base_url().'Admin/stamping_quarter_list');
+  }
+
+/************************************  Trade Business  ***********************/
+
+  public function add_trade(){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id == ''){ header('location:'.base_url().'Login'); }
+
+    $this->form_validation->set_rules('trade_name', 'Trade Name', 'trim|required');
+    if($this->form_validation->run() != FALSE){
+      $save_data = array(
+        'company_id' => $company_id,
+        'trade_name' => $this->input->post('trade_name'),
+      );
+      $this->Admin_Model->save_data('uni_trade', $save_data);
+      header('location:'.base_url().'Admin/trade_list');
+    }
+    $this->load->view('Admin/trade');
+  }
+
+  public function trade_list(){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id == ''){ header('location:'.base_url().'Login'); }
+    $data['trade_list'] = $this->Admin_Model->get_list($company_id,'trade_id','ASC','uni_trade');
+    $this->load->view('Admin/trade_list', $data);
+  }
+
+  public function edit_trade($trade_id){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id == ''){ header('location:'.base_url().'Login'); }
+    $this->form_validation->set_rules('trade_name', 'Trade Name', 'trim|required');
+    if($this->form_validation->run() != FALSE){
+      $update_data = array(
+        'trade_name' => $this->input->post('trade_name'),
+      );
+      $this->Admin_Model->update_info('trade_id', $trade_id, 'uni_trade', $update_data);
+      header('location:'.base_url().'Admin/trade_list');
+    }
+
+    $trade_info = $this->Admin_Model->get_info('trade_id', $trade_id, 'uni_trade');
+    if($trade_info == ''){ header('location:'.base_url().'Admin/trade_list'); }
+    foreach($trade_info as $info){
+      $data['update'] = 'update';
+      $data['trade_name'] = $info->trade_name;
+    }
+    $this->load->view('Admin/trade',$data);
+  }
+
+  public function delete_trade($trade_id){
+    $company_id = $this->session->userdata('company_id');
+    if($company_id == ''){ header('location:'.base_url().'Login'); }
+    $this->Admin_Model->delete_info('trade_id', $trade_id, 'uni_trade');
+    header('location:'.base_url().'Admin/trade_list');
+  }
+
+/********************** Account of Name **********************/
+public function add_ca_info(){
+  $company_id = $this->session->userdata('company_id');
+  if($company_id == ''){ header('location:'.base_url().'Login'); }
+
+  $this->form_validation->set_rules('ca_info_name', 'Trade Name', 'trim|required');
+  if($this->form_validation->run() != FALSE){
+    $save_data = array(
+      'company_id' => $company_id,
+      'ca_info_name' => $this->input->post('ca_info_name'),
+    );
+    $this->Admin_Model->save_data('uni_ca_info', $save_data);
+    header('location:'.base_url().'Admin/ca_info_list');
+  }
+  $this->load->view('Admin/ca_info');
+}
+
+public function ca_info_list(){
+  $company_id = $this->session->userdata('company_id');
+  if($company_id == ''){ header('location:'.base_url().'Login'); }
+  $data['ca_info_list'] = $this->Admin_Model->get_list($company_id,'ca_info_id','ASC','uni_ca_info');
+  $this->load->view('Admin/ca_info_list', $data);
+}
+
+public function edit_ca_info($ca_info_id){
+  $company_id = $this->session->userdata('company_id');
+  if($company_id == ''){ header('location:'.base_url().'Login'); }
+  $this->form_validation->set_rules('ca_info_name', 'Trade Name', 'trim|required');
+  if($this->form_validation->run() != FALSE){
+    $update_data = array(
+      'ca_info_name' => $this->input->post('ca_info_name'),
+    );
+    $this->Admin_Model->update_info('ca_info_id', $ca_info_id, 'uni_ca_info', $update_data);
+    header('location:'.base_url().'Admin/ca_info_list');
+  }
+
+  $ca_info_info = $this->Admin_Model->get_info('ca_info_id', $ca_info_id, 'uni_ca_info');
+  if($ca_info_info == ''){ header('location:'.base_url().'Admin/ca_info_list'); }
+  foreach($ca_info_info as $info){
+    $data['update'] = 'update';
+    $data['ca_info_name'] = $info->ca_info_name;
+  }
+  $this->load->view('Admin/ca_info',$data);
+}
+
+public function delete_ca_info($ca_info_id){
+  $company_id = $this->session->userdata('company_id');
+  if($company_id == ''){ header('location:'.base_url().'Login'); }
+  $this->Admin_Model->delete_info('ca_info_id', $ca_info_id, 'uni_ca_info');
+  header('location:'.base_url().'Admin/ca_info_list');
+}
+
+
+
+
+  // Party Information..
 
 }
 ?>

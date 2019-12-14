@@ -186,13 +186,11 @@ class Transaction extends CI_Controller{
       );
        // echo print_r($data);
       $delivery_id = $this->Admin_Model->save_data('uni_delivery_master', $data);
-      $i = 0;
+
       foreach($_POST['input'] as $user)
       {
         $user['delivery_id'] = $delivery_id;
-        // echo print_r($_POST['input']);
         $this->db->insert('uni_delivery_trans', $user);
-        $i++;
       }
       header('location:'.base_url().'Transaction/delivery_challan_list');
     } else{

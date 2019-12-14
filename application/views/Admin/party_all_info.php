@@ -28,8 +28,15 @@
             <div class="col-md-12 ">
               <!-- general form elements -->
               <div class="card card-default">
-                <div class="card-header">
-                  <h3 class="card-title">Welcome To Party Information</h3>
+                <div class="card-header row">
+                  <div class="col-md-6">
+                    <h3 class="card-title">Welcome To Party Information</h3>
+                  </div>
+                  <div class="col-md-6 ">
+                    <?php if($roll_id != 1){ ?>
+                      <h3 class="card-title float-right text-info text-bold">User : <?php echo $user_name; ?></h3>
+                    <?php } ?>
+                  </div>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->

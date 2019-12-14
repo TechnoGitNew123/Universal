@@ -28,6 +28,7 @@ class User extends CI_Controller{
         foreach ($login as $login){
           $this->session->set_userdata('company_id', $login['company_id']);
           $this->session->set_userdata('admin_roll_id', $login['roll_id']);
+          $this->session->set_userdata('uni_user_id', $login['user_id']);
         }
         header('location:'.base_url().'Admin/dashboard');
       }

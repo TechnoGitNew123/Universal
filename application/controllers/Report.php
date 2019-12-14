@@ -25,7 +25,6 @@ class Report extends CI_Controller{
       $party_id = $this->input->post('party_id');
       $data['delovery_report'] = 'load';
       $data['delivery_challan_list'] = $this->Report_Model->delivery_challan_list($company_id,$from_date,$to_date,$party_id);
-      // echo print_r($data['delivery_challan_list']);
     }
     $this->load->view('Admin/head',$data);
     $this->load->view('Admin/navbar',$data);
@@ -45,6 +44,7 @@ class Report extends CI_Controller{
 
     $this->form_validation->set_rules('from_date', 'From Date', 'trim|required');
     $this->form_validation->set_rules('to_date', 'To Date', 'trim|required');
+
     if($this->form_validation->run() != FALSE){
       $from_date = $this->input->post('from_date');
       $to_date = $this->input->post('to_date');

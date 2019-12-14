@@ -70,7 +70,7 @@
                     <input type="number" class="form-control required mobile" name="party_mob1" id="party_mob1" value="<?php if(isset($party_mob1)){ echo $party_mob1;} ?>" placeholder="Mobile No. 1" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control mobile" name="party_mob2" id="party_mob2" value="<?php if(isset($party_mob2)){ echo $party_mob2;} ?>" placeholder="Mobile No. 2">
+                    <input type="number" class="form-control" name="party_mob2" id="party_mob2" value="<?php if(isset($party_mob2)){ echo $party_mob2;} ?>" placeholder="Landline No.">
                   </div>
                   <div class="form-group col-md-6">
                     <input type="email" class="form-control email" name="party_email" id="party_email" value="<?php if(isset($party_email)){ echo $party_email;} ?>" placeholder="Email">

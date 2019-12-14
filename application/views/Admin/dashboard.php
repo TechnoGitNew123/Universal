@@ -5,7 +5,9 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <?php include('navbar.php'); ?>
+  <?php
+  $page = "dashboard";
+  include('navbar.php'); ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->

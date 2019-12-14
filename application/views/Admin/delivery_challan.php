@@ -71,7 +71,7 @@ include('head.php');
                     </select>
                   </div>
                   <div class="form-group col-md-2">
-                    <a href="<?php echo base_url(); ?>Admin/party_information" class="btn btn-sm btn-block btn-primary">Add New Party</a>
+                    <!-- <a href="<?php echo base_url(); ?>Admin/party_information" class="btn btn-sm btn-block btn-primary">Add New Party</a> -->
                   </div>
                   <div class="form-group col-md-4 offset-md-2">
                     <input type="text" class="form-control form-control-sm" name="delivery_transport" id="delivery_transport" value="<?php if(isset($delivery_transport)){ echo $delivery_transport; } ?>" placeholder="Name of Transporter">

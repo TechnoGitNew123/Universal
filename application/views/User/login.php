@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Log in</title>
+  <title>Universal | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -52,9 +52,7 @@
         </div>
       </form>
       <!-- /.social-auth-links -->
-      <p class="mb-1">
-        <a href="#">I forgot my password</a>
-      </p>
+    
     </div>
     <!-- /.login-card-body -->
   </div>

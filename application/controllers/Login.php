@@ -12,7 +12,7 @@ class Login extends CI_Controller{
     $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
     if ($this->form_validation->run() == FALSE) {
-    	$this->load->view('admin/login');
+    	$this->load->view('Admin/login');
     }
     else{
       $email = $this->input->post('email');

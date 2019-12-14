@@ -68,7 +68,7 @@
                     <input type="number" class="form-control required mobile" name="company_mob1" id="company_mob1" value="<?php if(isset($company_mob1)){ echo $company_mob1; } ?>" placeholder="Mobile No. 1">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control mobile" name="company_mob2" id="company_mob2" value="<?php if(isset($company_mob2)){ echo $company_mob2; } ?>" placeholder="Mobile No. 2">
+                    <input type="number" class="form-control" name="company_mob2" id="company_mob2" value="<?php if(isset($company_mob2)){ echo $company_mob2; } ?>" placeholder="Landline No.">
                   </div>
                   <div class="form-group col-md-6">
                     <input type="email" class="form-control email" name="company_email" id="company_email" value="<?php if(isset($company_email)){ echo $company_email; } ?>" placeholder="Email">
@@ -106,7 +106,7 @@
                     No file selected.
                   </div> -->
                   <div class="form-group col-md-6">
-                    <input type="email" class="form-control required mobile" name="admin_email" id="admin_email" value="<?php if(isset($admin_email)){ echo $admin_email; } ?>" placeholder="Admin Email" required>
+                    <input type="email" class="form-control required email" name="admin_email" id="admin_email" value="<?php if(isset($admin_email)){ echo $admin_email; } ?>" placeholder="Admin Email" required>
                   </div>
                   <div class="form-group col-md-6">
                     <input type="password" class="form-control required" name="admin_password" id="admin_password" value="<?php if(isset($admin_password)){ echo $admin_password; } ?>" placeholder="Admin Password" required>

@@ -70,7 +70,7 @@ include('head.php');
                     </select>
                   </div>
                   <div class="form-group col-md-2">
-                    <a href="accessories_information" class="btn btn-sm btn-block btn-primary">Add New Party</a>
+                    <!-- <a href="" class="btn btn-sm btn-block btn-primary">Add New Party</a> -->
                   </div>
                   <div class="form-group col-md-8 offset-md-2">
                     <select class="form-control select2 form-control-sm" name="govt_stamp_division" style="width: 100%;" required>
