@@ -32,7 +32,7 @@
   <p style="text-align:center; font-size:17px;"> <b>Quotation</b>  </p>
 </div>
 
-    <table class="table table-bordered mb-0 invoice-table"  width="750">
+    <table class="table table-bordered mb-0 invoice-table"  width="100%">
 <style media="print">
 p{
   margin:3px;
@@ -64,7 +64,7 @@ p{
 }
 table{
   border-collapse: collapse;
-  text-align: center;
+
 }
 .invoice-table td{
   /* Width:33% !important; */
@@ -142,7 +142,7 @@ table{
 
 <div class="row">
 <div class="col-12 table-responsive">
-  <table class="table table-botttom" width="750">
+  <table class="table table-botttom" width="100%">
     <style media="print">
       .table-bottom {
         border-collapse: collapse;
@@ -164,13 +164,10 @@ table{
     <style media="screen">
       .table-bottom {
         border-collapse: collapse;
-        text-align: center;
+
       }
       .table-bottom, tr, td, th{
         border: 1px solid #000;
-
-        margin-left: auto;
-        margin-right: auto;
       }
         .table-bottom th{
           font-size: 12px!important;
@@ -186,7 +183,7 @@ table{
         <th>Accuracy</th>
         <th>Class</th>
         <th>Platter Size</th>
-        <!-- <th>GST(%)</th> -->
+        <th>GST(%)</th>
         <!-- <th>Qty</th> -->
         <th>Rate</th>
         <!-- <th>Amount</th> -->
@@ -200,41 +197,47 @@ table{
         $i++;
       ?>
     <tr>
-      <td class="ctr"><?php echo $i; ?></td>
-      <td class="ctr"><?php echo $trans_data->make_name; ?></td>
-      <td class="ctr"><?php echo $trans_data->product_model_no; ?></td>
-      <td class="ctr"><?php echo $trans_data->machine_serial_no; ?></td>
-      <td class="ctr"><?php echo $trans_data->capacity_name; ?></td>
-      <td class="ctr"><?php echo $trans_data->accuracy_name; ?></td>
-      <td class="ctr"><?php echo $trans_data->class_name; ?></td>
-      <td class="ctr"><?php echo $trans_data->platter_size; ?></td>
-      <!-- <td class="ctr"><?php echo $trans_data->quotation_trans_gst; ?></td> -->
+      <td class="ctr"> <p style="text-align:center;"> <?php echo $i; ?></p></td>
+      <td class="ctr"> <p style="text-align:center;"><?php echo $trans_data->make_name; ?></p> </td>
+      <td class="ctr"> <p style="text-align:center;"><?php echo $trans_data->product_model_no; ?></p> </td>
+      <td class="ctr"> <p style="text-align:center;"> <?php echo $trans_data->machine_serial_no; ?></p></td>
+      <td class="ctr"> <p style="text-align:center;"> <?php echo $trans_data->capacity_name; ?></p></td>
+      <td class="ctr"> <p style="text-align:center;"><?php echo $trans_data->accuracy_name; ?></p> </td>
+      <td class="ctr"> <p style="text-align:center;"><?php echo $trans_data->class_name; ?></p> </td>
+      <td class="ctr"> <p style="text-align:center;"><?php echo $trans_data->platter_size; ?></p> </td>
+      <td class="ctr"> <p style="text-align:center;"> <?php echo $trans_data->quotation_trans_gst; ?></p></td>
       <!-- <td class="ctr"><?php echo $trans_data->quotation_trans_qty; ?></td> -->
-      <td class="ctr"><?php echo $trans_data->quotation_trans_rate; ?></td>
+      <td class="ctr"> <p style="text-align:center;"> <?php echo $trans_data->quotation_trans_rate; ?></p></td>
       <!-- <td class="ctr"><?php echo $trans_data->quotation_trans_amount; ?></td> -->
     </tr>
     <?php if($trans_data->quotation_trans_acc != ''){ ?>
     <tr>
-      <td class="ctr"><?php echo ++$i; ?></td>
-      <td colspan="7" class="ctr"><?php echo $trans_data->quotation_trans_acc; ?></td>
+      <td class="ctr"> <p style="text-align:center;"> <?php echo ++$i; ?></p></td>
+      <td colspan="7" class="ctr"> <p style="text-align:center;"><?php echo $trans_data->quotation_trans_acc; ?></p> </td>
       <!-- <td class="ctr"><?php echo $trans_data->trans_acc_gst; ?></td> -->
-      <!-- <td class="ctr"><?php echo $trans_data->trans_acc_qty; ?></td> -->
-      <td class="ctr"><?php echo $trans_data->trans_acc_rate; ?></td>
+      <td class="ctr"> <p style="text-align:center;">  <?php echo $trans_data->trans_acc_qty; ?></p></td>
+      <td class="ctr"> <p style="text-align:center;"> <?php echo $trans_data->trans_acc_rate; ?></p></td>
       <!-- <td class="ctr"><?php echo $trans_data->trans_acc_amount; ?></td> -->
     </tr>
 
   <?php } } ?>
       <tr style="border-top:0px!important; border-bottom: 0px!important;">
-        <td colspan="12" style="border-top:0px!important;border-bottom: 0px!important; ">
-          <p style="padding-left:15px;"> <br> <b> Terms & Condition </b> </p>
-          <p style="padding-left:15px;">i)GST @ 18% on the the purches of Good's(Extra) </p>
-          <p style="padding-left:15px;">ii)Warranty : We stand warranty for electronic equipment against <br> any manufacturing defects for the period of 12 months form installation. </p>
-          <p style="padding-left:15px;">iii)Payment Terms: 100% advance by D.D. or cheque along with purchase order.  </p>
-          <p style="padding-left:15px;">iv)Delivery : Same day against receipt receipt of confirmed order with payment.  </p>
-          <p style="padding-left:15px;">v)Validity of this quotation : 10 days. </p>
-          <p style="padding-left:15px;">vi)Stamping : First year Stamping and Verification will be done by the us. </p>
-          <p style="padding-left:15px;"> </p>
+        <td colspan="6" style="border-top:0px!important;border-bottom: 0px!important; ">
+          <p style="padding-left:15px!important;"> <br> <b> Terms & Condition </b> </p>
+          <p style="padding-left:15px!important;">i)GST @ 18% on the the purches of Good's(Extra) </p>
+          <p style="padding-left:15px!important;">ii)Warranty : We stand warranty for electronic equipment against <br> any manufacturing defects for the period of 12 months form installation. </p>
+          <p style="padding-left:15px!important;">iii)Payment Terms: 100% advance by D.D. or cheque along with purchase order.  </p>
+          <p style="padding-left:15px!important;">iv)Delivery : Same day against receipt receipt of confirmed order with payment.  </p>
+          <p style="padding-left:15px!important;">v)Validity of this quotation : 10 days. </p>
+          <p style="padding-left:15px!important;">vi)Stamping : First year Stamping and Verification will be done by the us. </p>
+          <p style="padding-left:15px!important;"> </p>
         </td>
+        <td colspan="4" valigh="top">
+             <p style="padding-left:15px!important;"> <b> Basic Amount:  </b> 25000 </p> <hr style="border-bottom:1px solid #000;" >
+             <p style="padding-left:15px!important;"> <b> GST Amount:  </b> 2500</p> <hr style="border-bottom:1px solid #000;" >
+             <p style="padding-left:15px!important;"> <b> Basic Amount:  </b> 300000 </p>
+        </td>
+
     </tr>
       <tr style="border-bottom:0px; border-top:0px;">
         <td colspan="6"  style="border-right:0px!important; border-bottom:0px; border-top:0px;">  <p style="float:left; border-right:0px!important;padding-left:15px;"> Any variations or applications of the statutory levies at the time of supply. <br> will be charged to your account </p>

@@ -161,7 +161,7 @@ include('head.php');
             <th>Accuracy</th>
             <th>Class</th>
             <th>Platter Size</th>
-            <!-- <th>GST</th> -->
+            <th>GST</th>
             <!-- <th>Qty</th> -->
             <th>Rate</th>
             <!-- <th>Amount</th> -->
@@ -183,6 +183,8 @@ include('head.php');
             <td><?php echo $trans_data->accuracy_name; ?></td>
             <td><?php echo $trans_data->class_name; ?></td>
             <td><?php echo $trans_data->platter_size; ?></td>
+            <td><?php echo $trans_data->quotation_trans_gst; ?></td>
+
             <!-- <td><?php echo $trans_data->quotation_trans_gst; ?></td> -->
             <!-- <td><?php echo $trans_data->quotation_trans_qty; ?></td> -->
             <td><?php echo $trans_data->quotation_trans_rate; ?></td>
@@ -194,14 +196,14 @@ include('head.php');
             <td><?php echo ++$i; ?></td>
             <td colspan="7"><?php echo $trans_data->quotation_trans_acc; ?></td>
             <!-- <td><?php echo $trans_data->trans_acc_gst; ?></td> -->
-            <!-- <td><?php echo $trans_data->trans_acc_qty; ?></td> -->
+            <td><?php echo $trans_data->trans_acc_qty; ?></td>
             <td><?php echo $trans_data->trans_acc_rate; ?></td>
             <!-- <td><?php echo $trans_data->trans_acc_amount; ?></td> -->
           </tr>
 
         <?php } } ?>
           <tr style="border-top:0px!important; border-bottom: 0px!important;">
-            <td colspan="12" style="border-top:0px!important;border-bottom: 0px!important; ">
+            <td colspan="6" style="border-top:0px!important;border-bottom: 0px!important; ">
               <p style="padding-left:15px;"> <br> <b> Terms & Condition </b> </p>
               <p style="padding-left:15px;">i)GST @ 18% on the the purches of Good's(Extra) </p>
               <p style="padding-left:15px;">ii)Warranty : We stand warranty for electronic equipment against any manufacturing defects for the period of 12 months form installation. </p>
@@ -211,6 +213,13 @@ include('head.php');
               <p style="padding-left:15px;">vi)Stamping : First year Stamping and Verification will be done by the us. </p>
               <p style="padding-left:15px;"> </p>
             </td>
+
+              <td colspan="4" valigh="top">
+                   <p style="padding-left:15px!important;"> <b> Basic Amount:  </b> 25000 </p> <hr style="border-bottom:1px solid #000;" >
+                   <p style="padding-left:15px!important;"> <b> GST Amount:  </b> 2500</p> <hr style="border-bottom:1px solid #000;" >
+                   <p style="padding-left:15px!important;"> <b> Basic Amount:  </b> 300000 </p>
+              </td>
+          
         </tr>
           <tr style="border-bottom:0px;">
             <td colspan="6"  style="border-right:0px!important; border-bottom:0px;">  <p style="float:left; border-right:0px!important;"> Any variations or applications of the statutory levies at the time of supply. <br> will be charged to your account </p>
