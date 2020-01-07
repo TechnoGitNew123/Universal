@@ -38,7 +38,6 @@ include('head.php');
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -81,7 +80,7 @@ include('head.php');
                     <input type="text" class="form-control form-control-sm" name="repairy_contact" id="repairy_contact" value="<?php if(isset($repairy_contact)){ echo $repairy_contact; } ?>" placeholder="Contact No.">
                   </div>
                   <div class="form-group col-md-4 offset-md-2">
-                    <input type="text" class="form-control form-control-sm" name="repairy_engg" id="repairy_engg" value="<?php if(isset($repairy_engg)){ echo $repairy_engg; } ?>" placeholder="Engineer Name">
+                    <input type="text" class="form-control form-control-sm" name="repairy_engg" id="repairy_engg" value="<?php if(isset($repairy_engg)){ echo $repairy_engg; } ?>" placeholder="Received By">
                   </div>
                   <div class="form-group col-md-4">
                     <select class="form-control select2 form-control-sm" name="repairy_user" required>
@@ -120,7 +119,6 @@ include('head.php');
                     foreach ($repairy_bill_trans_data as $trans_data) {
                     $j++;  ?>
                     <input type="hidden" name="input[<?php echo $i; ?>][repairy_trans_id]" value="<?php echo $trans_data->repairy_trans_id ?>">
-
                       <td class="sr_no"><?php echo $j; ?></td>
                       <td>
                         <select class="form-control form-control-sm make_id" name="input[<?php echo $i; ?>][make_id]" required>
@@ -130,9 +128,13 @@ include('head.php');
                           <?php } ?>
                         </select>
                       </td>
+
                       <td>
                         <select class="form-control form-control-sm model_no" name="input[<?php echo $i; ?>][model_no_id]">
-                          <option selected value="<?php echo $trans_data->model_no_id ?>" ><?php echo $trans_data->product_model_no ?></option>
+                          <option value="">Select Model No.</option>
+                          <?php foreach ($product_list as $list) { ?>
+                            <option value="<?php echo $list->product_id; ?>" <?php if($trans_data->model_no_id == $list->product_id){ echo 'selected'; } ?>><?php echo $list->product_model_no ?></option>
+                          <?php } ?>
                         </select>
                       </td>
                       <td class="td_w">
@@ -140,17 +142,26 @@ include('head.php');
                       </td>
                       <td>
                         <select class="form-control form-control-sm capacity" name="input[<?php echo $i; ?>][capacity_id]">
-                          <option selected value="<?php echo $trans_data->capacity_id ?>" ><?php echo $trans_data->capacity_name ?></option>
+                          <option value="">Select Capacity</option>
+                          <?php foreach ($capacity_list as $list) { ?>
+                            <option value="<?php echo $list->capacity_id; ?>" <?php if($trans_data->capacity_id == $list->capacity_id){ echo 'selected'; } ?>><?php echo $list->capacity_name ?></option>
+                          <?php } ?>
                         </select>
                       </td>
                       <td>
                         <select class="form-control form-control-sm accuracy" name="input[<?php echo $i; ?>][accuracy_id]">
-                          <option selected value="<?php echo $trans_data->accuracy_id ?>" ><?php echo $trans_data->accuracy_name ?></option>
+                          <option value="">Select Accuracy</option>
+                          <?php foreach ($accuracy_list as $list) { ?>
+                            <option value="<?php echo $list->accuracy_id; ?>" <?php if($trans_data->accuracy_id == $list->accuracy_id){ echo 'selected'; } ?>><?php echo $list->accuracy_name ?></option>
+                          <?php } ?>
                         </select>
                       </td>
                       <td>
                         <select class="form-control form-control-sm class" name="input[<?php echo $i; ?>][class_id]">
-                          <option selected value="<?php echo $trans_data->class_id ?>" ><?php echo $trans_data->class_id ?></option>
+                          <option value="">Select Class</option>
+                          <?php foreach ($class_list as $list) { ?>
+                            <option value="<?php echo $list->class_id; ?>"<?php if($trans_data->class_id == $list->class_id){ echo 'selected'; } ?>><?php echo $list->class_name ?></option>
+                          <?php } ?>
                         </select>
                       </td>
                       <td class="td_w">
@@ -176,7 +187,11 @@ include('head.php');
                       </select>
                     </td>
                     <td>
-                      <select class="form-control form-control-sm model_no" name="input[0][model_no_id]" >
+                      <select class="form-control form-control-sm model_no"  name="input[0][model_no_id]" >
+                        <option value="">Select Model No.</option>
+                        <?php foreach ($product_list as $list) { ?>
+                          <option value="<?php echo $list->product_id; ?>"><?php echo $list->product_model_no ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td class="td_w">
@@ -184,14 +199,26 @@ include('head.php');
                     </td>
                     <td>
                       <select class="form-control form-control-sm capacity" name="input[0][capacity_id]">
+                        <option value="">Select Capacity</option>
+                        <?php foreach ($capacity_list as $list) { ?>
+                          <option value="<?php echo $list->capacity_id; ?>"><?php echo $list->capacity_name ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td>
                       <select class="form-control form-control-sm accuracy" name="input[0][accuracy_id]">
+                        <option value="">Select Accuracy</option>
+                        <?php foreach ($accuracy_list as $list) { ?>
+                          <option value="<?php echo $list->accuracy_id; ?>"><?php echo $list->accuracy_name ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td>
                       <select class="form-control form-control-sm class" name="input[0][class_id]">
+                        <option value="">Select Class</option>
+                        <?php foreach ($class_list as $list) { ?>
+                          <option value="<?php echo $list->class_id; ?>"><?php echo $list->class_name ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td class="td_w">

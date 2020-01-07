@@ -55,41 +55,6 @@ include('head.php');
             <div class="invoice p-3 mb-3">
 
               <table class="table table-bordered mb-0 invoice-table">
-						        <!-- <style media="screen">
-						          .invoice-table td{
-						            Width:33% !important;
-						              border: 2px solid #555!important;
-						          }
-						          .invoice-table .small{
-						            Width:15% !important;
-						              border: 2px solid #555!important;
-						          }
-						          .invoice-table .large{
-						            Width:85% !important;
-						              border: 2px solid #555!important;
-						          }
-						          .invoice-table{
-						            margin-bottom:0px;
-						            border: 2px solid #555!important;
-						          }
-						          .invoice-table p{
-						            line-height: 15px;
-						          }
-						          .invoice-table .no-right-border{
-						          border-right: 0px!important;
-						          }
-						          .invoice-table .no-left-border{
-						          border-left: 0px!important;
-						          }
-						          .invoice-table .no-top-border{
-						          border-top: 0px!important;
-						          }
-						          .invoice-table .no-bottom-border{
-						          border-bottom: 0px!important;
-						          }
-
-
-						        </style> -->
 						        <tr>
 
 						          <td colspan="3">

@@ -48,15 +48,15 @@ include('head.php');
                 <thead>
                 <tr>
                   <th>Sr. No.</th>
-                   <th>Date</th>
+                   <th width="10%">Date</th>
                    <th>Party Name</th>
                    <th>DC No </th>
-                   <th>DC Date</th>
+                   <th width="10%">DC Date</th>
                    <th>Employee Name</th>
                    <th>Basic Amount</th>
                    <th>GST Amount</th>
                    <th>Net Amount</th>
-                   <th>Action</th>
+                   <th width="11%">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -76,8 +76,10 @@ include('head.php');
                     <td><?php echo $list->total_gst; ?></td>
                     <td><?php echo $list->sale_total; ?></td>
                     <td>
+                      <?php if($admin_roll_id == 1){ ?>
                       <a href="<?php echo base_url(); ?>Transaction/edit_sale/<?php echo $list->sale_id; ?>"> <i class="fa fa-edit"></i> </a>
                       <a class="ml-3" href="<?php echo base_url(); ?>Transaction/delete_sale/<?php echo $list->sale_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <?php } ?>
                       <a class="ml-3" href="<?php echo base_url(); ?>Receipt/sale_bill_receipt/<?php echo $list->sale_id; ?>"> <i class="fa fa-print"></i> </a>
                     </td>
                   </tr>

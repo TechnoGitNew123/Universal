@@ -11,11 +11,6 @@ $page = "daybook_report";
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-  <!-- Navbar -->
-  <?php //include('navbar.php'); ?>
-  <!-- /.navbar -->
-  <!-- Main Sidebar Container -->
-  <?php //include('sidebar.php'); ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -28,7 +23,6 @@ $page = "daybook_report";
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -86,6 +80,7 @@ $page = "daybook_report";
                         <thead>
                         <tr>
                           <th>No.</th>
+                          <th>Party</th>
                           <th>Date</th>
                           <th>Amount</th>
                         </tr>
@@ -97,9 +92,12 @@ $page = "daybook_report";
                           foreach ($receipt as $receipt) {
                           $i++;
                           $tot_income = $tot_income + $receipt->receipt_amount;
+                          $party_id = $receipt->receipt_party;
+                          $party_details = $this->Admin_Model->get_info_array('party_id', $party_id, 'uni_party');
                         ?>
                           <tr>
                             <td><?php echo $receipt->receipt_no; ?></td>
+                            <td><?php echo $party_details[0]['party_firm']; ?></td>
                             <td><?php echo $receipt->receipt_date; ?></td>
                             <td><?php echo $receipt->receipt_amount; ?></td>
                           </tr>
@@ -111,12 +109,14 @@ $page = "daybook_report";
                         </tbody>
                       </table>
                     </div>
+
                     <div class="col-md-6 tbl">
                       <h5>Expense Details</h5>
                       <table id="" class="table table-bordered table-striped">
                         <thead>
                         <tr>
                           <th>No.</th>
+                          <th>Account of Name</th>
                           <th>Date</th>
                           <th>Amount</th>
                         </tr>
@@ -128,9 +128,12 @@ $page = "daybook_report";
                           foreach ($expence as $expence) {
                           $i++;
                           $tot_exp = $tot_exp + $expence->expense_amount;
+                          $ac_info_id = $expence->ac_info_id;
+                          $ac_info = $this->Admin_Model->get_info_array('ac_info_id', $ac_info_id, 'uni_ac_info');
                         ?>
                           <tr>
                             <td><?php echo $expence->expense_no; ?></td>
+                            <td><?php if($ac_info){ echo $ac_info[0]['ac_info_name']; } ?></td>
                             <td><?php echo $expence->expense_date; ?></td>
                             <td><?php echo $expence->expense_amount; ?></td>
                           </tr>
@@ -142,13 +145,15 @@ $page = "daybook_report";
                         </tbody>
                       </table>
                     </div>
+
                   </div>
                   <hr>
-                  <h5>Closing Balance : <?php echo $closing_balance; ?></h5>
+                  <h5>Closing Balance : <?php echo ($opening_balance + $tot_income) - $tot_exp; ?></h5>
                 </div>
 
-                <input type='button' id='btn' value='Print' onclick='printDiv();'>
+
               <?php  }  ?>
+              <input type='button' id='btn' value='Print' onclick='printDiv();'>
             </div>
           </div>
           </div>
@@ -168,10 +173,11 @@ $page = "daybook_report";
 <!-- ./wrapper -->
 
 <?php //include('script.php') ?>
+
+
 <script type="text/javascript">
 function printDiv()
 {
-
 var divToPrint=document.getElementById('print_div');
 
 var newWin=window.open('','Print-Window');
@@ -183,6 +189,7 @@ newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTM
 newWin.document.close();
 
 setTimeout(function(){newWin.close();},10);
+
 
 }
 </script>

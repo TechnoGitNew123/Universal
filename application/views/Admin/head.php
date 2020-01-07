@@ -41,6 +41,6 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/toastr/toastr.min.css">
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/admin_css.css">
-
+<?php $admin_roll_id = $this->session->userdata('admin_roll_id'); ?>
 
 </head>

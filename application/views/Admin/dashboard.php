@@ -3,16 +3,13 @@
 <?php include('head.php'); ?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
   <!-- Navbar -->
   <?php
   $page = "dashboard";
   include('navbar.php'); ?>
   <!-- /.navbar -->
-
   <!-- Main Sidebar Container -->
   <?php include('sidebar.php'); ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -25,7 +22,6 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
     <section class="content">
       <div class="container-fluid">
         <hr>
@@ -60,7 +56,7 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3><?php echo $product_count; ?></h3>
-                <p>Product Information</p>
+                <p>Model Information</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -181,6 +177,42 @@
                 <i class="ion ion-bag"></i>
               </div>
               <a href="<?php echo base_url(); ?>Transaction/complaint_list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3><?php echo $service_report_count; ?></h3>
+                <p>Service Report</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="<?php echo base_url(); ?>Transaction/service_report_list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3><?php echo $receipt_count; ?></h3>
+                <p>Reciept</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="<?php echo base_url(); ?>Transaction/receipt_list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3><?php echo $expense_count; ?></h3>
+                <p>Expense</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="<?php echo base_url(); ?>Transaction/expense_voucher_list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>

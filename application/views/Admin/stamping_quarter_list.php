@@ -47,8 +47,8 @@ include('head.php');
                 <thead>
                 <tr>
                   <th>Sr. No.</th>
-                  <th>From Month</th>
-                  <th>To Month</th>
+                  <!-- <th>From Month</th> -->
+                  <!-- <th>To Month</th> -->
                   <th>Quarter Name</th>
                   <th>Action</th>
                 </tr>
@@ -61,8 +61,8 @@ include('head.php');
                 ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $list->from_month; ?></td>
-                    <td><?php echo $list->to_month; ?></td>
+                    <!-- <td><?php echo $list->from_month; ?></td> -->
+                    <!-- <td><?php echo $list->to_month; ?></td> -->
                     <td><?php echo $list->quarter_name; ?></td>
                     <td>
                       <a href="edit_stamping_quarter/<?php echo $list->quarter_id; ?>"> <i class="fa fa-edit"></i> </a>

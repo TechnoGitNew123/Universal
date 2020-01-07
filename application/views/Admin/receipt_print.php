@@ -34,13 +34,15 @@
 </div>
 <body id="pdf">
 <div class="wrapper">
-
   <?php
   foreach ($receipt_details as $receipt_details) {
     $receipt_id = $receipt_details->receipt_id;
   }
   ?>
   <!-- Main content -->
+  <div style="text-align:center; ">
+    <p style="font-size:22px;">Payment Reciept</p>
+  </div>
   <table id="example" class="table table-bordered mb-0 invoice-table">
     <style media="print">
     table{
@@ -78,17 +80,15 @@
       .invoice-table .no-bottom-border{
       border-bottom: 0px!important;
       }
-
-
     </style>
     <tr>
-      <td colspan="1" style="border-right:0px!important;">
+      <td colspan="1" style="border-right:0px!important; width:25% !important;">
         <img style="margin-left:10px!important;" class="" src="<?php echo base_url(); ?>assets/images/universal.png" width='120' alt="">
       </td>
-      <td  colspan="1" style="border-right:0px!important; border-left:0px!important;">
-       <h3> <?php echo $company_name; ?></h3>
-      <p> Address: <?php echo $company_address; ?></p>
-      <p> Mobile No: <?php if($company_mob1 != ''){ echo $company_mob1; } if($company_mob2 != ''){ echo ', '.$company_mob2; } ?> </p>
+      <td  colspan="1" style="border-right:0px!important;text-align: center; border-left:0px!important; width:50% !important;">
+       <h3 style="font-size:20px; margin:0; padding:0;"> <?php echo $company_name; ?></h3>
+      <p> Address: <?php echo $company_address; ?><br>
+     Mobile No: <?php if($company_mob1 != ''){ echo $company_mob1; } if($company_mob2 != ''){ echo ', '.$company_mob2; } ?> </p>
                             <!-- <p> Gst No: <?php echo $GetCmpInfo['gst_no']; ?>  </p> -->
       </td>
       <td  colspan="1" style="border-left:0px!important;text-align: right;">

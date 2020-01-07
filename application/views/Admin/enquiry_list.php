@@ -74,8 +74,10 @@ include('head.php');
                     <td><?php echo $enquiry_list1->party_area; ?></td>
                     <td><?php echo $enquiry_list1->party_district; ?></td>
                     <td>
+                      <?php if($admin_roll_id == 1){ ?>
                       <a href="edit_enquiry/<?php echo $enquiry_list1->enquiry_id; ?>"> <i class="fa fa-edit"></i> </a>
                       <a class="ml-4" href="delete_enquiry/<?php echo $enquiry_list1->enquiry_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      <?php  }  ?>
                     </td>
                   </tr>
                   <?php  }  ?>

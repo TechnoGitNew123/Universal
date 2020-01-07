@@ -18,7 +18,7 @@ include('head.php');
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12 text-center mt-2">
-            <h1>PRODUCT INFORMATION</h1>
+            <h1>MODEL INFORMATION</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -31,7 +31,7 @@ include('head.php');
             <!-- general form elements -->
             <div class="card card-default">
               <div class="card-header">
-                <h3 class="card-title">Product Information</h3>
+                <h3 class="card-title">Model Information</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -42,7 +42,7 @@ include('head.php');
                 <form role="form" action="save_product" method="post">
               <?php } ?>
                 <div class="card-body row">
-                  <div class="form-group col-md-12">
+                  <!-- <div class="form-group col-md-12">
                     <select class="form-control select2" name="make_id" id="make_id" required>
                       <?php if(isset($make_id)){
                         echo '<option selected="selected" value="'.$make_id.'">'.$make_name.'</option>';
@@ -53,11 +53,18 @@ include('head.php');
                         echo '<option value="'.$make_list1->make_id.'">'.$make_list1->make_name.'</option>';
                       } ?>
                     </select>
-                  </div>
+                  </div> -->
+
+
+
                   <div class="form-group col-md-12" required>
                     <input type="text" class="form-control form-control-sm" name="product_model_no" id="product_model_no" value="<?php if(isset($product_model_no)){ echo $product_model_no; } ?>" placeholder="Enter Model No." required>
                   </div>
-                  <div class="form-group col-md-6">
+
+
+
+
+                  <!-- <div class="form-group col-md-6">
                     <select class="form-control form-control-sm select2" name="capacity_id" id="capacity_id">
                       <?php if(isset($make_id)){
                         echo '<option selected="selected" value="'.$capacity_id.'">'.$capacity_name.'</option>';
@@ -105,16 +112,7 @@ include('head.php');
                       } ?>
                     </select>
                   </div>
-                  <div class="form-group col-md-6">
-                    <select class="form-control select2" name="stamping_days" id="stamping_days">
-                      <?php if(isset($stamping_days)){
-                        echo '<option selected="selected" value="'.$stamping_days.'">'.$stamping_days.'</option>';
-                      } else{
-                        echo '<option selected="selected">Select Stamping Period Days</option>';
-                      }?>
-                      <option>360</option>
-                    </select>
-                  </div>
+
                   <div class="form-group col-md-6">
                     <select class="form-control select2" name="quarter_id" id="quarter_id">
                       <option value="">Select Stamping Quarter Period </option>
@@ -123,6 +121,9 @@ include('head.php');
                       <?php } ?>
                     </select>
                   </div>
+                  <div class="form-group col-md-6">
+
+                  </div> -->
 
                   <!-- <div class="form-group col-md-6">
                     <input type="number" class="form-control form-control-sm" name="sale_price" id="sale_price"  value="<?php if(isset($sale_price)){ echo $sale_price; } ?>" placeholder="Sale Price" required>
@@ -137,7 +138,7 @@ include('head.php');
                   <?php } else{ ?>
                     <button type="submit" class="btn btn-success px-4">Add</button>
                   <?php } ?>
-                  <a href="../dashboard" class="btn btn-default ml-4">Cancel</a>
+                  <a href="../Admin/dashboard" class="btn btn-default ml-4">Cancel</a>
                 </div>
               </form>
             </div>
@@ -159,5 +160,13 @@ include('head.php');
 <!-- ./wrapper -->
 
 <?php include('script.php') ?>
+
+<script type="text/javascript">
+<?php if($this->session->flashdata('product_model_no')){ ?>
+  $(document).ready(function(){
+    toastr.error('Model Number Already Exist.');
+  });
+<?php } ?>
+</script>
 </body>
 </html>

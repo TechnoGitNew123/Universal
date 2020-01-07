@@ -339,8 +339,8 @@ class Receipt extends CI_Controller{
          $data['user_name'] = $info->user_name;
          $data['user_mobile'] = $info->user_mobile;
 
-         $data['service_no'] = $info->service_no;
-         $data['service_id'] = $info->service_id;
+         // $data['service_no'] = $info->service_no;
+         // $data['service_id'] = $info->service_id;
          $data['service_date'] = $info->service_date;
          $data['make_id'] = $info->make_id;
          $data['make_name'] = $info->make_name;
@@ -399,8 +399,8 @@ class Receipt extends CI_Controller{
        $data['user_name'] = $info->user_name;
        $data['user_mobile'] = $info->user_mobile;
 
-       $data['service_no'] = $info->service_no;
-       $data['service_id'] = $info->service_id;
+       // $data['service_no'] = $info->service_no;
+       // $data['service_id'] = $info->service_id;
        $data['service_date'] = $info->service_date;
        $data['make_id'] = $info->make_id;
        $data['make_name'] = $info->make_name;
@@ -417,6 +417,7 @@ class Receipt extends CI_Controller{
        $data['service_date'] = $info->service_date;
        $data['service_time_in'] = $info->service_time_in;
        $data['service_time_out'] = $info->service_time_out;
+
      }
      $this->load->view('Admin/service_report_print',$data);
    } else{
@@ -569,7 +570,7 @@ class Receipt extends CI_Controller{
      $data['receipt_details'] = $this->Transaction_Model->receipt_details($receipt_id);
      // echo print_r($data['receipt_details']);
      $this->load->view('Admin/receipt_print',$data);
-   } else{
+   } else{     
      header('location:'.base_url().'Login');
    }
  }
@@ -629,6 +630,7 @@ class Receipt extends CI_Controller{
        $data['service_date'] = '';
        $data['service_time_in'] = '';
        $data['service_time_out'] = '';
+       $data['complaint_page']='complaint';
      }
      $this->load->view('Admin/service_report_print',$data);
    } else{

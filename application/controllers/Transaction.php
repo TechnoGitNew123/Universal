@@ -13,6 +13,7 @@ class Transaction extends CI_Controller{
   // Enquiry List...
   public function enquiry_list(){
     $company_id = $this->session->userdata('company_id');
+
     if($company_id){
       $party_id = $this->input->post('party_id');
       if(!isset($party_id)){
@@ -143,9 +144,18 @@ class Transaction extends CI_Controller{
     $company_id = $this->session->userdata('company_id');
     if($company_id){
       $data['delivery_no'] = $this->Transaction_Model->get_count_no($company_id,'delivery_no','uni_delivery_master');
-      $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
-      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+      // $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+      // $data['model_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
+      // $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
       $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
+      // $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
+      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+      $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+      $data['model_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
+      $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
+      $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
+      $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
+      $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
       $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
 
       $this->load->view('Admin/delivery_challan',$data);
@@ -178,6 +188,7 @@ class Transaction extends CI_Controller{
         'delivery_party' => $this->input->post('delivery_party'),
         'delivery_transport' => $this->input->post('delivery_transport'),
         'delivery_docket_no' => $this->input->post('delivery_docket_no'),
+        'purchase_no' => $this->input->post('purchase_no'),
         'delivery_user' => $this->input->post('delivery_user'),
         'delivery_terms' => $this->input->post('delivery_terms'),
         'delivery_basic' => $this->input->post('delivery_basic'),
@@ -201,8 +212,14 @@ class Transaction extends CI_Controller{
   public function edit_delivery_challan($delivery_id){
     $company_id = $this->session->userdata('company_id');
     if($company_id){
-      $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
       $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+      $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+      $data['model_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
+      $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
+      $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
+      $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
+      $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
+      $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
       $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
       $delivery_challan_data = $this->Transaction_Model->delivery_challan_data($company_id,$delivery_id);
 
@@ -217,6 +234,7 @@ class Transaction extends CI_Controller{
           $data['party_firm'] = $challan_data->party_firm;
           $data['delivery_transport'] = $challan_data->delivery_transport;
           $data['delivery_docket_no'] = $challan_data->delivery_docket_no;
+          $data['purchase_no'] = $challan_data->purchase_no;
           $data['delivery_user'] = $challan_data->delivery_user;
           $data['delivery_terms'] = $challan_data->delivery_terms;
           $data['delivery_basic'] = $challan_data->delivery_basic;
@@ -241,6 +259,7 @@ class Transaction extends CI_Controller{
         'delivery_party' => $this->input->post('delivery_party'),
         'delivery_transport' => $this->input->post('delivery_transport'),
         'delivery_docket_no' => $this->input->post('delivery_docket_no'),
+        'purchase_no' => $this->input->post('purchase_no'),
         'delivery_user' => $this->input->post('delivery_user'),
         'delivery_terms' => $this->input->post('delivery_terms'),
         'delivery_basic' => $this->input->post('delivery_basic'),
@@ -286,10 +305,19 @@ class Transaction extends CI_Controller{
    $company_id = $this->session->userdata('company_id');
    if($company_id){
      $data['purchase_order_no'] = $this->Transaction_Model->get_count_no($company_id,'purchase_order_no','uni_purchase_master');
-     $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
-     $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+     // $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+     // $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
      $data['display_color_list'] = $this->Admin_Model->get_list($company_id,'display_color_id','ASC','uni_display_color');
      $data['cabinate_color_list'] = $this->Admin_Model->get_list($company_id,'cabinet_color_id','ASC','uni_cabinet_color');
+     // $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
+     $data['quotation_no'] = $this->Transaction_Model->get_count_no($company_id,'quotation_no','uni_quotation_master');
+     $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+     $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+     $data['model_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
+     $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
+     $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
+     $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
+     $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
      $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
 
      $quotation_data = $this->Transaction_Model->quotation_data($company_id,$quotation_id);
@@ -416,18 +444,18 @@ class Transaction extends CI_Controller{
      );
      $purchase_id = $this->Admin_Model->save_data('uni_purchase_master', $data);
      // echo $purchase_id.'<br>';
-     $i = 0;
+     // print_r($_POST['input']);
      foreach($_POST['input'] as $user)
      {
        $user['purchase_id'] = $purchase_id;
        $this->db->insert('uni_purchase_trans', $user);
-       $i++;
      }
      header('location:'.base_url().'Transaction/purchase_agreement_list');
    } else{
      header('location:'.base_url().'Login');
    }
- }
+
+}
 
  // update Purchase Agreement...
  public function update_purchase_agreement(){
@@ -506,9 +534,16 @@ class Transaction extends CI_Controller{
    $company_id = $this->session->userdata('company_id');
    if($company_id){
      $data['sale_bill_no'] = $this->Transaction_Model->get_count_no($company_id,'sale_bill_no','uni_sale_master');
-     $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+     // $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
      $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
+     // $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
+     $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+     $data['model_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
+     $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
+     $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
+     $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
+     $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
      $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
 
      $delivery_challan_data = $this->Transaction_Model->delivery_challan_data($company_id,$delivery_id);
@@ -591,11 +626,13 @@ class Transaction extends CI_Controller{
        'sale_total' => $this->input->post('sale_total'),
      );
      $sale_id = $this->Admin_Model->save_data('uni_sale_master', $data);
+
      if($sale_id){
        $delivery_id = $this->input->post('sale_challan_no');
        $data2['delivery_bill_status'] = 'yes';
        $this->Admin_Model->update_info('delivery_id', $delivery_id, 'uni_delivery_master', $data2);
      }
+
      foreach($_POST['input'] as $user)
      {
        $user['sale_id'] = $sale_id;
@@ -614,6 +651,11 @@ class Transaction extends CI_Controller{
      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
      $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
      $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
+     $data['model_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
+     $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
+     $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
+     $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
+     $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
 
      $sale_bill_data = $this->Transaction_Model->sale_bill_data($company_id,$sale_id);
       // echo print_r($sale_bill_data);
@@ -710,7 +752,8 @@ class Transaction extends CI_Controller{
      $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
      $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
      $data['quarter_list'] = $this->Admin_Model->get_list($company_id,'quarter_id','ASC','uni_quarter');
-     $data['ac_info_list'] = $this->Admin_Model->get_list($company_id,'ac_info_id','ASC','uni_ac_info');
+     $data['ac_info_list'] = $this->Admin_Model->get_list($company_id,'trade_id','ASC','uni_trade');
+     $data['product_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
 
      $this->load->view('Admin/govt_stamping_bill',$data);
    } else{
@@ -786,7 +829,8 @@ class Transaction extends CI_Controller{
      $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
      $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
      $data['quarter_list'] = $this->Admin_Model->get_list($company_id,'quarter_id','ASC','uni_quarter');
-     $data['ac_info_list'] = $this->Admin_Model->get_list($company_id,'ac_info_id','ASC','uni_ac_info');
+     $data['ac_info_list'] = $this->Admin_Model->get_list($company_id,'trade_id','ASC','uni_trade');
+     $data['product_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
 
      $govt_stamp_data = $this->Transaction_Model->govt_stamp_data($company_id,$govt_stamp_id);
       // echo print_r($govt_stamp_data);
@@ -897,6 +941,7 @@ class Transaction extends CI_Controller{
      $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
      $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
      $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
+     $data['product_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
 
      $this->load->view('Admin/repairy_bill',$data);
    } else{
@@ -975,6 +1020,7 @@ public function edit_repairy_bill($repairy_id){
     $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
     $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
     $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
+    $data['product_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
 
     $repairy_bill_data = $this->Transaction_Model->repairy_bill_data($company_id,$repairy_id);
     if($repairy_bill_data){
@@ -1078,6 +1124,7 @@ public function delete_repairy_bill($id){
       $data['quotation_no'] = $this->Transaction_Model->get_count_no($company_id,'quotation_no','uni_quotation_master');
       $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
       $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+      $data['model_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
       $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
       $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
       $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
@@ -1139,10 +1186,12 @@ public function delete_repairy_bill($id){
       $data['repairy_no'] = $this->Transaction_Model->get_count_no($company_id,'repairy_no','uni_repairy_master');
       $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
       $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+      $data['model_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
       $data['capacity_list'] = $this->Admin_Model->get_list($company_id,'capacity_id','ASC','uni_capacity');
       $data['accuracy_list'] = $this->Admin_Model->get_list($company_id,'accuracy_id','ASC','uni_accuracy');
       $data['class_list'] = $this->Admin_Model->get_list($company_id,'class_id','ASC','uni_class');
       $data['platter_list'] = $this->Admin_Model->get_list($company_id,'platter_id','ASC','uni_platter_size');
+      $data['terms_list'] = $this->Admin_Model->get_list($company_id,'terms_id','ASC','uni_terms');
 
       $quotation_data = $this->Transaction_Model->quotation_data($company_id,$quotation_id);
       if($quotation_data){
@@ -1394,6 +1443,8 @@ public function expense_voucher_list(){
      $data['complaint_no'] = $this->Transaction_Model->get_count_no($company_id,'complaint_no','uni_complaint');
      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
      $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
+     $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+     $data['product_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
      $this->load->view('Admin/complaint_information', $data);
    } else{
      header('location:'.base_url().'Login');
@@ -1442,6 +1493,20 @@ public function expense_voucher_list(){
        'complaint_person' => $this->input->post('complaint_person'),
        'complaint_contact_no' => $this->input->post('complaint_contact_no'),
        'complaint_engeeneer' => $this->input->post('complaint_engeeneer'),
+
+       'make_id' => $this->input->post('make_id'),
+       'model_no' => $this->input->post('model_no'),
+       'service_sr_no' => $this->input->post('service_sr_no'),
+       'service_range' => $this->input->post('service_range'),
+       'service_stamping' => $this->input->post('service_stamping'),
+       'service_observation' => $this->input->post('service_observation'),
+       'service_recommend' => $this->input->post('service_recommend'),
+       'service_component' => $this->input->post('service_component'),
+       'service_call_completion' => $this->input->post('service_call_completion'),
+       'service_charges_fee' => $this->input->post('service_charges_fee'),
+       'service_date' => $this->input->post('service_date'),
+       'service_time_in' => $this->input->post('service_time_in'),
+       'service_time_out' => $this->input->post('service_time_out'),
      );
      $this->Admin_Model->save_data('uni_complaint', $data);
      header('location:complaint_list');
@@ -1456,6 +1521,10 @@ public function expense_voucher_list(){
      $complaint_info = $this->Transaction_Model->get_complaint_info($company_id, $id);
      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
      $data['user_list'] = $this->Admin_Model->get_list($company_id,'user_id','ASC','uni_user');
+
+     $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
+     $data['product_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
+
      if($complaint_info){
        foreach($complaint_info as $info){
          $data['update'] = 'update';
@@ -1469,6 +1538,20 @@ public function expense_voucher_list(){
          $data['complaint_person'] = $info->complaint_person;
          $data['complaint_contact_no'] = $info->complaint_contact_no;
          $data['complaint_engeeneer'] = $info->complaint_engeeneer;
+
+         $data['make_id'] = $info->make_id;
+         $data['model_no'] = $info->model_no;
+         $data['service_sr_no'] = $info->service_sr_no;
+         $data['service_range'] = $info->service_range;
+         $data['service_stamping'] = $info->service_stamping;
+         $data['service_observation'] = $info->service_observation;
+         $data['service_recommend'] = $info->service_recommend;
+         $data['service_component'] = $info->service_component;
+         $data['service_call_completion'] = $info->service_call_completion;
+         $data['service_charges_fee'] = $info->service_charges_fee;
+         $data['service_date'] = $info->service_date;
+         $data['service_time_in'] = $info->service_time_in;
+         $data['service_time_out'] = $info->service_time_out;
        }
        $this->load->view('Admin/complaint_information',$data);
      }
@@ -1509,6 +1592,20 @@ public function expense_voucher_list(){
        'complaint_person' => $this->input->post('complaint_person'),
        'complaint_contact_no' => $this->input->post('complaint_contact_no'),
        'complaint_engeeneer' => $this->input->post('complaint_engeeneer'),
+
+       'make_id' => $this->input->post('make_id'),
+       'model_no' => $this->input->post('model_no'),
+       'service_sr_no' => $this->input->post('service_sr_no'),
+       'service_range' => $this->input->post('service_range'),
+       'service_stamping' => $this->input->post('service_stamping'),
+       'service_observation' => $this->input->post('service_observation'),
+       'service_recommend' => $this->input->post('service_recommend'),
+       'service_component' => $this->input->post('service_component'),
+       'service_call_completion' => $this->input->post('service_call_completion'),
+       'service_charges_fee' => $this->input->post('service_charges_fee'),
+       'service_date' => $this->input->post('service_date'),
+       'service_time_in' => $this->input->post('service_time_in'),
+       'service_time_out' => $this->input->post('service_time_out'),
      );
      $this->Admin_Model->update_info('complaint_id', $complaint_id, 'uni_complaint', $data);
      header('location:complaint_list');
@@ -1776,7 +1873,6 @@ public function expense_voucher_list(){
       if(!$total_service_amount){ $total_service_amount = 0; }
 
       $total_bill = $total_sale_amount + $total_stamping_amount + $total_repairy_amount + $total_service_amount;
-
       $total_reciept_amount = $this->Transaction_Model->total_reciept_amount($party_id);
       $outstanding_amount = $total_bill - $total_reciept_amount;
       $data['outstanding_amount'] = $outstanding_amount;
@@ -1791,7 +1887,19 @@ public function expense_voucher_list(){
       $data['gov_stamping_count'] = $this->Admin_Model->get_count('govt_stamp_party',$party_id,'govt_stamp_id',$company_id,'uni_govt_stamp_master');
       $data['receipt_count'] = $this->Admin_Model->get_count('receipt_party',$party_id,'receipt_id',$company_id,'uni_receipt');
 
+      // $data['service_report_count'] = $this->Admin_Model->get_count($party,$party_id,'service_id',$company_id,'uni_service');
+      // $data['receipt_count'] = $this->Admin_Model->get_count('receipt_party',$party_id,'receipt_id',$company_id,'uni_receipt');
+      // $data['expense_count'] = $this->Admin_Model->get_count($party,$party_id,'expense_id',$company_id,'uni_expense');
       echo json_encode($data);
     }
+
+  public function get_purchase_by_party(){
+    $party_id = $this->input->post('party_id');
+    $purchase_list = $this->Transaction_Model->purchase_agrement_list('',$party_id);
+    echo "<option value='' selected >Select Purchase No.</option>";
+    foreach ($purchase_list as $list) {
+      echo "<option class=''> ".$list->purchase_order_no." </option>";
+    }
+  }
 
 }

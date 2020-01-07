@@ -62,8 +62,8 @@ include('head.php');
                     <input type="text" class="form-control form-control-sm" name="quotation_date" id="date1" value="<?php if(isset($quotation_date)){ echo $quotation_date;} ?>" data-target="#date1" data-toggle="datetimepicker" placeholder="Quotation Date" required>
                   </div>
                   <div class="form-group col-md-8 offset-md-2">
-                    <select class="form-control select2 form-control-sm" name="quotation_party" id="quotation_party" style="width: 100%;" required>
-                      <option selected="selected" value="" >Select Party Name</option>
+                    <select class="form-control select2 form-control-sm" data-placeholder="Select Party Name" name="quotation_party" id="quotation_party" style="width: 100%;" required>
+                      <option>Select Party Name</option>
                       <?php foreach ($party_list as $party_list1) { ?>
                         <option value="<?php echo $party_list1->party_id; ?>" <?php if(isset($quotation_party)){ if($party_list1->party_id == $quotation_party){ echo "selected"; } }  ?>><?php echo $party_list1->party_firm; ?></option>
                       <?php } ?>
@@ -113,7 +113,7 @@ include('head.php');
                   <tr>
                     <td class="sr_no"><?php echo $j; ?></td>
                     <td>
-                      <select class="form-control form-control-sm make_id" name="input[<?php echo $i; ?>][make_id]" required>
+                      <select class="form-control form-control-sm make_id"  data-placeholder=" " name="input[<?php echo $i; ?>][make_id]" required>
                         <option value="">Select Make</option>
                         <option selected value="<?php echo $trans_data->make_id ?>" ><?php echo $trans_data->make_name ?></option>
                         <?php foreach ($make_list as $make_list1) { ?>
@@ -122,31 +122,51 @@ include('head.php');
                       </select>
                     </td>
                     <td>
-                      <select class="form-control form-control-sm model_no" name="input[<?php echo $i; ?>][model_no_id]">
-                        <option selected value="<?php echo $trans_data->model_no_id ?>" ><?php echo $trans_data->product_model_no ?></option>
+                      <select class="form-control form-control-sm model_no" data-placeholder="Select Model" name="input[<?php echo $i; ?>][model_no_id]">
+                      <option value="">Select Model</option>
+                        <option selected value="<?php echo $trans_data->product_id ?>" ><?php echo $trans_data->product_model_no ?></option>
+                        <?php foreach ($model_list as $model_list1) { ?>
+                          <option value="<?php echo $model_list1->product_id; ?>"><?php echo $model_list1->product_model_no ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td class="td_w">
-                      <input type="text" class="form-control form-control-sm " name="input[<?php echo $i; ?>][machine_serial_no]" value="<?php echo $trans_data->machine_serial_no ?>" id="" placeholder="Machine Serial no.">
+                      <input type="text" class="form-control form-control-sm "  name="input[<?php echo $i; ?>][machine_serial_no]" value="<?php echo $trans_data->machine_serial_no ?>" id="" placeholder="Machine Serial no.">
                     </td>
                     <td>
-                      <select class="form-control form-control-sm capacity" name="input[<?php echo $i; ?>][capacity_id]">
+                      <select class="form-control form-control-sm capacity" data-placeholder="Select Capacity" name="input[<?php echo $i; ?>][capacity_id]">
+                          <option value="">Select Capacity</option>
                         <option selected value="<?php echo $trans_data->capacity_id ?>" ><?php echo $trans_data->capacity_name ?></option>
+                        <?php foreach ($capacity_list as $capacity_list1) { ?>
+                          <option value="<?php echo $capacity_list1->capacity_id; ?>"><?php echo $capacity_list1->capacity_name ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td>
-                      <select class="form-control form-control-sm accuracy" name="input[<?php echo $i; ?>][accuracy_id]">
+                      <select class="form-control form-control-sm accuracy" data-placeholder="Select Accuracy" name="input[<?php echo $i; ?>][accuracy_id]">
+                        <option value="">Select Accuracy</option>
                         <option selected value="<?php echo $trans_data->accuracy_id ?>" ><?php echo $trans_data->accuracy_name ?></option>
+                        <?php foreach ($accuracy_list as $accuracy_list1) { ?>
+                          <option value="<?php echo $accuracy_list1->accuracy_id; ?>"><?php echo $accuracy_list1->accuracy_name ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td>
-                      <select class="form-control form-control-sm class" name="input[<?php echo $i; ?>][class_id]">
-                        <option selected value="<?php echo $trans_data->class_id ?>" ><?php echo $trans_data->class_id ?></option>
+                      <select class="form-control form-control-sm class" data-placeholder="Select Class" name="input[<?php echo $i; ?>][class_id]">
+                        <option value="">Select Class</option>
+                        <option selected value="<?php echo $trans_data->class_id ?>" ><?php echo $trans_data->class_name ?></option>
+                        <?php foreach ($class_list as $class_list1) { ?>
+                          <option value="<?php echo $class_list1->class_id; ?>"><?php echo $class_list1->class_name ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td>
-                      <select class="form-control form-control-sm platter" name="input[<?php echo $i; ?>][platter_id]">
+                      <select class="form-control form-control-sm platter" data-placeholder="Select Platter" name="input[<?php echo $i; ?>][platter_id]">
+                          <option value="">Select Platter</option>
                         <option selected value="<?php echo $trans_data->platter_id ?>" ><?php echo $trans_data->platter_size ?></option>
+                        <?php foreach ($platter_list as $platter_list1) { ?>
+                          <option value="<?php echo $platter_list1->platter_id; ?>"><?php echo $platter_list1->platter_size ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td>
@@ -179,7 +199,7 @@ include('head.php');
                   <tr>
                     <td class="sr_no">1</td>
                     <td>
-                      <select class="form-control form-control-sm make_id" name="input[0][make_id]" required>
+                      <select class="form-control form-control-sm make_id" data-placeholder="Select Make" name="input[0][make_id]" required>
                         <option value="">Select Make</option>
                         <?php foreach ($make_list as $make_list1) { ?>
                           <option value="<?php echo $make_list1->make_id; ?>"><?php echo $make_list1->make_name ?></option>
@@ -187,26 +207,46 @@ include('head.php');
                       </select>
                     </td>
                     <td>
-                      <select class="form-control form-control-sm model_no" name="input[0][model_no_id]" >
+                      <select class="form-control form-control-sm model_no" data-placeholder="Select Model" name="input[0][model_no_id]" >
+                        <option value="">Select Model</option>
+                        <?php foreach ($model_list as $model_list1) { ?>
+                          <option value="<?php echo $model_list1->product_id; ?>"><?php echo $model_list1->product_model_no ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td class="td_w">
                       <input type="text" class="form-control form-control-sm " name="input[0][machine_serial_no]" id="" placeholder="Machine Serial no.">
                     </td>
                     <td>
-                      <select class="form-control form-control-sm capacity" name="input[0][capacity_id]">
+                      <select class="form-control form-control-sm capacity" data-placeholder="Select Capacity" name="input[0][capacity_id]">
+                        <option value="">Select Capacity</option>
+                        <?php foreach ($capacity_list as $capacity_list1) { ?>
+                          <option value="<?php echo $capacity_list1->capacity_id; ?>"><?php echo $capacity_list1->capacity_name ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td>
-                      <select class="form-control form-control-sm accuracy" name="input[0][accuracy_id]">
+                      <select class="form-control form-control-sm accuracy" data-placeholder="Select Accuracy" name="input[0][accuracy_id]">
+                        <option value="">Select Accuracy</option>
+                        <?php foreach ($accuracy_list as $accuracy_list1) { ?>
+                          <option value="<?php echo $accuracy_list1->accuracy_id; ?>"><?php echo $accuracy_list1->accuracy_name ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td>
-                      <select class="form-control form-control-sm class" name="input[0][class_id]">
+                      <select class="form-control form-control-sm class" data-placeholder="Select Class" name="input[0][class_id]">
+                        <option>Select Class</option>
+                        <?php foreach ($class_list as $class_list1) { ?>
+                          <option value="<?php echo $class_list1->class_id; ?>"><?php echo $class_list1->class_name ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td>
-                      <select class="form-control form-control-sm platter" name="input[0][platter_id]">
+                      <select class="form-control form-control-sm platter" class="Select Platter" name="input[0][platter_id]">
+                        <option value="">Select Platter</option>
+                        <?php foreach ($platter_list as $platter_list1) { ?>
+                          <option value="<?php echo $platter_list1->platter_id; ?>"><?php echo $platter_list1->platter_size ?></option>
+                        <?php } ?>
                       </select>
                     </td>
                     <td>
@@ -323,6 +363,10 @@ var i = 0;
                 '</td>'+
                 '<td>'+
                   '<select class="form-control form-control-sm model_no" name="input['+i+'][model_no_id]" >'+
+                    '<option value="">Select Model</option>'+
+                  <?php foreach ($model_list as $model_list1) { ?>
+                    '<option value="<?php echo $model_list1->product_id; ?>"><?php echo $model_list1->product_model_no ?></option>'+
+                  <?php } ?>
                   '</select>'+
                 '</td>'+
                 '<td class="td_w">'+
@@ -330,18 +374,34 @@ var i = 0;
                 '</td>'+
                 '<td>'+
                   '<select class="form-control form-control-sm capacity" name="input['+i+'][capacity_id]">'+
+                  '<option value="">Select Capacity</option>'+
+                  <?php foreach ($capacity_list as $capacity_list1) { ?>
+                    '<option value="<?php echo $capacity_list1->capacity_id; ?>"><?php echo $capacity_list1->capacity_name ?></option>'+
+                  <?php } ?>
                   '</select>'+
                 '</td>'+
                 '<td>'+
                   '<select class="form-control form-control-sm accuracy" name="input['+i+'][accuracy_id]">'+
+                  '<option value="">Select Accuracy</option>'+
+                  <?php foreach ($accuracy_list as $accuracy_list1) { ?>
+                    '<option value="<?php echo $accuracy_list1->accuracy_id; ?>"><?php echo $accuracy_list1->accuracy_name ?></option>'+
+                  <?php } ?>
                   '</select>'+
                 '</td>'+
                 '<td>'+
                   '<select class="form-control form-control-sm class" name="input['+i+'][class_id]">'+
+                  '<option value="">Select Class</option>'+
+                  <?php foreach ($class_list as $class_list1) { ?>
+                    '<option value="<?php echo $class_list1->class_id; ?>"><?php echo $class_list1->class_name ?></option>'+
+                  <?php } ?>
                   '</select>'+
                 '</td>'+
                 '<td>'+
                   '<select class="form-control form-control-sm platter" name="input['+i+'][platter_id]">'+
+                  '<option value="">Select Platter</option>'+
+                  <?php foreach ($platter_list as $platter_list1) { ?>
+                    '<option value="<?php echo $platter_list1->platter_id; ?>"><?php echo $platter_list1->platter_size ?></option>'+
+                  <?php } ?>
                   '</select>'+
                 '</td>'+
                 '<td>'+
@@ -397,42 +457,42 @@ var i = 0;
     $('#quotation_total').val(total_amount);
   });
 
-  $("#myTable").on("change", "select.make_id", function(){
-    var make_id = $(this).val();
-    $.ajax({
-      url: '<?php echo base_url(); ?>Transaction/GetProduct',
-      type: "POST",
-      data: {"make_id":make_id},
-      context: this,
-      success: function (result) {
-        $(this).closest('tr').find('.model_no').html(result);
-      }
-  	});
-  });
+  // $("#myTable").on("change", "select.make_id", function(){
+  //   var make_id = $(this).val();
+  //   $.ajax({
+  //     url: '<?php echo base_url(); ?>Transaction/GetProduct',
+  //     type: "POST",
+  //     data: {"make_id":make_id},
+  //     context: this,
+  //     success: function (result) {
+  //       $(this).closest('tr').find('.model_no').html(result);
+  //     }
+  // 	});
+  // });
 
-  $("#myTable").on("change", "select.model_no", function(){
-    var model_no = $(this).val();
-    $.ajax({
-      url: '<?php echo base_url(); ?>Transaction/GetProductDetails',
-      type: "POST",
-      data: {"model_no":model_no},
-      context: this,
-      success: function (result) {
-        var data = JSON.parse(result);
-        $(this).closest('tr').find('.capacity').html('<option value="'+data['capacity_id']+'">'+data['capacity_name']+'</option>');
-        $(this).closest('tr').find('.accuracy').html('<option value="'+data['accuracy_id']+'">'+data['accuracy_name']+'</option>');
-        $(this).closest('tr').find('.class').html('<option value="'+data['class_id']+'">'+data['class_name']+'</option>');
-        $(this).closest('tr').find('.platter').html('<option value="'+data['platter_id']+'">'+data['platter_size']+'</option>');
-
-        $(this).closest('tr').find('.rate1').val(data['sale_price']);
-        $(this).closest('tr').find('.gst1').val('');
-        $(this).closest('tr').find('.qty1').val('');
-        $(this).closest('tr').find('.gst2').val('');
-        $(this).closest('tr').find('.qty2').val('');
-        $(this).closest('tr').find('.rate2').val('');
-      }
-  	});
-  });
+  // $("#myTable").on("change", "select.model_no", function(){
+  //   var model_no = $(this).val();
+  //   $.ajax({
+  //     url: '<?php echo base_url(); ?>Transaction/GetProductDetails',
+  //     type: "POST",
+  //     data: {"model_no":model_no},
+  //     context: this,
+  //     success: function (result) {
+  //       var data = JSON.parse(result);
+  //       $(this).closest('tr').find('.capacity').html('<option value="'+data['capacity_id']+'">'+data['capacity_name']+'</option>');
+  //       $(this).closest('tr').find('.accuracy').html('<option value="'+data['accuracy_id']+'">'+data['accuracy_name']+'</option>');
+  //       $(this).closest('tr').find('.class').html('<option value="'+data['class_id']+'">'+data['class_name']+'</option>');
+  //       $(this).closest('tr').find('.platter').html('<option value="'+data['platter_id']+'">'+data['platter_size']+'</option>');
+  //
+  //       $(this).closest('tr').find('.rate1').val(data['sale_price']);
+  //       $(this).closest('tr').find('.gst1').val('');
+  //       $(this).closest('tr').find('.qty1').val('');
+  //       $(this).closest('tr').find('.gst2').val('');
+  //       $(this).closest('tr').find('.qty2').val('');
+  //       $(this).closest('tr').find('.rate2').val('');
+  //     }
+  // 	});
+  // });
 
   $('#myTable').on('keyup', 'input.gst1, input.qty1, input.rate1', function () {
     var gst1 =   $(this).closest('tr').find('.gst1').val();

@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html>
-<?php
-$page = "party_list";
-include('head.php');
-?>
 <style>
   td{
     padding:2px 10px !important;
@@ -11,11 +7,6 @@ include('head.php');
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-  <!-- Navbar -->
-  <?php include('navbar.php'); ?>
-  <!-- /.navbar -->
-  <!-- Main Sidebar Container -->
-  <?php include('sidebar.php'); ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -47,13 +38,12 @@ include('head.php');
                 <thead>
                 <tr>
                   <th>Sr. No.</th>
-                  <th>Nature of Business</th>
+                  <!-- <th>Nature of Business</th> -->
                   <th>Name of Firm</th>
                   <th>Name of Propriter</th>
                   <th>Mobile No.</th>
                   <th>Area</th>
-                  <th>District</th>
-                  <th>Action</th>
+                  <th>Outstanding Amount</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,21 +53,30 @@ include('head.php');
                       $i++;
                       $trade_id = $party_list1->party_business;
                       $trade_details = $this->Admin_Model->get_info_array('trade_id', $trade_id, 'uni_trade');
+                      $party_id = $party_list1->party_id;
+                      $total_sale_amount = $this->Transaction_Model->total_sale_amount($party_id);
+                      $total_stamping_amount = $this->Transaction_Model->total_stamping_amount($party_id);
+                      $total_repairy_amount = $this->Transaction_Model->total_repairy_amount($party_id);
+                      $total_service_amount = $this->Transaction_Model->total_service_amount($party_id);
+                      if(!$total_sale_amount){ $total_sale_amount = 0; }
+                      if(!$total_stamping_amount){ $total_stamping_amount = 0; }
+                      if(!$total_repairy_amount){ $total_repairy_amount = 0; }
+                      if(!$total_service_amount){ $total_service_amount = 0; }
+
+                      $total_bill = $total_sale_amount + $total_stamping_amount + $total_repairy_amount + $total_service_amount;
+                      $total_reciept_amount = $this->Transaction_Model->total_reciept_amount($party_id);
+                      $outstanding_amount = $total_bill - $total_reciept_amount;
                   ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td>
+                    <!-- <td>
                       <?php echo $trade_details[0]['trade_name']; ?>
-                    </td>
+                    </td> -->
                     <td><?php echo $party_list1->party_firm; ?></td>
                     <td><?php echo $party_list1->party_proriter; ?></td>
                     <td><?php echo $party_list1->party_mob1; ?></td>
                     <td><?php echo $party_list1->party_area; ?></td>
-                    <td><?php echo $party_list1->party_district; ?></td>
-                    <td>
-                      <a href="edit_party/<?php echo $party_list1->party_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-4" href="delete_party/<?php echo $party_list1->party_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
-                    </td>
+                    <td>&#8377; <?php echo round($outstanding_amount); ?></td>
                   </tr>
                 <?php  } ?>
               </table>
@@ -91,17 +90,5 @@ include('head.php');
       </div><!-- /.container-fluid -->
     </section>
   </div>
-  <!-- /.content-wrapper -->
-  <?php include('footer.php'); ?>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<?php include('script.php') ?>
 </body>
 </html>

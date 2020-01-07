@@ -43,7 +43,7 @@
                 <form role="form">
                   <div class="card-body row">
                   <div class="form-group col-md-10">
-                    <select class="form-control select2 form-control-sm dr-lg" id="party" title="Select Party" style="width: 100%;">
+                    <select class="form-control select2 form-control-sm dr-lg" data-placeholder="Select Party Name" id="party" title="Select Party" style="width: 100%;">
                       <option selected="selected" value="" >Select Party Name</option>
                       <?php foreach ($party_list as $party_list1) { ?>
                         <option value="<?php echo $party_list1->party_id; ?>" <?php if(isset($party_id)){ if($party_list1->party_id == $party_id){ echo "selected"; } }  ?>><?php echo $party_list1->party_firm.' ('.$party_list1->party_proriter.' - '.$party_list1->party_area.' - '.$party_list1->party_mob1.')'; ?></option>
@@ -89,7 +89,7 @@
                 </tr>
                 <tr>
                   <td colspan="2"> <p class="lab"> <b> Mobile No. 1</b> : <span id="party_mob1"></span> </p> </td>
-                  <td colspan="2">  <p class="lab"> <b> Mobile No. 2 </b> : <span id="party_mob2"></span> </p> </td>
+                  <td colspan="2">  <p class="lab"> <b> Landline </b> : <span id="party_mob2"></span> </p> </td>
                     <td colspan="2">  <p style="color:red;" class="lab"> <b>Total Outstanding </b> : &#8377;<span id="outstanding_amount"></span> </p> </td>
                 </tr>
                 <tr>

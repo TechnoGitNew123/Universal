@@ -101,8 +101,10 @@ include('head.php');
                      </td>
                   <?php }?>
                     <td >
+                      <?php if($admin_roll_id == 1){ ?>
                       <a href="<?php echo base_url(); ?>Transaction/edit_repairy_bill/<?php echo $list->repairy_id; ?>"> <i class="fa fa-edit"></i> </a>
                       <a class="ml-2" href="<?php echo base_url(); ?>Transaction/delete_repairy_bill/<?php echo $list->repairy_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                    <?php } ?>
                     </td>
                   </tr>
                   <?php } ?>

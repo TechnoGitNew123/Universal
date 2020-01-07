@@ -26,6 +26,15 @@ class Admin_Model extends CI_Model{
     return $result;
   }
 
+  public function get_info_array($id_type, $id, $tbl_name){
+    $query = $this->db->select('*')
+            ->where($id_type, $id)
+            ->from($tbl_name)
+            ->get();
+    $result = $query->result_array();
+    return $result;
+  }
+
   public function update_info($id_type, $id, $tbl_name, $data){
     $this->db->where($id_type, $id)
     ->update($tbl_name, $data);

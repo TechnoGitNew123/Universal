@@ -78,11 +78,16 @@
     width: 16rem !important;
 }
 
-/* .dr-lg .select2-container .select2-selection--single {
+.select-sm .select2-container .select2-selection--single {
     box-sizing: border-box;
     cursor: pointer;
     display: block;
-    height: 40px !important;
+    height: calc(1.8125rem + 2px);
     user-select: none;
     -webkit-user-select: none;
-} */
+}
+.select-sm .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #495057 !important;
+    line-height: 1.5 !important;
+    font-size: .875rem;
+}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Invoice</title>
+  <title>Universal Digital System</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap 4 -->
@@ -80,8 +80,12 @@ table{
       <h3 style="text-decoration: underline; text-align:center; line-height: 20px;margin-top:5px; margin-bottom:8px;">Sales & Service</h3>
       <p   style="font-size:16px;  text-align:center;  margin-top:8px; margin-bottom:8px;"><?php echo $company_address; ?> Mob No. <?php echo $company_mob1; ?></p>
 
+      <?php if(isset($complaint_page)){ ?>
+      <h3 style="text-align:center;  font-size: 32px;padding-bottom:0px; margin-bottom:15px;"> <span style="border: 2px Solid #000; margin-bottom: 0px;padding:8px; border-radius:15px; font-style:italic; font-weight:bold; font-family: 'Leckerli One', cursive;">  Complaint Report </span></h3>
+    <?php } else{ ?>
       <h3 style="text-align:center;  font-size: 32px;padding-bottom:0px; margin-bottom:15px;"> <span style="border: 2px Solid #000; margin-bottom: 0px;padding:8px; border-radius:15px; font-style:italic; font-weight:bold; font-family: 'Leckerli One', cursive;">  Service Report </span></h3>
-    </div>
+    <?php } ?>
+      </div>
 
   </div>
 </td>
@@ -149,7 +153,11 @@ table{
        <br> मॉडेल नं.  </b> : <?php echo $product_model_no; ?>  </p>
 </td>
 <td colspan="2" valign="top">
+      <?php if(isset($complaint_page)){ ?>
+       <p style="font-size:16px; margin-bottom:5px; padding-top:5px; text-align:left; line-height:20px;"> <b>Sr No. <br>अ. नं.   </b> : <?php echo $complaint_no; ?>  </p>
+     <?php }else { ?>
      <p style="font-size:16px; margin-bottom:5px; padding-top:5px; text-align:left; line-height:20px;"> <b>Sr No. <br>अ. नं.   </b> : <?php echo $service_sr_no; ?>  </p>
+   <?php } ?>
 </td>
 <td colspan="2" valign="top">
      <p style="font-size:16px; margin-bottom:5px; padding-top:5px; text-align:left; line-height:20px;"> <b>Cap / Range <br> कॅप / रेंज   </b> : <?php echo $service_range; ?>  </p>

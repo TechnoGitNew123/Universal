@@ -31,7 +31,9 @@ class Admin extends CI_Controller{
         $data['repair_count'] = $this->Admin_Model->get_count($party,$party_id,'repairy_id',$company_id,'uni_repairy_master');
         $data['gov_stamping_count'] = $this->Admin_Model->get_count($party,$party_id,'govt_stamp_id',$company_id,'uni_govt_stamp_master');
         $data['complaint_count'] = $this->Admin_Model->get_complaint_count($party_id,$company_id);
-
+        $data['service_report_count'] = $this->Admin_Model->get_count($party,$party_id,'service_id',$company_id,'uni_service');
+        $data['receipt_count'] = $this->Admin_Model->get_count($party,$party_id,'receipt_id',$company_id,'uni_receipt');
+        $data['expense_count'] = $this->Admin_Model->get_count($party,$party_id,'expense_id',$company_id,'uni_expense');
         $this->load->view('Admin/dashboard',$data);
       }
       else{
@@ -175,11 +177,10 @@ class Admin extends CI_Controller{
   public function party_information(){
     $company_id = $this->session->userdata('company_id');
     $roll_id = $this->session->userdata('admin_roll_id');
-    if($company_id){
-      $this->load->view('Admin/party_information');
-    } else{
-      header('location:'.base_url().'Login');
-    }
+    if($company_id == ''){ header('location:'.base_url().'Login'); }
+    $data['division_list'] = $this->Admin_Model->get_list($company_id,'division_id','ASC','uni_division');
+    $data['trade_name_list'] = $this->Admin_Model->get_list($company_id,'trade_id','ASC','uni_trade');
+    $this->load->view('Admin/party_information',$data);
   }
   //Party List
   public function party_list(){
@@ -258,6 +259,8 @@ class Admin extends CI_Controller{
           $data['party_status'] = $info->party_status;
 
         }
+        $data['division_list'] = $this->Admin_Model->get_list($company_id,'division_id','ASC','uni_division');
+        $data['trade_name_list'] = $this->Admin_Model->get_list($company_id,'trade_id','ASC','uni_trade');
         $this->load->view('Admin/party_information',$data);
       }
     } else{
@@ -1433,7 +1436,8 @@ class Admin extends CI_Controller{
   public function product_information_list(){
     $company_id = $this->session->userdata('company_id');
     if($company_id){
-      $data['product_list'] = $this->Admin_Model->get_product_list($company_id);
+      // $data['product_list'] = $this->Admin_Model->get_product_list($company_id);
+    $data['product_list'] = $this->Admin_Model->get_list($company_id,'product_id','ASC','uni_product');
       $this->load->view('Admin/product_information_list', $data);
     } else{
       header('location:'.base_url().'Login');
@@ -1443,47 +1447,58 @@ class Admin extends CI_Controller{
   public function save_product(){
     $company_id = $this->session->userdata('company_id');
     if($company_id){
+      $product_model_no=$this->input->post('product_model_no');
       $data = array(
         'company_id' => $company_id,
-        'make_id' => $this->input->post('make_id'),
+        // 'make_id' => $this->input->post('make_id'),
         'product_model_no' => $this->input->post('product_model_no'),
-        'capacity_id' => $this->input->post('capacity_id'),
-        'accuracy_id' => $this->input->post('accuracy_id'),
-        'class_id' => $this->input->post('class_id'),
-        'platter_id' => $this->input->post('platter_id'),
-        'stamping_days' => $this->input->post('stamping_days'),
-        'quarter_id' => $this->input->post('quarter_id'),
+        // 'capacity_id' => $this->input->post('capacity_id'),
+        // 'accuracy_id' => $this->input->post('accuracy_id'),
+        // 'class_id' => $this->input->post('class_id'),
+        // 'platter_id' => $this->input->post('platter_id'),
+        // 'stamping_days' => $this->input->post('stamping_days'),
+        // 'quarter_id' => $this->input->post('quarter_id'),
         // 'sale_price' => $this->input->post('sale_price'),
       );
-      $this->Admin_Model->save_data('uni_product', $data);
-      header('location:product_information_list');
-    } else{
+      $check = $this->Admin_Model->check_duplication($company_id,$product_model_no,'product_model_no','uni_product');
+      if($check > 0){
+        $this->session->set_flashdata('product_model_no','exist');
+        header('location:'.base_url().'Admin/product_information');
+      }
+      else{
+         $this->Admin_Model->save_data('uni_product', $data);
+        header('location:product_information_list');
+      }
+    }
+     else{
       header('location:'.base_url().'Login');
     }
-  }
+
+}
   // Edit Product...
   public function edit_product($id){
     $company_id = $this->session->userdata('company_id');
     if($company_id){
-      $product_info = $this->Admin_Model->get_product_info($id);
+      // $product_info = $this->Admin_Model->get_product_info($id);
+      $product_info = $this->Admin_Model->get_info('product_id', $id, 'uni_product');
       if($product_info){
         foreach($product_info as $info){
           $data['update'] = 'update';
           $data['product_id'] = $info->product_id;
-          $data['make_id'] = $info->make_id;
-          $data['make_name'] = $info->make_name;
+          // $data['make_id'] = $info->make_id;
+          // $data['make_name'] = $info->make_name;
           $data['product_model_no'] = $info->product_model_no;
-          $data['capacity_id'] = $info->capacity_id;
-          $data['capacity_name'] = $info->capacity_name;
-          $data['accuracy_id'] = $info->accuracy_id;
-          $data['accuracy_name'] = $info->accuracy_name;
-          $data['class_id'] = $info->class_id;
-          $data['class_name'] = $info->class_name;
-          $data['platter_id'] = $info->platter_id;
-          $data['platter_size'] = $info->platter_size;
-          $data['quarter_id'] = $info->quarter_id;
+          // $data['capacity_id'] = $info->capacity_id;
+          // $data['capacity_name'] = $info->capacity_name;
+          // $data['accuracy_id'] = $info->accuracy_id;
+          // $data['accuracy_name'] = $info->accuracy_name;
+          // $data['class_id'] = $info->class_id;
+          // $data['class_name'] = $info->class_name;
+          // $data['platter_id'] = $info->platter_id;
+          // $data['platter_size'] = $info->platter_size;
+          // $data['quarter_id'] = $info->quarter_id;
           // $data['sale_price'] = $info->sale_price;
-          $data['stamping_days'] = $info->stamping_days;
+          // $data['stamping_days'] = $info->stamping_days;
           $data['product_status'] = $info->product_status;
         }
         $data['make_list'] = $this->Admin_Model->get_list($company_id,'make_id','ASC','uni_make');
@@ -1504,15 +1519,15 @@ class Admin extends CI_Controller{
     if($company_id){
       $product_id = $this->input->post('product_id');
       $data = array(
-        'make_id' => $this->input->post('make_id'),
+        // 'make_id' => $this->input->post('make_id'),
         'product_model_no' => $this->input->post('product_model_no'),
-        'capacity_id' => $this->input->post('capacity_id'),
-        'accuracy_id' => $this->input->post('accuracy_id'),
-        'class_id' => $this->input->post('class_id'),
-        'platter_id' => $this->input->post('platter_id'),
-        'stamping_days' => $this->input->post('stamping_days'),
+        // 'capacity_id' => $this->input->post('capacity_id'),
+        // 'accuracy_id' => $this->input->post('accuracy_id'),
+        // 'class_id' => $this->input->post('class_id'),
+        // 'platter_id' => $this->input->post('platter_id'),
+        // 'stamping_days' => $this->input->post('stamping_days'),
         // 'sale_price' => $this->input->post('sale_price'),
-        'quarter_id' => $this->input->post('quarter_id'),
+        // 'quarter_id' => $this->input->post('quarter_id'),
       );
       $this->Admin_Model->update_info('product_id', $product_id, 'uni_product', $data);
       header('location:product_information_list');
@@ -1535,14 +1550,14 @@ class Admin extends CI_Controller{
     $company_id = $this->session->userdata('company_id');
     if($company_id == ''){ header('location:'.base_url().'Login'); }
 
-    $this->form_validation->set_rules('from_month', 'From Date', 'trim|required');
-    $this->form_validation->set_rules('to_month', 'To Date', 'trim|required');
+    // $this->form_validation->set_rules('from_month', 'From Date', 'trim|required');
+    // $this->form_validation->set_rules('to_month', 'To Date', 'trim|required');
     $this->form_validation->set_rules('quarter_name', 'Quarter Name', 'trim|required');
     if($this->form_validation->run() != FALSE){
       $save_data = array(
         'company_id' => $company_id,
-        'from_month' => $this->input->post('from_month'),
-        'to_month' => $this->input->post('to_month'),
+        // 'from_month' => $this->input->post('from_month'),
+        // 'to_month' => $this->input->post('to_month'),
         'quarter_name' => $this->input->post('quarter_name'),
       );
       $this->Admin_Model->save_data('uni_quarter', $save_data);
@@ -1562,14 +1577,14 @@ class Admin extends CI_Controller{
     $company_id = $this->session->userdata('company_id');
     if($company_id == ''){ header('location:'.base_url().'Login'); }
 
-    $this->form_validation->set_rules('from_month', 'From Date', 'trim|required');
-    $this->form_validation->set_rules('to_month', 'To Date', 'trim|required');
+    // $this->form_validation->set_rules('from_month', 'From Date', 'trim|required');
+    // $this->form_validation->set_rules('to_month', 'To Date', 'trim|required');
     $this->form_validation->set_rules('quarter_name', 'Quarter Name', 'trim|required');
     if($this->form_validation->run() != FALSE){
       // $quarter_id = $this->input->post('from_month');
       $update_data = array(
-        'from_month' => $this->input->post('from_month'),
-        'to_month' => $this->input->post('to_month'),
+        // 'from_month' => $this->input->post('from_month'),
+        // 'to_month' => $this->input->post('to_month'),
         'quarter_name' => $this->input->post('quarter_name'),
       );
       // echo print_r($quarter_id);
@@ -1581,8 +1596,8 @@ class Admin extends CI_Controller{
     if($stamping_quarter_info == ''){ header('location:'.base_url().'Admin/stamping_quarter_list'); }
     foreach($stamping_quarter_info as $info){
       $data['update'] = 'update';
-      $data['from_month'] = $info->from_month;
-      $data['to_month'] = $info->to_month;
+      // $data['from_month'] = $info->from_month;
+      // $data['to_month'] = $info->to_month;
       $data['quarter_name'] = $info->quarter_name;
     }
     $this->load->view('Admin/stamping_quarter',$data);

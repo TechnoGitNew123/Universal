@@ -35,7 +35,7 @@ include('head.php');
               </div>
               <form role="form" method="post">
                 <div class="card-body row">
-                  <div class="form-group col-md-6">
+                  <!-- <div class="form-group col-md-6">
                     <select class="form-control select2" name="from_month" id="from_month" data-placeholder="Select From Month" required>
                       <option value="">Select From Month</option>
                       <option <?php if(isset($from_month) && $from_month == 'January'){ echo 'selected'; } ?>>January</option>
@@ -68,7 +68,7 @@ include('head.php');
                       <option <?php if(isset($to_month) && $to_month == 'November'){ echo 'selected'; } ?>>November</option>
                       <option <?php if(isset($to_month) && $to_month == 'December'){ echo 'selected'; } ?>>December</option>
                     </select>
-                  </div>
+                  </div> -->
                   <div class="form-group col-md-12" required>
                     <input type="text" class="form-control form-control-sm" name="quarter_name" id="quarter_name" value="<?php if(isset($quarter_name)){ echo $quarter_name; } ?>" placeholder="Quarter Name" required>
                   </div>
@@ -81,7 +81,7 @@ include('head.php');
                   <?php } else{ ?>
                     <button type="submit" class="btn btn-success px-4">Add</button>
                   <?php } ?>
-                  <a href="../dashboard" class="btn btn-default ml-4">Cancel</a>
+                  <a href="../Admin/dashboard" class="btn btn-default ml-4">Cancel</a>
                 </div>
               </form>
             </div>

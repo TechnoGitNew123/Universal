@@ -17,6 +17,7 @@
           <a href="" class="d-block">Admin <?php //echo $roll_id; ?></a>
         <?php } else{
           $user_id = $this->session->userdata('uni_user_id');
+
           $user_info = $this->Admin_Model->get_info('user_id', $user_id, 'uni_user');
           foreach ($user_info as $info) {
               $user_name = $info->user_name;
@@ -178,7 +179,7 @@
             <a href="<?php echo base_url(); ?>Admin/product_information_list" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>
-                Product Info
+                Model Info
               </p>
             </a>
           </li>
@@ -391,6 +392,12 @@
               <a href="<?php echo base_url(); ?>Report/receipt_report" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Reciept Report</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Report/outstanding_report" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Outstanding Report</p>
               </a>
             </li>
 

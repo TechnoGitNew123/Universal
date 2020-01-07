@@ -324,5 +324,21 @@ class Report extends CI_Controller{
     $this->load->view('Admin/footer',$data);
     $this->load->view('Admin/script',$data);
   }
+
+  public function outstanding_report(){
+    $company_id = $this->session->userdata('company_id');
+    $roll_id = $this->session->userdata('admin_roll_id');
+    if($company_id){
+      $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
+      $this->load->view('Admin/head',$data);
+      $this->load->view('Admin/navbar',$data);
+      $this->load->view('Admin/sidebar',$data);
+      $this->load->view('Report/outstanding_report',$data);
+      $this->load->view('Admin/footer',$data);
+      $this->load->view('Admin/script',$data);
+    } else{
+      header('location:'.base_url().'Login');
+    }
+  }
 }
 ?>

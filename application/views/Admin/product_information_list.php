@@ -26,7 +26,7 @@ include('head.php');
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12 mt-1">
-            <h4>PRODUCT INFORMATION</h4>
+            <h4>MODEL INFORMATION</h4>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -40,9 +40,9 @@ include('head.php');
             <!-- general form elements -->
             <div class="card">
             <div class="card-header">
-              <h3 class="card-title"><i class="fa fa-list"></i> List Product Information</h3>
+              <h3 class="card-title"><i class="fa fa-list"></i> List Model Information</h3>
               <div class="card-tools">
-                <a href="product_information" class="btn btn-sm btn-block btn-primary">Add Product</a>
+                <a href="product_information" class="btn btn-sm btn-block btn-primary">Add Model</a>
               </div>
             </div>
             <!-- /.card-header -->
@@ -51,9 +51,9 @@ include('head.php');
                 <thead>
                 <tr>
                   <th>Sr. No.</th>
-                  <th>Make Name</th>
+                  <!-- <th>Make Name</th> -->
                   <th>Model No.</th>
-                  <th>Sale Price</th>
+                  <!-- <th>Sale Price</th> -->
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -65,9 +65,9 @@ include('head.php');
                   ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $product_list1->make_name; ?></td>
+                    <!-- <td><?php echo $product_list1->make_name; ?></td> -->
                     <td><?php echo $product_list1->product_model_no; ?></td>
-                    <td><?php echo $product_list1->sale_price; ?></td>
+                    <!-- <td><?php echo $product_list1->sale_price; ?></td> -->
                     <td>
                       <a href="edit_product/<?php echo $product_list1->product_id; ?>"> <i class="fa fa-edit"></i> </a>
                       <a class="ml-4" href="delete_product/<?php echo $product_list1->product_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>

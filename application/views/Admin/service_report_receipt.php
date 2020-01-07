@@ -227,7 +227,7 @@ include('head.php');
               <!-- this row will not appear when printing -->
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="<?php echo base_url() ?>Receipt/service_report_print/<?php echo $service_id; ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                  <a href="<?php echo base_url() ?>Receipt/service_report_print/<?php echo $complaint_id; ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
 
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
                     Payment

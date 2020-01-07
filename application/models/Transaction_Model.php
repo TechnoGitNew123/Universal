@@ -135,7 +135,9 @@ class Transaction_Model extends CI_Model{
   public function purchase_agrement_list($company_id,$party_id){
     $this->db->select('purchase.*, party.*');
     $this->db->from('uni_purchase_master as purchase');
-    $this->db->where('purchase.company_id', $company_id);
+    if($company_id != ''){
+      $this->db->where('purchase.company_id', $company_id);
+    }
     if($party_id != null){
       $this->db->where('purchase.purchase_party', $party_id);
     }
@@ -373,15 +375,28 @@ class Transaction_Model extends CI_Model{
      return $result;
   }
 
-  public function service_report_data($service_id){
-    $query = $this->db->select('service.*,complaint.*, party.*, user.*,make.*,product.*')
-    ->from('uni_service as service')
-    ->where('service.service_id', $service_id)
-    ->join('uni_complaint as complaint', 'service.complaint_id = complaint.complaint_id', 'LEFT')
+  // public function service_report_data($service_id){
+  //   $query = $this->db->select('service.*,complaint.*, party.*, user.*,make.*,product.*')
+  //   ->from('uni_service as service')
+  //   ->where('service.service_id', $service_id)
+  //   ->join('uni_complaint as complaint', 'service.complaint_id = complaint.complaint_id', 'LEFT')
+  //    ->join('uni_party as party', 'complaint.party_id = party.party_id', 'LEFT')
+  //    ->join('uni_user as user', 'complaint.complaint_engeeneer = user.user_id', 'LEFT')
+  //    ->join('uni_make as make', 'service.make_id = make.make_id', 'LEFT')
+  //    ->join('uni_product as product', 'service.model_no = product.product_id', 'LEFT')
+  //    ->get();
+  //    $result = $query->result();
+  //    return $result;
+  // }
+
+  public function service_report_data($complaint_id){
+    $query = $this->db->select('complaint.*, party.*, user.*,make.*,product.*')
+    ->from('uni_complaint as complaint')
+    ->where('complaint.complaint_id', $complaint_id)
      ->join('uni_party as party', 'complaint.party_id = party.party_id', 'LEFT')
      ->join('uni_user as user', 'complaint.complaint_engeeneer = user.user_id', 'LEFT')
-     ->join('uni_make as make', 'service.make_id = make.make_id', 'LEFT')
-     ->join('uni_product as product', 'service.model_no = product.product_id', 'LEFT')
+     ->join('uni_make as make', 'complaint.make_id = make.make_id', 'LEFT')
+     ->join('uni_product as product', 'complaint.model_no = product.product_id', 'LEFT')
      ->get();
      $result = $query->result();
      return $result;
