@@ -30,7 +30,7 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-        <li class="nav-item">
+        <li class="nav-item head">
           <a href="<?php echo base_url(); ?>Admin/dashboard" class="nav-link <?php if(isset($page) && $page == 'dashboard'){ echo 'active'; } ?>">
             <i class="nav-icon fas fa-th"></i>
             <p>Dashboard</p>
@@ -39,7 +39,7 @@
       <!-- Master menu -->
     <?php if($roll_id == 1){ ?>
       <li class="nav-item has-treeview ">
-        <a href="#" class="nav-link">
+        <a href="#" class="nav-link head">
           <i class="nav-icon fas fa-chart-pie"></i>
           <p>
             Master
@@ -206,7 +206,7 @@
     <?php } ?>
 <!-- Transaction Menu -->
       <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link head">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
               Transaction
@@ -314,7 +314,7 @@
         </li>
         <!-- Report Menu -->
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link head">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
               Report
