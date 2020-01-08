@@ -189,7 +189,7 @@ include('head.php');
 
           <tr>
             <td colspan="9">
-              <p>Engineer: <?php echo $repairy_bill_data->repairy_engg; ?></p>
+              <p>Engineer: <?php echo $repairy_bill_data->repairy_person; ?></p>
 
               <p style="float:right;"> <b> For <?php echo $company_name; ?> </b> </p>
             </td>

@@ -43,8 +43,46 @@
   <div style="text-align:center; ">
     <p style="font-size:22px;">Payment Reciept</p>
   </div>
-  <table id="example" class="table table-bordered mb-0 invoice-table">
+  <table id="example" class="table table-bordered mb-0 invoice-table" Width="100%">
     <style media="print">
+    table{
+      border-collapse: collapse;
+    }
+      .invoice-table td{
+        Width:33% !important;
+
+          border: 1px solid #555!important;
+      }
+      .invoice-table .small{
+        Width:15% !important;
+          border: 1px solid #555!important;
+      }
+      .invoice-table .large{
+        Width:85% !important;
+          border: 1px solid #555!important;
+      }
+      .invoice-table{
+        margin-bottom:0px;
+        border: 1px solid #555!important;
+      }
+      .invoice-table p{
+        line-height: 15px;
+      }
+      .invoice-table .no-right-border{
+      border-right: 0px!important;
+      }
+      .invoice-table .no-left-border{
+      border-left: 0px!important;
+      }
+      .invoice-table .no-top-border{
+      border-top: 0px!important;
+      }
+      .invoice-table .no-bottom-border{
+      border-bottom: 0px!important;
+      }
+    </style>
+
+    <style media="screen">
     table{
       border-collapse: collapse;
     }
@@ -86,14 +124,17 @@
         <img style="margin-left:10px!important;" class="" src="<?php echo base_url(); ?>assets/images/universal.png" width='120' alt="">
       </td>
       <td  colspan="1" style="border-right:0px!important;text-align: center; border-left:0px!important; width:50% !important;">
-       <h3 style="font-size:20px; margin:0; padding:0;"> <?php echo $company_name; ?></h3>
-      <p> Address: <?php echo $company_address; ?><br>
-     Mobile No: <?php if($company_mob1 != ''){ echo $company_mob1; } if($company_mob2 != ''){ echo ', '.$company_mob2; } ?> </p>
-                            <!-- <p> Gst No: <?php echo $GetCmpInfo['gst_no']; ?>  </p> -->
+        <h3 ><?php echo $company_name; ?></h3>
+        <p   style="font-size:16px; margin-bottom:3px; margin-top:5px;"><?php echo $company_address; ?></p>
+        <!-- <p  style="font-size:16px; margin-bottom:3px; margin-top:5px;" >Ph No. 0231-2646189</p> -->
+        <p  style="font-size:16px; margin-bottom:3px; margin-top:5px;"> Mob No. <?php if($company_mob1 != ''){ echo $company_mob1; } if($company_mob2 != ''){ echo ', '.$company_mob2; } ?></p>
+        <p  style="font-size:16px; margin-bottom:3px; margin-top:5px;">Email: <?php if($company_email != ''){ echo $company_email; } ?></p>
+        <p  style="font-size:16px; margin-bottom:3px; margin-top:5px;">Website: <?php if($company_website != ''){ echo $company_website; } ?></p>
+
       </td>
       <td  colspan="1" style="border-left:0px!important;text-align: right;">
         <br><br><br><br><br><br><br>
-          <p>Receipt No. <span> &nbsp;&nbsp;&nbsp; <?php echo $receipt_details->receipt_no; ?>&nbsp;&nbsp;</span> </p>
+          <p> <b>Receipt No. : </b>  <span> &nbsp;&nbsp;&nbsp; <?php echo $receipt_details->receipt_no; ?>&nbsp;&nbsp;</span> </p>
           <p>Date : <span> &nbsp;&nbsp;&nbsp; <?php echo $receipt_details->receipt_date; ?>&nbsp;&nbsp;</span> </p>
       </td>
     </tr>
@@ -112,8 +153,9 @@
         </td>
 
         <td colspan="2" class="large no-left-border no-bottom-border">
-       <p> <b> <?php echo $this->numbertowords->convert_number($receipt_details->receipt_amount); ?> Only</b> </p>
-          </td>
+       <p> <b> <?php echo $this->numbertowords->convert_number($receipt_details->receipt_amount); ?> Only</b>   </p>
+       <p>  <?php echo $receipt_details->receipt_amount; ?> </p>
+                </td>
 
     </tr>
     <tr class="no-top-border">
@@ -131,7 +173,10 @@
     </tr>
 
     <tr>
-      <td class="small no-right-border"> <h4><b>&nbsp;&nbsp;<?php echo $receipt_details->receipt_amount; ?></b></h4>
+      <td class="small no-right-border">
+         <!-- <h4><b>&nbsp;&nbsp;<?php echo $receipt_details->receipt_amount; ?></b> </h4> -->
+         <br><br> <br> <br>
+           <p style="padding-left:30px;"> <small>Receiver Signature : &nbsp;&nbsp;</small> </p>
         </td>
         <td colspan="2" style="text-align:right;" class="large no-left-border text-right">
           <br><br>

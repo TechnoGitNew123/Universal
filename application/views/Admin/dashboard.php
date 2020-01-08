@@ -159,7 +159,7 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3><?php echo $gov_stamping_count; ?></h3>
-                <p>Stamping</p>
+                <p>Stamping Challan</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -183,7 +183,7 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3><?php echo $service_report_count; ?></h3>
-                <p>Service Report</p> 
+                <p>Service Report</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>

@@ -238,7 +238,7 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3 id="gov_stamping_count">0</h3>
-                <p>Govt Stamping Cash</p>
+                <p>Govt Stamping Challan</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>

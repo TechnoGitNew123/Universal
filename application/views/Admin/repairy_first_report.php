@@ -166,7 +166,7 @@ include('head.php');
 
 <p>
  <b>ऑफिस वेळ सकाळी ९:३० ते संध्या. ६ पर्यंत वर्कशॉप दर रविवारी बंद राहील.</b>   </p>
-<p>काटा घेणाऱ्याचे नाव : <?php echo $repairy_bill_data->user_name; ?></p>
+<p>काटा घेणाऱ्याचे नाव : <?php echo $repairy_bill_data->repairy_engg; ?></p>
 
   </td>
 </tr>
@@ -190,8 +190,6 @@ include('head.php');
               <div class="row no-print">
                 <div class="col-12">
                   <a href="<?php echo base_url() ?>Receipt/repairy_first_print/<?php echo $repairy_id; ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-
-
                 </div>
               </div>
             </div>

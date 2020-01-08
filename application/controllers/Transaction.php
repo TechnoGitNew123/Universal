@@ -1360,7 +1360,6 @@ public function delete_repairy_bill($id){
      header('location:'.base_url().'Login');
    }
  }
-
 /********************** Expense Voucher *************************/
 // Add Expense Voucher...
 public function expense_voucher_list(){

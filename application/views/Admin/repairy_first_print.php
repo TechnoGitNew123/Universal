@@ -27,6 +27,9 @@
         $repairy_id = $repairy_bill_data->repairy_id;
       }
     ?>
+    <div class="row">
+  <p style="text-align:center; font-size:17px;"> <b>Repair Receipt</b>  </p>
+</div>
 <table class="table table-bordered mb-0 invoice-table" Width="100%">
   <style media="print">
   table{
@@ -175,7 +178,7 @@
 
 <p style="font-size:12px;">
 <b>ऑफिस वेळ सकाळी ९:३० ते संध्या. ६ पर्यंत वर्कशॉप दर रविवारी बंद राहील.</b>   </p>
-<p style="font-size:12px;">काटा घेणाऱ्याचे नाव : <?php echo $repairy_bill_data->user_name; ?></p>
+<p style="font-size:12px; text-align:right; padding-right:20px;">काटा घेणाऱ्याचे नाव : <?php echo $repairy_bill_data->repairy_engg; ?></p>
 
 </td>
 </tr>

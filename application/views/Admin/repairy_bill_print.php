@@ -29,9 +29,9 @@
     }
     ?>
     <div class="row">
-  <p style="text-align:center; font-size:17px; margin-bottom:10px;"> <b>Repairy Bill</b>  </p>
+  <p style="text-align:center; font-size:18px; margin-bottom:20px; ">  <b> <span style="border: 1px solid #000; padding: 10px;">Repair Bill</span> </b>  </p>
 </div>
-    <table class="table table-bordered mb-0 invoice-table"  width="700">
+    <table class="table table-bordered mb-0 invoice-table"  width="100%">
 <style media="print">
 table{
   border-collapse: collapse;
@@ -99,13 +99,13 @@ table{
     <td style="border-right:0px!important; padding-left: 20px; padding-top:5px;" >
       <p style="font-size:16px; margin-bottom:5px; margin-top:5px;"><strong>Party Name and Address</strong></p>
       <p style="font-size:16px; margin-bottom:5px; margin-top:5px;"><?php echo $repairy_bill_data->party_firm; ?></p>
-      <p style="font-size:16px; margin-bottom:5px; margin-top:5px;">
+      <p style="font-size:16px; margin-bottom:5px; margin-top:5px; line-height:22px;">
         <?php echo $repairy_bill_data->party_address.' '; ?>
-        <?php echo $repairy_bill_data->party_area.' '; ?>
-        <?php echo $repairy_bill_data->party_taluka.' '; ?>
-        <?php echo $repairy_bill_data->party_district.' '; ?>
+        <?php echo $repairy_bill_data->party_area.' '; ?> <br>
+      Taluka :  <?php echo $repairy_bill_data->party_taluka.' '; ?><br>
+      Dist :   <?php echo $repairy_bill_data->party_district.' '; ?>
        </p>
-      <p style="font-size:16px; margin-bottom:5px; margin-top:5px;">Sate : <?php echo $repairy_bill_data->party_state.' '; ?></p>
+      <!-- <p style="font-size:16px; margin-bottom:5px; margin-top:5px;">Sate : <?php echo $repairy_bill_data->party_state.' '; ?></p> -->
       <p style="font-size:16px; margin-bottom:5px; margin-top:5px;"> Contact No. <?php echo $repairy_bill_data->party_mob1.' '; ?></p>
       </td>
     <td style="border-left:0px!important; border-right:0px!important;">
@@ -119,7 +119,7 @@ table{
 
 <div class="row">
 <div class="col-12 table-responsive">
-<table class="table table-botttom"  width="700">
+<table class="table table-botttom"  width="100%">
   <style media="print">
   .table-bottom {
   border-collapse: collapse!important;
@@ -157,7 +157,7 @@ table{
       <th> <p >Capacity</p></th>
       <th> <p >Accuracy</p> </th>
       <th> <p >Class</p> </th>
-      <th> <p >Repairy Details</p> </th>
+      <th> <p >Material Used</p> </th>
       <th> <p >Amount</p> </th>
     </tr>
   </thead>
@@ -184,6 +184,11 @@ table{
         <td colspan="2" style="border-right:0px; padding-left:10px;"><p style="font-size:14px; margin:5px;">Basic Amount : </p> </td>
         <td colspan="2" style="border-left:0px;"><p style="font-size:14px; margin:5px;"> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_basic_charge, 2, '.', ''); ?></b> </p></td>
     </tr>
+    <tr>
+      <td colspan="5"></td>
+        <td colspan="2" style="border-right:0px; padding-left:10px;"><p style="font-size:14px; margin:5px;">Service Charge : </p> </td>
+        <td colspan="2" style="border-left:0px;"><p style="font-size:14px; margin:5px;"> <b>&#8377; <?php echo number_format((float)$repairy_bill_data->repairy_min_charge, 2, '.', ''); ?></b> </p></td>
+    </tr>
 
     <tr>
       <td colspan="5"> <p style="margin:5px;">Bill Amount In Words : <b>Rupees <?php echo $this->numbertowords->convert_number($repairy_bill_data->repairy_total); ?> Only</b> </p> </td>
@@ -193,7 +198,7 @@ table{
 
     <tr style="border-bottom:0px!important;">
       <td colspan="9" style="border-bottom:0px!important; border-left:0px;">
-        <p>Engineer: <?php echo $repairy_bill_data->repairy_engg; ?></p>
+        <p>Engineer: <?php echo $repairy_bill_data->repairy_person; ?></p>
         <p style="float:right; margin:5px;"> <b> For <?php echo $company_name; ?> </b> </p>
       </td>
     </tr>

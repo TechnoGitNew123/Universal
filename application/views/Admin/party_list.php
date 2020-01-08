@@ -72,7 +72,6 @@ include('head.php');
                       <?php echo $trade_details[0]['trade_name']; ?>
                     </td>
                     <td><?php echo $party_list1->party_firm; ?></td>
-                    <td><?php echo $party_list1->party_firm; ?></td>
                     <td><?php echo $party_list1->party_proriter; ?></td>
                     <td><?php echo $party_list1->party_mob1; ?></td>
                     <td><?php echo $party_list1->party_area; ?></td>

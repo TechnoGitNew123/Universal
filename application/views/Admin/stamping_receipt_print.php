@@ -134,10 +134,14 @@ table{
       <p style="font-size:16px; margin-bottom:5px;">Sate : <?php echo $govt_stamp_data->party_state.' '; ?></p>
       <p style="font-size:16px; margin-bottom:5px;"> Contact No. <?php echo $govt_stamp_data->party_mob1.' '; ?></p>
       </td>
+
   <td valign="top" style="padding:0px!important; border-left:0px!important;">
   <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important; margin-left:0px;"><b>No.  <?php echo $govt_stamp_data->govt_stamp_no; ?></b></p>  <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;" >
   <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important; margin-left:0px;"> <b>Date : </b>&nbsp;  <strong><?php echo $govt_stamp_data->govt_stamp_date; ?></strong></p> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
-  <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important; margin-left:0px;">Trade : <b> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
+  <?php     $trade_id = $govt_stamp_data->govt_stamp_trade;
+      $trade_details = $this->Admin_Model->get_info_array('trade_id', $trade_id, 'uni_trade');
+ ?>
+  <p style="font-size:14px; margin-bottom:0px; margin-top:0px; padding: 3px; border-left:1px solid #000!important; margin-left:0px;"> <b>Trade :</b> <?php echo $trade_details[0]['trade_name']; ?>  <b> <hr style="border-bottom:1px solid #000; padding:0px; margin:0px;">
 
   </td>
 </tr>

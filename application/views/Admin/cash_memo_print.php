@@ -31,7 +31,7 @@
     <div class="row">
   <p style="text-align:center; font-size:22px;"> <b>Stamping Cash Memo</b>  </p>
 </div>
-    <table class="table table-bordered mb-0 invoice-table"  width="750">
+    <table class="table table-bordered mb-0 invoice-table"  width="100%">
 <style media="print">
 p{
   margin:3px;
@@ -149,7 +149,7 @@ table{
 
 <div class="row">
 <div class="col-12 table-responsive">
-  <table class="table table-botttom" width="750">
+  <table class="table table-botttom" width="100%">
     <style media="print">
     .table-bottom {
 border-collapse: collapse;
@@ -255,7 +255,7 @@ text-align: center;
 
     <tr style="border-top:0px!important; border-bottom:0px!important;">
       <td colspan="12" style="border-bottom:0px!important; border-top:0px!important; border-right:0px!important;">
-        <p style="font-size:12px;"><input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_objection != ''){ echo 'checked'; } ?>>  Received Above Machines/System For stamping & Verification, no any Bojection <br>
+        <p style="font-size:12px;"><input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_objection != ''){ echo 'checked'; } ?>>  Received Above Machines/System For stamping & Verification, no any Objection <br>
           <input type="checkbox" disabled <?php if($govt_stamp_data->govt_stamp_condition != ''){ echo 'checked'; } ?>> Received our Machine in Good Condition. </p>
       </td>
     </tr>
