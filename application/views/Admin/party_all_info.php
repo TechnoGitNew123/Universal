@@ -46,7 +46,7 @@
                     <select class="form-control select2 form-control-sm dr-lg" data-placeholder="Select Party Name" id="party" title="Select Party" style="width: 100%;">
                       <option selected="selected" value="" >Select Party Name</option>
                       <?php foreach ($party_list as $party_list1) { ?>
-                        <option value="<?php echo $party_list1->party_id; ?>" <?php if(isset($party_id)){ if($party_list1->party_id == $party_id){ echo "selected"; } }  ?>><?php echo $party_list1->party_firm.' ('.$party_list1->party_proriter.' - '.$party_list1->party_area.' - '.$party_list1->party_mob1.')'; ?></option>
+                        <option value="<?php echo $party_list1->party_id; ?>" <?php if(isset($party_id)){ if($party_list1->party_id == $party_id){ echo "selected"; } }  ?>><?php echo $party_list1->party_id.'. '.$party_list1->party_firm.' ('.$party_list1->party_proriter.' - '.$party_list1->party_area.' - '.$party_list1->party_mob1.')'; ?></option>
                       <?php } ?>
                 </select>
                   </div>
@@ -76,7 +76,7 @@
 
                 <tr>
                   <td colspan="3"> <p class="lab" > <b> Firm Name</b> : <span id="party_firm"></span> </p> </td>
-                  <td colspan="3">  <p class="lab"> <b>  Name Of Propritor</b> : <span id="party_proriter"></span> </p> </td>
+                  <td colspan="3">  <p class="lab"> <b>  Name Of Proprietor</b> : <span id="party_proriter"></span> </p> </td>
                 </tr>
                 <tr>
                   <td colspan="3"> <p class="lab"> <b> Address</b> : <span id="party_address"></span> </p> </td>
@@ -153,7 +153,7 @@
               </form>
             </div>
           </div>
-          <div class="col-md-3 col-6">
+          <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
                 <h3 id="purchase_count">0</h3>
@@ -198,9 +198,9 @@
               </form>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <!-- left column -->
+        <!-- </div>
+        <div class="row"> -->
+
           <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
@@ -234,11 +234,11 @@
             </div>
           </div>
 
-          <div class="col-md-3 col-6">
+          <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
                 <h3 id="gov_stamping_count">0</h3>
-                <p>Govt Stamping Cash Memo</p>
+                <p>Govt Stamping Cash</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -278,6 +278,37 @@
               </div>
               <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
               <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/receipt_list" method="post">
+                <input type="hidden" name="party_id" class="party_id">
+              </form>
+            </div>
+          </div>
+
+          <div class="col-md-2 col-6">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3 id="complaint_count">0</h3>
+                <p>Complaint</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/complaint_list" method="post">
+                <input type="hidden" name="party_id" class="party_id">
+              </form>
+            </div>
+          </div>
+          <div class="col-md-2 col-6">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3 id="service_count">0</h3>
+                <p>Service Report</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a id="btn_sale_list" class="small-box-footer more_info">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <form id="form_sale_list" class="form_submit" action="<?php echo base_url(); ?>Transaction/service_report_list" method="post">
                 <input type="hidden" name="party_id" class="party_id">
               </form>
             </div>
@@ -327,7 +358,6 @@ $("#party").on("change", function(){
 
       // Counts
       $('#enquiry_count').html(data['enquiry_count']);
-      $('#complaint_count').html(data['complaint_count']);
       $('#delivery_challan_count').html(data['delivery_challan_count']);
       $('#purchase_count').html(data['purchase_count']);
       $('#sale_count').html(data['sale_count']);
@@ -337,6 +367,8 @@ $("#party").on("change", function(){
       $('#gov_stamping_count2').html(data['gov_stamping_count']);
       $('#repair_count2').html(data['repair_count']);
       $('#receipt_count').html(data['receipt_count']);
+      $('#complaint_count').html(data['complaint_count']);
+      $('#service_count').html(data['service_count']);
 
 
       $('#edit_party').attr('href','<?php echo base_url(); ?>Admin/edit_party/'+data['party_id'])

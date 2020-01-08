@@ -56,7 +56,19 @@ include('head.php');
                     <input type="text" readonly class="form-control form-control-sm" name="receipt_outstanding" id="receipt_outstanding" value="<?php if(isset($receipt_outstanding)){ echo $receipt_outstanding; } ?>" placeholder="Outstanding Amount">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control form-control-sm" name="receipt_amount" id="receipt_amount" value="<?php if(isset($receipt_amount)){ echo $receipt_amount; } ?>" placeholder="Receipt Amount">
+                    <input type="number" class="form-control form-control-sm" name="receipt_amount" id="receipt_amount" value="<?php if(isset($receipt_amount)){ echo $receipt_amount; } ?>" placeholder="Receipt Amount">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" class="form-control form-control-sm" name="receipt_refference" id="receipt_refference" value="<?php if(isset($receipt_refference)){ echo $receipt_refference; } ?>" placeholder="Refference Bill">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" class="form-control form-control-sm" name="receipt_discount" id="receipt_discount" value="<?php if(isset($receipt_discount)){ echo $receipt_discount; } ?>" placeholder="Discount Amount">
+                  </div>
+                  <div class="form-group col-md-12">
+                    <input  type="radio" name="pay_type" value="Cash" <?php if(isset($pay_type) && $pay_type == 'Cash'){ echo 'checked'; } else{ echo 'checked'; } ?> > Cash &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="pay_type" value="Cheque" <?php if(isset($pay_type) && $pay_type == 'Cheque'){ echo 'checked'; }?> > Cheque &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="pay_type" value="Online Transfer" <?php if(isset($pay_type) && $pay_type == 'Online Transfer'){ echo 'checked'; }?>> Online Transfer
+                    <!-- <textarea name="receipt_narration" id="receipt_narration" class="form-control form-control-sm" placeholder="Narration" rows="5" cols="100"><?php if(isset($receipt_narration)){ echo $receipt_narration; } ?></textarea> -->
                   </div>
                   <div class="form-group col-md-12">
                     <textarea name="receipt_narration" id="receipt_narration" class="form-control form-control-sm" placeholder="Narration" rows="5" cols="100"><?php if(isset($receipt_narration)){ echo $receipt_narration; } ?></textarea>

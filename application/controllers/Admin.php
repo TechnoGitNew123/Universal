@@ -31,7 +31,7 @@ class Admin extends CI_Controller{
         $data['repair_count'] = $this->Admin_Model->get_count($party,$party_id,'repairy_id',$company_id,'uni_repairy_master');
         $data['gov_stamping_count'] = $this->Admin_Model->get_count($party,$party_id,'govt_stamp_id',$company_id,'uni_govt_stamp_master');
         $data['complaint_count'] = $this->Admin_Model->get_complaint_count($party_id,$company_id);
-        $data['service_report_count'] = $this->Admin_Model->get_count($party,$party_id,'service_id',$company_id,'uni_service');
+        $data['service_report_count'] = $this->Admin_Model->get_service_count($party_id,$company_id);
         $data['receipt_count'] = $this->Admin_Model->get_count($party,$party_id,'receipt_id',$company_id,'uni_receipt');
         $data['expense_count'] = $this->Admin_Model->get_count($party,$party_id,'expense_id',$company_id,'uni_expense');
         $this->load->view('Admin/dashboard',$data);

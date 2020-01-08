@@ -105,7 +105,10 @@ table{
     <?php echo $delivery_challan_data->party_taluka.' '; ?>
     <?php echo $delivery_challan_data->party_district.' '; ?> -->
   </p>
-  <p style="font-size:16px; margin-bottom:5px; margin-top:5px;"> Contact No. <?php echo $delivery_challan_data->party_mob1.' '; ?></p>
+  <p style="font-size:16px; margin-bottom:5px; margin-top:5px;"> Contact No. <?php echo $delivery_challan_data->party_mob1.' '; ?>
+  <br> GST No. : <?php echo $delivery_challan_data->party_gst_no.' '; ?>
+  </p>
+
   </td>
 <td style="border-left:0px!important; border-right:0px!important;">
 

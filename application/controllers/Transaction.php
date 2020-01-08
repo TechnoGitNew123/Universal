@@ -1303,7 +1303,10 @@ public function delete_repairy_bill($id){
        'receipt_party' => $this->input->post('receipt_party'),
        'receipt_outstanding' => $this->input->post('receipt_outstanding'),
        'receipt_amount' => $this->input->post('receipt_amount'),
+       'receipt_discount' => $this->input->post('receipt_discount'),
+       'receipt_refference' => $this->input->post('receipt_refference'),
        'receipt_narration' => $this->input->post('receipt_narration'),
+       'pay_type' => $this->input->post('pay_type'),
      );
      $this->Admin_Model->save_data('uni_receipt', $data);
      header('location:'.base_url().'Transaction/receipt_list');
@@ -1322,7 +1325,10 @@ public function delete_repairy_bill($id){
      'receipt_party' => $this->input->post('receipt_party'),
      'receipt_outstanding' => $this->input->post('receipt_outstanding'),
      'receipt_amount' => $this->input->post('receipt_amount'),
+     'receipt_discount' => $this->input->post('receipt_discount'),
+     'receipt_refference' => $this->input->post('receipt_refference'),
      'receipt_narration' => $this->input->post('receipt_narration'),
+     'pay_type' => $this->input->post('pay_type'),
      );
      $this->Admin_Model->update_info('receipt_id', $receipt_id, 'uni_receipt', $update_data);
      header('location:'.base_url().'Transaction/receipt_list');
@@ -1336,7 +1342,10 @@ public function delete_repairy_bill($id){
      $data['receipt_party'] = $info->receipt_party;
      $data['receipt_outstanding'] = $info->receipt_outstanding;
      $data['receipt_amount'] = $info->receipt_amount;
+     $data['receipt_discount'] = $info->receipt_discount;
+     $data['receipt_refference'] = $info->receipt_refference;
      $data['receipt_narration'] = $info->receipt_narration;
+     $data['pay_type'] = $info->pay_type;
    }
    $data['party_list'] = $this->Admin_Model->get_list($company_id,'party_id','ASC','uni_party');
    $this->load->view('Admin/receipt',$data);
@@ -1878,7 +1887,6 @@ public function expense_voucher_list(){
       $data['outstanding_amount'] = $outstanding_amount;
 
       $data['enquiry_count'] = $this->Admin_Model->get_enquiry_count($party_id,$company_id);
-      $data['complaint_count'] = $this->Admin_Model->get_complaint_count($party_id,$company_id);
       $data['delivery_challan_count'] = $this->Admin_Model->get_count('delivery_party',$party_id,'delivery_id',$company_id,'uni_delivery_master');
       $data['purchase_count'] = $this->Admin_Model->get_count('purchase_party',$party_id,'purchase_id',$company_id,'uni_purchase_master');
       $data['sale_count'] = $this->Admin_Model->get_count('sale_party',$party_id,'sale_id',$company_id,'uni_sale_master');
@@ -1886,6 +1894,8 @@ public function expense_voucher_list(){
       $data['repair_count'] = $this->Admin_Model->get_count('repairy_party',$party_id,'repairy_id',$company_id,'uni_repairy_master');
       $data['gov_stamping_count'] = $this->Admin_Model->get_count('govt_stamp_party',$party_id,'govt_stamp_id',$company_id,'uni_govt_stamp_master');
       $data['receipt_count'] = $this->Admin_Model->get_count('receipt_party',$party_id,'receipt_id',$company_id,'uni_receipt');
+      $data['complaint_count'] = $this->Admin_Model->get_complaint_count($party_id,$company_id);
+      $data['service_count'] = $this->Admin_Model->get_service_count($party_id,$company_id);
 
       // $data['service_report_count'] = $this->Admin_Model->get_count($party,$party_id,'service_id',$company_id,'uni_service');
       // $data['receipt_count'] = $this->Admin_Model->get_count('receipt_party',$party_id,'receipt_id',$company_id,'uni_receipt');

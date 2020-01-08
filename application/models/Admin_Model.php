@@ -119,7 +119,20 @@ class Admin_Model extends CI_Model{
     if($party_id != null){
       $this->db->where('party_id', $party_id);
     }
-    $this->db->where('complaint_status', 'open');
+    // $this->db->where('complaint_status', 'open');
+    $this->db->from('uni_complaint');
+    $query = $this->db->get();
+    $result = $query->num_rows();
+    return $result;
+  }
+
+  public function get_service_count($party_id,$company_id){
+    $this->db->select('complaint_id');
+    $this->db->where('company_id', $company_id);
+    if($party_id != null){
+      $this->db->where('party_id', $party_id);
+    }
+    $this->db->where('service_call_completion', 'Completed');
     $this->db->from('uni_complaint');
     $query = $this->db->get();
     $result = $query->num_rows();

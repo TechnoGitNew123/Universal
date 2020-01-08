@@ -38,7 +38,6 @@ include('head.php');
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -69,9 +68,6 @@ include('head.php');
                       <?php } ?>
                     </select>
                   </div>
-                  <div class="form-group col-md-2">
-                    <!-- <a href="" class="btn btn-sm btn-block btn-primary">Add New Party</a> -->
-                  </div>
                   <div class="form-group col-md-8 offset-md-2">
                     <select class="form-control select2 form-control-sm" name="govt_stamp_division" style="width: 100%;" required>
                       <option selected="selected" value="" >Select Division / Camp</option>
@@ -96,8 +92,6 @@ include('head.php');
                       <?php } ?>
                     </select>
                   </div>
-                  <!-- <div class="form-group col-md-2">
-                  </div> -->
                 </div>
               <div class=" w-100 text-right">
                 <button type="button" id="add_row" class="btn btn-sm btn-primary mb-3 mr-1" width="150px">Add Row</button>
@@ -510,7 +504,8 @@ var i = 1;
             total_govt_fees += parseFloat(govt_fees);
         }
     });
-    $('#govt_stamp_gov_fees').val(total_govt_fees);
+    // num.toFixed(2)
+    $('#govt_stamp_gov_fees').val(total_govt_fees.toFixed(2));
 
     var total_ser_charge = 0;
     $(".ser_charge").each(function() {
@@ -519,10 +514,10 @@ var i = 1;
             total_ser_charge += parseFloat(ser_charge);
         }
     });
-    $('#govt_stamp_ser_charge').val(total_ser_charge);
+    $('#govt_stamp_ser_charge').val(total_ser_charge.toFixed(2));
 
     var total_amount = total_govt_fees + total_ser_charge + govt_stamp_late_fee + govt_stamp_hctada;
-    $('#govt_stamp_total').val(total_amount);
+    $('#govt_stamp_total').val(total_amount.toFixed(2));
   }
 
   $('#govt_stamp_late_fee, #govt_stamp_hctada').on('keyup', function () {

@@ -397,7 +397,7 @@ var i = 1;
     $('#repairy_basic_charge').val(basic_amount);
 
     var repairy_total = basic_amount + repairy_min_charge;
-    $('#repairy_total').val(repairy_total);
+    $('#repairy_total').val(repairy_total.toFixed(2));
   });
 
   $("#myTable").on("change", "select.make_id", function(){
@@ -451,10 +451,10 @@ var i = 1;
             basic_amount += parseFloat(amount);
         }
     });
-    $('#repairy_basic_charge').val(basic_amount);
+    $('#repairy_basic_charge').val(basic_amount.toFixed(2));
 
     var repairy_total = basic_amount + repairy_min_charge;
-    $('#repairy_total').val(repairy_total);
+    $('#repairy_total').val(repairy_total.toFixed(2));
   });
 
   $('#repairy_min_charge').on('keyup',function () {
@@ -470,7 +470,7 @@ var i = 1;
     var repairy_min_charge = parseInt(repairy_min_charge);
 
     var repairy_total = repairy_basic_charge + repairy_min_charge;
-    $('#repairy_total').val(repairy_total);
+    $('#repairy_total').val(repairy_total.toFixed(2));
   });
 </script>
 </body>

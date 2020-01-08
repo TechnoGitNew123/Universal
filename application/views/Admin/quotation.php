@@ -442,19 +442,19 @@ var i = 0;
             basic_amount += parseFloat(amount);
         }
     });
-    $('#basic_amount').val(basic_amount);
+    $('#basic_amount').val(basic_amount.toFixed(2));
 
     var gst_val = 0;
     $(".gst_amount").each(function() {
         var gst_amount = $(this).val();
         if(!isNaN(gst_amount) && gst_amount.length != 0) {
-            gst_val += parseFloat(gst_amount);
+            gst_val += parseFloat(gst_amount.toFixed(2));
         }
     });
     $('#gst_val').val(gst_val);
 
     var total_amount = basic_amount + gst_val;
-    $('#quotation_total').val(total_amount);
+    $('#quotation_total').val(total_amount.toFixed(2));
   });
 
   // $("#myTable").on("change", "select.make_id", function(){
@@ -524,7 +524,7 @@ var i = 0;
             basic_amount += parseFloat(amount);
         }
     });
-    $('#basic_amount').val(basic_amount);
+    $('#basic_amount').val(basic_amount.toFixed(2));
 
     var gst_val = 0;
     $(".gst_amount").each(function() {
@@ -533,10 +533,10 @@ var i = 0;
             gst_val += parseFloat(gst_amount);
         }
     });
-    $('#gst_val').val(gst_val);
+    $('#gst_val').val(gst_val.toFixed(2));
 
     var total_amount = basic_amount + gst_val;
-    $('#quotation_total').val(total_amount);
+    $('#quotation_total').val(total_amount.toFixed(2));
   });
 
   $('#myTable').on('keyup', 'input.gst2, input.qty2, input.rate2', function () {
@@ -569,7 +569,7 @@ var i = 0;
             basic_amount += parseFloat(amount);
         }
     });
-    $('#basic_amount').val(basic_amount);
+    $('#basic_amount').val(basic_amount.toFixed(2));
 
     var gst_val = 0;
     $(".gst_amount").each(function() {
@@ -579,10 +579,10 @@ var i = 0;
             gst_val += parseFloat(gst_amount);
         }
     });
-    $('#gst_val').val(gst_val);
+    $('#gst_val').val(gst_val.toFixed(2));
 
     var total_amount = basic_amount + gst_val;
-    $('#quotation_total').val(total_amount);
+    $('#quotation_total').val(total_amount.toFixed(2));
   });
 
 

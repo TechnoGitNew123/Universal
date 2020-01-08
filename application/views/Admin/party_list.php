@@ -47,9 +47,10 @@ include('head.php');
                 <thead>
                 <tr>
                   <th>Sr. No.</th>
+                  <th>Party No.</th>
                   <th>Nature of Business</th>
                   <th>Name of Firm</th>
-                  <th>Name of Propriter</th>
+                  <th>Name of Proprietor</th>
                   <th>Mobile No.</th>
                   <th>Area</th>
                   <th>District</th>
@@ -66,9 +67,11 @@ include('head.php');
                   ?>
                   <tr>
                     <td><?php echo $i; ?></td>
+                    <td><?php echo $party_list1->party_id; ?></td>
                     <td>
                       <?php echo $trade_details[0]['trade_name']; ?>
                     </td>
+                    <td><?php echo $party_list1->party_firm; ?></td>
                     <td><?php echo $party_list1->party_firm; ?></td>
                     <td><?php echo $party_list1->party_proriter; ?></td>
                     <td><?php echo $party_list1->party_mob1; ?></td>

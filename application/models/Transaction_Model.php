@@ -361,15 +361,16 @@ class Transaction_Model extends CI_Model{
 
 // Service Report
   public function get_service_report_list($company_id){
-    $query = $this->db->select('service.*,complaint.*, party.*, user.*,make.*,product.*')
-    ->from('uni_service as service')
-    ->where('service.company_id', $company_id)
-    ->order_by('service.service_id', 'DESC')
-    ->join('uni_complaint as complaint', 'service.complaint_id = complaint.complaint_id', 'LEFT')
+    $query = $this->db->select('complaint.*, party.*, user.*,make.*,product.*')
+    ->from('uni_complaint as complaint')
+    ->where('complaint.company_id', $company_id)
+    ->where('complaint.service_call_completion', 'Completed')
+    ->order_by('complaint.complaint_id', 'DESC')
+    // ->join('uni_complaint as complaint', 'service.complaint_id = complaint.complaint_id', 'LEFT')
      ->join('uni_party as party', 'complaint.party_id = party.party_id', 'LEFT')
      ->join('uni_user as user', 'complaint.complaint_engeeneer = user.user_id', 'LEFT')
-     ->join('uni_make as make', 'service.make_id = make.make_id', 'LEFT')
-     ->join('uni_product as product', 'service.model_no = product.product_id', 'LEFT')
+     ->join('uni_make as make', 'complaint.make_id = make.make_id', 'LEFT')
+     ->join('uni_product as product', 'complaint.model_no = product.product_id', 'LEFT')
      ->get();
      $result = $query->result();
      return $result;
