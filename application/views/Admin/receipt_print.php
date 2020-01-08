@@ -148,14 +148,18 @@
 
 
     </tr>
-    <tr class="no-bottom-border">
-      <td class="small no-right-border no-bottom-border"> <p> <b> &nbsp;&nbsp;Rupees :</b> </p>
+    <tr class="no-bottom-border" valign="top">
+      <td style="width:25% !important;" class="small no-right-border no-bottom-border"> <p> <b> &nbsp;&nbsp;Rupees :</b> </p>
         </td>
 
-        <td colspan="2" class="large no-left-border no-bottom-border">
+        <td style="width:50% !important;" class="large no-left-border no-right-border  no-bottom-border">
        <p> <b> <?php echo $this->numbertowords->convert_number($receipt_details->receipt_amount); ?> Only</b>   </p>
        <p>  <?php echo $receipt_details->receipt_amount; ?> </p>
-                </td>
+        </td>
+        <td class="large no-left-border no-bottom-border">
+          <p> <b> Payment Mode</b>   </p>
+          <p>  <?php echo $receipt_details->pay_type; ?> </p>
+        </td>
 
     </tr>
     <tr class="no-top-border">
@@ -167,8 +171,11 @@
         <!-- <br><br> -->
         </td>
 
-        <td colspan="2" class="large no-left-border">
+        <td style="width:25% !important;"  class="large no-left-border no-right-border">
           <?php echo $receipt_details->receipt_narration; ?>
+          </td>
+          <td style="width:50% !important;" class="large no-left-border">
+          Ref. Bill No : <?php echo $receipt_details->receipt_refference; ?>
           </td>
     </tr>
 

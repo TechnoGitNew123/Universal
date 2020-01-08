@@ -78,7 +78,6 @@ include('head.php');
                   <td><?php echo $service; ?></td>
                   <td><?php echo $complaint_list1->complaint_reporting; ?></td>
                   <td style="width:100px;">
-                    <?php if($admin_roll_id == 1){ ?>
                     <a href="edit_complaint/<?php echo $complaint_list1->complaint_id; ?>"> <i class="fa fa-edit"></i> </a>
                     <a class="ml-2" href="delete_complaint/<?php echo $complaint_list1->complaint_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
                     <!-- <a class="ml-2" href="service_report/<?php echo $complaint_list1->complaint_id; ?>"> <i class="fa fa-plus"></i> </a> -->
