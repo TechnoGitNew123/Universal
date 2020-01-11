@@ -46,8 +46,8 @@ include('head.php');
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Sr. No.</th>
-                  <th>Party No.</th>
+                  <!-- <th>Sr. No.</th> -->
+                  <th>Customer No.</th>
                   <th>Nature of Business</th>
                   <th>Name of Firm</th>
                   <th>Name of Proprietor</th>
@@ -66,10 +66,10 @@ include('head.php');
                       $trade_details = $this->Admin_Model->get_info_array('trade_id', $trade_id, 'uni_trade');
                   ?>
                   <tr>
-                    <td><?php echo $i; ?></td>
+                    <!-- <td><?php echo $i; ?></td> -->
                     <td><?php echo $party_list1->party_id; ?></td>
                     <td>
-                      <?php echo $trade_details[0]['trade_name']; ?>
+                      <?php if($trade_details){ echo $trade_details[0]['trade_name']; }  ?>
                     </td>
                     <td><?php echo $party_list1->party_firm; ?></td>
                     <td><?php echo $party_list1->party_proriter; ?></td>

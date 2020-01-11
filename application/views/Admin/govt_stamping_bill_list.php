@@ -94,9 +94,9 @@ include('head.php');
                      </td>
                   <?php }?>
                     <td>
+                        <a href="<?php echo base_url(); ?>Transaction/edit_govt_stamp/<?php echo $list->govt_stamp_id; ?>"> <i class="fa fa-edit"></i> </a>
                       <?php if($admin_roll_id == 1){ ?>
-                      <a href="<?php echo base_url(); ?>Transaction/edit_govt_stamp/<?php echo $list->govt_stamp_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-2" href="<?php echo base_url(); ?>Transaction/delete_govt_stamp/<?php echo $list->govt_stamp_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                        <a class="ml-2" href="<?php echo base_url(); ?>Transaction/delete_govt_stamp/<?php echo $list->govt_stamp_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
                       <?php } ?>
                     </td>
                   </tr>

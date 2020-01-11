@@ -46,6 +46,25 @@
                   <div class="form-group col-md-12">
                     <input type="text" class="form-control form-control-sm required" name="party_firm" id="party_firm" value="<?php if(isset($party_firm)){ echo $party_firm;} ?>" placeholder="Enter Name of Firm" required>
                   </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" class="form-control form-control-sm required" name="party_proriter" id="party_proriter" value="<?php if(isset($party_proriter)){ echo $party_proriter;} ?>" placeholder="Name Of Propriter">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <select class="form-control form-control-sm select2" data-placeholder="Trade of Business" name="party_business" id="party_business">
+                      <option value="" selected>Trade of Business</option>
+                      <?php foreach($trade_name_list as $list){ ?>
+                      <option value="<?php echo $list->trade_id; ?>" <?php if(isset($party_business) && $party_business == $list->trade_id){ echo 'selected'; } ?>><?php echo $list->trade_name; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <select class="form-control form-control-sm select2" data-placeholder="Select Division" name="division_id" id="division_id">
+                      <option value="" selected>Select Division</option>
+                      <?php foreach($division_list as $list){ ?>
+                      <option value="<?php echo $list->division_id; ?>" <?php if(isset($division_id) && $division_id == $list->division_id){ echo 'selected'; } ?>><?php echo $list->division_name; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
                   <div class="form-group col-md-12">
                     <textarea class="form-control form-control-sm required" rows="3" name="party_address" id="party_address" placeholder="Enter Address" required><?php if(isset($party_address)){ echo $party_address;} ?></textarea>
                   </div>
@@ -82,24 +101,8 @@
                   <div class="form-group col-md-6">
                     <input type="text" class="form-control form-control-sm" name="party_pan_no" id="party_pan_no" value="<?php if(isset($party_pan_no)){ echo $party_pan_no;} ?>" placeholder="Pan No.">
                   </div>
-                  <div class="form-group col-md-4">
-                    <input type="text" class="form-control form-control-sm required" name="party_proriter" id="party_proriter" value="<?php if(isset($party_proriter)){ echo $party_proriter;} ?>" placeholder="Name Of Propriter">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <select class="form-control form-control-sm select2" data-placeholder="Trade of Business" name="party_business" id="party_business">
-                      <option value="" selected>Trade of Business</option>
-                      <?php foreach($trade_name_list as $list){ ?>
-                      <option value="<?php echo $list->trade_id; ?>" <?php if(isset($party_business) && $party_business == $list->trade_id){ echo 'selected'; } ?>><?php echo $list->trade_name; ?></option>
-                      <?php } ?>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <select class="form-control form-control-sm select2" data-placeholder="Select Division" name="division_id" id="division_id">
-                      <option value="" selected>Select Division</option>
-                      <?php foreach($division_list as $list){ ?>
-                      <option value="<?php echo $list->division_id; ?>" <?php if(isset($division_id) && $division_id == $list->division_id){ echo 'selected'; } ?>><?php echo $list->division_name; ?></option>
-                      <?php } ?>
-                    </select>
+                  <div class="form-group col-md-12">
+                    <textarea class="form-control form-control-sm required" rows="3" name="party_requirment" id="party_requirment" placeholder="Requirment" required><?php if(isset($party_requirment)){ echo $party_requirment;} ?></textarea>
                   </div>
                 </div>
                 <!-- /.card-body -->

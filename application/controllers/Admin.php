@@ -216,6 +216,7 @@ class Admin extends CI_Controller{
         'party_pan_no' => $this->input->post('party_pan_no'),
         'party_proriter' => $this->input->post('party_proriter'),
         'party_business' => $this->input->post('party_business'),
+        'party_requirment' => $this->input->post('party_requirment'),
         'party_type' => 'party',
       );
       $check = $this->Admin_Model->check_duplication($company_id,$party_mob1,'party_mob1','uni_party');
@@ -257,6 +258,7 @@ class Admin extends CI_Controller{
           $data['party_proriter'] = $info->party_proriter;
           $data['party_business'] = $info->party_business;
           $data['party_status'] = $info->party_status;
+          $data['party_requirment'] = $info->party_requirment;
 
         }
         $data['division_list'] = $this->Admin_Model->get_list($company_id,'division_id','ASC','uni_division');
@@ -290,6 +292,7 @@ class Admin extends CI_Controller{
         'party_pan_no' => $this->input->post('party_pan_no'),
         'party_proriter' => $this->input->post('party_proriter'),
         'party_business' => $this->input->post('party_business'),
+        'party_requirment' => $this->input->post('party_requirment'),
       );
       $check = $this->Admin_Model->check_duplication($company_id,$party_mob1,'party_mob1','uni_party');
       if($check > 1){

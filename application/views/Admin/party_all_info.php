@@ -51,11 +51,12 @@
                 </select>
                   </div>
                     <div class="form-group col-md-2 ">
-                      <a href="<?php echo base_url(); ?>Admin/party_information" class="btn btn-primary btn-sm ml-4">Add Party </a>
+                      <a href="<?php echo base_url(); ?>Admin/party_information" class="btn btn-primary btn-sm ml-4">Add Enquiry </a>
                     </div>
                 </div>
                   <!-- /.card-body -->
                 </form>
+                <p class="pl-2 text-danger text-bold">Customer No : <span id="party_id"></span></p>
                 <table class="table table-bordered mb-0 invoice-table">
                 <style media="screen">
                   .invoice-table td{
@@ -340,6 +341,7 @@ $("#party").on("change", function(){
     context: this,
     success: function (result) {
       var data = JSON.parse(result);
+      $('#party_id').html(data['party_id']);
       $('#party_firm').html(data['party_firm']);
       $('#party_address').html(data['party_address']);
       $('#party_area').html(data['party_area']);
